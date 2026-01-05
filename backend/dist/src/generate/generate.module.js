@@ -14,12 +14,13 @@ const template_module_1 = require("../template/template.module");
 const brand_module_1 = require("../brand/brand.module");
 const user_module_1 = require("../user/user.module");
 const billing_module_1 = require("../billing/billing.module");
+const auth_module_1 = require("../auth/auth.module");
 let GenerateModule = class GenerateModule {
 };
 exports.GenerateModule = GenerateModule;
 exports.GenerateModule = GenerateModule = __decorate([
     (0, common_1.Module)({
-        imports: [template_module_1.TemplateModule, brand_module_1.BrandModule, user_module_1.UserModule, billing_module_1.BillingModule],
+        imports: [template_module_1.TemplateModule, brand_module_1.BrandModule, user_module_1.UserModule, billing_module_1.BillingModule, auth_module_1.AuthModule],
         controllers: [generate_controller_1.GenerateController],
         providers: [generate_service_1.GenerateService],
     })

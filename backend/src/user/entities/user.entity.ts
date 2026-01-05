@@ -113,8 +113,8 @@ export class User {
   @OneToMany(() => Template, (template) => template.user)
   templates: Template[];
 
-  @Column({ nullable: true })
-  apiKey: string;
+  @Column({ type: 'varchar', nullable: true })
+  apiKey: string | null;
 
   @Column({ default: false })
   isApiOnly: boolean;

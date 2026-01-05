@@ -5,7 +5,7 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { GenerateImageDto } from './dto/generate-image.dto';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { User } from '../user/entities/user.entity';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { JwtOrApiKeyGuard } from '../auth/guards/jwt-or-api.guard';
 
 @ApiTags('generate')
 @Controller('generate')
@@ -13,7 +13,7 @@ export class GenerateController {
   constructor(private readonly generateService: GenerateService) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtOrApiKeyGuard)
   @ApiOperation({ summary: 'Generate an image from template and brand names' })
   @ApiBody({ type: GenerateImageDto })
   @ApiResponse({ status: 200, description: 'Image generated successfully' })

@@ -9,9 +9,11 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.setGlobalPrefix('api');
     app.enableCors({
-        origin: ['http://localhost:3000', 'http://localhost:3002'],
+        origin: process.env.NODE_ENV !== 'production'
+            ? true
+            : ['http://localhost:3000', 'http://localhost:3002'],
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'X-API-Key'],
         credentials: true,
     });
     console.log('Static uploads path:', (0, path_1.join)(__dirname, '..', '..', 'uploads'));

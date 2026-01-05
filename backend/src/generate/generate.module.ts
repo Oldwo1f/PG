@@ -5,9 +5,10 @@ import { TemplateModule } from '../template/template.module';
 import { BrandModule } from '../brand/brand.module';
 import { UserModule } from '../user/user.module';
 import { BillingModule } from '../billing/billing.module';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
-  imports: [TemplateModule, BrandModule, UserModule, BillingModule],
+  imports: [TemplateModule, BrandModule, UserModule, BillingModule, AuthModule],
   controllers: [GenerateController],
   providers: [GenerateService],
 })

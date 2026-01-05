@@ -9,6 +9,7 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
+  Param,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -16,6 +17,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { User } from './entities/user.entity';
+import { ChangeUserPlanDto } from './dto/change-user-plan.dto';
 
 interface AuthenticatedRequest extends Request {
   user: User;
@@ -56,6 +58,8 @@ export class UserController {
   > {
     // We remove password and methods from the user object before returning it
     const { password, ...user } = req.user;
+    // Ensure apiKey is never leaked in profile payloads
+    (user as any).apiKey = undefined;
     return user;
   }
 
@@ -95,5 +99,45 @@ export class UserController {
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   async deleteAccount(@Req() req: AuthenticatedRequest): Promise<void> {
     await this.userService.delete(req.user.id);
+  }
+
+  @Patch('me/plan')
+  @ApiOperation({ summary: "Change current user's subscription plan" })
+  @ApiResponse({ status: 200, description: 'Plan changed successfully.' })
+  async changeMyPlan(
+    @Req() req: AuthenticatedRequest,
+    @Body() changeUserPlanDto: ChangeUserPlanDto,
+  ): Promise<{ success: true }> {
+    await this.userService.changeUserPlan(req.user.id, changeUserPlanDto.planId);
+    return { success: true };
+  }
+
+  // API Key management
+  @Get('me/api-key')
+  @ApiOperation({ summary: "Get current user's API key (masked) and status" })
+  @ApiResponse({ status: 200, description: 'API key status retrieved.' })
+  async getApiKey(
+    @Req() req: AuthenticatedRequest,
+  ): Promise<{ hasApiKey: boolean; maskedKey: string | null }> {
+    const user = req.user as User;
+    const apiKey = user.apiKey || null;
+    const maskedKey = apiKey ? `${apiKey.slice(0, 6)}••••${apiKey.slice(-4)}` : null;
+    return { hasApiKey: !!apiKey, maskedKey };
+  }
+
+  @Post('me/api-key')
+  @ApiOperation({ summary: 'Generate a new API key (overwrites existing)' })
+  @ApiResponse({ status: 201, description: 'API key generated.' })
+  async generateApiKey(@Req() req: AuthenticatedRequest): Promise<{ apiKey: string }> {
+    const apiKey = await this.userService.generateApiKey((req.user as User).id);
+    return { apiKey };
+  }
+
+  @Delete('me/api-key')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiOperation({ summary: 'Revoke current API key' })
+  @ApiResponse({ status: 204, description: 'API key revoked.' })
+  async revokeApiKey(@Req() req: AuthenticatedRequest): Promise<void> {
+    await this.userService.updateUser((req.user as User).id, { apiKey: null });
   }
 }

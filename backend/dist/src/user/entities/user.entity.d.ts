@@ -39,7 +39,7 @@ export declare class User {
     images: Image[];
     brands: Brand[];
     templates: Template[];
-    apiKey: string;
+    apiKey: string | null;
     isApiOnly: boolean;
     createdAt: Date;
     updatedAt: Date;

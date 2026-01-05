@@ -19,7 +19,7 @@ const swagger_1 = require("@nestjs/swagger");
 const generate_image_dto_1 = require("./dto/generate-image.dto");
 const current_user_decorator_1 = require("../auth/decorators/current-user.decorator");
 const user_entity_1 = require("../user/entities/user.entity");
-const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
+const jwt_or_api_guard_1 = require("../auth/guards/jwt-or-api.guard");
 let GenerateController = class GenerateController {
     constructor(generateService) {
         this.generateService = generateService;
@@ -48,7 +48,7 @@ let GenerateController = class GenerateController {
 exports.GenerateController = GenerateController;
 __decorate([
     (0, common_1.Post)(),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwt_or_api_guard_1.JwtOrApiKeyGuard),
     (0, swagger_1.ApiOperation)({ summary: 'Generate an image from template and brand names' }),
     (0, swagger_1.ApiBody)({ type: generate_image_dto_1.GenerateImageDto }),
     (0, swagger_1.ApiResponse)({ status: 200, description: 'Image generated successfully' }),

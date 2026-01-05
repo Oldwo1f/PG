@@ -6,6 +6,9 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { UserModule } from '../user/user.module';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { ApiKeyAuthGuard } from './guards/api-key.guard';
+import { JwtOrApiKeyGuard } from './guards/jwt-or-api.guard';
 
 @Module({
   imports: [
@@ -21,7 +24,7 @@ import { UserModule } from '../user/user.module';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
-  exports: [AuthService],
+  providers: [AuthService, JwtStrategy, JwtAuthGuard, ApiKeyAuthGuard, JwtOrApiKeyGuard],
+  exports: [AuthService, JwtAuthGuard, ApiKeyAuthGuard, JwtOrApiKeyGuard],
 })
 export class AuthModule {}

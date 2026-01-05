@@ -20,12 +20,14 @@ const update_user_dto_1 = require("./dto/update-user.dto");
 const change_password_dto_1 = require("./dto/change-password.dto");
 const swagger_1 = require("@nestjs/swagger");
 const user_entity_1 = require("./entities/user.entity");
+const change_user_plan_dto_1 = require("./dto/change-user-plan.dto");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
     getProfile(req) {
         const { password, ...user } = req.user;
+        user.apiKey = undefined;
         return user;
     }
     updateProfile(req, updateUserDto) {
@@ -36,6 +38,23 @@ let UserController = class UserController {
     }
     async deleteAccount(req) {
         await this.userService.delete(req.user.id);
+    }
+    async changeMyPlan(req, changeUserPlanDto) {
+        await this.userService.changeUserPlan(req.user.id, changeUserPlanDto.planId);
+        return { success: true };
+    }
+    async getApiKey(req) {
+        const user = req.user;
+        const apiKey = user.apiKey || null;
+        const maskedKey = apiKey ? `${apiKey.slice(0, 6)}••••${apiKey.slice(-4)}` : null;
+        return { hasApiKey: !!apiKey, maskedKey };
+    }
+    async generateApiKey(req) {
+        const apiKey = await this.userService.generateApiKey(req.user.id);
+        return { apiKey };
+    }
+    async revokeApiKey(req) {
+        await this.userService.updateUser(req.user.id, { apiKey: null });
     }
 };
 exports.UserController = UserController;
@@ -89,6 +108,44 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "deleteAccount", null);
+__decorate([
+    (0, common_1.Patch)('me/plan'),
+    (0, swagger_1.ApiOperation)({ summary: "Change current user's subscription plan" }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Plan changed successfully.' }),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_user_plan_dto_1.ChangeUserPlanDto]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "changeMyPlan", null);
+__decorate([
+    (0, common_1.Get)('me/api-key'),
+    (0, swagger_1.ApiOperation)({ summary: "Get current user's API key (masked) and status" }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'API key status retrieved.' }),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getApiKey", null);
+__decorate([
+    (0, common_1.Post)('me/api-key'),
+    (0, swagger_1.ApiOperation)({ summary: 'Generate a new API key (overwrites existing)' }),
+    (0, swagger_1.ApiResponse)({ status: 201, description: 'API key generated.' }),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "generateApiKey", null);
+__decorate([
+    (0, common_1.Delete)('me/api-key'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.NO_CONTENT),
+    (0, swagger_1.ApiOperation)({ summary: 'Revoke current API key' }),
+    (0, swagger_1.ApiResponse)({ status: 204, description: 'API key revoked.' }),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "revokeApiKey", null);
 exports.UserController = UserController = __decorate([
     (0, swagger_1.ApiTags)('users'),
     (0, swagger_1.ApiBearerAuth)(),

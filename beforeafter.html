@@ -1,0 +1,1000 @@
+Perfect! Let me update the templates with a red circle for the brand logo, the baseline "Révéler votre style", and bigger photo frames for the before/after images.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouvelle Erre - Modern Facebook Templates</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #f8f6f3;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #2d5a54;
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            color: #8b9a96;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .template-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .template-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .template {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .template-title {
+            color: #2d5a54;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #d4af37, #b8941f);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Common Brand Elements */
+        .brand-logo {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: #dc3545;
+            border-radius: 50%;
+            z-index: 20;
+            border: 3px solid white;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        .brand-baseline {
+            position: absolute;
+            color: #2d5a54;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            z-index: 20;
+            text-transform: uppercase;
+        }
+
+        /* Template 1 - Geometric Collage */
+        .template-1 {
+            background: linear-gradient(45deg, #f8f6f3, #ede8e0);
+        }
+
+        .template-1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(135deg, #7fb3d3, #5f8db5);
+            clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+
+        .template-1 .geometric-shape {
+            position: absolute;
+            background: rgba(212, 175, 55, 0.9);
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            top: 50px;
+            left: 50px;
+        }
+
+        .template-1 .photo-frame-1 {
+            position: absolute;
+            width: 180px;
+            height: 240px;
+            background: #2d5a54;
+            top: 60px;
+            right: 60px;
+            border-radius: 10px;
+            border: 3px solid white;
+        }
+
+        .template-1 .photo-frame-1::after {
+            content: 'APRÈS';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .template-1 .photo-frame-2 {
+            position: absolute;
+            width: 160px;
+            height: 200px;
+            background: rgba(255,255,255,0.9);
+            bottom: 40px;
+            left: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .template-1 .photo-frame-2::after {
+            content: 'AVANT';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #2d5a54;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .template-1 .brand-logo {
+            top: 20px;
+            left: 20px;
+        }
+
+        .template-1 .brand-baseline {
+            top: 80px;
+            left: 20px;
+        }
+
+        .template-1 .tropical-element {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #d4af37, #f0d966);
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        /* Template 2 - Circular Frames */
+        .template-2 {
+            background: linear-gradient(135deg, #f0f4f2, #e0e8e4);
+        }
+
+        .template-2 .spiral-bg {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(127,179,211,0.3), rgba(95,141,181,0.1));
+            border-radius: 50%;
+        }
+
+        .template-2 .photo-frame-1 {
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            background: #2d5a54;
+            top: 40px;
+            left: 50px;
+            border-radius: 50%;
+            border: 4px solid white;
+        }
+
+        .template-2 .photo-frame-2 {
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            background: rgba(212, 175, 55, 0.9);
+            bottom: 60px;
+            right: 50px;
+            border-radius: 50%;
+            border: 4px solid white;
+        }
+
+        .template-2 .bamboo-accent {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 150px;
+            height: 300px;
+            background: linear-gradient(45deg, rgba(180, 200, 150, 0.6), rgba(160, 180, 130, 0.4));
+            clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+
+        .template-2 .brand-logo {
+            top: 20px;
+            right: 20px;
+        }
+
+        .template-2 .brand-baseline {
+            top: 80px;
+            right: 20px;
+        }
+
+        .template-2 .label-avant {
+            position: absolute;
+            bottom: 20px;
+            right: 110px;
+            color: #2d5a54;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .template-2 .label-apres {
+            position: absolute;
+            top: 250px;
+            left: 70px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Template 3 - Modern Split */
+        .template-3 {
+            background: #f8f6f3;
+        }
+
+        .template-3::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(180deg, #7fb3d3, #5f8db5);
+        }
+
+        .template-3 .photo-frame-1 {
+            position: absolute;
+            width: 200px;
+            height: 260px;
+            background: rgba(255,255,255,0.95);
+            top: 40px;
+            left: 20px;
+            border-radius: 15px;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+        }
+
+        .template-3 .photo-frame-2 {
+            position: absolute;
+            width: 180px;
+            height: 240px;
+            background: #2d5a54;
+            top: 60px;
+            right: 30px;
+            border-radius: 15px;
+            border: 3px solid #d4af37;
+        }
+
+        .template-3 .brand-logo {
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .template-3 .brand-baseline {
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .template-3 .decorative-circle {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #d4af37, #f0d966);
+            border-radius: 50%;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.8;
+        }
+
+        .template-3 .label-avant {
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+            color: white;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .template-3 .label-apres {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            color: #2d5a54;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* Template 4 - Organic Shapes */
+        .template-4 {
+            background: linear-gradient(45deg, #ede8e0, #f0f4f2);
+        }
+
+        .template-4 .organic-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 70%;
+            height: 60%;
+            background: linear-gradient(135deg, rgba(127,179,211,0.4), rgba(95,141,181,0.2));
+            border-radius: 0 0 0 100px;
+        }
+
+        .template-4 .photo-frame-1 {
+            position: absolute;
+            width: 170px;
+            height: 220px;
+            background: #2d5a54;
+            top: 30px;
+            right: 50px;
+            border-radius: 20px;
+            transform: rotate(-5deg);
+        }
+
+        .template-4 .photo-frame-2 {
+            position: absolute;
+            width: 180px;
+            height: 230px;
+            background: rgba(212, 175, 55, 0.9);
+            bottom: 60px;
+            left: 40px;
+            border-radius: 20px;
+            transform: rotate(3deg);
+        }
+
+        .template-4 .brand-logo {
+            top: 150px;
+            left: 30px;
+        }
+
+        .template-4 .brand-baseline {
+            top: 210px;
+            left: 30px;
+        }
+
+        .template-4 .spiral-element {
+            position: absolute;
+            top: 100px;
+            left: 40px;
+            width: 80px;
+            height: 80px;
+            border: 3px solid #d4af37;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+
+        .template-4 .palm-accent {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 120px;
+            height: 200px;
+            background: linear-gradient(45deg, rgba(45, 90, 84, 0.1), rgba(45, 90, 84, 0.05));
+            clip-path: ellipse(60px 100px at 50% 100%);
+        }
+
+        /* Template 5 - Minimalist Elegance */
+        .template-5 {
+            background: #f8f6f3;
+        }
+
+        .template-5 .accent-bar {
+            position: absolute;
+            top: 0;
+            left: 40px;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #d4af37, #b8941f);
+        }
+
+        .template-5 .photo-frame-1 {
+            position: absolute;
+            width: 230px;
+            height: 180px;
+            background: #2d5a54;
+            top: 40px;
+            right: 40px;
+            border-radius: 10px;
+        }
+
+        .template-5 .photo-frame-2 {
+            position: absolute;
+            width: 210px;
+            height: 170px;
+            background: rgba(127,179,211,0.8);
+            bottom: 70px;
+            left: 60px;
+            border-radius: 10px;
+        }
+
+        .template-5 .brand-logo {
+            top: 20px;
+            left: 60px;
+        }
+
+        .template-5 .brand-baseline {
+            top: 80px;
+            left: 60px;
+        }
+
+        .template-5 .floating-circle {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: #d4af37;
+            border-radius: 50%;
+            top: 150px;
+            left: 80px;
+            opacity: 0.8;
+        }
+
+        .template-5 .text-area {
+            position: absolute;
+            bottom: 30px;
+            right: 60px;
+            color: #2d5a54;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Template 6 - Layered Composition */
+        .template-6 {
+            background: linear-gradient(135deg, #e0e8e4, #f0f4f2);
+        }
+
+        .template-6 .layer-1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60%;
+            height: 70%;
+            background: rgba(127,179,211,0.3);
+            border-radius: 0 0 80px 0;
+        }
+
+        .template-6 .layer-2 {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50%;
+            height: 60%;
+            background: rgba(45, 90, 84, 0.1);
+            border-radius: 60px 0 0 0;
+        }
+
+        .template-6 .photo-frame-1 {
+            position: absolute;
+            width: 190px;
+            height: 240px;
+            background: #2d5a54;
+            top: 40px;
+            left: 60px;
+            border-radius: 15px;
+            z-index: 10;
+        }
+
+        .template-6 .photo-frame-2 {
+            position: absolute;
+            width: 170px;
+            height: 220px;
+            background: rgba(212, 175, 55, 0.9);
+            bottom: 40px;
+            right: 60px;
+            border-radius: 15px;
+            z-index: 10;
+        }
+
+        .template-6 .brand-logo {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .template-6 .brand-baseline {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 40px);
+        }
+
+        .template-6 .connecting-line {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 2px;
+            height: 100px;
+            background: #d4af37;
+            opacity: 0.6;
+        }
+
+        /* Template 7 - Art Deco Inspired */
+        .template-7 {
+            background: radial-gradient(circle at center, #f8f6f3, #ede8e0);
+        }
+
+        .template-7 .art-deco-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(127,179,211,0.05) 10px,
+                rgba(127,179,211,0.05) 12px
+            );
+        }
+
+        .template-7 .photo-frame-1 {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: #2d5a54;
+            top: 60px;
+            left: 70px;
+            border-radius: 50%;
+            border: 5px solid #d4af37;
+        }
+
+        .template-7 .photo-frame-2 {
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            background: rgba(127,179,211,0.8);
+            bottom: 80px;
+            right: 60px;
+            border-radius: 50%;
+            border: 5px solid white;
+        }
+
+        .template-7 .brand-logo {
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .template-7 .brand-baseline {
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .template-7 .deco-element {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            border: 2px solid #d4af37;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .template-7 .brand-text {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #2d5a54;
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        /* Template 8 - Nature Collage */
+        .template-8 {
+            background: #f0f4f2;
+        }
+
+        .template-8 .nature-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(180, 200, 150, 0.3), rgba(160, 180, 130, 0.2));
+            clip-path: ellipse(100px 150px at 100% 0%);
+        }
+
+        .template-8 .photo-frame-1 {
+            position: absolute;
+            width: 210px;
+            height: 160px;
+            background: #2d5a54;
+            top: 50px;
+            left: 30px;
+            border-radius: 20px;
+            transform: rotate(-3deg);
+        }
+
+        .template-8 .photo-frame-2 {
+            position: absolute;
+            width: 190px;
+            height: 150px;
+            background: rgba(212, 175, 55, 0.9);
+            bottom: 80px;
+            right: 40px;
+            border-radius: 20px;
+            transform: rotate(2deg);
+        }
+
+        .template-8 .brand-logo {
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .template-8 .brand-baseline {
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .template-8 .leaf-accent {
+            position: absolute;
+            bottom: 40px;
+            left: 60px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #7fb3d3, #5f8db5);
+            border-radius: 0 100px 0 100px;
+            opacity: 0.7;
+        }
+
+        /* Template 9 - Geometric Moderne */
+        .template-9 {
+            background: linear-gradient(45deg, #ede8e0, #f8f6f3);
+        }
+
+        .template-9 .geometric-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(90deg, 
+                #7fb3d3 0%, 
+                #7fb3d3 33%, 
+                #d4af37 33%, 
+                #d4af37 66%, 
+                #2d5a54 66%, 
+                #2d5a54 100%);
+            opacity: 0.8;
+        }
+
+        .template-9 .photo-frame-1 {
+            position: absolute;
+            width: 180px;
+            height: 230px;
+            background: rgba(255,255,255,0.95);
+            top: 120px;
+            left: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .template-9 .photo-frame-2 {
+            position: absolute;
+            width: 160px;
+            height: 210px;
+            background: #2d5a54;
+            top: 140px;
+            right: 50px;
+            border-radius: 10px;
+        }
+
+        .template-9 .brand-logo {
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .template-9 .brand-baseline {
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .template-9 .modern-accent {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 20px;
+            background: #d4af37;
+            opacity: 0.8;
+        }
+
+        /* Template 10 - Tropical Luxury */
+        .template-10 {
+            background: radial-gradient(ellipse at top, #f0f4f2, #e0e8e4);
+        }
+
+        .template-10 .luxury-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(135deg, rgba(45, 90, 84, 0.1), rgba(127,179,211,0.1));
+            border-radius: 0 100px 0 0;
+        }
+
+        .template-10 .photo-frame-1 {
+            position: absolute;
+            width: 170px;
+            height: 220px;
+            background: #2d5a54;
+            top: 40px;
+            right: 70px;
+            border-radius: 25px;
+            border: 3px solid #d4af37;
+        }
+
+        .template-10 .photo-frame-2 {
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            background: rgba(212, 175, 55, 0.9);
+            bottom: 60px;
+            left: 50px;
+            border-radius: 50%;
+            border: 4px solid white;
+        }
+
+        .template-10 .brand-logo {
+            top: 20px;
+            left: 20px;
+        }
+
+        .template-10 .brand-baseline {
+            top: 80px;
+            left: 20px;
+        }
+
+        .template-10 .luxury-element {
+            position: absolute;
+            top: 100px;
+            left: 80px;
+            width: 40px;
+            height: 40px;
+            background: #d4af37;
+            transform: rotate(45deg);
+            opacity: 0.8;
+        }
+
+        .template-10 .brand-signature {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            color: #2d5a54;
+            font-size: 14px;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .templates-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .template {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Nouvelle Erre</h1>
+        <p>Collection de Templates Facebook Modernes</p>
+    </div>
+
+    <div class="templates-grid">
+        <!-- Template 1: Geometric Collage -->
+        <div class="template-card">
+            <div class="template template-1">
+                <div class="brand-logo"></div>
+                <div class="brand-baseline">Révéler votre style</div>
+                <div class="geometric-shape"></div>
+                <div class="photo-frame-1"></div>
+                <div class="photo-frame-2"></div>
+                <div class="tropical-element"></div>
+            </div>
+            <div class="template-info">
+                <div class="template-title">Collage Géométrique</div>
+                <button class="download-btn">TÉLÉCHARGER</button>
+            </div>
+        </div>
+
+        <!-- Template 2: Circular Frames -->
+        <div class="template-card">
+            <div class="template template-2">
+                <div class="brand-logo"></div>
+                <div class="brand-baseline">Révéler votre style</div>
+                <div class="spiral-bg"></div>
+                <div class="photo-frame-1"></div>
+                <div class="photo-frame-2"></div>
+                <div class="bamboo-accent"></div>
+                <div class="label-avant">AVANT</div>
+                <div class="label-apres">APRÈS</div>
+            </div>
+            <div class="template-info">
+                <div class="template-title">Cadres Circulaires</div>
+                <button class="download-btn">TÉLÉCHARGER</button>
+            </div>
+        </div>
+
+        <!-- Template 3: Modern Split -->
+        <div class="template-card">
+            <div class="template template-3">
+                <div class="brand-logo"></div>
+                <div class="brand-baseline">Révéler votre style</div>
+                <div class="photo-frame-1"></div>
+                <div class="photo-frame-2"></div>
+                <div class="decorative-circle"></div>
+                <div class="label-avant">AVANT</div>
+                <div class="label-apres">APRÈS</div>
+            </div>
+            <div class="template-info">
+                <div class="template-title">Division Moderne</div>
+                <button class="download-btn">TÉLÉCHARGER</button>
+            </div>
+        </div>
+
+        <!-- Template 4: Organic Shapes -->
+        <div class="template-card">
+            <div class="template template-4">
+                <div class="brand-logo"></div>
+                <div class="brand-baseline">Révéler votre style</div>
+                <div class="organic-bg"></div>
+                <div class="photo-frame-1"></div>
+                <div class="photo-frame-2"></div>
+                <div class="spiral-element"></div>
+                <div class="palm-accent"></div>
+            </div>
+            <div class="template-info">
+                <div class="template-title">Formes Organiques</div>
+                <button class="download-btn">TÉLÉCHARGER</button>
+            </div>
+        </div>
+
+        <!-- Template 5: Minimalist Elegance -->
+        <div class="template-card">
+            <div class="template template-5">
+                <div class="brand-logo"></div>
+                <div class="brand-baseline">Révéler votre style</div>
+                <div class="accent-bar"></div>
+                <div class="photo-frame-1"></div>
+                <div class="photo-frame-2"></div>
+                <div class="floating-circle"></div>
+                <div class="text-area">TRANSFORMATION</div>
+            </div>
+            <div class="template-info">
+                <div class="template-title">Élégance Minimaliste</div>
+                <button class="download-btn">TÉLÉCHARGER</button>
+            </div>
+        </div>
+
+        <!-- Template 6: Layered Composition -->
+        <div class="template-card">
+            <div class="template template-6">
+                <div class="brand-logo"></div>
+                <div class="brand-baseline">Révéler votre style</div>
+                <div class="layer-1"></div>
+                <div class="layer-2"></div>
+                <div class="photo-frame-1"></div>
+                <div class="photo-frame-2"></div>
+                <div class="connecting-line"></div>
+            </div>
+            <div class="template-info">
+                <div class="template-title">Composition Stratifiée</div>
+                <button class="download-btn">TÉLÉCHARGER</button>
+            </div>
+        </div>
+
+            
+
+		<script>
+			document.querySelectorAll(".download-btn").forEach((btn, index) => {
+				btn.addEventListener("click", () => {
+					alert(
+						`Téléchargement du Template ${index + 1} en cours...`
+					);
+				});
+			});
+
+			// Add subtle animation on scroll
+			const observerOptions = {
+				threshold: 0.1,
+				rootMargin: "0px 0px -50px 0px",
+			};
+
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.style.opacity = "1";
+						entry.target.style.transform = "translateY(0)";
+					}
+				});
+			}, observerOptions);
+
+			document.querySelectorAll(".template-card").forEach((card) => {
+				card.style.opacity = "0";
+				card.style.transform = "translateY(30px)";
+				card.style.transition =
+					"opacity 0.6s ease, transform 0.6s ease";
+				observer.observe(card);
+			});
+		</script>
+	</body>
+</html>
