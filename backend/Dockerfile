@@ -33,13 +33,17 @@ RUN apk add --no-cache dumb-init bash
 COPY package*.json ./
 COPY yarn.lock* ./
 
-# Install only production dependencies
-RUN npm ci --only=production && npm cache clean --force
+# Install production dependencies + ts-node for seed scripts
+RUN npm ci --only=production && \
+    npm install --save-dev ts-node tsconfig-paths typescript && \
+    npm cache clean --force
 
 # Copy built application from builder
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/src/template/templates ./dist/template/templates
 COPY --from=builder /app/scripts ./scripts
+# Copy tools directory for seed scripts (will use ts-node if needed)
+COPY --from=builder /app/tools ./tools
 
 # Make scripts executable
 RUN chmod +x scripts/*.sh 2>/dev/null || true

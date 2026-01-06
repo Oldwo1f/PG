@@ -32,32 +32,15 @@ if ! $DOCKER_COMPOSE exec -T postgres pg_isready -U postgres > /dev/null 2>&1; t
 fi
 echo "✅ PostgreSQL est prêt"
 
-# 1. Lancer le seed des plans
+# Lancer le seed complet (plans + admin)
 echo ""
-echo "📦 Création des plans..."
-$DOCKER_COMPOSE exec -T backend npm run seed
+echo "🌱 Exécution du seed complet (plans + admin)..."
+$DOCKER_COMPOSE exec -T backend npm run seed:all
 
 if [ $? -eq 0 ]; then
-    echo "✅ Plans créés avec succès"
+    echo "✅ Seeds terminés avec succès"
 else
-    echo "❌ Erreur lors de la création des plans"
-    exit 1
-fi
-
-# 2. Créer l'utilisateur admin
-echo ""
-echo "👤 Création de l'utilisateur admin..."
-echo "   Email: alexis@alexis.fr"
-echo "   Mot de passe: Alexis09"
-echo "   Rôle: ADMIN"
-echo ""
-
-$DOCKER_COMPOSE exec -T backend npm run create-admin
-
-if [ $? -eq 0 ]; then
-    echo "✅ Utilisateur admin créé avec succès"
-else
-    echo "❌ Erreur lors de la création de l'utilisateur admin"
+    echo "❌ Erreur lors de l'exécution des seeds"
     exit 1
 fi
 
