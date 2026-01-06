@@ -1,0 +1,6147 @@
+[
+	{
+		"name": "house",
+		"class": "ph-duotone ph-house"
+	},
+	{
+		"name": "user",
+		"class": "ph-duotone ph-user"
+	},
+	{
+		"name": "gear",
+		"class": "ph-duotone ph-gear"
+	},
+	{
+		"name": "bell",
+		"class": "ph-duotone ph-bell"
+	},
+	{
+		"name": "envelope",
+		"class": "ph-duotone ph-envelope"
+	},
+	{
+		"name": "calendar",
+		"class": "ph-duotone ph-calendar"
+	},
+	{
+		"name": "chart",
+		"class": "ph-duotone ph-chart-line"
+	},
+	{
+		"name": "camera",
+		"class": "ph-duotone ph-camera"
+	},
+	{
+		"name": "image",
+		"class": "ph-duotone ph-image"
+	},
+	{
+		"name": "music",
+		"class": "ph-duotone ph-music-notes"
+	},
+
+	{
+		"name": "ph-acorn-duotone",
+		"class": "ph-duotone ph-acorn"
+	},
+	{
+		"name": "ph-address-book-duotone",
+		"class": "ph-duotone ph-address-book"
+	},
+	{
+		"name": "ph-address-book-tabs-duotone",
+		"class": "ph-duotone ph-address-book-tabs"
+	},
+	{
+		"name": "ph-air-traffic-control-duotone",
+		"class": "ph-duotone ph-air-traffic-control"
+	},
+	{
+		"name": "ph-airplane-duotone",
+		"class": "ph-duotone ph-airplane"
+	},
+	{
+		"name": "ph-airplane-in-flight-duotone",
+		"class": "ph-duotone ph-airplane-in-flight"
+	},
+	{
+		"name": "ph-airplane-landing-duotone",
+		"class": "ph-duotone ph-airplane-landing"
+	},
+	{
+		"name": "ph-airplane-takeoff-duotone",
+		"class": "ph-duotone ph-airplane-takeoff"
+	},
+	{
+		"name": "ph-airplane-taxiing-duotone",
+		"class": "ph-duotone ph-airplane-taxiing"
+	},
+	{
+		"name": "ph-airplane-tilt-duotone",
+		"class": "ph-duotone ph-airplane-tilt"
+	},
+	{
+		"name": "ph-airplay-duotone",
+		"class": "ph-duotone ph-airplay"
+	},
+	{
+		"name": "ph-alarm-duotone",
+		"class": "ph-duotone ph-alarm"
+	},
+	{
+		"name": "ph-alien-duotone",
+		"class": "ph-duotone ph-alien"
+	},
+	{
+		"name": "ph-align-bottom-duotone",
+		"class": "ph-duotone ph-align-bottom"
+	},
+	{
+		"name": "ph-align-bottom-simple-duotone",
+		"class": "ph-duotone ph-align-bottom-simple"
+	},
+	{
+		"name": "ph-align-center-horizontal-duotone",
+		"class": "ph-duotone ph-align-center-horizontal"
+	},
+	{
+		"name": "ph-align-center-horizontal-simple-duotone",
+		"class": "ph-duotone ph-align-center-horizontal-simple"
+	},
+	{
+		"name": "ph-align-center-vertical-duotone",
+		"class": "ph-duotone ph-align-center-vertical"
+	},
+	{
+		"name": "ph-align-center-vertical-simple-duotone",
+		"class": "ph-duotone ph-align-center-vertical-simple"
+	},
+	{
+		"name": "ph-align-left-duotone",
+		"class": "ph-duotone ph-align-left"
+	},
+	{
+		"name": "ph-align-left-simple-duotone",
+		"class": "ph-duotone ph-align-left-simple"
+	},
+	{
+		"name": "ph-align-right-duotone",
+		"class": "ph-duotone ph-align-right"
+	},
+	{
+		"name": "ph-align-right-simple-duotone",
+		"class": "ph-duotone ph-align-right-simple"
+	},
+	{
+		"name": "ph-align-top-duotone",
+		"class": "ph-duotone ph-align-top"
+	},
+	{
+		"name": "ph-align-top-simple-duotone",
+		"class": "ph-duotone ph-align-top-simple"
+	},
+	{
+		"name": "ph-amazon-logo-duotone",
+		"class": "ph-duotone ph-amazon-logo"
+	},
+	{
+		"name": "ph-ambulance-duotone",
+		"class": "ph-duotone ph-ambulance"
+	},
+	{
+		"name": "ph-anchor-duotone",
+		"class": "ph-duotone ph-anchor"
+	},
+	{
+		"name": "ph-anchor-simple-duotone",
+		"class": "ph-duotone ph-anchor-simple"
+	},
+	{
+		"name": "ph-android-logo-duotone",
+		"class": "ph-duotone ph-android-logo"
+	},
+	{
+		"name": "ph-angle-duotone",
+		"class": "ph-duotone ph-angle"
+	},
+	{
+		"name": "ph-angular-logo-duotone",
+		"class": "ph-duotone ph-angular-logo"
+	},
+	{
+		"name": "ph-aperture-duotone",
+		"class": "ph-duotone ph-aperture"
+	},
+	{
+		"name": "ph-app-store-logo-duotone",
+		"class": "ph-duotone ph-app-store-logo"
+	},
+	{
+		"name": "ph-app-window-duotone",
+		"class": "ph-duotone ph-app-window"
+	},
+	{
+		"name": "ph-apple-logo-duotone",
+		"class": "ph-duotone ph-apple-logo"
+	},
+	{
+		"name": "ph-apple-podcasts-logo-duotone",
+		"class": "ph-duotone ph-apple-podcasts-logo"
+	},
+	{
+		"name": "ph-approximate-equals-duotone",
+		"class": "ph-duotone ph-approximate-equals"
+	},
+	{
+		"name": "ph-archive-duotone",
+		"class": "ph-duotone ph-archive"
+	},
+	{
+		"name": "ph-armchair-duotone",
+		"class": "ph-duotone ph-armchair"
+	},
+	{
+		"name": "ph-arrow-arc-left-duotone",
+		"class": "ph-duotone ph-arrow-arc-left"
+	},
+	{
+		"name": "ph-arrow-arc-right-duotone",
+		"class": "ph-duotone ph-arrow-arc-right"
+	},
+	{
+		"name": "ph-arrow-bend-double-up-left-duotone",
+		"class": "ph-duotone ph-arrow-bend-double-up-left"
+	},
+	{
+		"name": "ph-arrow-bend-double-up-right-duotone",
+		"class": "ph-duotone ph-arrow-bend-double-up-right"
+	},
+	{
+		"name": "ph-arrow-bend-down-left-duotone",
+		"class": "ph-duotone ph-arrow-bend-down-left"
+	},
+	{
+		"name": "ph-arrow-bend-down-right-duotone",
+		"class": "ph-duotone ph-arrow-bend-down-right"
+	},
+	{
+		"name": "ph-arrow-bend-left-down-duotone",
+		"class": "ph-duotone ph-arrow-bend-left-down"
+	},
+	{
+		"name": "ph-arrow-bend-left-up-duotone",
+		"class": "ph-duotone ph-arrow-bend-left-up"
+	},
+	{
+		"name": "ph-arrow-bend-right-down-duotone",
+		"class": "ph-duotone ph-arrow-bend-right-down"
+	},
+	{
+		"name": "ph-arrow-bend-right-up-duotone",
+		"class": "ph-duotone ph-arrow-bend-right-up"
+	},
+	{
+		"name": "ph-arrow-bend-up-left-duotone",
+		"class": "ph-duotone ph-arrow-bend-up-left"
+	},
+	{
+		"name": "ph-arrow-bend-up-right-duotone",
+		"class": "ph-duotone ph-arrow-bend-up-right"
+	},
+	{
+		"name": "ph-arrow-circle-down-duotone",
+		"class": "ph-duotone ph-arrow-circle-down"
+	},
+	{
+		"name": "ph-arrow-circle-down-left-duotone",
+		"class": "ph-duotone ph-arrow-circle-down-left"
+	},
+	{
+		"name": "ph-arrow-circle-down-right-duotone",
+		"class": "ph-duotone ph-arrow-circle-down-right"
+	},
+	{
+		"name": "ph-arrow-circle-left-duotone",
+		"class": "ph-duotone ph-arrow-circle-left"
+	},
+	{
+		"name": "ph-arrow-circle-right-duotone",
+		"class": "ph-duotone ph-arrow-circle-right"
+	},
+	{
+		"name": "ph-arrow-circle-up-duotone",
+		"class": "ph-duotone ph-arrow-circle-up"
+	},
+	{
+		"name": "ph-arrow-circle-up-left-duotone",
+		"class": "ph-duotone ph-arrow-circle-up-left"
+	},
+	{
+		"name": "ph-arrow-circle-up-right-duotone",
+		"class": "ph-duotone ph-arrow-circle-up-right"
+	},
+	{
+		"name": "ph-arrow-clockwise-duotone",
+		"class": "ph-duotone ph-arrow-clockwise"
+	},
+	{
+		"name": "ph-arrow-counter-clockwise-duotone",
+		"class": "ph-duotone ph-arrow-counter-clockwise"
+	},
+	{
+		"name": "ph-arrow-down-duotone",
+		"class": "ph-duotone ph-arrow-down"
+	},
+	{
+		"name": "ph-arrow-down-left-duotone",
+		"class": "ph-duotone ph-arrow-down-left"
+	},
+	{
+		"name": "ph-arrow-down-right-duotone",
+		"class": "ph-duotone ph-arrow-down-right"
+	},
+	{
+		"name": "ph-arrow-elbow-down-left-duotone",
+		"class": "ph-duotone ph-arrow-elbow-down-left"
+	},
+	{
+		"name": "ph-arrow-elbow-down-right-duotone",
+		"class": "ph-duotone ph-arrow-elbow-down-right"
+	},
+	{
+		"name": "ph-arrow-elbow-left-down-duotone",
+		"class": "ph-duotone ph-arrow-elbow-left-down"
+	},
+	{
+		"name": "ph-arrow-elbow-left-duotone",
+		"class": "ph-duotone ph-arrow-elbow-left"
+	},
+	{
+		"name": "ph-arrow-elbow-left-up-duotone",
+		"class": "ph-duotone ph-arrow-elbow-left-up"
+	},
+	{
+		"name": "ph-arrow-elbow-right-down-duotone",
+		"class": "ph-duotone ph-arrow-elbow-right-down"
+	},
+	{
+		"name": "ph-arrow-elbow-right-duotone",
+		"class": "ph-duotone ph-arrow-elbow-right"
+	},
+	{
+		"name": "ph-arrow-elbow-right-up-duotone",
+		"class": "ph-duotone ph-arrow-elbow-right-up"
+	},
+	{
+		"name": "ph-arrow-elbow-up-left-duotone",
+		"class": "ph-duotone ph-arrow-elbow-up-left"
+	},
+	{
+		"name": "ph-arrow-elbow-up-right-duotone",
+		"class": "ph-duotone ph-arrow-elbow-up-right"
+	},
+	{
+		"name": "ph-arrow-fat-down-duotone",
+		"class": "ph-duotone ph-arrow-fat-down"
+	},
+	{
+		"name": "ph-arrow-fat-left-duotone",
+		"class": "ph-duotone ph-arrow-fat-left"
+	},
+	{
+		"name": "ph-arrow-fat-line-down-duotone",
+		"class": "ph-duotone ph-arrow-fat-line-down"
+	},
+	{
+		"name": "ph-arrow-fat-line-left-duotone",
+		"class": "ph-duotone ph-arrow-fat-line-left"
+	},
+	{
+		"name": "ph-arrow-fat-line-right-duotone",
+		"class": "ph-duotone ph-arrow-fat-line-right"
+	},
+	{
+		"name": "ph-arrow-fat-line-up-duotone",
+		"class": "ph-duotone ph-arrow-fat-line-up"
+	},
+	{
+		"name": "ph-arrow-fat-lines-down-duotone",
+		"class": "ph-duotone ph-arrow-fat-lines-down"
+	},
+	{
+		"name": "ph-arrow-fat-lines-left-duotone",
+		"class": "ph-duotone ph-arrow-fat-lines-left"
+	},
+	{
+		"name": "ph-arrow-fat-lines-right-duotone",
+		"class": "ph-duotone ph-arrow-fat-lines-right"
+	},
+	{
+		"name": "ph-arrow-fat-lines-up-duotone",
+		"class": "ph-duotone ph-arrow-fat-lines-up"
+	},
+	{
+		"name": "ph-arrow-fat-right-duotone",
+		"class": "ph-duotone ph-arrow-fat-right"
+	},
+	{
+		"name": "ph-arrow-fat-up-duotone",
+		"class": "ph-duotone ph-arrow-fat-up"
+	},
+	{
+		"name": "ph-arrow-left-duotone",
+		"class": "ph-duotone ph-arrow-left"
+	},
+	{
+		"name": "ph-arrow-line-down-duotone",
+		"class": "ph-duotone ph-arrow-line-down"
+	},
+	{
+		"name": "ph-arrow-line-down-left-duotone",
+		"class": "ph-duotone ph-arrow-line-down-left"
+	},
+	{
+		"name": "ph-arrow-line-down-right-duotone",
+		"class": "ph-duotone ph-arrow-line-down-right"
+	},
+	{
+		"name": "ph-arrow-line-left-duotone",
+		"class": "ph-duotone ph-arrow-line-left"
+	},
+	{
+		"name": "ph-arrow-line-right-duotone",
+		"class": "ph-duotone ph-arrow-line-right"
+	},
+	{
+		"name": "ph-arrow-line-up-duotone",
+		"class": "ph-duotone ph-arrow-line-up"
+	},
+	{
+		"name": "ph-arrow-line-up-left-duotone",
+		"class": "ph-duotone ph-arrow-line-up-left"
+	},
+	{
+		"name": "ph-arrow-line-up-right-duotone",
+		"class": "ph-duotone ph-arrow-line-up-right"
+	},
+	{
+		"name": "ph-arrow-right-duotone",
+		"class": "ph-duotone ph-arrow-right"
+	},
+	{
+		"name": "ph-arrow-square-down-duotone",
+		"class": "ph-duotone ph-arrow-square-down"
+	},
+	{
+		"name": "ph-arrow-square-down-left-duotone",
+		"class": "ph-duotone ph-arrow-square-down-left"
+	},
+	{
+		"name": "ph-arrow-square-down-right-duotone",
+		"class": "ph-duotone ph-arrow-square-down-right"
+	},
+	{
+		"name": "ph-arrow-square-in-duotone",
+		"class": "ph-duotone ph-arrow-square-in"
+	},
+	{
+		"name": "ph-arrow-square-left-duotone",
+		"class": "ph-duotone ph-arrow-square-left"
+	},
+	{
+		"name": "ph-arrow-square-out-duotone",
+		"class": "ph-duotone ph-arrow-square-out"
+	},
+	{
+		"name": "ph-arrow-square-right-duotone",
+		"class": "ph-duotone ph-arrow-square-right"
+	},
+	{
+		"name": "ph-arrow-square-up-duotone",
+		"class": "ph-duotone ph-arrow-square-up"
+	},
+	{
+		"name": "ph-arrow-square-up-left-duotone",
+		"class": "ph-duotone ph-arrow-square-up-left"
+	},
+	{
+		"name": "ph-arrow-square-up-right-duotone",
+		"class": "ph-duotone ph-arrow-square-up-right"
+	},
+	{
+		"name": "ph-arrow-u-down-left-duotone",
+		"class": "ph-duotone ph-arrow-u-down-left"
+	},
+	{
+		"name": "ph-arrow-u-down-right-duotone",
+		"class": "ph-duotone ph-arrow-u-down-right"
+	},
+	{
+		"name": "ph-arrow-u-left-down-duotone",
+		"class": "ph-duotone ph-arrow-u-left-down"
+	},
+	{
+		"name": "ph-arrow-u-left-up-duotone",
+		"class": "ph-duotone ph-arrow-u-left-up"
+	},
+	{
+		"name": "ph-arrow-u-right-down-duotone",
+		"class": "ph-duotone ph-arrow-u-right-down"
+	},
+	{
+		"name": "ph-arrow-u-right-up-duotone",
+		"class": "ph-duotone ph-arrow-u-right-up"
+	},
+	{
+		"name": "ph-arrow-u-up-left-duotone",
+		"class": "ph-duotone ph-arrow-u-up-left"
+	},
+	{
+		"name": "ph-arrow-u-up-right-duotone",
+		"class": "ph-duotone ph-arrow-u-up-right"
+	},
+	{
+		"name": "ph-arrow-up-duotone",
+		"class": "ph-duotone ph-arrow-up"
+	},
+	{
+		"name": "ph-arrow-up-left-duotone",
+		"class": "ph-duotone ph-arrow-up-left"
+	},
+	{
+		"name": "ph-arrow-up-right-duotone",
+		"class": "ph-duotone ph-arrow-up-right"
+	},
+	{
+		"name": "ph-arrows-clockwise-duotone",
+		"class": "ph-duotone ph-arrows-clockwise"
+	},
+	{
+		"name": "ph-arrows-counter-clockwise-duotone",
+		"class": "ph-duotone ph-arrows-counter-clockwise"
+	},
+	{
+		"name": "ph-arrows-down-up-duotone",
+		"class": "ph-duotone ph-arrows-down-up"
+	},
+	{
+		"name": "ph-arrows-horizontal-duotone",
+		"class": "ph-duotone ph-arrows-horizontal"
+	},
+	{
+		"name": "ph-arrows-in-cardinal-duotone",
+		"class": "ph-duotone ph-arrows-in-cardinal"
+	},
+	{
+		"name": "ph-arrows-in-duotone",
+		"class": "ph-duotone ph-arrows-in"
+	},
+	{
+		"name": "ph-arrows-in-line-horizontal-duotone",
+		"class": "ph-duotone ph-arrows-in-line-horizontal"
+	},
+	{
+		"name": "ph-arrows-in-line-vertical-duotone",
+		"class": "ph-duotone ph-arrows-in-line-vertical"
+	},
+	{
+		"name": "ph-arrows-in-simple-duotone",
+		"class": "ph-duotone ph-arrows-in-simple"
+	},
+	{
+		"name": "ph-arrows-left-right-duotone",
+		"class": "ph-duotone ph-arrows-left-right"
+	},
+	{
+		"name": "ph-arrows-merge-duotone",
+		"class": "ph-duotone ph-arrows-merge"
+	},
+	{
+		"name": "ph-arrows-out-cardinal-duotone",
+		"class": "ph-duotone ph-arrows-out-cardinal"
+	},
+	{
+		"name": "ph-arrows-out-duotone",
+		"class": "ph-duotone ph-arrows-out"
+	},
+	{
+		"name": "ph-arrows-out-line-horizontal-duotone",
+		"class": "ph-duotone ph-arrows-out-line-horizontal"
+	},
+	{
+		"name": "ph-arrows-out-line-vertical-duotone",
+		"class": "ph-duotone ph-arrows-out-line-vertical"
+	},
+	{
+		"name": "ph-arrows-out-simple-duotone",
+		"class": "ph-duotone ph-arrows-out-simple"
+	},
+	{
+		"name": "ph-arrows-split-duotone",
+		"class": "ph-duotone ph-arrows-split"
+	},
+	{
+		"name": "ph-arrows-vertical-duotone",
+		"class": "ph-duotone ph-arrows-vertical"
+	},
+	{
+		"name": "ph-article-duotone",
+		"class": "ph-duotone ph-article"
+	},
+	{
+		"name": "ph-article-medium-duotone",
+		"class": "ph-duotone ph-article-medium"
+	},
+	{
+		"name": "ph-article-ny-times-duotone",
+		"class": "ph-duotone ph-article-ny-times"
+	},
+	{
+		"name": "ph-asclepius-duotone",
+		"class": "ph-duotone ph-asclepius"
+	},
+	{
+		"name": "ph-asterisk-duotone",
+		"class": "ph-duotone ph-asterisk"
+	},
+	{
+		"name": "ph-asterisk-simple-duotone",
+		"class": "ph-duotone ph-asterisk-simple"
+	},
+	{
+		"name": "ph-at-duotone",
+		"class": "ph-duotone ph-at"
+	},
+	{
+		"name": "ph-atom-duotone",
+		"class": "ph-duotone ph-atom"
+	},
+	{
+		"name": "ph-avocado-duotone",
+		"class": "ph-duotone ph-avocado"
+	},
+	{
+		"name": "ph-axe-duotone",
+		"class": "ph-duotone ph-axe"
+	},
+	{
+		"name": "ph-baby-carriage-duotone",
+		"class": "ph-duotone ph-baby-carriage"
+	},
+	{
+		"name": "ph-baby-duotone",
+		"class": "ph-duotone ph-baby"
+	},
+	{
+		"name": "ph-backpack-duotone",
+		"class": "ph-duotone ph-backpack"
+	},
+	{
+		"name": "ph-backspace-duotone",
+		"class": "ph-duotone ph-backspace"
+	},
+	{
+		"name": "ph-bag-duotone",
+		"class": "ph-duotone ph-bag"
+	},
+	{
+		"name": "ph-bag-simple-duotone",
+		"class": "ph-duotone ph-bag-simple"
+	},
+	{
+		"name": "ph-balloon-duotone",
+		"class": "ph-duotone ph-balloon"
+	},
+	{
+		"name": "ph-bandaids-duotone",
+		"class": "ph-duotone ph-bandaids"
+	},
+	{
+		"name": "ph-bank-duotone",
+		"class": "ph-duotone ph-bank"
+	},
+	{
+		"name": "ph-barbell-duotone",
+		"class": "ph-duotone ph-barbell"
+	},
+	{
+		"name": "ph-barcode-duotone",
+		"class": "ph-duotone ph-barcode"
+	},
+	{
+		"name": "ph-barn-duotone",
+		"class": "ph-duotone ph-barn"
+	},
+	{
+		"name": "ph-barricade-duotone",
+		"class": "ph-duotone ph-barricade"
+	},
+	{
+		"name": "ph-baseball-cap-duotone",
+		"class": "ph-duotone ph-baseball-cap"
+	},
+	{
+		"name": "ph-baseball-duotone",
+		"class": "ph-duotone ph-baseball"
+	},
+	{
+		"name": "ph-baseball-helmet-duotone",
+		"class": "ph-duotone ph-baseball-helmet"
+	},
+	{
+		"name": "ph-basket-duotone",
+		"class": "ph-duotone ph-basket"
+	},
+	{
+		"name": "ph-basketball-duotone",
+		"class": "ph-duotone ph-basketball"
+	},
+	{
+		"name": "ph-bathtub-duotone",
+		"class": "ph-duotone ph-bathtub"
+	},
+	{
+		"name": "ph-battery-charging-duotone",
+		"class": "ph-duotone ph-battery-charging"
+	},
+	{
+		"name": "ph-battery-charging-vertical-duotone",
+		"class": "ph-duotone ph-battery-charging-vertical"
+	},
+	{
+		"name": "ph-battery-empty-duotone",
+		"class": "ph-duotone ph-battery-empty"
+	},
+	{
+		"name": "ph-battery-full-duotone",
+		"class": "ph-duotone ph-battery-full"
+	},
+	{
+		"name": "ph-battery-high-duotone",
+		"class": "ph-duotone ph-battery-high"
+	},
+	{
+		"name": "ph-battery-low-duotone",
+		"class": "ph-duotone ph-battery-low"
+	},
+	{
+		"name": "ph-battery-medium-duotone",
+		"class": "ph-duotone ph-battery-medium"
+	},
+	{
+		"name": "ph-battery-plus-duotone",
+		"class": "ph-duotone ph-battery-plus"
+	},
+	{
+		"name": "ph-battery-plus-vertical-duotone",
+		"class": "ph-duotone ph-battery-plus-vertical"
+	},
+	{
+		"name": "ph-battery-vertical-empty-duotone",
+		"class": "ph-duotone ph-battery-vertical-empty"
+	},
+	{
+		"name": "ph-battery-vertical-full-duotone",
+		"class": "ph-duotone ph-battery-vertical-full"
+	},
+	{
+		"name": "ph-battery-vertical-high-duotone",
+		"class": "ph-duotone ph-battery-vertical-high"
+	},
+	{
+		"name": "ph-battery-vertical-low-duotone",
+		"class": "ph-duotone ph-battery-vertical-low"
+	},
+	{
+		"name": "ph-battery-vertical-medium-duotone",
+		"class": "ph-duotone ph-battery-vertical-medium"
+	},
+	{
+		"name": "ph-battery-warning-duotone",
+		"class": "ph-duotone ph-battery-warning"
+	},
+	{
+		"name": "ph-battery-warning-vertical-duotone",
+		"class": "ph-duotone ph-battery-warning-vertical"
+	},
+	{
+		"name": "ph-beach-ball-duotone",
+		"class": "ph-duotone ph-beach-ball"
+	},
+	{
+		"name": "ph-beanie-duotone",
+		"class": "ph-duotone ph-beanie"
+	},
+	{
+		"name": "ph-bed-duotone",
+		"class": "ph-duotone ph-bed"
+	},
+	{
+		"name": "ph-beer-bottle-duotone",
+		"class": "ph-duotone ph-beer-bottle"
+	},
+	{
+		"name": "ph-beer-stein-duotone",
+		"class": "ph-duotone ph-beer-stein"
+	},
+	{
+		"name": "ph-behance-logo-duotone",
+		"class": "ph-duotone ph-behance-logo"
+	},
+	{
+		"name": "ph-bell-duotone",
+		"class": "ph-duotone ph-bell"
+	},
+	{
+		"name": "ph-bell-ringing-duotone",
+		"class": "ph-duotone ph-bell-ringing"
+	},
+	{
+		"name": "ph-bell-simple-duotone",
+		"class": "ph-duotone ph-bell-simple"
+	},
+	{
+		"name": "ph-bell-simple-ringing-duotone",
+		"class": "ph-duotone ph-bell-simple-ringing"
+	},
+	{
+		"name": "ph-bell-simple-slash-duotone",
+		"class": "ph-duotone ph-bell-simple-slash"
+	},
+	{
+		"name": "ph-bell-simple-z-duotone",
+		"class": "ph-duotone ph-bell-simple-z"
+	},
+	{
+		"name": "ph-bell-slash-duotone",
+		"class": "ph-duotone ph-bell-slash"
+	},
+	{
+		"name": "ph-bell-z-duotone",
+		"class": "ph-duotone ph-bell-z"
+	},
+	{
+		"name": "ph-belt-duotone",
+		"class": "ph-duotone ph-belt"
+	},
+	{
+		"name": "ph-bezier-curve-duotone",
+		"class": "ph-duotone ph-bezier-curve"
+	},
+	{
+		"name": "ph-bicycle-duotone",
+		"class": "ph-duotone ph-bicycle"
+	},
+	{
+		"name": "ph-binary-duotone",
+		"class": "ph-duotone ph-binary"
+	},
+	{
+		"name": "ph-binoculars-duotone",
+		"class": "ph-duotone ph-binoculars"
+	},
+	{
+		"name": "ph-biohazard-duotone",
+		"class": "ph-duotone ph-biohazard"
+	},
+	{
+		"name": "ph-bird-duotone",
+		"class": "ph-duotone ph-bird"
+	},
+	{
+		"name": "ph-blueprint-duotone",
+		"class": "ph-duotone ph-blueprint"
+	},
+	{
+		"name": "ph-bluetooth-connected-duotone",
+		"class": "ph-duotone ph-bluetooth-connected"
+	},
+	{
+		"name": "ph-bluetooth-duotone",
+		"class": "ph-duotone ph-bluetooth"
+	},
+	{
+		"name": "ph-bluetooth-slash-duotone",
+		"class": "ph-duotone ph-bluetooth-slash"
+	},
+	{
+		"name": "ph-bluetooth-x-duotone",
+		"class": "ph-duotone ph-bluetooth-x"
+	},
+	{
+		"name": "ph-boat-duotone",
+		"class": "ph-duotone ph-boat"
+	},
+	{
+		"name": "ph-bomb-duotone",
+		"class": "ph-duotone ph-bomb"
+	},
+	{
+		"name": "ph-bone-duotone",
+		"class": "ph-duotone ph-bone"
+	},
+	{
+		"name": "ph-book-bookmark-duotone",
+		"class": "ph-duotone ph-book-bookmark"
+	},
+	{
+		"name": "ph-book-duotone",
+		"class": "ph-duotone ph-book"
+	},
+	{
+		"name": "ph-book-open-duotone",
+		"class": "ph-duotone ph-book-open"
+	},
+	{
+		"name": "ph-book-open-text-duotone",
+		"class": "ph-duotone ph-book-open-text"
+	},
+	{
+		"name": "ph-book-open-user-duotone",
+		"class": "ph-duotone ph-book-open-user"
+	},
+	{
+		"name": "ph-bookmark-duotone",
+		"class": "ph-duotone ph-bookmark"
+	},
+	{
+		"name": "ph-bookmark-simple-duotone",
+		"class": "ph-duotone ph-bookmark-simple"
+	},
+	{
+		"name": "ph-bookmarks-duotone",
+		"class": "ph-duotone ph-bookmarks"
+	},
+	{
+		"name": "ph-bookmarks-simple-duotone",
+		"class": "ph-duotone ph-bookmarks-simple"
+	},
+	{
+		"name": "ph-books-duotone",
+		"class": "ph-duotone ph-books"
+	},
+	{
+		"name": "ph-boot-duotone",
+		"class": "ph-duotone ph-boot"
+	},
+	{
+		"name": "ph-boules-duotone",
+		"class": "ph-duotone ph-boules"
+	},
+	{
+		"name": "ph-bounding-box-duotone",
+		"class": "ph-duotone ph-bounding-box"
+	},
+	{
+		"name": "ph-bowl-food-duotone",
+		"class": "ph-duotone ph-bowl-food"
+	},
+	{
+		"name": "ph-bowl-steam-duotone",
+		"class": "ph-duotone ph-bowl-steam"
+	},
+	{
+		"name": "ph-bowling-ball-duotone",
+		"class": "ph-duotone ph-bowling-ball"
+	},
+	{
+		"name": "ph-box-arrow-down-duotone",
+		"class": "ph-duotone ph-box-arrow-down"
+	},
+	{
+		"name": "ph-box-arrow-up-duotone",
+		"class": "ph-duotone ph-box-arrow-up"
+	},
+	{
+		"name": "ph-boxing-glove-duotone",
+		"class": "ph-duotone ph-boxing-glove"
+	},
+	{
+		"name": "ph-brackets-angle-duotone",
+		"class": "ph-duotone ph-brackets-angle"
+	},
+	{
+		"name": "ph-brackets-curly-duotone",
+		"class": "ph-duotone ph-brackets-curly"
+	},
+	{
+		"name": "ph-brackets-round-duotone",
+		"class": "ph-duotone ph-brackets-round"
+	},
+	{
+		"name": "ph-brackets-square-duotone",
+		"class": "ph-duotone ph-brackets-square"
+	},
+	{
+		"name": "ph-brain-duotone",
+		"class": "ph-duotone ph-brain"
+	},
+	{
+		"name": "ph-brandy-duotone",
+		"class": "ph-duotone ph-brandy"
+	},
+	{
+		"name": "ph-bread-duotone",
+		"class": "ph-duotone ph-bread"
+	},
+	{
+		"name": "ph-bridge-duotone",
+		"class": "ph-duotone ph-bridge"
+	},
+	{
+		"name": "ph-briefcase-duotone",
+		"class": "ph-duotone ph-briefcase"
+	},
+	{
+		"name": "ph-briefcase-metal-duotone",
+		"class": "ph-duotone ph-briefcase-metal"
+	},
+	{
+		"name": "ph-briefcase-simple-duotone",
+		"class": "ph-duotone ph-briefcase-simple"
+	},
+	{
+		"name": "ph-broadcast-duotone",
+		"class": "ph-duotone ph-broadcast"
+	},
+	{
+		"name": "ph-broom-duotone",
+		"class": "ph-duotone ph-broom"
+	},
+	{
+		"name": "ph-browser-duotone",
+		"class": "ph-duotone ph-browser"
+	},
+	{
+		"name": "ph-browsers-duotone",
+		"class": "ph-duotone ph-browsers"
+	},
+	{
+		"name": "ph-bug-beetle-duotone",
+		"class": "ph-duotone ph-bug-beetle"
+	},
+	{
+		"name": "ph-bug-droid-duotone",
+		"class": "ph-duotone ph-bug-droid"
+	},
+	{
+		"name": "ph-bug-duotone",
+		"class": "ph-duotone ph-bug"
+	},
+	{
+		"name": "ph-building-apartment-duotone",
+		"class": "ph-duotone ph-building-apartment"
+	},
+	{
+		"name": "ph-building-duotone",
+		"class": "ph-duotone ph-building"
+	},
+	{
+		"name": "ph-building-office-duotone",
+		"class": "ph-duotone ph-building-office"
+	},
+	{
+		"name": "ph-buildings-duotone",
+		"class": "ph-duotone ph-buildings"
+	},
+	{
+		"name": "ph-bulldozer-duotone",
+		"class": "ph-duotone ph-bulldozer"
+	},
+	{
+		"name": "ph-bus-duotone",
+		"class": "ph-duotone ph-bus"
+	},
+	{
+		"name": "ph-butterfly-duotone",
+		"class": "ph-duotone ph-butterfly"
+	},
+	{
+		"name": "ph-cable-car-duotone",
+		"class": "ph-duotone ph-cable-car"
+	},
+	{
+		"name": "ph-cactus-duotone",
+		"class": "ph-duotone ph-cactus"
+	},
+	{
+		"name": "ph-cake-duotone",
+		"class": "ph-duotone ph-cake"
+	},
+	{
+		"name": "ph-calculator-duotone",
+		"class": "ph-duotone ph-calculator"
+	},
+	{
+		"name": "ph-calendar-blank-duotone",
+		"class": "ph-duotone ph-calendar-blank"
+	},
+	{
+		"name": "ph-calendar-check-duotone",
+		"class": "ph-duotone ph-calendar-check"
+	},
+	{
+		"name": "ph-calendar-dot-duotone",
+		"class": "ph-duotone ph-calendar-dot"
+	},
+	{
+		"name": "ph-calendar-dots-duotone",
+		"class": "ph-duotone ph-calendar-dots"
+	},
+	{
+		"name": "ph-calendar-duotone",
+		"class": "ph-duotone ph-calendar"
+	},
+	{
+		"name": "ph-calendar-heart-duotone",
+		"class": "ph-duotone ph-calendar-heart"
+	},
+	{
+		"name": "ph-calendar-minus-duotone",
+		"class": "ph-duotone ph-calendar-minus"
+	},
+	{
+		"name": "ph-calendar-plus-duotone",
+		"class": "ph-duotone ph-calendar-plus"
+	},
+	{
+		"name": "ph-calendar-slash-duotone",
+		"class": "ph-duotone ph-calendar-slash"
+	},
+	{
+		"name": "ph-calendar-star-duotone",
+		"class": "ph-duotone ph-calendar-star"
+	},
+	{
+		"name": "ph-calendar-x-duotone",
+		"class": "ph-duotone ph-calendar-x"
+	},
+	{
+		"name": "ph-call-bell-duotone",
+		"class": "ph-duotone ph-call-bell"
+	},
+	{
+		"name": "ph-camera-duotone",
+		"class": "ph-duotone ph-camera"
+	},
+	{
+		"name": "ph-camera-plus-duotone",
+		"class": "ph-duotone ph-camera-plus"
+	},
+	{
+		"name": "ph-camera-rotate-duotone",
+		"class": "ph-duotone ph-camera-rotate"
+	},
+	{
+		"name": "ph-camera-slash-duotone",
+		"class": "ph-duotone ph-camera-slash"
+	},
+	{
+		"name": "ph-campfire-duotone",
+		"class": "ph-duotone ph-campfire"
+	},
+	{
+		"name": "ph-car-battery-duotone",
+		"class": "ph-duotone ph-car-battery"
+	},
+	{
+		"name": "ph-car-duotone",
+		"class": "ph-duotone ph-car"
+	},
+	{
+		"name": "ph-car-profile-duotone",
+		"class": "ph-duotone ph-car-profile"
+	},
+	{
+		"name": "ph-car-simple-duotone",
+		"class": "ph-duotone ph-car-simple"
+	},
+	{
+		"name": "ph-cardholder-duotone",
+		"class": "ph-duotone ph-cardholder"
+	},
+	{
+		"name": "ph-cards-duotone",
+		"class": "ph-duotone ph-cards"
+	},
+	{
+		"name": "ph-cards-three-duotone",
+		"class": "ph-duotone ph-cards-three"
+	},
+	{
+		"name": "ph-caret-circle-double-down-duotone",
+		"class": "ph-duotone ph-caret-circle-double-down"
+	},
+	{
+		"name": "ph-caret-circle-double-left-duotone",
+		"class": "ph-duotone ph-caret-circle-double-left"
+	},
+	{
+		"name": "ph-caret-circle-double-right-duotone",
+		"class": "ph-duotone ph-caret-circle-double-right"
+	},
+	{
+		"name": "ph-caret-circle-double-up-duotone",
+		"class": "ph-duotone ph-caret-circle-double-up"
+	},
+	{
+		"name": "ph-caret-circle-down-duotone",
+		"class": "ph-duotone ph-caret-circle-down"
+	},
+	{
+		"name": "ph-caret-circle-left-duotone",
+		"class": "ph-duotone ph-caret-circle-left"
+	},
+	{
+		"name": "ph-caret-circle-right-duotone",
+		"class": "ph-duotone ph-caret-circle-right"
+	},
+	{
+		"name": "ph-caret-circle-up-down-duotone",
+		"class": "ph-duotone ph-caret-circle-up-down"
+	},
+	{
+		"name": "ph-caret-circle-up-duotone",
+		"class": "ph-duotone ph-caret-circle-up"
+	},
+	{
+		"name": "ph-caret-double-down-duotone",
+		"class": "ph-duotone ph-caret-double-down"
+	},
+	{
+		"name": "ph-caret-double-left-duotone",
+		"class": "ph-duotone ph-caret-double-left"
+	},
+	{
+		"name": "ph-caret-double-right-duotone",
+		"class": "ph-duotone ph-caret-double-right"
+	},
+	{
+		"name": "ph-caret-double-up-duotone",
+		"class": "ph-duotone ph-caret-double-up"
+	},
+	{
+		"name": "ph-caret-down-duotone",
+		"class": "ph-duotone ph-caret-down"
+	},
+	{
+		"name": "ph-caret-left-duotone",
+		"class": "ph-duotone ph-caret-left"
+	},
+	{
+		"name": "ph-caret-line-down-duotone",
+		"class": "ph-duotone ph-caret-line-down"
+	},
+	{
+		"name": "ph-caret-line-left-duotone",
+		"class": "ph-duotone ph-caret-line-left"
+	},
+	{
+		"name": "ph-caret-line-right-duotone",
+		"class": "ph-duotone ph-caret-line-right"
+	},
+	{
+		"name": "ph-caret-line-up-duotone",
+		"class": "ph-duotone ph-caret-line-up"
+	},
+	{
+		"name": "ph-caret-right-duotone",
+		"class": "ph-duotone ph-caret-right"
+	},
+	{
+		"name": "ph-caret-up-down-duotone",
+		"class": "ph-duotone ph-caret-up-down"
+	},
+	{
+		"name": "ph-caret-up-duotone",
+		"class": "ph-duotone ph-caret-up"
+	},
+	{
+		"name": "ph-carrot-duotone",
+		"class": "ph-duotone ph-carrot"
+	},
+	{
+		"name": "ph-cash-register-duotone",
+		"class": "ph-duotone ph-cash-register"
+	},
+	{
+		"name": "ph-cassette-tape-duotone",
+		"class": "ph-duotone ph-cassette-tape"
+	},
+	{
+		"name": "ph-castle-turret-duotone",
+		"class": "ph-duotone ph-castle-turret"
+	},
+	{
+		"name": "ph-cat-duotone",
+		"class": "ph-duotone ph-cat"
+	},
+	{
+		"name": "ph-cell-signal-full-duotone",
+		"class": "ph-duotone ph-cell-signal-full"
+	},
+	{
+		"name": "ph-cell-signal-high-duotone",
+		"class": "ph-duotone ph-cell-signal-high"
+	},
+	{
+		"name": "ph-cell-signal-low-duotone",
+		"class": "ph-duotone ph-cell-signal-low"
+	},
+	{
+		"name": "ph-cell-signal-medium-duotone",
+		"class": "ph-duotone ph-cell-signal-medium"
+	},
+	{
+		"name": "ph-cell-signal-none-duotone",
+		"class": "ph-duotone ph-cell-signal-none"
+	},
+	{
+		"name": "ph-cell-signal-slash-duotone",
+		"class": "ph-duotone ph-cell-signal-slash"
+	},
+	{
+		"name": "ph-cell-signal-x-duotone",
+		"class": "ph-duotone ph-cell-signal-x"
+	},
+	{
+		"name": "ph-cell-tower-duotone",
+		"class": "ph-duotone ph-cell-tower"
+	},
+	{
+		"name": "ph-certificate-duotone",
+		"class": "ph-duotone ph-certificate"
+	},
+	{
+		"name": "ph-chair-duotone",
+		"class": "ph-duotone ph-chair"
+	},
+	{
+		"name": "ph-chalkboard-duotone",
+		"class": "ph-duotone ph-chalkboard"
+	},
+	{
+		"name": "ph-chalkboard-simple-duotone",
+		"class": "ph-duotone ph-chalkboard-simple"
+	},
+	{
+		"name": "ph-chalkboard-teacher-duotone",
+		"class": "ph-duotone ph-chalkboard-teacher"
+	},
+	{
+		"name": "ph-champagne-duotone",
+		"class": "ph-duotone ph-champagne"
+	},
+	{
+		"name": "ph-charging-station-duotone",
+		"class": "ph-duotone ph-charging-station"
+	},
+	{
+		"name": "ph-chart-bar-duotone",
+		"class": "ph-duotone ph-chart-bar"
+	},
+	{
+		"name": "ph-chart-bar-horizontal-duotone",
+		"class": "ph-duotone ph-chart-bar-horizontal"
+	},
+	{
+		"name": "ph-chart-donut-duotone",
+		"class": "ph-duotone ph-chart-donut"
+	},
+	{
+		"name": "ph-chart-line-down-duotone",
+		"class": "ph-duotone ph-chart-line-down"
+	},
+	{
+		"name": "ph-chart-line-duotone",
+		"class": "ph-duotone ph-chart-line"
+	},
+	{
+		"name": "ph-chart-line-up-duotone",
+		"class": "ph-duotone ph-chart-line-up"
+	},
+	{
+		"name": "ph-chart-pie-duotone",
+		"class": "ph-duotone ph-chart-pie"
+	},
+	{
+		"name": "ph-chart-pie-slice-duotone",
+		"class": "ph-duotone ph-chart-pie-slice"
+	},
+	{
+		"name": "ph-chart-polar-duotone",
+		"class": "ph-duotone ph-chart-polar"
+	},
+	{
+		"name": "ph-chart-scatter-duotone",
+		"class": "ph-duotone ph-chart-scatter"
+	},
+	{
+		"name": "ph-chat-centered-dots-duotone",
+		"class": "ph-duotone ph-chat-centered-dots"
+	},
+	{
+		"name": "ph-chat-centered-duotone",
+		"class": "ph-duotone ph-chat-centered"
+	},
+	{
+		"name": "ph-chat-centered-slash-duotone",
+		"class": "ph-duotone ph-chat-centered-slash"
+	},
+	{
+		"name": "ph-chat-centered-text-duotone",
+		"class": "ph-duotone ph-chat-centered-text"
+	},
+	{
+		"name": "ph-chat-circle-dots-duotone",
+		"class": "ph-duotone ph-chat-circle-dots"
+	},
+	{
+		"name": "ph-chat-circle-duotone",
+		"class": "ph-duotone ph-chat-circle"
+	},
+	{
+		"name": "ph-chat-circle-slash-duotone",
+		"class": "ph-duotone ph-chat-circle-slash"
+	},
+	{
+		"name": "ph-chat-circle-text-duotone",
+		"class": "ph-duotone ph-chat-circle-text"
+	},
+	{
+		"name": "ph-chat-dots-duotone",
+		"class": "ph-duotone ph-chat-dots"
+	},
+	{
+		"name": "ph-chat-duotone",
+		"class": "ph-duotone ph-chat"
+	},
+	{
+		"name": "ph-chat-slash-duotone",
+		"class": "ph-duotone ph-chat-slash"
+	},
+	{
+		"name": "ph-chat-teardrop-dots-duotone",
+		"class": "ph-duotone ph-chat-teardrop-dots"
+	},
+	{
+		"name": "ph-chat-teardrop-duotone",
+		"class": "ph-duotone ph-chat-teardrop"
+	},
+	{
+		"name": "ph-chat-teardrop-slash-duotone",
+		"class": "ph-duotone ph-chat-teardrop-slash"
+	},
+	{
+		"name": "ph-chat-teardrop-text-duotone",
+		"class": "ph-duotone ph-chat-teardrop-text"
+	},
+	{
+		"name": "ph-chat-text-duotone",
+		"class": "ph-duotone ph-chat-text"
+	},
+	{
+		"name": "ph-chats-circle-duotone",
+		"class": "ph-duotone ph-chats-circle"
+	},
+	{
+		"name": "ph-chats-duotone",
+		"class": "ph-duotone ph-chats"
+	},
+	{
+		"name": "ph-chats-teardrop-duotone",
+		"class": "ph-duotone ph-chats-teardrop"
+	},
+	{
+		"name": "ph-check-circle-duotone",
+		"class": "ph-duotone ph-check-circle"
+	},
+	{
+		"name": "ph-check-duotone",
+		"class": "ph-duotone ph-check"
+	},
+	{
+		"name": "ph-check-fat-duotone",
+		"class": "ph-duotone ph-check-fat"
+	},
+	{
+		"name": "ph-check-square-duotone",
+		"class": "ph-duotone ph-check-square"
+	},
+	{
+		"name": "ph-check-square-offset-duotone",
+		"class": "ph-duotone ph-check-square-offset"
+	},
+	{
+		"name": "ph-checkerboard-duotone",
+		"class": "ph-duotone ph-checkerboard"
+	},
+	{
+		"name": "ph-checks-duotone",
+		"class": "ph-duotone ph-checks"
+	},
+	{
+		"name": "ph-cheers-duotone",
+		"class": "ph-duotone ph-cheers"
+	},
+	{
+		"name": "ph-cheese-duotone",
+		"class": "ph-duotone ph-cheese"
+	},
+	{
+		"name": "ph-chef-hat-duotone",
+		"class": "ph-duotone ph-chef-hat"
+	},
+	{
+		"name": "ph-cherries-duotone",
+		"class": "ph-duotone ph-cherries"
+	},
+	{
+		"name": "ph-church-duotone",
+		"class": "ph-duotone ph-church"
+	},
+	{
+		"name": "ph-cigarette-duotone",
+		"class": "ph-duotone ph-cigarette"
+	},
+	{
+		"name": "ph-cigarette-slash-duotone",
+		"class": "ph-duotone ph-cigarette-slash"
+	},
+	{
+		"name": "ph-circle-dashed-duotone",
+		"class": "ph-duotone ph-circle-dashed"
+	},
+	{
+		"name": "ph-circle-duotone",
+		"class": "ph-duotone ph-circle"
+	},
+	{
+		"name": "ph-circle-half-duotone",
+		"class": "ph-duotone ph-circle-half"
+	},
+	{
+		"name": "ph-circle-half-tilt-duotone",
+		"class": "ph-duotone ph-circle-half-tilt"
+	},
+	{
+		"name": "ph-circle-notch-duotone",
+		"class": "ph-duotone ph-circle-notch"
+	},
+	{
+		"name": "ph-circle-wavy-check-duotone",
+		"class": "ph-duotone ph-circle-wavy-check"
+	},
+	{
+		"name": "ph-circle-wavy-duotone",
+		"class": "ph-duotone ph-circle-wavy"
+	},
+	{
+		"name": "ph-circle-wavy-question-duotone",
+		"class": "ph-duotone ph-circle-wavy-question"
+	},
+	{
+		"name": "ph-circle-wavy-warning-duotone",
+		"class": "ph-duotone ph-circle-wavy-warning"
+	},
+	{
+		"name": "ph-circles-four-duotone",
+		"class": "ph-duotone ph-circles-four"
+	},
+	{
+		"name": "ph-circles-three-duotone",
+		"class": "ph-duotone ph-circles-three"
+	},
+	{
+		"name": "ph-circles-three-plus-duotone",
+		"class": "ph-duotone ph-circles-three-plus"
+	},
+	{
+		"name": "ph-circuitry-duotone",
+		"class": "ph-duotone ph-circuitry"
+	},
+	{
+		"name": "ph-city-duotone",
+		"class": "ph-duotone ph-city"
+	},
+	{
+		"name": "ph-clipboard-duotone",
+		"class": "ph-duotone ph-clipboard"
+	},
+	{
+		"name": "ph-clipboard-text-duotone",
+		"class": "ph-duotone ph-clipboard-text"
+	},
+	{
+		"name": "ph-clock-afternoon-duotone",
+		"class": "ph-duotone ph-clock-afternoon"
+	},
+	{
+		"name": "ph-clock-clockwise-duotone",
+		"class": "ph-duotone ph-clock-clockwise"
+	},
+	{
+		"name": "ph-clock-countdown-duotone",
+		"class": "ph-duotone ph-clock-countdown"
+	},
+	{
+		"name": "ph-clock-counter-clockwise-duotone",
+		"class": "ph-duotone ph-clock-counter-clockwise"
+	},
+	{
+		"name": "ph-clock-duotone",
+		"class": "ph-duotone ph-clock"
+	},
+	{
+		"name": "ph-clock-user-duotone",
+		"class": "ph-duotone ph-clock-user"
+	},
+	{
+		"name": "ph-closed-captioning-duotone",
+		"class": "ph-duotone ph-closed-captioning"
+	},
+	{
+		"name": "ph-cloud-arrow-down-duotone",
+		"class": "ph-duotone ph-cloud-arrow-down"
+	},
+	{
+		"name": "ph-cloud-arrow-up-duotone",
+		"class": "ph-duotone ph-cloud-arrow-up"
+	},
+	{
+		"name": "ph-cloud-check-duotone",
+		"class": "ph-duotone ph-cloud-check"
+	},
+	{
+		"name": "ph-cloud-duotone",
+		"class": "ph-duotone ph-cloud"
+	},
+	{
+		"name": "ph-cloud-fog-duotone",
+		"class": "ph-duotone ph-cloud-fog"
+	},
+	{
+		"name": "ph-cloud-lightning-duotone",
+		"class": "ph-duotone ph-cloud-lightning"
+	},
+	{
+		"name": "ph-cloud-moon-duotone",
+		"class": "ph-duotone ph-cloud-moon"
+	},
+	{
+		"name": "ph-cloud-rain-duotone",
+		"class": "ph-duotone ph-cloud-rain"
+	},
+	{
+		"name": "ph-cloud-slash-duotone",
+		"class": "ph-duotone ph-cloud-slash"
+	},
+	{
+		"name": "ph-cloud-snow-duotone",
+		"class": "ph-duotone ph-cloud-snow"
+	},
+	{
+		"name": "ph-cloud-sun-duotone",
+		"class": "ph-duotone ph-cloud-sun"
+	},
+	{
+		"name": "ph-cloud-warning-duotone",
+		"class": "ph-duotone ph-cloud-warning"
+	},
+	{
+		"name": "ph-cloud-x-duotone",
+		"class": "ph-duotone ph-cloud-x"
+	},
+	{
+		"name": "ph-clover-duotone",
+		"class": "ph-duotone ph-clover"
+	},
+	{
+		"name": "ph-club-duotone",
+		"class": "ph-duotone ph-club"
+	},
+	{
+		"name": "ph-coat-hanger-duotone",
+		"class": "ph-duotone ph-coat-hanger"
+	},
+	{
+		"name": "ph-coda-logo-duotone",
+		"class": "ph-duotone ph-coda-logo"
+	},
+	{
+		"name": "ph-code-block-duotone",
+		"class": "ph-duotone ph-code-block"
+	},
+	{
+		"name": "ph-code-duotone",
+		"class": "ph-duotone ph-code"
+	},
+	{
+		"name": "ph-code-simple-duotone",
+		"class": "ph-duotone ph-code-simple"
+	},
+	{
+		"name": "ph-codepen-logo-duotone",
+		"class": "ph-duotone ph-codepen-logo"
+	},
+	{
+		"name": "ph-codesandbox-logo-duotone",
+		"class": "ph-duotone ph-codesandbox-logo"
+	},
+	{
+		"name": "ph-coffee-bean-duotone",
+		"class": "ph-duotone ph-coffee-bean"
+	},
+	{
+		"name": "ph-coffee-duotone",
+		"class": "ph-duotone ph-coffee"
+	},
+	{
+		"name": "ph-coin-duotone",
+		"class": "ph-duotone ph-coin"
+	},
+	{
+		"name": "ph-coin-vertical-duotone",
+		"class": "ph-duotone ph-coin-vertical"
+	},
+	{
+		"name": "ph-coins-duotone",
+		"class": "ph-duotone ph-coins"
+	},
+	{
+		"name": "ph-columns-duotone",
+		"class": "ph-duotone ph-columns"
+	},
+	{
+		"name": "ph-columns-plus-left-duotone",
+		"class": "ph-duotone ph-columns-plus-left"
+	},
+	{
+		"name": "ph-columns-plus-right-duotone",
+		"class": "ph-duotone ph-columns-plus-right"
+	},
+	{
+		"name": "ph-command-duotone",
+		"class": "ph-duotone ph-command"
+	},
+	{
+		"name": "ph-compass-duotone",
+		"class": "ph-duotone ph-compass"
+	},
+	{
+		"name": "ph-compass-rose-duotone",
+		"class": "ph-duotone ph-compass-rose"
+	},
+	{
+		"name": "ph-compass-tool-duotone",
+		"class": "ph-duotone ph-compass-tool"
+	},
+	{
+		"name": "ph-computer-tower-duotone",
+		"class": "ph-duotone ph-computer-tower"
+	},
+	{
+		"name": "ph-confetti-duotone",
+		"class": "ph-duotone ph-confetti"
+	},
+	{
+		"name": "ph-contactless-payment-duotone",
+		"class": "ph-duotone ph-contactless-payment"
+	},
+	{
+		"name": "ph-control-duotone",
+		"class": "ph-duotone ph-control"
+	},
+	{
+		"name": "ph-cookie-duotone",
+		"class": "ph-duotone ph-cookie"
+	},
+	{
+		"name": "ph-cooking-pot-duotone",
+		"class": "ph-duotone ph-cooking-pot"
+	},
+	{
+		"name": "ph-copy-duotone",
+		"class": "ph-duotone ph-copy"
+	},
+	{
+		"name": "ph-copy-simple-duotone",
+		"class": "ph-duotone ph-copy-simple"
+	},
+	{
+		"name": "ph-copyleft-duotone",
+		"class": "ph-duotone ph-copyleft"
+	},
+	{
+		"name": "ph-copyright-duotone",
+		"class": "ph-duotone ph-copyright"
+	},
+	{
+		"name": "ph-corners-in-duotone",
+		"class": "ph-duotone ph-corners-in"
+	},
+	{
+		"name": "ph-corners-out-duotone",
+		"class": "ph-duotone ph-corners-out"
+	},
+	{
+		"name": "ph-couch-duotone",
+		"class": "ph-duotone ph-couch"
+	},
+	{
+		"name": "ph-court-basketball-duotone",
+		"class": "ph-duotone ph-court-basketball"
+	},
+	{
+		"name": "ph-cow-duotone",
+		"class": "ph-duotone ph-cow"
+	},
+	{
+		"name": "ph-cowboy-hat-duotone",
+		"class": "ph-duotone ph-cowboy-hat"
+	},
+	{
+		"name": "ph-cpu-duotone",
+		"class": "ph-duotone ph-cpu"
+	},
+	{
+		"name": "ph-crane-duotone",
+		"class": "ph-duotone ph-crane"
+	},
+	{
+		"name": "ph-crane-tower-duotone",
+		"class": "ph-duotone ph-crane-tower"
+	},
+	{
+		"name": "ph-credit-card-duotone",
+		"class": "ph-duotone ph-credit-card"
+	},
+	{
+		"name": "ph-cricket-duotone",
+		"class": "ph-duotone ph-cricket"
+	},
+	{
+		"name": "ph-crop-duotone",
+		"class": "ph-duotone ph-crop"
+	},
+	{
+		"name": "ph-cross-duotone",
+		"class": "ph-duotone ph-cross"
+	},
+	{
+		"name": "ph-crosshair-duotone",
+		"class": "ph-duotone ph-crosshair"
+	},
+	{
+		"name": "ph-crosshair-simple-duotone",
+		"class": "ph-duotone ph-crosshair-simple"
+	},
+	{
+		"name": "ph-crown-cross-duotone",
+		"class": "ph-duotone ph-crown-cross"
+	},
+	{
+		"name": "ph-crown-duotone",
+		"class": "ph-duotone ph-crown"
+	},
+	{
+		"name": "ph-crown-simple-duotone",
+		"class": "ph-duotone ph-crown-simple"
+	},
+	{
+		"name": "ph-cube-duotone",
+		"class": "ph-duotone ph-cube"
+	},
+	{
+		"name": "ph-cube-focus-duotone",
+		"class": "ph-duotone ph-cube-focus"
+	},
+	{
+		"name": "ph-cube-transparent-duotone",
+		"class": "ph-duotone ph-cube-transparent"
+	},
+	{
+		"name": "ph-currency-btc-duotone",
+		"class": "ph-duotone ph-currency-btc"
+	},
+	{
+		"name": "ph-currency-circle-dollar-duotone",
+		"class": "ph-duotone ph-currency-circle-dollar"
+	},
+	{
+		"name": "ph-currency-cny-duotone",
+		"class": "ph-duotone ph-currency-cny"
+	},
+	{
+		"name": "ph-currency-dollar-duotone",
+		"class": "ph-duotone ph-currency-dollar"
+	},
+	{
+		"name": "ph-currency-dollar-simple-duotone",
+		"class": "ph-duotone ph-currency-dollar-simple"
+	},
+	{
+		"name": "ph-currency-eth-duotone",
+		"class": "ph-duotone ph-currency-eth"
+	},
+	{
+		"name": "ph-currency-eur-duotone",
+		"class": "ph-duotone ph-currency-eur"
+	},
+	{
+		"name": "ph-currency-gbp-duotone",
+		"class": "ph-duotone ph-currency-gbp"
+	},
+	{
+		"name": "ph-currency-inr-duotone",
+		"class": "ph-duotone ph-currency-inr"
+	},
+	{
+		"name": "ph-currency-jpy-duotone",
+		"class": "ph-duotone ph-currency-jpy"
+	},
+	{
+		"name": "ph-currency-krw-duotone",
+		"class": "ph-duotone ph-currency-krw"
+	},
+	{
+		"name": "ph-currency-kzt-duotone",
+		"class": "ph-duotone ph-currency-kzt"
+	},
+	{
+		"name": "ph-currency-ngn-duotone",
+		"class": "ph-duotone ph-currency-ngn"
+	},
+	{
+		"name": "ph-currency-rub-duotone",
+		"class": "ph-duotone ph-currency-rub"
+	},
+	{
+		"name": "ph-cursor-click-duotone",
+		"class": "ph-duotone ph-cursor-click"
+	},
+	{
+		"name": "ph-cursor-duotone",
+		"class": "ph-duotone ph-cursor"
+	},
+	{
+		"name": "ph-cursor-text-duotone",
+		"class": "ph-duotone ph-cursor-text"
+	},
+	{
+		"name": "ph-cylinder-duotone",
+		"class": "ph-duotone ph-cylinder"
+	},
+	{
+		"name": "ph-database-duotone",
+		"class": "ph-duotone ph-database"
+	},
+	{
+		"name": "ph-desk-duotone",
+		"class": "ph-duotone ph-desk"
+	},
+	{
+		"name": "ph-desktop-duotone",
+		"class": "ph-duotone ph-desktop"
+	},
+	{
+		"name": "ph-desktop-tower-duotone",
+		"class": "ph-duotone ph-desktop-tower"
+	},
+	{
+		"name": "ph-detective-duotone",
+		"class": "ph-duotone ph-detective"
+	},
+	{
+		"name": "ph-dev-to-logo-duotone",
+		"class": "ph-duotone ph-dev-to-logo"
+	},
+	{
+		"name": "ph-device-mobile-camera-duotone",
+		"class": "ph-duotone ph-device-mobile-camera"
+	},
+	{
+		"name": "ph-device-mobile-duotone",
+		"class": "ph-duotone ph-device-mobile"
+	},
+	{
+		"name": "ph-device-mobile-slash-duotone",
+		"class": "ph-duotone ph-device-mobile-slash"
+	},
+	{
+		"name": "ph-device-mobile-speaker-duotone",
+		"class": "ph-duotone ph-device-mobile-speaker"
+	},
+	{
+		"name": "ph-device-rotate-duotone",
+		"class": "ph-duotone ph-device-rotate"
+	},
+	{
+		"name": "ph-device-tablet-camera-duotone",
+		"class": "ph-duotone ph-device-tablet-camera"
+	},
+	{
+		"name": "ph-device-tablet-duotone",
+		"class": "ph-duotone ph-device-tablet"
+	},
+	{
+		"name": "ph-device-tablet-speaker-duotone",
+		"class": "ph-duotone ph-device-tablet-speaker"
+	},
+	{
+		"name": "ph-devices-duotone",
+		"class": "ph-duotone ph-devices"
+	},
+	{
+		"name": "ph-diamond-duotone",
+		"class": "ph-duotone ph-diamond"
+	},
+	{
+		"name": "ph-diamonds-four-duotone",
+		"class": "ph-duotone ph-diamonds-four"
+	},
+	{
+		"name": "ph-dice-five-duotone",
+		"class": "ph-duotone ph-dice-five"
+	},
+	{
+		"name": "ph-dice-four-duotone",
+		"class": "ph-duotone ph-dice-four"
+	},
+	{
+		"name": "ph-dice-one-duotone",
+		"class": "ph-duotone ph-dice-one"
+	},
+	{
+		"name": "ph-dice-six-duotone",
+		"class": "ph-duotone ph-dice-six"
+	},
+	{
+		"name": "ph-dice-three-duotone",
+		"class": "ph-duotone ph-dice-three"
+	},
+	{
+		"name": "ph-dice-two-duotone",
+		"class": "ph-duotone ph-dice-two"
+	},
+	{
+		"name": "ph-disc-duotone",
+		"class": "ph-duotone ph-disc"
+	},
+	{
+		"name": "ph-disco-ball-duotone",
+		"class": "ph-duotone ph-disco-ball"
+	},
+	{
+		"name": "ph-discord-logo-duotone",
+		"class": "ph-duotone ph-discord-logo"
+	},
+	{
+		"name": "ph-divide-duotone",
+		"class": "ph-duotone ph-divide"
+	},
+	{
+		"name": "ph-dna-duotone",
+		"class": "ph-duotone ph-dna"
+	},
+	{
+		"name": "ph-dog-duotone",
+		"class": "ph-duotone ph-dog"
+	},
+	{
+		"name": "ph-door-duotone",
+		"class": "ph-duotone ph-door"
+	},
+	{
+		"name": "ph-door-open-duotone",
+		"class": "ph-duotone ph-door-open"
+	},
+	{
+		"name": "ph-dot-duotone",
+		"class": "ph-duotone ph-dot"
+	},
+	{
+		"name": "ph-dot-outline-duotone",
+		"class": "ph-duotone ph-dot-outline"
+	},
+	{
+		"name": "ph-dots-nine-duotone",
+		"class": "ph-duotone ph-dots-nine"
+	},
+	{
+		"name": "ph-dots-six-duotone",
+		"class": "ph-duotone ph-dots-six"
+	},
+	{
+		"name": "ph-dots-six-vertical-duotone",
+		"class": "ph-duotone ph-dots-six-vertical"
+	},
+	{
+		"name": "ph-dots-three-circle-duotone",
+		"class": "ph-duotone ph-dots-three-circle"
+	},
+	{
+		"name": "ph-dots-three-circle-vertical-duotone",
+		"class": "ph-duotone ph-dots-three-circle-vertical"
+	},
+	{
+		"name": "ph-dots-three-duotone",
+		"class": "ph-duotone ph-dots-three"
+	},
+	{
+		"name": "ph-dots-three-outline-duotone",
+		"class": "ph-duotone ph-dots-three-outline"
+	},
+	{
+		"name": "ph-dots-three-outline-vertical-duotone",
+		"class": "ph-duotone ph-dots-three-outline-vertical"
+	},
+	{
+		"name": "ph-dots-three-vertical-duotone",
+		"class": "ph-duotone ph-dots-three-vertical"
+	},
+	{
+		"name": "ph-download-duotone",
+		"class": "ph-duotone ph-download"
+	},
+	{
+		"name": "ph-download-simple-duotone",
+		"class": "ph-duotone ph-download-simple"
+	},
+	{
+		"name": "ph-dress-duotone",
+		"class": "ph-duotone ph-dress"
+	},
+	{
+		"name": "ph-dresser-duotone",
+		"class": "ph-duotone ph-dresser"
+	},
+	{
+		"name": "ph-dribbble-logo-duotone",
+		"class": "ph-duotone ph-dribbble-logo"
+	},
+	{
+		"name": "ph-drone-duotone",
+		"class": "ph-duotone ph-drone"
+	},
+	{
+		"name": "ph-drop-duotone",
+		"class": "ph-duotone ph-drop"
+	},
+	{
+		"name": "ph-drop-half-bottom-duotone",
+		"class": "ph-duotone ph-drop-half-bottom"
+	},
+	{
+		"name": "ph-drop-half-duotone",
+		"class": "ph-duotone ph-drop-half"
+	},
+	{
+		"name": "ph-drop-simple-duotone",
+		"class": "ph-duotone ph-drop-simple"
+	},
+	{
+		"name": "ph-drop-slash-duotone",
+		"class": "ph-duotone ph-drop-slash"
+	},
+	{
+		"name": "ph-dropbox-logo-duotone",
+		"class": "ph-duotone ph-dropbox-logo"
+	},
+	{
+		"name": "ph-ear-duotone",
+		"class": "ph-duotone ph-ear"
+	},
+	{
+		"name": "ph-ear-slash-duotone",
+		"class": "ph-duotone ph-ear-slash"
+	},
+	{
+		"name": "ph-egg-crack-duotone",
+		"class": "ph-duotone ph-egg-crack"
+	},
+	{
+		"name": "ph-egg-duotone",
+		"class": "ph-duotone ph-egg"
+	},
+	{
+		"name": "ph-eject-duotone",
+		"class": "ph-duotone ph-eject"
+	},
+	{
+		"name": "ph-eject-simple-duotone",
+		"class": "ph-duotone ph-eject-simple"
+	},
+	{
+		"name": "ph-elevator-duotone",
+		"class": "ph-duotone ph-elevator"
+	},
+	{
+		"name": "ph-empty-duotone",
+		"class": "ph-duotone ph-empty"
+	},
+	{
+		"name": "ph-engine-duotone",
+		"class": "ph-duotone ph-engine"
+	},
+	{
+		"name": "ph-envelope-duotone",
+		"class": "ph-duotone ph-envelope"
+	},
+	{
+		"name": "ph-envelope-open-duotone",
+		"class": "ph-duotone ph-envelope-open"
+	},
+	{
+		"name": "ph-envelope-simple-duotone",
+		"class": "ph-duotone ph-envelope-simple"
+	},
+	{
+		"name": "ph-envelope-simple-open-duotone",
+		"class": "ph-duotone ph-envelope-simple-open"
+	},
+	{
+		"name": "ph-equalizer-duotone",
+		"class": "ph-duotone ph-equalizer"
+	},
+	{
+		"name": "ph-equals-duotone",
+		"class": "ph-duotone ph-equals"
+	},
+	{
+		"name": "ph-eraser-duotone",
+		"class": "ph-duotone ph-eraser"
+	},
+	{
+		"name": "ph-escalator-down-duotone",
+		"class": "ph-duotone ph-escalator-down"
+	},
+	{
+		"name": "ph-escalator-up-duotone",
+		"class": "ph-duotone ph-escalator-up"
+	},
+	{
+		"name": "ph-exam-duotone",
+		"class": "ph-duotone ph-exam"
+	},
+	{
+		"name": "ph-exclamation-mark-duotone",
+		"class": "ph-duotone ph-exclamation-mark"
+	},
+	{
+		"name": "ph-exclude-duotone",
+		"class": "ph-duotone ph-exclude"
+	},
+	{
+		"name": "ph-exclude-square-duotone",
+		"class": "ph-duotone ph-exclude-square"
+	},
+	{
+		"name": "ph-export-duotone",
+		"class": "ph-duotone ph-export"
+	},
+	{
+		"name": "ph-eye-closed-duotone",
+		"class": "ph-duotone ph-eye-closed"
+	},
+	{
+		"name": "ph-eye-duotone",
+		"class": "ph-duotone ph-eye"
+	},
+	{
+		"name": "ph-eye-slash-duotone",
+		"class": "ph-duotone ph-eye-slash"
+	},
+	{
+		"name": "ph-eyedropper-duotone",
+		"class": "ph-duotone ph-eyedropper"
+	},
+	{
+		"name": "ph-eyedropper-sample-duotone",
+		"class": "ph-duotone ph-eyedropper-sample"
+	},
+	{
+		"name": "ph-eyeglasses-duotone",
+		"class": "ph-duotone ph-eyeglasses"
+	},
+	{
+		"name": "ph-eyes-duotone",
+		"class": "ph-duotone ph-eyes"
+	},
+	{
+		"name": "ph-face-mask-duotone",
+		"class": "ph-duotone ph-face-mask"
+	},
+	{
+		"name": "ph-facebook-logo-duotone",
+		"class": "ph-duotone ph-facebook-logo"
+	},
+	{
+		"name": "ph-factory-duotone",
+		"class": "ph-duotone ph-factory"
+	},
+	{
+		"name": "ph-faders-duotone",
+		"class": "ph-duotone ph-faders"
+	},
+	{
+		"name": "ph-faders-horizontal-duotone",
+		"class": "ph-duotone ph-faders-horizontal"
+	},
+	{
+		"name": "ph-fallout-shelter-duotone",
+		"class": "ph-duotone ph-fallout-shelter"
+	},
+	{
+		"name": "ph-fan-duotone",
+		"class": "ph-duotone ph-fan"
+	},
+	{
+		"name": "ph-farm-duotone",
+		"class": "ph-duotone ph-farm"
+	},
+	{
+		"name": "ph-fast-forward-circle-duotone",
+		"class": "ph-duotone ph-fast-forward-circle"
+	},
+	{
+		"name": "ph-fast-forward-duotone",
+		"class": "ph-duotone ph-fast-forward"
+	},
+	{
+		"name": "ph-feather-duotone",
+		"class": "ph-duotone ph-feather"
+	},
+	{
+		"name": "ph-fediverse-logo-duotone",
+		"class": "ph-duotone ph-fediverse-logo"
+	},
+	{
+		"name": "ph-figma-logo-duotone",
+		"class": "ph-duotone ph-figma-logo"
+	},
+	{
+		"name": "ph-file-archive-duotone",
+		"class": "ph-duotone ph-file-archive"
+	},
+	{
+		"name": "ph-file-arrow-down-duotone",
+		"class": "ph-duotone ph-file-arrow-down"
+	},
+	{
+		"name": "ph-file-arrow-up-duotone",
+		"class": "ph-duotone ph-file-arrow-up"
+	},
+	{
+		"name": "ph-file-audio-duotone",
+		"class": "ph-duotone ph-file-audio"
+	},
+	{
+		"name": "ph-file-c-duotone",
+		"class": "ph-duotone ph-file-c"
+	},
+	{
+		"name": "ph-file-c-sharp-duotone",
+		"class": "ph-duotone ph-file-c-sharp"
+	},
+	{
+		"name": "ph-file-cloud-duotone",
+		"class": "ph-duotone ph-file-cloud"
+	},
+	{
+		"name": "ph-file-code-duotone",
+		"class": "ph-duotone ph-file-code"
+	},
+	{
+		"name": "ph-file-cpp-duotone",
+		"class": "ph-duotone ph-file-cpp"
+	},
+	{
+		"name": "ph-file-css-duotone",
+		"class": "ph-duotone ph-file-css"
+	},
+	{
+		"name": "ph-file-csv-duotone",
+		"class": "ph-duotone ph-file-csv"
+	},
+	{
+		"name": "ph-file-dashed-duotone",
+		"class": "ph-duotone ph-file-dashed"
+	},
+	{
+		"name": "ph-file-doc-duotone",
+		"class": "ph-duotone ph-file-doc"
+	},
+	{
+		"name": "ph-file-dotted-duotone",
+		"class": "ph-duotone ph-file-dotted"
+	},
+	{
+		"name": "ph-file-duotone",
+		"class": "ph-duotone ph-file"
+	},
+	{
+		"name": "ph-file-html-duotone",
+		"class": "ph-duotone ph-file-html"
+	},
+	{
+		"name": "ph-file-image-duotone",
+		"class": "ph-duotone ph-file-image"
+	},
+	{
+		"name": "ph-file-ini-duotone",
+		"class": "ph-duotone ph-file-ini"
+	},
+	{
+		"name": "ph-file-jpg-duotone",
+		"class": "ph-duotone ph-file-jpg"
+	},
+	{
+		"name": "ph-file-js-duotone",
+		"class": "ph-duotone ph-file-js"
+	},
+	{
+		"name": "ph-file-jsx-duotone",
+		"class": "ph-duotone ph-file-jsx"
+	},
+	{
+		"name": "ph-file-lock-duotone",
+		"class": "ph-duotone ph-file-lock"
+	},
+	{
+		"name": "ph-file-magnifying-glass-duotone",
+		"class": "ph-duotone ph-file-magnifying-glass"
+	},
+	{
+		"name": "ph-file-md-duotone",
+		"class": "ph-duotone ph-file-md"
+	},
+	{
+		"name": "ph-file-minus-duotone",
+		"class": "ph-duotone ph-file-minus"
+	},
+	{
+		"name": "ph-file-pdf-duotone",
+		"class": "ph-duotone ph-file-pdf"
+	},
+	{
+		"name": "ph-file-plus-duotone",
+		"class": "ph-duotone ph-file-plus"
+	},
+	{
+		"name": "ph-file-png-duotone",
+		"class": "ph-duotone ph-file-png"
+	},
+	{
+		"name": "ph-file-ppt-duotone",
+		"class": "ph-duotone ph-file-ppt"
+	},
+	{
+		"name": "ph-file-py-duotone",
+		"class": "ph-duotone ph-file-py"
+	},
+	{
+		"name": "ph-file-rs-duotone",
+		"class": "ph-duotone ph-file-rs"
+	},
+	{
+		"name": "ph-file-search-duotone",
+		"class": "ph-duotone ph-file-search"
+	},
+	{
+		"name": "ph-file-sql-duotone",
+		"class": "ph-duotone ph-file-sql"
+	},
+	{
+		"name": "ph-file-svg-duotone",
+		"class": "ph-duotone ph-file-svg"
+	},
+	{
+		"name": "ph-file-text-duotone",
+		"class": "ph-duotone ph-file-text"
+	},
+	{
+		"name": "ph-file-ts-duotone",
+		"class": "ph-duotone ph-file-ts"
+	},
+	{
+		"name": "ph-file-tsx-duotone",
+		"class": "ph-duotone ph-file-tsx"
+	},
+	{
+		"name": "ph-file-txt-duotone",
+		"class": "ph-duotone ph-file-txt"
+	},
+	{
+		"name": "ph-file-video-duotone",
+		"class": "ph-duotone ph-file-video"
+	},
+	{
+		"name": "ph-file-vue-duotone",
+		"class": "ph-duotone ph-file-vue"
+	},
+	{
+		"name": "ph-file-x-duotone",
+		"class": "ph-duotone ph-file-x"
+	},
+	{
+		"name": "ph-file-xls-duotone",
+		"class": "ph-duotone ph-file-xls"
+	},
+	{
+		"name": "ph-file-zip-duotone",
+		"class": "ph-duotone ph-file-zip"
+	},
+	{
+		"name": "ph-files-duotone",
+		"class": "ph-duotone ph-files"
+	},
+	{
+		"name": "ph-film-reel-duotone",
+		"class": "ph-duotone ph-film-reel"
+	},
+	{
+		"name": "ph-film-script-duotone",
+		"class": "ph-duotone ph-film-script"
+	},
+	{
+		"name": "ph-film-slate-duotone",
+		"class": "ph-duotone ph-film-slate"
+	},
+	{
+		"name": "ph-film-strip-duotone",
+		"class": "ph-duotone ph-film-strip"
+	},
+	{
+		"name": "ph-fingerprint-duotone",
+		"class": "ph-duotone ph-fingerprint"
+	},
+	{
+		"name": "ph-fingerprint-simple-duotone",
+		"class": "ph-duotone ph-fingerprint-simple"
+	},
+	{
+		"name": "ph-finn-the-human-duotone",
+		"class": "ph-duotone ph-finn-the-human"
+	},
+	{
+		"name": "ph-fire-duotone",
+		"class": "ph-duotone ph-fire"
+	},
+	{
+		"name": "ph-fire-extinguisher-duotone",
+		"class": "ph-duotone ph-fire-extinguisher"
+	},
+	{
+		"name": "ph-fire-simple-duotone",
+		"class": "ph-duotone ph-fire-simple"
+	},
+	{
+		"name": "ph-fire-truck-duotone",
+		"class": "ph-duotone ph-fire-truck"
+	},
+	{
+		"name": "ph-first-aid-duotone",
+		"class": "ph-duotone ph-first-aid"
+	},
+	{
+		"name": "ph-first-aid-kit-duotone",
+		"class": "ph-duotone ph-first-aid-kit"
+	},
+	{
+		"name": "ph-fish-duotone",
+		"class": "ph-duotone ph-fish"
+	},
+	{
+		"name": "ph-fish-simple-duotone",
+		"class": "ph-duotone ph-fish-simple"
+	},
+	{
+		"name": "ph-flag-banner-duotone",
+		"class": "ph-duotone ph-flag-banner"
+	},
+	{
+		"name": "ph-flag-banner-fold-duotone",
+		"class": "ph-duotone ph-flag-banner-fold"
+	},
+	{
+		"name": "ph-flag-checkered-duotone",
+		"class": "ph-duotone ph-flag-checkered"
+	},
+	{
+		"name": "ph-flag-duotone",
+		"class": "ph-duotone ph-flag"
+	},
+	{
+		"name": "ph-flag-pennant-duotone",
+		"class": "ph-duotone ph-flag-pennant"
+	},
+	{
+		"name": "ph-flame-duotone",
+		"class": "ph-duotone ph-flame"
+	},
+	{
+		"name": "ph-flashlight-duotone",
+		"class": "ph-duotone ph-flashlight"
+	},
+	{
+		"name": "ph-flask-duotone",
+		"class": "ph-duotone ph-flask"
+	},
+	{
+		"name": "ph-flip-horizontal-duotone",
+		"class": "ph-duotone ph-flip-horizontal"
+	},
+	{
+		"name": "ph-flip-vertical-duotone",
+		"class": "ph-duotone ph-flip-vertical"
+	},
+	{
+		"name": "ph-floppy-disk-back-duotone",
+		"class": "ph-duotone ph-floppy-disk-back"
+	},
+	{
+		"name": "ph-floppy-disk-duotone",
+		"class": "ph-duotone ph-floppy-disk"
+	},
+	{
+		"name": "ph-flow-arrow-duotone",
+		"class": "ph-duotone ph-flow-arrow"
+	},
+	{
+		"name": "ph-flower-duotone",
+		"class": "ph-duotone ph-flower"
+	},
+	{
+		"name": "ph-flower-lotus-duotone",
+		"class": "ph-duotone ph-flower-lotus"
+	},
+	{
+		"name": "ph-flower-tulip-duotone",
+		"class": "ph-duotone ph-flower-tulip"
+	},
+	{
+		"name": "ph-flying-saucer-duotone",
+		"class": "ph-duotone ph-flying-saucer"
+	},
+	{
+		"name": "ph-folder-dashed-duotone",
+		"class": "ph-duotone ph-folder-dashed"
+	},
+	{
+		"name": "ph-folder-dotted-duotone",
+		"class": "ph-duotone ph-folder-dotted"
+	},
+	{
+		"name": "ph-folder-duotone",
+		"class": "ph-duotone ph-folder"
+	},
+	{
+		"name": "ph-folder-lock-duotone",
+		"class": "ph-duotone ph-folder-lock"
+	},
+	{
+		"name": "ph-folder-minus-duotone",
+		"class": "ph-duotone ph-folder-minus"
+	},
+	{
+		"name": "ph-folder-notch-duotone",
+		"class": "ph-duotone ph-folder-notch"
+	},
+	{
+		"name": "ph-folder-notch-minus-duotone",
+		"class": "ph-duotone ph-folder-notch-minus"
+	},
+	{
+		"name": "ph-folder-notch-open-duotone",
+		"class": "ph-duotone ph-folder-notch-open"
+	},
+	{
+		"name": "ph-folder-notch-plus-duotone",
+		"class": "ph-duotone ph-folder-notch-plus"
+	},
+	{
+		"name": "ph-folder-open-duotone",
+		"class": "ph-duotone ph-folder-open"
+	},
+	{
+		"name": "ph-folder-plus-duotone",
+		"class": "ph-duotone ph-folder-plus"
+	},
+	{
+		"name": "ph-folder-simple-dashed-duotone",
+		"class": "ph-duotone ph-folder-simple-dashed"
+	},
+	{
+		"name": "ph-folder-simple-dotted-duotone",
+		"class": "ph-duotone ph-folder-simple-dotted"
+	},
+	{
+		"name": "ph-folder-simple-duotone",
+		"class": "ph-duotone ph-folder-simple"
+	},
+	{
+		"name": "ph-folder-simple-lock-duotone",
+		"class": "ph-duotone ph-folder-simple-lock"
+	},
+	{
+		"name": "ph-folder-simple-minus-duotone",
+		"class": "ph-duotone ph-folder-simple-minus"
+	},
+	{
+		"name": "ph-folder-simple-plus-duotone",
+		"class": "ph-duotone ph-folder-simple-plus"
+	},
+	{
+		"name": "ph-folder-simple-star-duotone",
+		"class": "ph-duotone ph-folder-simple-star"
+	},
+	{
+		"name": "ph-folder-simple-user-duotone",
+		"class": "ph-duotone ph-folder-simple-user"
+	},
+	{
+		"name": "ph-folder-star-duotone",
+		"class": "ph-duotone ph-folder-star"
+	},
+	{
+		"name": "ph-folder-user-duotone",
+		"class": "ph-duotone ph-folder-user"
+	},
+	{
+		"name": "ph-folders-duotone",
+		"class": "ph-duotone ph-folders"
+	},
+	{
+		"name": "ph-football-duotone",
+		"class": "ph-duotone ph-football"
+	},
+	{
+		"name": "ph-football-helmet-duotone",
+		"class": "ph-duotone ph-football-helmet"
+	},
+	{
+		"name": "ph-footprints-duotone",
+		"class": "ph-duotone ph-footprints"
+	},
+	{
+		"name": "ph-fork-knife-duotone",
+		"class": "ph-duotone ph-fork-knife"
+	},
+	{
+		"name": "ph-four-k-duotone",
+		"class": "ph-duotone ph-four-k"
+	},
+	{
+		"name": "ph-frame-corners-duotone",
+		"class": "ph-duotone ph-frame-corners"
+	},
+	{
+		"name": "ph-framer-logo-duotone",
+		"class": "ph-duotone ph-framer-logo"
+	},
+	{
+		"name": "ph-function-duotone",
+		"class": "ph-duotone ph-function"
+	},
+	{
+		"name": "ph-funnel-duotone",
+		"class": "ph-duotone ph-funnel"
+	},
+	{
+		"name": "ph-funnel-simple-duotone",
+		"class": "ph-duotone ph-funnel-simple"
+	},
+	{
+		"name": "ph-funnel-simple-x-duotone",
+		"class": "ph-duotone ph-funnel-simple-x"
+	},
+	{
+		"name": "ph-funnel-x-duotone",
+		"class": "ph-duotone ph-funnel-x"
+	},
+	{
+		"name": "ph-game-controller-duotone",
+		"class": "ph-duotone ph-game-controller"
+	},
+	{
+		"name": "ph-garage-duotone",
+		"class": "ph-duotone ph-garage"
+	},
+	{
+		"name": "ph-gas-can-duotone",
+		"class": "ph-duotone ph-gas-can"
+	},
+	{
+		"name": "ph-gas-pump-duotone",
+		"class": "ph-duotone ph-gas-pump"
+	},
+	{
+		"name": "ph-gauge-duotone",
+		"class": "ph-duotone ph-gauge"
+	},
+	{
+		"name": "ph-gavel-duotone",
+		"class": "ph-duotone ph-gavel"
+	},
+	{
+		"name": "ph-gear-duotone",
+		"class": "ph-duotone ph-gear"
+	},
+	{
+		"name": "ph-gear-fine-duotone",
+		"class": "ph-duotone ph-gear-fine"
+	},
+	{
+		"name": "ph-gear-six-duotone",
+		"class": "ph-duotone ph-gear-six"
+	},
+	{
+		"name": "ph-gender-female-duotone",
+		"class": "ph-duotone ph-gender-female"
+	},
+	{
+		"name": "ph-gender-intersex-duotone",
+		"class": "ph-duotone ph-gender-intersex"
+	},
+	{
+		"name": "ph-gender-male-duotone",
+		"class": "ph-duotone ph-gender-male"
+	},
+	{
+		"name": "ph-gender-neuter-duotone",
+		"class": "ph-duotone ph-gender-neuter"
+	},
+	{
+		"name": "ph-gender-nonbinary-duotone",
+		"class": "ph-duotone ph-gender-nonbinary"
+	},
+	{
+		"name": "ph-gender-transgender-duotone",
+		"class": "ph-duotone ph-gender-transgender"
+	},
+	{
+		"name": "ph-ghost-duotone",
+		"class": "ph-duotone ph-ghost"
+	},
+	{
+		"name": "ph-gif-duotone",
+		"class": "ph-duotone ph-gif"
+	},
+	{
+		"name": "ph-gift-duotone",
+		"class": "ph-duotone ph-gift"
+	},
+	{
+		"name": "ph-git-branch-duotone",
+		"class": "ph-duotone ph-git-branch"
+	},
+	{
+		"name": "ph-git-commit-duotone",
+		"class": "ph-duotone ph-git-commit"
+	},
+	{
+		"name": "ph-git-diff-duotone",
+		"class": "ph-duotone ph-git-diff"
+	},
+	{
+		"name": "ph-git-fork-duotone",
+		"class": "ph-duotone ph-git-fork"
+	},
+	{
+		"name": "ph-git-merge-duotone",
+		"class": "ph-duotone ph-git-merge"
+	},
+	{
+		"name": "ph-git-pull-request-duotone",
+		"class": "ph-duotone ph-git-pull-request"
+	},
+	{
+		"name": "ph-github-logo-duotone",
+		"class": "ph-duotone ph-github-logo"
+	},
+	{
+		"name": "ph-gitlab-logo-duotone",
+		"class": "ph-duotone ph-gitlab-logo"
+	},
+	{
+		"name": "ph-gitlab-logo-simple-duotone",
+		"class": "ph-duotone ph-gitlab-logo-simple"
+	},
+	{
+		"name": "ph-globe-duotone",
+		"class": "ph-duotone ph-globe"
+	},
+	{
+		"name": "ph-globe-hemisphere-east-duotone",
+		"class": "ph-duotone ph-globe-hemisphere-east"
+	},
+	{
+		"name": "ph-globe-hemisphere-west-duotone",
+		"class": "ph-duotone ph-globe-hemisphere-west"
+	},
+	{
+		"name": "ph-globe-simple-duotone",
+		"class": "ph-duotone ph-globe-simple"
+	},
+	{
+		"name": "ph-globe-simple-x-duotone",
+		"class": "ph-duotone ph-globe-simple-x"
+	},
+	{
+		"name": "ph-globe-stand-duotone",
+		"class": "ph-duotone ph-globe-stand"
+	},
+	{
+		"name": "ph-globe-x-duotone",
+		"class": "ph-duotone ph-globe-x"
+	},
+	{
+		"name": "ph-goggles-duotone",
+		"class": "ph-duotone ph-goggles"
+	},
+	{
+		"name": "ph-golf-duotone",
+		"class": "ph-duotone ph-golf"
+	},
+	{
+		"name": "ph-goodreads-logo-duotone",
+		"class": "ph-duotone ph-goodreads-logo"
+	},
+	{
+		"name": "ph-google-cardboard-logo-duotone",
+		"class": "ph-duotone ph-google-cardboard-logo"
+	},
+	{
+		"name": "ph-google-chrome-logo-duotone",
+		"class": "ph-duotone ph-google-chrome-logo"
+	},
+	{
+		"name": "ph-google-drive-logo-duotone",
+		"class": "ph-duotone ph-google-drive-logo"
+	},
+	{
+		"name": "ph-google-logo-duotone",
+		"class": "ph-duotone ph-google-logo"
+	},
+	{
+		"name": "ph-google-photos-logo-duotone",
+		"class": "ph-duotone ph-google-photos-logo"
+	},
+	{
+		"name": "ph-google-play-logo-duotone",
+		"class": "ph-duotone ph-google-play-logo"
+	},
+	{
+		"name": "ph-google-podcasts-logo-duotone",
+		"class": "ph-duotone ph-google-podcasts-logo"
+	},
+	{
+		"name": "ph-gps-duotone",
+		"class": "ph-duotone ph-gps"
+	},
+	{
+		"name": "ph-gps-fix-duotone",
+		"class": "ph-duotone ph-gps-fix"
+	},
+	{
+		"name": "ph-gps-slash-duotone",
+		"class": "ph-duotone ph-gps-slash"
+	},
+	{
+		"name": "ph-gradient-duotone",
+		"class": "ph-duotone ph-gradient"
+	},
+	{
+		"name": "ph-graduation-cap-duotone",
+		"class": "ph-duotone ph-graduation-cap"
+	},
+	{
+		"name": "ph-grains-duotone",
+		"class": "ph-duotone ph-grains"
+	},
+	{
+		"name": "ph-grains-slash-duotone",
+		"class": "ph-duotone ph-grains-slash"
+	},
+	{
+		"name": "ph-graph-duotone",
+		"class": "ph-duotone ph-graph"
+	},
+	{
+		"name": "ph-graphics-card-duotone",
+		"class": "ph-duotone ph-graphics-card"
+	},
+	{
+		"name": "ph-greater-than-duotone",
+		"class": "ph-duotone ph-greater-than"
+	},
+	{
+		"name": "ph-greater-than-or-equal-duotone",
+		"class": "ph-duotone ph-greater-than-or-equal"
+	},
+	{
+		"name": "ph-grid-four-duotone",
+		"class": "ph-duotone ph-grid-four"
+	},
+	{
+		"name": "ph-grid-nine-duotone",
+		"class": "ph-duotone ph-grid-nine"
+	},
+	{
+		"name": "ph-guitar-duotone",
+		"class": "ph-duotone ph-guitar"
+	},
+	{
+		"name": "ph-hair-dryer-duotone",
+		"class": "ph-duotone ph-hair-dryer"
+	},
+	{
+		"name": "ph-hamburger-duotone",
+		"class": "ph-duotone ph-hamburger"
+	},
+	{
+		"name": "ph-hammer-duotone",
+		"class": "ph-duotone ph-hammer"
+	},
+	{
+		"name": "ph-hand-arrow-down-duotone",
+		"class": "ph-duotone ph-hand-arrow-down"
+	},
+	{
+		"name": "ph-hand-arrow-up-duotone",
+		"class": "ph-duotone ph-hand-arrow-up"
+	},
+	{
+		"name": "ph-hand-coins-duotone",
+		"class": "ph-duotone ph-hand-coins"
+	},
+	{
+		"name": "ph-hand-deposit-duotone",
+		"class": "ph-duotone ph-hand-deposit"
+	},
+	{
+		"name": "ph-hand-duotone",
+		"class": "ph-duotone ph-hand"
+	},
+	{
+		"name": "ph-hand-eye-duotone",
+		"class": "ph-duotone ph-hand-eye"
+	},
+	{
+		"name": "ph-hand-fist-duotone",
+		"class": "ph-duotone ph-hand-fist"
+	},
+	{
+		"name": "ph-hand-grabbing-duotone",
+		"class": "ph-duotone ph-hand-grabbing"
+	},
+	{
+		"name": "ph-hand-heart-duotone",
+		"class": "ph-duotone ph-hand-heart"
+	},
+	{
+		"name": "ph-hand-palm-duotone",
+		"class": "ph-duotone ph-hand-palm"
+	},
+	{
+		"name": "ph-hand-peace-duotone",
+		"class": "ph-duotone ph-hand-peace"
+	},
+	{
+		"name": "ph-hand-pointing-duotone",
+		"class": "ph-duotone ph-hand-pointing"
+	},
+	{
+		"name": "ph-hand-soap-duotone",
+		"class": "ph-duotone ph-hand-soap"
+	},
+	{
+		"name": "ph-hand-swipe-left-duotone",
+		"class": "ph-duotone ph-hand-swipe-left"
+	},
+	{
+		"name": "ph-hand-swipe-right-duotone",
+		"class": "ph-duotone ph-hand-swipe-right"
+	},
+	{
+		"name": "ph-hand-tap-duotone",
+		"class": "ph-duotone ph-hand-tap"
+	},
+	{
+		"name": "ph-hand-waving-duotone",
+		"class": "ph-duotone ph-hand-waving"
+	},
+	{
+		"name": "ph-hand-withdraw-duotone",
+		"class": "ph-duotone ph-hand-withdraw"
+	},
+	{
+		"name": "ph-handbag-duotone",
+		"class": "ph-duotone ph-handbag"
+	},
+	{
+		"name": "ph-handbag-simple-duotone",
+		"class": "ph-duotone ph-handbag-simple"
+	},
+	{
+		"name": "ph-hands-clapping-duotone",
+		"class": "ph-duotone ph-hands-clapping"
+	},
+	{
+		"name": "ph-hands-praying-duotone",
+		"class": "ph-duotone ph-hands-praying"
+	},
+	{
+		"name": "ph-handshake-duotone",
+		"class": "ph-duotone ph-handshake"
+	},
+	{
+		"name": "ph-hard-drive-duotone",
+		"class": "ph-duotone ph-hard-drive"
+	},
+	{
+		"name": "ph-hard-drives-duotone",
+		"class": "ph-duotone ph-hard-drives"
+	},
+	{
+		"name": "ph-hard-hat-duotone",
+		"class": "ph-duotone ph-hard-hat"
+	},
+	{
+		"name": "ph-hash-duotone",
+		"class": "ph-duotone ph-hash"
+	},
+	{
+		"name": "ph-hash-straight-duotone",
+		"class": "ph-duotone ph-hash-straight"
+	},
+	{
+		"name": "ph-head-circuit-duotone",
+		"class": "ph-duotone ph-head-circuit"
+	},
+	{
+		"name": "ph-headlights-duotone",
+		"class": "ph-duotone ph-headlights"
+	},
+	{
+		"name": "ph-headphones-duotone",
+		"class": "ph-duotone ph-headphones"
+	},
+	{
+		"name": "ph-headset-duotone",
+		"class": "ph-duotone ph-headset"
+	},
+	{
+		"name": "ph-heart-break-duotone",
+		"class": "ph-duotone ph-heart-break"
+	},
+	{
+		"name": "ph-heart-duotone",
+		"class": "ph-duotone ph-heart"
+	},
+	{
+		"name": "ph-heart-half-duotone",
+		"class": "ph-duotone ph-heart-half"
+	},
+	{
+		"name": "ph-heart-straight-break-duotone",
+		"class": "ph-duotone ph-heart-straight-break"
+	},
+	{
+		"name": "ph-heart-straight-duotone",
+		"class": "ph-duotone ph-heart-straight"
+	},
+	{
+		"name": "ph-heartbeat-duotone",
+		"class": "ph-duotone ph-heartbeat"
+	},
+	{
+		"name": "ph-hexagon-duotone",
+		"class": "ph-duotone ph-hexagon"
+	},
+	{
+		"name": "ph-high-definition-duotone",
+		"class": "ph-duotone ph-high-definition"
+	},
+	{
+		"name": "ph-high-heel-duotone",
+		"class": "ph-duotone ph-high-heel"
+	},
+	{
+		"name": "ph-highlighter-circle-duotone",
+		"class": "ph-duotone ph-highlighter-circle"
+	},
+	{
+		"name": "ph-highlighter-duotone",
+		"class": "ph-duotone ph-highlighter"
+	},
+	{
+		"name": "ph-hockey-duotone",
+		"class": "ph-duotone ph-hockey"
+	},
+	{
+		"name": "ph-hoodie-duotone",
+		"class": "ph-duotone ph-hoodie"
+	},
+	{
+		"name": "ph-horse-duotone",
+		"class": "ph-duotone ph-horse"
+	},
+	{
+		"name": "ph-hospital-duotone",
+		"class": "ph-duotone ph-hospital"
+	},
+	{
+		"name": "ph-hourglass-duotone",
+		"class": "ph-duotone ph-hourglass"
+	},
+	{
+		"name": "ph-hourglass-high-duotone",
+		"class": "ph-duotone ph-hourglass-high"
+	},
+	{
+		"name": "ph-hourglass-low-duotone",
+		"class": "ph-duotone ph-hourglass-low"
+	},
+	{
+		"name": "ph-hourglass-medium-duotone",
+		"class": "ph-duotone ph-hourglass-medium"
+	},
+	{
+		"name": "ph-hourglass-simple-duotone",
+		"class": "ph-duotone ph-hourglass-simple"
+	},
+	{
+		"name": "ph-hourglass-simple-high-duotone",
+		"class": "ph-duotone ph-hourglass-simple-high"
+	},
+	{
+		"name": "ph-hourglass-simple-low-duotone",
+		"class": "ph-duotone ph-hourglass-simple-low"
+	},
+	{
+		"name": "ph-hourglass-simple-medium-duotone",
+		"class": "ph-duotone ph-hourglass-simple-medium"
+	},
+	{
+		"name": "ph-house-duotone",
+		"class": "ph-duotone ph-house"
+	},
+	{
+		"name": "ph-house-line-duotone",
+		"class": "ph-duotone ph-house-line"
+	},
+	{
+		"name": "ph-house-simple-duotone",
+		"class": "ph-duotone ph-house-simple"
+	},
+	{
+		"name": "ph-hurricane-duotone",
+		"class": "ph-duotone ph-hurricane"
+	},
+	{
+		"name": "ph-ice-cream-duotone",
+		"class": "ph-duotone ph-ice-cream"
+	},
+	{
+		"name": "ph-identification-badge-duotone",
+		"class": "ph-duotone ph-identification-badge"
+	},
+	{
+		"name": "ph-identification-card-duotone",
+		"class": "ph-duotone ph-identification-card"
+	},
+	{
+		"name": "ph-image-broken-duotone",
+		"class": "ph-duotone ph-image-broken"
+	},
+	{
+		"name": "ph-image-duotone",
+		"class": "ph-duotone ph-image"
+	},
+	{
+		"name": "ph-image-square-duotone",
+		"class": "ph-duotone ph-image-square"
+	},
+	{
+		"name": "ph-images-duotone",
+		"class": "ph-duotone ph-images"
+	},
+	{
+		"name": "ph-images-square-duotone",
+		"class": "ph-duotone ph-images-square"
+	},
+	{
+		"name": "ph-infinity-duotone",
+		"class": "ph-duotone ph-infinity"
+	},
+	{
+		"name": "ph-info-duotone",
+		"class": "ph-duotone ph-info"
+	},
+	{
+		"name": "ph-instagram-logo-duotone",
+		"class": "ph-duotone ph-instagram-logo"
+	},
+	{
+		"name": "ph-intersect-duotone",
+		"class": "ph-duotone ph-intersect"
+	},
+	{
+		"name": "ph-intersect-square-duotone",
+		"class": "ph-duotone ph-intersect-square"
+	},
+	{
+		"name": "ph-intersect-three-duotone",
+		"class": "ph-duotone ph-intersect-three"
+	},
+	{
+		"name": "ph-intersection-duotone",
+		"class": "ph-duotone ph-intersection"
+	},
+	{
+		"name": "ph-invoice-duotone",
+		"class": "ph-duotone ph-invoice"
+	},
+	{
+		"name": "ph-island-duotone",
+		"class": "ph-duotone ph-island"
+	},
+	{
+		"name": "ph-jar-duotone",
+		"class": "ph-duotone ph-jar"
+	},
+	{
+		"name": "ph-jar-label-duotone",
+		"class": "ph-duotone ph-jar-label"
+	},
+	{
+		"name": "ph-jeep-duotone",
+		"class": "ph-duotone ph-jeep"
+	},
+	{
+		"name": "ph-joystick-duotone",
+		"class": "ph-duotone ph-joystick"
+	},
+	{
+		"name": "ph-kanban-duotone",
+		"class": "ph-duotone ph-kanban"
+	},
+	{
+		"name": "ph-key-duotone",
+		"class": "ph-duotone ph-key"
+	},
+	{
+		"name": "ph-key-return-duotone",
+		"class": "ph-duotone ph-key-return"
+	},
+	{
+		"name": "ph-keyboard-duotone",
+		"class": "ph-duotone ph-keyboard"
+	},
+	{
+		"name": "ph-keyhole-duotone",
+		"class": "ph-duotone ph-keyhole"
+	},
+	{
+		"name": "ph-knife-duotone",
+		"class": "ph-duotone ph-knife"
+	},
+	{
+		"name": "ph-ladder-duotone",
+		"class": "ph-duotone ph-ladder"
+	},
+	{
+		"name": "ph-ladder-simple-duotone",
+		"class": "ph-duotone ph-ladder-simple"
+	},
+	{
+		"name": "ph-lamp-duotone",
+		"class": "ph-duotone ph-lamp"
+	},
+	{
+		"name": "ph-lamp-pendant-duotone",
+		"class": "ph-duotone ph-lamp-pendant"
+	},
+	{
+		"name": "ph-laptop-duotone",
+		"class": "ph-duotone ph-laptop"
+	},
+	{
+		"name": "ph-lasso-duotone",
+		"class": "ph-duotone ph-lasso"
+	},
+	{
+		"name": "ph-lastfm-logo-duotone",
+		"class": "ph-duotone ph-lastfm-logo"
+	},
+	{
+		"name": "ph-layout-duotone",
+		"class": "ph-duotone ph-layout"
+	},
+	{
+		"name": "ph-leaf-duotone",
+		"class": "ph-duotone ph-leaf"
+	},
+	{
+		"name": "ph-lectern-duotone",
+		"class": "ph-duotone ph-lectern"
+	},
+	{
+		"name": "ph-lego-duotone",
+		"class": "ph-duotone ph-lego"
+	},
+	{
+		"name": "ph-lego-smiley-duotone",
+		"class": "ph-duotone ph-lego-smiley"
+	},
+	{
+		"name": "ph-less-than-duotone",
+		"class": "ph-duotone ph-less-than"
+	},
+	{
+		"name": "ph-less-than-or-equal-duotone",
+		"class": "ph-duotone ph-less-than-or-equal"
+	},
+	{
+		"name": "ph-letter-circle-h-duotone",
+		"class": "ph-duotone ph-letter-circle-h"
+	},
+	{
+		"name": "ph-letter-circle-p-duotone",
+		"class": "ph-duotone ph-letter-circle-p"
+	},
+	{
+		"name": "ph-letter-circle-v-duotone",
+		"class": "ph-duotone ph-letter-circle-v"
+	},
+	{
+		"name": "ph-lifebuoy-duotone",
+		"class": "ph-duotone ph-lifebuoy"
+	},
+	{
+		"name": "ph-lightbulb-duotone",
+		"class": "ph-duotone ph-lightbulb"
+	},
+	{
+		"name": "ph-lightbulb-filament-duotone",
+		"class": "ph-duotone ph-lightbulb-filament"
+	},
+	{
+		"name": "ph-lighthouse-duotone",
+		"class": "ph-duotone ph-lighthouse"
+	},
+	{
+		"name": "ph-lightning-a-duotone",
+		"class": "ph-duotone ph-lightning-a"
+	},
+	{
+		"name": "ph-lightning-duotone",
+		"class": "ph-duotone ph-lightning"
+	},
+	{
+		"name": "ph-lightning-slash-duotone",
+		"class": "ph-duotone ph-lightning-slash"
+	},
+	{
+		"name": "ph-line-segment-duotone",
+		"class": "ph-duotone ph-line-segment"
+	},
+	{
+		"name": "ph-line-segments-duotone",
+		"class": "ph-duotone ph-line-segments"
+	},
+	{
+		"name": "ph-line-vertical-duotone",
+		"class": "ph-duotone ph-line-vertical"
+	},
+	{
+		"name": "ph-link-break-duotone",
+		"class": "ph-duotone ph-link-break"
+	},
+	{
+		"name": "ph-link-duotone",
+		"class": "ph-duotone ph-link"
+	},
+	{
+		"name": "ph-link-simple-break-duotone",
+		"class": "ph-duotone ph-link-simple-break"
+	},
+	{
+		"name": "ph-link-simple-duotone",
+		"class": "ph-duotone ph-link-simple"
+	},
+	{
+		"name": "ph-link-simple-horizontal-break-duotone",
+		"class": "ph-duotone ph-link-simple-horizontal-break"
+	},
+	{
+		"name": "ph-link-simple-horizontal-duotone",
+		"class": "ph-duotone ph-link-simple-horizontal"
+	},
+	{
+		"name": "ph-linkedin-logo-duotone",
+		"class": "ph-duotone ph-linkedin-logo"
+	},
+	{
+		"name": "ph-linktree-logo-duotone",
+		"class": "ph-duotone ph-linktree-logo"
+	},
+	{
+		"name": "ph-linux-logo-duotone",
+		"class": "ph-duotone ph-linux-logo"
+	},
+	{
+		"name": "ph-list-bullets-duotone",
+		"class": "ph-duotone ph-list-bullets"
+	},
+	{
+		"name": "ph-list-checks-duotone",
+		"class": "ph-duotone ph-list-checks"
+	},
+	{
+		"name": "ph-list-dashes-duotone",
+		"class": "ph-duotone ph-list-dashes"
+	},
+	{
+		"name": "ph-list-duotone",
+		"class": "ph-duotone ph-list"
+	},
+	{
+		"name": "ph-list-heart-duotone",
+		"class": "ph-duotone ph-list-heart"
+	},
+	{
+		"name": "ph-list-magnifying-glass-duotone",
+		"class": "ph-duotone ph-list-magnifying-glass"
+	},
+	{
+		"name": "ph-list-numbers-duotone",
+		"class": "ph-duotone ph-list-numbers"
+	},
+	{
+		"name": "ph-list-plus-duotone",
+		"class": "ph-duotone ph-list-plus"
+	},
+	{
+		"name": "ph-list-star-duotone",
+		"class": "ph-duotone ph-list-star"
+	},
+	{
+		"name": "ph-lock-duotone",
+		"class": "ph-duotone ph-lock"
+	},
+	{
+		"name": "ph-lock-key-duotone",
+		"class": "ph-duotone ph-lock-key"
+	},
+	{
+		"name": "ph-lock-key-open-duotone",
+		"class": "ph-duotone ph-lock-key-open"
+	},
+	{
+		"name": "ph-lock-laminated-duotone",
+		"class": "ph-duotone ph-lock-laminated"
+	},
+	{
+		"name": "ph-lock-laminated-open-duotone",
+		"class": "ph-duotone ph-lock-laminated-open"
+	},
+	{
+		"name": "ph-lock-open-duotone",
+		"class": "ph-duotone ph-lock-open"
+	},
+	{
+		"name": "ph-lock-simple-duotone",
+		"class": "ph-duotone ph-lock-simple"
+	},
+	{
+		"name": "ph-lock-simple-open-duotone",
+		"class": "ph-duotone ph-lock-simple-open"
+	},
+	{
+		"name": "ph-lockers-duotone",
+		"class": "ph-duotone ph-lockers"
+	},
+	{
+		"name": "ph-log-duotone",
+		"class": "ph-duotone ph-log"
+	},
+	{
+		"name": "ph-magic-wand-duotone",
+		"class": "ph-duotone ph-magic-wand"
+	},
+	{
+		"name": "ph-magnet-duotone",
+		"class": "ph-duotone ph-magnet"
+	},
+	{
+		"name": "ph-magnet-straight-duotone",
+		"class": "ph-duotone ph-magnet-straight"
+	},
+	{
+		"name": "ph-magnifying-glass-duotone",
+		"class": "ph-duotone ph-magnifying-glass"
+	},
+	{
+		"name": "ph-magnifying-glass-minus-duotone",
+		"class": "ph-duotone ph-magnifying-glass-minus"
+	},
+	{
+		"name": "ph-magnifying-glass-plus-duotone",
+		"class": "ph-duotone ph-magnifying-glass-plus"
+	},
+	{
+		"name": "ph-mailbox-duotone",
+		"class": "ph-duotone ph-mailbox"
+	},
+	{
+		"name": "ph-map-pin-area-duotone",
+		"class": "ph-duotone ph-map-pin-area"
+	},
+	{
+		"name": "ph-map-pin-duotone",
+		"class": "ph-duotone ph-map-pin"
+	},
+	{
+		"name": "ph-map-pin-line-duotone",
+		"class": "ph-duotone ph-map-pin-line"
+	},
+	{
+		"name": "ph-map-pin-plus-duotone",
+		"class": "ph-duotone ph-map-pin-plus"
+	},
+	{
+		"name": "ph-map-pin-simple-area-duotone",
+		"class": "ph-duotone ph-map-pin-simple-area"
+	},
+	{
+		"name": "ph-map-pin-simple-duotone",
+		"class": "ph-duotone ph-map-pin-simple"
+	},
+	{
+		"name": "ph-map-pin-simple-line-duotone",
+		"class": "ph-duotone ph-map-pin-simple-line"
+	},
+	{
+		"name": "ph-map-trifold-duotone",
+		"class": "ph-duotone ph-map-trifold"
+	},
+	{
+		"name": "ph-markdown-logo-duotone",
+		"class": "ph-duotone ph-markdown-logo"
+	},
+	{
+		"name": "ph-marker-circle-duotone",
+		"class": "ph-duotone ph-marker-circle"
+	},
+	{
+		"name": "ph-martini-duotone",
+		"class": "ph-duotone ph-martini"
+	},
+	{
+		"name": "ph-mask-happy-duotone",
+		"class": "ph-duotone ph-mask-happy"
+	},
+	{
+		"name": "ph-mask-sad-duotone",
+		"class": "ph-duotone ph-mask-sad"
+	},
+	{
+		"name": "ph-mastodon-logo-duotone",
+		"class": "ph-duotone ph-mastodon-logo"
+	},
+	{
+		"name": "ph-math-operations-duotone",
+		"class": "ph-duotone ph-math-operations"
+	},
+	{
+		"name": "ph-matrix-logo-duotone",
+		"class": "ph-duotone ph-matrix-logo"
+	},
+	{
+		"name": "ph-medal-duotone",
+		"class": "ph-duotone ph-medal"
+	},
+	{
+		"name": "ph-medal-military-duotone",
+		"class": "ph-duotone ph-medal-military"
+	},
+	{
+		"name": "ph-medium-logo-duotone",
+		"class": "ph-duotone ph-medium-logo"
+	},
+	{
+		"name": "ph-megaphone-duotone",
+		"class": "ph-duotone ph-megaphone"
+	},
+	{
+		"name": "ph-megaphone-simple-duotone",
+		"class": "ph-duotone ph-megaphone-simple"
+	},
+	{
+		"name": "ph-member-of-duotone",
+		"class": "ph-duotone ph-member-of"
+	},
+	{
+		"name": "ph-memory-duotone",
+		"class": "ph-duotone ph-memory"
+	},
+	{
+		"name": "ph-messenger-logo-duotone",
+		"class": "ph-duotone ph-messenger-logo"
+	},
+	{
+		"name": "ph-meta-logo-duotone",
+		"class": "ph-duotone ph-meta-logo"
+	},
+	{
+		"name": "ph-meteor-duotone",
+		"class": "ph-duotone ph-meteor"
+	},
+	{
+		"name": "ph-metronome-duotone",
+		"class": "ph-duotone ph-metronome"
+	},
+	{
+		"name": "ph-microphone-duotone",
+		"class": "ph-duotone ph-microphone"
+	},
+	{
+		"name": "ph-microphone-slash-duotone",
+		"class": "ph-duotone ph-microphone-slash"
+	},
+	{
+		"name": "ph-microphone-stage-duotone",
+		"class": "ph-duotone ph-microphone-stage"
+	},
+	{
+		"name": "ph-microscope-duotone",
+		"class": "ph-duotone ph-microscope"
+	},
+	{
+		"name": "ph-microsoft-excel-logo-duotone",
+		"class": "ph-duotone ph-microsoft-excel-logo"
+	},
+	{
+		"name": "ph-microsoft-outlook-logo-duotone",
+		"class": "ph-duotone ph-microsoft-outlook-logo"
+	},
+	{
+		"name": "ph-microsoft-powerpoint-logo-duotone",
+		"class": "ph-duotone ph-microsoft-powerpoint-logo"
+	},
+	{
+		"name": "ph-microsoft-teams-logo-duotone",
+		"class": "ph-duotone ph-microsoft-teams-logo"
+	},
+	{
+		"name": "ph-microsoft-word-logo-duotone",
+		"class": "ph-duotone ph-microsoft-word-logo"
+	},
+	{
+		"name": "ph-minus-circle-duotone",
+		"class": "ph-duotone ph-minus-circle"
+	},
+	{
+		"name": "ph-minus-duotone",
+		"class": "ph-duotone ph-minus"
+	},
+	{
+		"name": "ph-minus-square-duotone",
+		"class": "ph-duotone ph-minus-square"
+	},
+	{
+		"name": "ph-money-duotone",
+		"class": "ph-duotone ph-money"
+	},
+	{
+		"name": "ph-money-wavy-duotone",
+		"class": "ph-duotone ph-money-wavy"
+	},
+	{
+		"name": "ph-monitor-arrow-up-duotone",
+		"class": "ph-duotone ph-monitor-arrow-up"
+	},
+	{
+		"name": "ph-monitor-duotone",
+		"class": "ph-duotone ph-monitor"
+	},
+	{
+		"name": "ph-monitor-play-duotone",
+		"class": "ph-duotone ph-monitor-play"
+	},
+	{
+		"name": "ph-moon-duotone",
+		"class": "ph-duotone ph-moon"
+	},
+	{
+		"name": "ph-moon-stars-duotone",
+		"class": "ph-duotone ph-moon-stars"
+	},
+	{
+		"name": "ph-moped-duotone",
+		"class": "ph-duotone ph-moped"
+	},
+	{
+		"name": "ph-moped-front-duotone",
+		"class": "ph-duotone ph-moped-front"
+	},
+	{
+		"name": "ph-mosque-duotone",
+		"class": "ph-duotone ph-mosque"
+	},
+	{
+		"name": "ph-motorcycle-duotone",
+		"class": "ph-duotone ph-motorcycle"
+	},
+	{
+		"name": "ph-mountains-duotone",
+		"class": "ph-duotone ph-mountains"
+	},
+	{
+		"name": "ph-mouse-duotone",
+		"class": "ph-duotone ph-mouse"
+	},
+	{
+		"name": "ph-mouse-left-click-duotone",
+		"class": "ph-duotone ph-mouse-left-click"
+	},
+	{
+		"name": "ph-mouse-middle-click-duotone",
+		"class": "ph-duotone ph-mouse-middle-click"
+	},
+	{
+		"name": "ph-mouse-right-click-duotone",
+		"class": "ph-duotone ph-mouse-right-click"
+	},
+	{
+		"name": "ph-mouse-scroll-duotone",
+		"class": "ph-duotone ph-mouse-scroll"
+	},
+	{
+		"name": "ph-mouse-simple-duotone",
+		"class": "ph-duotone ph-mouse-simple"
+	},
+	{
+		"name": "ph-music-note-duotone",
+		"class": "ph-duotone ph-music-note"
+	},
+	{
+		"name": "ph-music-note-simple-duotone",
+		"class": "ph-duotone ph-music-note-simple"
+	},
+	{
+		"name": "ph-music-notes-duotone",
+		"class": "ph-duotone ph-music-notes"
+	},
+	{
+		"name": "ph-music-notes-minus-duotone",
+		"class": "ph-duotone ph-music-notes-minus"
+	},
+	{
+		"name": "ph-music-notes-plus-duotone",
+		"class": "ph-duotone ph-music-notes-plus"
+	},
+	{
+		"name": "ph-music-notes-simple-duotone",
+		"class": "ph-duotone ph-music-notes-simple"
+	},
+	{
+		"name": "ph-navigation-arrow-duotone",
+		"class": "ph-duotone ph-navigation-arrow"
+	},
+	{
+		"name": "ph-needle-duotone",
+		"class": "ph-duotone ph-needle"
+	},
+	{
+		"name": "ph-network-duotone",
+		"class": "ph-duotone ph-network"
+	},
+	{
+		"name": "ph-network-slash-duotone",
+		"class": "ph-duotone ph-network-slash"
+	},
+	{
+		"name": "ph-network-x-duotone",
+		"class": "ph-duotone ph-network-x"
+	},
+	{
+		"name": "ph-newspaper-clipping-duotone",
+		"class": "ph-duotone ph-newspaper-clipping"
+	},
+	{
+		"name": "ph-newspaper-duotone",
+		"class": "ph-duotone ph-newspaper"
+	},
+	{
+		"name": "ph-not-equals-duotone",
+		"class": "ph-duotone ph-not-equals"
+	},
+	{
+		"name": "ph-not-member-of-duotone",
+		"class": "ph-duotone ph-not-member-of"
+	},
+	{
+		"name": "ph-not-subset-of-duotone",
+		"class": "ph-duotone ph-not-subset-of"
+	},
+	{
+		"name": "ph-not-superset-of-duotone",
+		"class": "ph-duotone ph-not-superset-of"
+	},
+	{
+		"name": "ph-notches-duotone",
+		"class": "ph-duotone ph-notches"
+	},
+	{
+		"name": "ph-note-blank-duotone",
+		"class": "ph-duotone ph-note-blank"
+	},
+	{
+		"name": "ph-note-duotone",
+		"class": "ph-duotone ph-note"
+	},
+	{
+		"name": "ph-note-pencil-duotone",
+		"class": "ph-duotone ph-note-pencil"
+	},
+	{
+		"name": "ph-notebook-duotone",
+		"class": "ph-duotone ph-notebook"
+	},
+	{
+		"name": "ph-notepad-duotone",
+		"class": "ph-duotone ph-notepad"
+	},
+	{
+		"name": "ph-notification-duotone",
+		"class": "ph-duotone ph-notification"
+	},
+	{
+		"name": "ph-notion-logo-duotone",
+		"class": "ph-duotone ph-notion-logo"
+	},
+	{
+		"name": "ph-nuclear-plant-duotone",
+		"class": "ph-duotone ph-nuclear-plant"
+	},
+	{
+		"name": "ph-number-circle-eight-duotone",
+		"class": "ph-duotone ph-number-circle-eight"
+	},
+	{
+		"name": "ph-number-circle-five-duotone",
+		"class": "ph-duotone ph-number-circle-five"
+	},
+	{
+		"name": "ph-number-circle-four-duotone",
+		"class": "ph-duotone ph-number-circle-four"
+	},
+	{
+		"name": "ph-number-circle-nine-duotone",
+		"class": "ph-duotone ph-number-circle-nine"
+	},
+	{
+		"name": "ph-number-circle-one-duotone",
+		"class": "ph-duotone ph-number-circle-one"
+	},
+	{
+		"name": "ph-number-circle-seven-duotone",
+		"class": "ph-duotone ph-number-circle-seven"
+	},
+	{
+		"name": "ph-number-circle-six-duotone",
+		"class": "ph-duotone ph-number-circle-six"
+	},
+	{
+		"name": "ph-number-circle-three-duotone",
+		"class": "ph-duotone ph-number-circle-three"
+	},
+	{
+		"name": "ph-number-circle-two-duotone",
+		"class": "ph-duotone ph-number-circle-two"
+	},
+	{
+		"name": "ph-number-circle-zero-duotone",
+		"class": "ph-duotone ph-number-circle-zero"
+	},
+	{
+		"name": "ph-number-eight-duotone",
+		"class": "ph-duotone ph-number-eight"
+	},
+	{
+		"name": "ph-number-five-duotone",
+		"class": "ph-duotone ph-number-five"
+	},
+	{
+		"name": "ph-number-four-duotone",
+		"class": "ph-duotone ph-number-four"
+	},
+	{
+		"name": "ph-number-nine-duotone",
+		"class": "ph-duotone ph-number-nine"
+	},
+	{
+		"name": "ph-number-one-duotone",
+		"class": "ph-duotone ph-number-one"
+	},
+	{
+		"name": "ph-number-seven-duotone",
+		"class": "ph-duotone ph-number-seven"
+	},
+	{
+		"name": "ph-number-six-duotone",
+		"class": "ph-duotone ph-number-six"
+	},
+	{
+		"name": "ph-number-square-eight-duotone",
+		"class": "ph-duotone ph-number-square-eight"
+	},
+	{
+		"name": "ph-number-square-five-duotone",
+		"class": "ph-duotone ph-number-square-five"
+	},
+	{
+		"name": "ph-number-square-four-duotone",
+		"class": "ph-duotone ph-number-square-four"
+	},
+	{
+		"name": "ph-number-square-nine-duotone",
+		"class": "ph-duotone ph-number-square-nine"
+	},
+	{
+		"name": "ph-number-square-one-duotone",
+		"class": "ph-duotone ph-number-square-one"
+	},
+	{
+		"name": "ph-number-square-seven-duotone",
+		"class": "ph-duotone ph-number-square-seven"
+	},
+	{
+		"name": "ph-number-square-six-duotone",
+		"class": "ph-duotone ph-number-square-six"
+	},
+	{
+		"name": "ph-number-square-three-duotone",
+		"class": "ph-duotone ph-number-square-three"
+	},
+	{
+		"name": "ph-number-square-two-duotone",
+		"class": "ph-duotone ph-number-square-two"
+	},
+	{
+		"name": "ph-number-square-zero-duotone",
+		"class": "ph-duotone ph-number-square-zero"
+	},
+	{
+		"name": "ph-number-three-duotone",
+		"class": "ph-duotone ph-number-three"
+	},
+	{
+		"name": "ph-number-two-duotone",
+		"class": "ph-duotone ph-number-two"
+	},
+	{
+		"name": "ph-number-zero-duotone",
+		"class": "ph-duotone ph-number-zero"
+	},
+	{
+		"name": "ph-numpad-duotone",
+		"class": "ph-duotone ph-numpad"
+	},
+	{
+		"name": "ph-nut-duotone",
+		"class": "ph-duotone ph-nut"
+	},
+	{
+		"name": "ph-ny-times-logo-duotone",
+		"class": "ph-duotone ph-ny-times-logo"
+	},
+	{
+		"name": "ph-octagon-duotone",
+		"class": "ph-duotone ph-octagon"
+	},
+	{
+		"name": "ph-office-chair-duotone",
+		"class": "ph-duotone ph-office-chair"
+	},
+	{
+		"name": "ph-onigiri-duotone",
+		"class": "ph-duotone ph-onigiri"
+	},
+	{
+		"name": "ph-open-ai-logo-duotone",
+		"class": "ph-duotone ph-open-ai-logo"
+	},
+	{
+		"name": "ph-option-duotone",
+		"class": "ph-duotone ph-option"
+	},
+	{
+		"name": "ph-orange-duotone",
+		"class": "ph-duotone ph-orange"
+	},
+	{
+		"name": "ph-orange-slice-duotone",
+		"class": "ph-duotone ph-orange-slice"
+	},
+	{
+		"name": "ph-oven-duotone",
+		"class": "ph-duotone ph-oven"
+	},
+	{
+		"name": "ph-package-duotone",
+		"class": "ph-duotone ph-package"
+	},
+	{
+		"name": "ph-paint-brush-broad-duotone",
+		"class": "ph-duotone ph-paint-brush-broad"
+	},
+	{
+		"name": "ph-paint-brush-duotone",
+		"class": "ph-duotone ph-paint-brush"
+	},
+	{
+		"name": "ph-paint-brush-household-duotone",
+		"class": "ph-duotone ph-paint-brush-household"
+	},
+	{
+		"name": "ph-paint-bucket-duotone",
+		"class": "ph-duotone ph-paint-bucket"
+	},
+	{
+		"name": "ph-paint-roller-duotone",
+		"class": "ph-duotone ph-paint-roller"
+	},
+	{
+		"name": "ph-palette-duotone",
+		"class": "ph-duotone ph-palette"
+	},
+	{
+		"name": "ph-panorama-duotone",
+		"class": "ph-duotone ph-panorama"
+	},
+	{
+		"name": "ph-pants-duotone",
+		"class": "ph-duotone ph-pants"
+	},
+	{
+		"name": "ph-paper-plane-duotone",
+		"class": "ph-duotone ph-paper-plane"
+	},
+	{
+		"name": "ph-paper-plane-right-duotone",
+		"class": "ph-duotone ph-paper-plane-right"
+	},
+	{
+		"name": "ph-paper-plane-tilt-duotone",
+		"class": "ph-duotone ph-paper-plane-tilt"
+	},
+	{
+		"name": "ph-paperclip-duotone",
+		"class": "ph-duotone ph-paperclip"
+	},
+	{
+		"name": "ph-paperclip-horizontal-duotone",
+		"class": "ph-duotone ph-paperclip-horizontal"
+	},
+	{
+		"name": "ph-parachute-duotone",
+		"class": "ph-duotone ph-parachute"
+	},
+	{
+		"name": "ph-paragraph-duotone",
+		"class": "ph-duotone ph-paragraph"
+	},
+	{
+		"name": "ph-parallelogram-duotone",
+		"class": "ph-duotone ph-parallelogram"
+	},
+	{
+		"name": "ph-park-duotone",
+		"class": "ph-duotone ph-park"
+	},
+	{
+		"name": "ph-password-duotone",
+		"class": "ph-duotone ph-password"
+	},
+	{
+		"name": "ph-path-duotone",
+		"class": "ph-duotone ph-path"
+	},
+	{
+		"name": "ph-patreon-logo-duotone",
+		"class": "ph-duotone ph-patreon-logo"
+	},
+	{
+		"name": "ph-pause-circle-duotone",
+		"class": "ph-duotone ph-pause-circle"
+	},
+	{
+		"name": "ph-pause-duotone",
+		"class": "ph-duotone ph-pause"
+	},
+	{
+		"name": "ph-paw-print-duotone",
+		"class": "ph-duotone ph-paw-print"
+	},
+	{
+		"name": "ph-paypal-logo-duotone",
+		"class": "ph-duotone ph-paypal-logo"
+	},
+	{
+		"name": "ph-peace-duotone",
+		"class": "ph-duotone ph-peace"
+	},
+	{
+		"name": "ph-pedestrian-duotone",
+		"class": "ph-duotone ph-pedestrian"
+	},
+	{
+		"name": "ph-pen-duotone",
+		"class": "ph-duotone ph-pen"
+	},
+	{
+		"name": "ph-pen-nib-duotone",
+		"class": "ph-duotone ph-pen-nib"
+	},
+	{
+		"name": "ph-pen-nib-straight-duotone",
+		"class": "ph-duotone ph-pen-nib-straight"
+	},
+	{
+		"name": "ph-pencil-circle-duotone",
+		"class": "ph-duotone ph-pencil-circle"
+	},
+	{
+		"name": "ph-pencil-duotone",
+		"class": "ph-duotone ph-pencil"
+	},
+	{
+		"name": "ph-pencil-line-duotone",
+		"class": "ph-duotone ph-pencil-line"
+	},
+	{
+		"name": "ph-pencil-ruler-duotone",
+		"class": "ph-duotone ph-pencil-ruler"
+	},
+	{
+		"name": "ph-pencil-simple-duotone",
+		"class": "ph-duotone ph-pencil-simple"
+	},
+	{
+		"name": "ph-pencil-simple-line-duotone",
+		"class": "ph-duotone ph-pencil-simple-line"
+	},
+	{
+		"name": "ph-pencil-simple-slash-duotone",
+		"class": "ph-duotone ph-pencil-simple-slash"
+	},
+	{
+		"name": "ph-pencil-slash-duotone",
+		"class": "ph-duotone ph-pencil-slash"
+	},
+	{
+		"name": "ph-pentagon-duotone",
+		"class": "ph-duotone ph-pentagon"
+	},
+	{
+		"name": "ph-pentagram-duotone",
+		"class": "ph-duotone ph-pentagram"
+	},
+	{
+		"name": "ph-pepper-duotone",
+		"class": "ph-duotone ph-pepper"
+	},
+	{
+		"name": "ph-percent-duotone",
+		"class": "ph-duotone ph-percent"
+	},
+	{
+		"name": "ph-person-arms-spread-duotone",
+		"class": "ph-duotone ph-person-arms-spread"
+	},
+	{
+		"name": "ph-person-duotone",
+		"class": "ph-duotone ph-person"
+	},
+	{
+		"name": "ph-person-simple-bike-duotone",
+		"class": "ph-duotone ph-person-simple-bike"
+	},
+	{
+		"name": "ph-person-simple-circle-duotone",
+		"class": "ph-duotone ph-person-simple-circle"
+	},
+	{
+		"name": "ph-person-simple-duotone",
+		"class": "ph-duotone ph-person-simple"
+	},
+	{
+		"name": "ph-person-simple-hike-duotone",
+		"class": "ph-duotone ph-person-simple-hike"
+	},
+	{
+		"name": "ph-person-simple-run-duotone",
+		"class": "ph-duotone ph-person-simple-run"
+	},
+	{
+		"name": "ph-person-simple-ski-duotone",
+		"class": "ph-duotone ph-person-simple-ski"
+	},
+	{
+		"name": "ph-person-simple-snowboard-duotone",
+		"class": "ph-duotone ph-person-simple-snowboard"
+	},
+	{
+		"name": "ph-person-simple-swim-duotone",
+		"class": "ph-duotone ph-person-simple-swim"
+	},
+	{
+		"name": "ph-person-simple-tai-chi-duotone",
+		"class": "ph-duotone ph-person-simple-tai-chi"
+	},
+	{
+		"name": "ph-person-simple-throw-duotone",
+		"class": "ph-duotone ph-person-simple-throw"
+	},
+	{
+		"name": "ph-person-simple-walk-duotone",
+		"class": "ph-duotone ph-person-simple-walk"
+	},
+	{
+		"name": "ph-perspective-duotone",
+		"class": "ph-duotone ph-perspective"
+	},
+	{
+		"name": "ph-phone-call-duotone",
+		"class": "ph-duotone ph-phone-call"
+	},
+	{
+		"name": "ph-phone-disconnect-duotone",
+		"class": "ph-duotone ph-phone-disconnect"
+	},
+	{
+		"name": "ph-phone-duotone",
+		"class": "ph-duotone ph-phone"
+	},
+	{
+		"name": "ph-phone-incoming-duotone",
+		"class": "ph-duotone ph-phone-incoming"
+	},
+	{
+		"name": "ph-phone-list-duotone",
+		"class": "ph-duotone ph-phone-list"
+	},
+	{
+		"name": "ph-phone-outgoing-duotone",
+		"class": "ph-duotone ph-phone-outgoing"
+	},
+	{
+		"name": "ph-phone-pause-duotone",
+		"class": "ph-duotone ph-phone-pause"
+	},
+	{
+		"name": "ph-phone-plus-duotone",
+		"class": "ph-duotone ph-phone-plus"
+	},
+	{
+		"name": "ph-phone-slash-duotone",
+		"class": "ph-duotone ph-phone-slash"
+	},
+	{
+		"name": "ph-phone-transfer-duotone",
+		"class": "ph-duotone ph-phone-transfer"
+	},
+	{
+		"name": "ph-phone-x-duotone",
+		"class": "ph-duotone ph-phone-x"
+	},
+	{
+		"name": "ph-phosphor-logo-duotone",
+		"class": "ph-duotone ph-phosphor-logo"
+	},
+	{
+		"name": "ph-pi-duotone",
+		"class": "ph-duotone ph-pi"
+	},
+	{
+		"name": "ph-piano-keys-duotone",
+		"class": "ph-duotone ph-piano-keys"
+	},
+	{
+		"name": "ph-picnic-table-duotone",
+		"class": "ph-duotone ph-picnic-table"
+	},
+	{
+		"name": "ph-picture-in-picture-duotone",
+		"class": "ph-duotone ph-picture-in-picture"
+	},
+	{
+		"name": "ph-piggy-bank-duotone",
+		"class": "ph-duotone ph-piggy-bank"
+	},
+	{
+		"name": "ph-pill-duotone",
+		"class": "ph-duotone ph-pill"
+	},
+	{
+		"name": "ph-ping-pong-duotone",
+		"class": "ph-duotone ph-ping-pong"
+	},
+	{
+		"name": "ph-pint-glass-duotone",
+		"class": "ph-duotone ph-pint-glass"
+	},
+	{
+		"name": "ph-pinterest-logo-duotone",
+		"class": "ph-duotone ph-pinterest-logo"
+	},
+	{
+		"name": "ph-pinwheel-duotone",
+		"class": "ph-duotone ph-pinwheel"
+	},
+	{
+		"name": "ph-pipe-duotone",
+		"class": "ph-duotone ph-pipe"
+	},
+	{
+		"name": "ph-pipe-wrench-duotone",
+		"class": "ph-duotone ph-pipe-wrench"
+	},
+	{
+		"name": "ph-pix-logo-duotone",
+		"class": "ph-duotone ph-pix-logo"
+	},
+	{
+		"name": "ph-pizza-duotone",
+		"class": "ph-duotone ph-pizza"
+	},
+	{
+		"name": "ph-placeholder-duotone",
+		"class": "ph-duotone ph-placeholder"
+	},
+	{
+		"name": "ph-planet-duotone",
+		"class": "ph-duotone ph-planet"
+	},
+	{
+		"name": "ph-plant-duotone",
+		"class": "ph-duotone ph-plant"
+	},
+	{
+		"name": "ph-play-circle-duotone",
+		"class": "ph-duotone ph-play-circle"
+	},
+	{
+		"name": "ph-play-duotone",
+		"class": "ph-duotone ph-play"
+	},
+	{
+		"name": "ph-play-pause-duotone",
+		"class": "ph-duotone ph-play-pause"
+	},
+	{
+		"name": "ph-playlist-duotone",
+		"class": "ph-duotone ph-playlist"
+	},
+	{
+		"name": "ph-plug-charging-duotone",
+		"class": "ph-duotone ph-plug-charging"
+	},
+	{
+		"name": "ph-plug-duotone",
+		"class": "ph-duotone ph-plug"
+	},
+	{
+		"name": "ph-plugs-connected-duotone",
+		"class": "ph-duotone ph-plugs-connected"
+	},
+	{
+		"name": "ph-plugs-duotone",
+		"class": "ph-duotone ph-plugs"
+	},
+	{
+		"name": "ph-plus-circle-duotone",
+		"class": "ph-duotone ph-plus-circle"
+	},
+	{
+		"name": "ph-plus-duotone",
+		"class": "ph-duotone ph-plus"
+	},
+	{
+		"name": "ph-plus-minus-duotone",
+		"class": "ph-duotone ph-plus-minus"
+	},
+	{
+		"name": "ph-plus-square-duotone",
+		"class": "ph-duotone ph-plus-square"
+	},
+	{
+		"name": "ph-poker-chip-duotone",
+		"class": "ph-duotone ph-poker-chip"
+	},
+	{
+		"name": "ph-police-car-duotone",
+		"class": "ph-duotone ph-police-car"
+	},
+	{
+		"name": "ph-polygon-duotone",
+		"class": "ph-duotone ph-polygon"
+	},
+	{
+		"name": "ph-popcorn-duotone",
+		"class": "ph-duotone ph-popcorn"
+	},
+	{
+		"name": "ph-popsicle-duotone",
+		"class": "ph-duotone ph-popsicle"
+	},
+	{
+		"name": "ph-potted-plant-duotone",
+		"class": "ph-duotone ph-potted-plant"
+	},
+	{
+		"name": "ph-power-duotone",
+		"class": "ph-duotone ph-power"
+	},
+	{
+		"name": "ph-prescription-duotone",
+		"class": "ph-duotone ph-prescription"
+	},
+	{
+		"name": "ph-presentation-chart-duotone",
+		"class": "ph-duotone ph-presentation-chart"
+	},
+	{
+		"name": "ph-presentation-duotone",
+		"class": "ph-duotone ph-presentation"
+	},
+	{
+		"name": "ph-printer-duotone",
+		"class": "ph-duotone ph-printer"
+	},
+	{
+		"name": "ph-prohibit-duotone",
+		"class": "ph-duotone ph-prohibit"
+	},
+	{
+		"name": "ph-prohibit-inset-duotone",
+		"class": "ph-duotone ph-prohibit-inset"
+	},
+	{
+		"name": "ph-projector-screen-chart-duotone",
+		"class": "ph-duotone ph-projector-screen-chart"
+	},
+	{
+		"name": "ph-projector-screen-duotone",
+		"class": "ph-duotone ph-projector-screen"
+	},
+	{
+		"name": "ph-pulse-duotone",
+		"class": "ph-duotone ph-pulse"
+	},
+	{
+		"name": "ph-push-pin-duotone",
+		"class": "ph-duotone ph-push-pin"
+	},
+	{
+		"name": "ph-push-pin-simple-duotone",
+		"class": "ph-duotone ph-push-pin-simple"
+	},
+	{
+		"name": "ph-push-pin-simple-slash-duotone",
+		"class": "ph-duotone ph-push-pin-simple-slash"
+	},
+	{
+		"name": "ph-push-pin-slash-duotone",
+		"class": "ph-duotone ph-push-pin-slash"
+	},
+	{
+		"name": "ph-puzzle-piece-duotone",
+		"class": "ph-duotone ph-puzzle-piece"
+	},
+	{
+		"name": "ph-qr-code-duotone",
+		"class": "ph-duotone ph-qr-code"
+	},
+	{
+		"name": "ph-question-duotone",
+		"class": "ph-duotone ph-question"
+	},
+	{
+		"name": "ph-question-mark-duotone",
+		"class": "ph-duotone ph-question-mark"
+	},
+	{
+		"name": "ph-queue-duotone",
+		"class": "ph-duotone ph-queue"
+	},
+	{
+		"name": "ph-quotes-duotone",
+		"class": "ph-duotone ph-quotes"
+	},
+	{
+		"name": "ph-rabbit-duotone",
+		"class": "ph-duotone ph-rabbit"
+	},
+	{
+		"name": "ph-racquet-duotone",
+		"class": "ph-duotone ph-racquet"
+	},
+	{
+		"name": "ph-radical-duotone",
+		"class": "ph-duotone ph-radical"
+	},
+	{
+		"name": "ph-radio-button-duotone",
+		"class": "ph-duotone ph-radio-button"
+	},
+	{
+		"name": "ph-radio-duotone",
+		"class": "ph-duotone ph-radio"
+	},
+	{
+		"name": "ph-radioactive-duotone",
+		"class": "ph-duotone ph-radioactive"
+	},
+	{
+		"name": "ph-rainbow-cloud-duotone",
+		"class": "ph-duotone ph-rainbow-cloud"
+	},
+	{
+		"name": "ph-rainbow-duotone",
+		"class": "ph-duotone ph-rainbow"
+	},
+	{
+		"name": "ph-ranking-duotone",
+		"class": "ph-duotone ph-ranking"
+	},
+	{
+		"name": "ph-read-cv-logo-duotone",
+		"class": "ph-duotone ph-read-cv-logo"
+	},
+	{
+		"name": "ph-receipt-duotone",
+		"class": "ph-duotone ph-receipt"
+	},
+	{
+		"name": "ph-receipt-x-duotone",
+		"class": "ph-duotone ph-receipt-x"
+	},
+	{
+		"name": "ph-record-duotone",
+		"class": "ph-duotone ph-record"
+	},
+	{
+		"name": "ph-rectangle-dashed-duotone",
+		"class": "ph-duotone ph-rectangle-dashed"
+	},
+	{
+		"name": "ph-rectangle-duotone",
+		"class": "ph-duotone ph-rectangle"
+	},
+	{
+		"name": "ph-recycle-duotone",
+		"class": "ph-duotone ph-recycle"
+	},
+	{
+		"name": "ph-reddit-logo-duotone",
+		"class": "ph-duotone ph-reddit-logo"
+	},
+	{
+		"name": "ph-repeat-duotone",
+		"class": "ph-duotone ph-repeat"
+	},
+	{
+		"name": "ph-repeat-once-duotone",
+		"class": "ph-duotone ph-repeat-once"
+	},
+	{
+		"name": "ph-replit-logo-duotone",
+		"class": "ph-duotone ph-replit-logo"
+	},
+	{
+		"name": "ph-resize-duotone",
+		"class": "ph-duotone ph-resize"
+	},
+	{
+		"name": "ph-rewind-circle-duotone",
+		"class": "ph-duotone ph-rewind-circle"
+	},
+	{
+		"name": "ph-rewind-duotone",
+		"class": "ph-duotone ph-rewind"
+	},
+	{
+		"name": "ph-road-horizon-duotone",
+		"class": "ph-duotone ph-road-horizon"
+	},
+	{
+		"name": "ph-robot-duotone",
+		"class": "ph-duotone ph-robot"
+	},
+	{
+		"name": "ph-rocket-duotone",
+		"class": "ph-duotone ph-rocket"
+	},
+	{
+		"name": "ph-rocket-launch-duotone",
+		"class": "ph-duotone ph-rocket-launch"
+	},
+	{
+		"name": "ph-rows-duotone",
+		"class": "ph-duotone ph-rows"
+	},
+	{
+		"name": "ph-rows-plus-bottom-duotone",
+		"class": "ph-duotone ph-rows-plus-bottom"
+	},
+	{
+		"name": "ph-rows-plus-top-duotone",
+		"class": "ph-duotone ph-rows-plus-top"
+	},
+	{
+		"name": "ph-rss-duotone",
+		"class": "ph-duotone ph-rss"
+	},
+	{
+		"name": "ph-rss-simple-duotone",
+		"class": "ph-duotone ph-rss-simple"
+	},
+	{
+		"name": "ph-rug-duotone",
+		"class": "ph-duotone ph-rug"
+	},
+	{
+		"name": "ph-ruler-duotone",
+		"class": "ph-duotone ph-ruler"
+	},
+	{
+		"name": "ph-sailboat-duotone",
+		"class": "ph-duotone ph-sailboat"
+	},
+	{
+		"name": "ph-scales-duotone",
+		"class": "ph-duotone ph-scales"
+	},
+	{
+		"name": "ph-scan-duotone",
+		"class": "ph-duotone ph-scan"
+	},
+	{
+		"name": "ph-scan-smiley-duotone",
+		"class": "ph-duotone ph-scan-smiley"
+	},
+	{
+		"name": "ph-scissors-duotone",
+		"class": "ph-duotone ph-scissors"
+	},
+	{
+		"name": "ph-scooter-duotone",
+		"class": "ph-duotone ph-scooter"
+	},
+	{
+		"name": "ph-screencast-duotone",
+		"class": "ph-duotone ph-screencast"
+	},
+	{
+		"name": "ph-screwdriver-duotone",
+		"class": "ph-duotone ph-screwdriver"
+	},
+	{
+		"name": "ph-scribble-duotone",
+		"class": "ph-duotone ph-scribble"
+	},
+	{
+		"name": "ph-scribble-loop-duotone",
+		"class": "ph-duotone ph-scribble-loop"
+	},
+	{
+		"name": "ph-scroll-duotone",
+		"class": "ph-duotone ph-scroll"
+	},
+	{
+		"name": "ph-seal-check-duotone",
+		"class": "ph-duotone ph-seal-check"
+	},
+	{
+		"name": "ph-seal-duotone",
+		"class": "ph-duotone ph-seal"
+	},
+	{
+		"name": "ph-seal-percent-duotone",
+		"class": "ph-duotone ph-seal-percent"
+	},
+	{
+		"name": "ph-seal-question-duotone",
+		"class": "ph-duotone ph-seal-question"
+	},
+	{
+		"name": "ph-seal-warning-duotone",
+		"class": "ph-duotone ph-seal-warning"
+	},
+	{
+		"name": "ph-seat-duotone",
+		"class": "ph-duotone ph-seat"
+	},
+	{
+		"name": "ph-seatbelt-duotone",
+		"class": "ph-duotone ph-seatbelt"
+	},
+	{
+		"name": "ph-security-camera-duotone",
+		"class": "ph-duotone ph-security-camera"
+	},
+	{
+		"name": "ph-selection-all-duotone",
+		"class": "ph-duotone ph-selection-all"
+	},
+	{
+		"name": "ph-selection-background-duotone",
+		"class": "ph-duotone ph-selection-background"
+	},
+	{
+		"name": "ph-selection-duotone",
+		"class": "ph-duotone ph-selection"
+	},
+	{
+		"name": "ph-selection-foreground-duotone",
+		"class": "ph-duotone ph-selection-foreground"
+	},
+	{
+		"name": "ph-selection-inverse-duotone",
+		"class": "ph-duotone ph-selection-inverse"
+	},
+	{
+		"name": "ph-selection-plus-duotone",
+		"class": "ph-duotone ph-selection-plus"
+	},
+	{
+		"name": "ph-selection-slash-duotone",
+		"class": "ph-duotone ph-selection-slash"
+	},
+	{
+		"name": "ph-shapes-duotone",
+		"class": "ph-duotone ph-shapes"
+	},
+	{
+		"name": "ph-share-duotone",
+		"class": "ph-duotone ph-share"
+	},
+	{
+		"name": "ph-share-fat-duotone",
+		"class": "ph-duotone ph-share-fat"
+	},
+	{
+		"name": "ph-share-network-duotone",
+		"class": "ph-duotone ph-share-network"
+	},
+	{
+		"name": "ph-shield-check-duotone",
+		"class": "ph-duotone ph-shield-check"
+	},
+	{
+		"name": "ph-shield-checkered-duotone",
+		"class": "ph-duotone ph-shield-checkered"
+	},
+	{
+		"name": "ph-shield-chevron-duotone",
+		"class": "ph-duotone ph-shield-chevron"
+	},
+	{
+		"name": "ph-shield-duotone",
+		"class": "ph-duotone ph-shield"
+	},
+	{
+		"name": "ph-shield-plus-duotone",
+		"class": "ph-duotone ph-shield-plus"
+	},
+	{
+		"name": "ph-shield-slash-duotone",
+		"class": "ph-duotone ph-shield-slash"
+	},
+	{
+		"name": "ph-shield-star-duotone",
+		"class": "ph-duotone ph-shield-star"
+	},
+	{
+		"name": "ph-shield-warning-duotone",
+		"class": "ph-duotone ph-shield-warning"
+	},
+	{
+		"name": "ph-shipping-container-duotone",
+		"class": "ph-duotone ph-shipping-container"
+	},
+	{
+		"name": "ph-shirt-folded-duotone",
+		"class": "ph-duotone ph-shirt-folded"
+	},
+	{
+		"name": "ph-shooting-star-duotone",
+		"class": "ph-duotone ph-shooting-star"
+	},
+	{
+		"name": "ph-shopping-bag-duotone",
+		"class": "ph-duotone ph-shopping-bag"
+	},
+	{
+		"name": "ph-shopping-bag-open-duotone",
+		"class": "ph-duotone ph-shopping-bag-open"
+	},
+	{
+		"name": "ph-shopping-cart-duotone",
+		"class": "ph-duotone ph-shopping-cart"
+	},
+	{
+		"name": "ph-shopping-cart-simple-duotone",
+		"class": "ph-duotone ph-shopping-cart-simple"
+	},
+	{
+		"name": "ph-shovel-duotone",
+		"class": "ph-duotone ph-shovel"
+	},
+	{
+		"name": "ph-shower-duotone",
+		"class": "ph-duotone ph-shower"
+	},
+	{
+		"name": "ph-shrimp-duotone",
+		"class": "ph-duotone ph-shrimp"
+	},
+	{
+		"name": "ph-shuffle-angular-duotone",
+		"class": "ph-duotone ph-shuffle-angular"
+	},
+	{
+		"name": "ph-shuffle-duotone",
+		"class": "ph-duotone ph-shuffle"
+	},
+	{
+		"name": "ph-shuffle-simple-duotone",
+		"class": "ph-duotone ph-shuffle-simple"
+	},
+	{
+		"name": "ph-sidebar-duotone",
+		"class": "ph-duotone ph-sidebar"
+	},
+	{
+		"name": "ph-sidebar-simple-duotone",
+		"class": "ph-duotone ph-sidebar-simple"
+	},
+	{
+		"name": "ph-sigma-duotone",
+		"class": "ph-duotone ph-sigma"
+	},
+	{
+		"name": "ph-sign-in-duotone",
+		"class": "ph-duotone ph-sign-in"
+	},
+	{
+		"name": "ph-sign-out-duotone",
+		"class": "ph-duotone ph-sign-out"
+	},
+	{
+		"name": "ph-signature-duotone",
+		"class": "ph-duotone ph-signature"
+	},
+	{
+		"name": "ph-signpost-duotone",
+		"class": "ph-duotone ph-signpost"
+	},
+	{
+		"name": "ph-sim-card-duotone",
+		"class": "ph-duotone ph-sim-card"
+	},
+	{
+		"name": "ph-siren-duotone",
+		"class": "ph-duotone ph-siren"
+	},
+	{
+		"name": "ph-sketch-logo-duotone",
+		"class": "ph-duotone ph-sketch-logo"
+	},
+	{
+		"name": "ph-skip-back-circle-duotone",
+		"class": "ph-duotone ph-skip-back-circle"
+	},
+	{
+		"name": "ph-skip-back-duotone",
+		"class": "ph-duotone ph-skip-back"
+	},
+	{
+		"name": "ph-skip-forward-circle-duotone",
+		"class": "ph-duotone ph-skip-forward-circle"
+	},
+	{
+		"name": "ph-skip-forward-duotone",
+		"class": "ph-duotone ph-skip-forward"
+	},
+	{
+		"name": "ph-skull-duotone",
+		"class": "ph-duotone ph-skull"
+	},
+	{
+		"name": "ph-skype-logo-duotone",
+		"class": "ph-duotone ph-skype-logo"
+	},
+	{
+		"name": "ph-slack-logo-duotone",
+		"class": "ph-duotone ph-slack-logo"
+	},
+	{
+		"name": "ph-sliders-duotone",
+		"class": "ph-duotone ph-sliders"
+	},
+	{
+		"name": "ph-sliders-horizontal-duotone",
+		"class": "ph-duotone ph-sliders-horizontal"
+	},
+	{
+		"name": "ph-slideshow-duotone",
+		"class": "ph-duotone ph-slideshow"
+	},
+	{
+		"name": "ph-smiley-angry-duotone",
+		"class": "ph-duotone ph-smiley-angry"
+	},
+	{
+		"name": "ph-smiley-blank-duotone",
+		"class": "ph-duotone ph-smiley-blank"
+	},
+	{
+		"name": "ph-smiley-duotone",
+		"class": "ph-duotone ph-smiley"
+	},
+	{
+		"name": "ph-smiley-meh-duotone",
+		"class": "ph-duotone ph-smiley-meh"
+	},
+	{
+		"name": "ph-smiley-melting-duotone",
+		"class": "ph-duotone ph-smiley-melting"
+	},
+	{
+		"name": "ph-smiley-nervous-duotone",
+		"class": "ph-duotone ph-smiley-nervous"
+	},
+	{
+		"name": "ph-smiley-sad-duotone",
+		"class": "ph-duotone ph-smiley-sad"
+	},
+	{
+		"name": "ph-smiley-sticker-duotone",
+		"class": "ph-duotone ph-smiley-sticker"
+	},
+	{
+		"name": "ph-smiley-wink-duotone",
+		"class": "ph-duotone ph-smiley-wink"
+	},
+	{
+		"name": "ph-smiley-x-eyes-duotone",
+		"class": "ph-duotone ph-smiley-x-eyes"
+	},
+	{
+		"name": "ph-snapchat-logo-duotone",
+		"class": "ph-duotone ph-snapchat-logo"
+	},
+	{
+		"name": "ph-sneaker-duotone",
+		"class": "ph-duotone ph-sneaker"
+	},
+	{
+		"name": "ph-sneaker-move-duotone",
+		"class": "ph-duotone ph-sneaker-move"
+	},
+	{
+		"name": "ph-snowflake-duotone",
+		"class": "ph-duotone ph-snowflake"
+	},
+	{
+		"name": "ph-soccer-ball-duotone",
+		"class": "ph-duotone ph-soccer-ball"
+	},
+	{
+		"name": "ph-sock-duotone",
+		"class": "ph-duotone ph-sock"
+	},
+	{
+		"name": "ph-solar-panel-duotone",
+		"class": "ph-duotone ph-solar-panel"
+	},
+	{
+		"name": "ph-solar-roof-duotone",
+		"class": "ph-duotone ph-solar-roof"
+	},
+	{
+		"name": "ph-sort-ascending-duotone",
+		"class": "ph-duotone ph-sort-ascending"
+	},
+	{
+		"name": "ph-sort-descending-duotone",
+		"class": "ph-duotone ph-sort-descending"
+	},
+	{
+		"name": "ph-soundcloud-logo-duotone",
+		"class": "ph-duotone ph-soundcloud-logo"
+	},
+	{
+		"name": "ph-spade-duotone",
+		"class": "ph-duotone ph-spade"
+	},
+	{
+		"name": "ph-sparkle-duotone",
+		"class": "ph-duotone ph-sparkle"
+	},
+	{
+		"name": "ph-speaker-hifi-duotone",
+		"class": "ph-duotone ph-speaker-hifi"
+	},
+	{
+		"name": "ph-speaker-high-duotone",
+		"class": "ph-duotone ph-speaker-high"
+	},
+	{
+		"name": "ph-speaker-low-duotone",
+		"class": "ph-duotone ph-speaker-low"
+	},
+	{
+		"name": "ph-speaker-none-duotone",
+		"class": "ph-duotone ph-speaker-none"
+	},
+	{
+		"name": "ph-speaker-simple-high-duotone",
+		"class": "ph-duotone ph-speaker-simple-high"
+	},
+	{
+		"name": "ph-speaker-simple-low-duotone",
+		"class": "ph-duotone ph-speaker-simple-low"
+	},
+	{
+		"name": "ph-speaker-simple-none-duotone",
+		"class": "ph-duotone ph-speaker-simple-none"
+	},
+	{
+		"name": "ph-speaker-simple-slash-duotone",
+		"class": "ph-duotone ph-speaker-simple-slash"
+	},
+	{
+		"name": "ph-speaker-simple-x-duotone",
+		"class": "ph-duotone ph-speaker-simple-x"
+	},
+	{
+		"name": "ph-speaker-slash-duotone",
+		"class": "ph-duotone ph-speaker-slash"
+	},
+	{
+		"name": "ph-speaker-x-duotone",
+		"class": "ph-duotone ph-speaker-x"
+	},
+	{
+		"name": "ph-speedometer-duotone",
+		"class": "ph-duotone ph-speedometer"
+	},
+	{
+		"name": "ph-sphere-duotone",
+		"class": "ph-duotone ph-sphere"
+	},
+	{
+		"name": "ph-spinner-ball-duotone",
+		"class": "ph-duotone ph-spinner-ball"
+	},
+	{
+		"name": "ph-spinner-duotone",
+		"class": "ph-duotone ph-spinner"
+	},
+	{
+		"name": "ph-spinner-gap-duotone",
+		"class": "ph-duotone ph-spinner-gap"
+	},
+	{
+		"name": "ph-spiral-duotone",
+		"class": "ph-duotone ph-spiral"
+	},
+	{
+		"name": "ph-split-horizontal-duotone",
+		"class": "ph-duotone ph-split-horizontal"
+	},
+	{
+		"name": "ph-split-vertical-duotone",
+		"class": "ph-duotone ph-split-vertical"
+	},
+	{
+		"name": "ph-spotify-logo-duotone",
+		"class": "ph-duotone ph-spotify-logo"
+	},
+	{
+		"name": "ph-spray-bottle-duotone",
+		"class": "ph-duotone ph-spray-bottle"
+	},
+	{
+		"name": "ph-square-duotone",
+		"class": "ph-duotone ph-square"
+	},
+	{
+		"name": "ph-square-half-bottom-duotone",
+		"class": "ph-duotone ph-square-half-bottom"
+	},
+	{
+		"name": "ph-square-half-duotone",
+		"class": "ph-duotone ph-square-half"
+	},
+	{
+		"name": "ph-square-logo-duotone",
+		"class": "ph-duotone ph-square-logo"
+	},
+	{
+		"name": "ph-square-split-horizontal-duotone",
+		"class": "ph-duotone ph-square-split-horizontal"
+	},
+	{
+		"name": "ph-square-split-vertical-duotone",
+		"class": "ph-duotone ph-square-split-vertical"
+	},
+	{
+		"name": "ph-squares-four-duotone",
+		"class": "ph-duotone ph-squares-four"
+	},
+	{
+		"name": "ph-stack-duotone",
+		"class": "ph-duotone ph-stack"
+	},
+	{
+		"name": "ph-stack-minus-duotone",
+		"class": "ph-duotone ph-stack-minus"
+	},
+	{
+		"name": "ph-stack-overflow-logo-duotone",
+		"class": "ph-duotone ph-stack-overflow-logo"
+	},
+	{
+		"name": "ph-stack-plus-duotone",
+		"class": "ph-duotone ph-stack-plus"
+	},
+	{
+		"name": "ph-stack-simple-duotone",
+		"class": "ph-duotone ph-stack-simple"
+	},
+	{
+		"name": "ph-stairs-duotone",
+		"class": "ph-duotone ph-stairs"
+	},
+	{
+		"name": "ph-stamp-duotone",
+		"class": "ph-duotone ph-stamp"
+	},
+	{
+		"name": "ph-standard-definition-duotone",
+		"class": "ph-duotone ph-standard-definition"
+	},
+	{
+		"name": "ph-star-and-crescent-duotone",
+		"class": "ph-duotone ph-star-and-crescent"
+	},
+	{
+		"name": "ph-star-duotone",
+		"class": "ph-duotone ph-star"
+	},
+	{
+		"name": "ph-star-four-duotone",
+		"class": "ph-duotone ph-star-four"
+	},
+	{
+		"name": "ph-star-half-duotone",
+		"class": "ph-duotone ph-star-half"
+	},
+	{
+		"name": "ph-star-of-david-duotone",
+		"class": "ph-duotone ph-star-of-david"
+	},
+	{
+		"name": "ph-steam-logo-duotone",
+		"class": "ph-duotone ph-steam-logo"
+	},
+	{
+		"name": "ph-steering-wheel-duotone",
+		"class": "ph-duotone ph-steering-wheel"
+	},
+	{
+		"name": "ph-steps-duotone",
+		"class": "ph-duotone ph-steps"
+	},
+	{
+		"name": "ph-stethoscope-duotone",
+		"class": "ph-duotone ph-stethoscope"
+	},
+	{
+		"name": "ph-sticker-duotone",
+		"class": "ph-duotone ph-sticker"
+	},
+	{
+		"name": "ph-stool-duotone",
+		"class": "ph-duotone ph-stool"
+	},
+	{
+		"name": "ph-stop-circle-duotone",
+		"class": "ph-duotone ph-stop-circle"
+	},
+	{
+		"name": "ph-stop-duotone",
+		"class": "ph-duotone ph-stop"
+	},
+	{
+		"name": "ph-storefront-duotone",
+		"class": "ph-duotone ph-storefront"
+	},
+	{
+		"name": "ph-strategy-duotone",
+		"class": "ph-duotone ph-strategy"
+	},
+	{
+		"name": "ph-stripe-logo-duotone",
+		"class": "ph-duotone ph-stripe-logo"
+	},
+	{
+		"name": "ph-student-duotone",
+		"class": "ph-duotone ph-student"
+	},
+	{
+		"name": "ph-subset-of-duotone",
+		"class": "ph-duotone ph-subset-of"
+	},
+	{
+		"name": "ph-subset-proper-of-duotone",
+		"class": "ph-duotone ph-subset-proper-of"
+	},
+	{
+		"name": "ph-subtitles-duotone",
+		"class": "ph-duotone ph-subtitles"
+	},
+	{
+		"name": "ph-subtitles-slash-duotone",
+		"class": "ph-duotone ph-subtitles-slash"
+	},
+	{
+		"name": "ph-subtract-duotone",
+		"class": "ph-duotone ph-subtract"
+	},
+	{
+		"name": "ph-subtract-square-duotone",
+		"class": "ph-duotone ph-subtract-square"
+	},
+	{
+		"name": "ph-subway-duotone",
+		"class": "ph-duotone ph-subway"
+	},
+	{
+		"name": "ph-suitcase-duotone",
+		"class": "ph-duotone ph-suitcase"
+	},
+	{
+		"name": "ph-suitcase-rolling-duotone",
+		"class": "ph-duotone ph-suitcase-rolling"
+	},
+	{
+		"name": "ph-suitcase-simple-duotone",
+		"class": "ph-duotone ph-suitcase-simple"
+	},
+	{
+		"name": "ph-sun-dim-duotone",
+		"class": "ph-duotone ph-sun-dim"
+	},
+	{
+		"name": "ph-sun-duotone",
+		"class": "ph-duotone ph-sun"
+	},
+	{
+		"name": "ph-sun-horizon-duotone",
+		"class": "ph-duotone ph-sun-horizon"
+	},
+	{
+		"name": "ph-sunglasses-duotone",
+		"class": "ph-duotone ph-sunglasses"
+	},
+	{
+		"name": "ph-superset-of-duotone",
+		"class": "ph-duotone ph-superset-of"
+	},
+	{
+		"name": "ph-superset-proper-of-duotone",
+		"class": "ph-duotone ph-superset-proper-of"
+	},
+	{
+		"name": "ph-swap-duotone",
+		"class": "ph-duotone ph-swap"
+	},
+	{
+		"name": "ph-swatches-duotone",
+		"class": "ph-duotone ph-swatches"
+	},
+	{
+		"name": "ph-swimming-pool-duotone",
+		"class": "ph-duotone ph-swimming-pool"
+	},
+	{
+		"name": "ph-sword-duotone",
+		"class": "ph-duotone ph-sword"
+	},
+	{
+		"name": "ph-synagogue-duotone",
+		"class": "ph-duotone ph-synagogue"
+	},
+	{
+		"name": "ph-syringe-duotone",
+		"class": "ph-duotone ph-syringe"
+	},
+	{
+		"name": "ph-t-shirt-duotone",
+		"class": "ph-duotone ph-t-shirt"
+	},
+	{
+		"name": "ph-table-duotone",
+		"class": "ph-duotone ph-table"
+	},
+	{
+		"name": "ph-tabs-duotone",
+		"class": "ph-duotone ph-tabs"
+	},
+	{
+		"name": "ph-tag-chevron-duotone",
+		"class": "ph-duotone ph-tag-chevron"
+	},
+	{
+		"name": "ph-tag-duotone",
+		"class": "ph-duotone ph-tag"
+	},
+	{
+		"name": "ph-tag-simple-duotone",
+		"class": "ph-duotone ph-tag-simple"
+	},
+	{
+		"name": "ph-target-duotone",
+		"class": "ph-duotone ph-target"
+	},
+	{
+		"name": "ph-taxi-duotone",
+		"class": "ph-duotone ph-taxi"
+	},
+	{
+		"name": "ph-tea-bag-duotone",
+		"class": "ph-duotone ph-tea-bag"
+	},
+	{
+		"name": "ph-telegram-logo-duotone",
+		"class": "ph-duotone ph-telegram-logo"
+	},
+	{
+		"name": "ph-television-duotone",
+		"class": "ph-duotone ph-television"
+	},
+	{
+		"name": "ph-television-simple-duotone",
+		"class": "ph-duotone ph-television-simple"
+	},
+	{
+		"name": "ph-tennis-ball-duotone",
+		"class": "ph-duotone ph-tennis-ball"
+	},
+	{
+		"name": "ph-tent-duotone",
+		"class": "ph-duotone ph-tent"
+	},
+	{
+		"name": "ph-terminal-duotone",
+		"class": "ph-duotone ph-terminal"
+	},
+	{
+		"name": "ph-terminal-window-duotone",
+		"class": "ph-duotone ph-terminal-window"
+	},
+	{
+		"name": "ph-test-tube-duotone",
+		"class": "ph-duotone ph-test-tube"
+	},
+	{
+		"name": "ph-text-a-underline-duotone",
+		"class": "ph-duotone ph-text-a-underline"
+	},
+	{
+		"name": "ph-text-aa-duotone",
+		"class": "ph-duotone ph-text-aa"
+	},
+	{
+		"name": "ph-text-align-center-duotone",
+		"class": "ph-duotone ph-text-align-center"
+	},
+	{
+		"name": "ph-text-align-justify-duotone",
+		"class": "ph-duotone ph-text-align-justify"
+	},
+	{
+		"name": "ph-text-align-left-duotone",
+		"class": "ph-duotone ph-text-align-left"
+	},
+	{
+		"name": "ph-text-align-right-duotone",
+		"class": "ph-duotone ph-text-align-right"
+	},
+	{
+		"name": "ph-text-b-duotone",
+		"class": "ph-duotone ph-text-b"
+	},
+	{
+		"name": "ph-text-columns-duotone",
+		"class": "ph-duotone ph-text-columns"
+	},
+	{
+		"name": "ph-text-h-duotone",
+		"class": "ph-duotone ph-text-h"
+	},
+	{
+		"name": "ph-text-h-five-duotone",
+		"class": "ph-duotone ph-text-h-five"
+	},
+	{
+		"name": "ph-text-h-four-duotone",
+		"class": "ph-duotone ph-text-h-four"
+	},
+	{
+		"name": "ph-text-h-one-duotone",
+		"class": "ph-duotone ph-text-h-one"
+	},
+	{
+		"name": "ph-text-h-six-duotone",
+		"class": "ph-duotone ph-text-h-six"
+	},
+	{
+		"name": "ph-text-h-three-duotone",
+		"class": "ph-duotone ph-text-h-three"
+	},
+	{
+		"name": "ph-text-h-two-duotone",
+		"class": "ph-duotone ph-text-h-two"
+	},
+	{
+		"name": "ph-text-indent-duotone",
+		"class": "ph-duotone ph-text-indent"
+	},
+	{
+		"name": "ph-text-italic-duotone",
+		"class": "ph-duotone ph-text-italic"
+	},
+	{
+		"name": "ph-text-outdent-duotone",
+		"class": "ph-duotone ph-text-outdent"
+	},
+	{
+		"name": "ph-text-strikethrough-duotone",
+		"class": "ph-duotone ph-text-strikethrough"
+	},
+	{
+		"name": "ph-text-subscript-duotone",
+		"class": "ph-duotone ph-text-subscript"
+	},
+	{
+		"name": "ph-text-superscript-duotone",
+		"class": "ph-duotone ph-text-superscript"
+	},
+	{
+		"name": "ph-text-t-duotone",
+		"class": "ph-duotone ph-text-t"
+	},
+	{
+		"name": "ph-text-t-slash-duotone",
+		"class": "ph-duotone ph-text-t-slash"
+	},
+	{
+		"name": "ph-text-underline-duotone",
+		"class": "ph-duotone ph-text-underline"
+	},
+	{
+		"name": "ph-textbox-duotone",
+		"class": "ph-duotone ph-textbox"
+	},
+	{
+		"name": "ph-thermometer-cold-duotone",
+		"class": "ph-duotone ph-thermometer-cold"
+	},
+	{
+		"name": "ph-thermometer-duotone",
+		"class": "ph-duotone ph-thermometer"
+	},
+	{
+		"name": "ph-thermometer-hot-duotone",
+		"class": "ph-duotone ph-thermometer-hot"
+	},
+	{
+		"name": "ph-thermometer-simple-duotone",
+		"class": "ph-duotone ph-thermometer-simple"
+	},
+	{
+		"name": "ph-threads-logo-duotone",
+		"class": "ph-duotone ph-threads-logo"
+	},
+	{
+		"name": "ph-three-d-duotone",
+		"class": "ph-duotone ph-three-d"
+	},
+	{
+		"name": "ph-thumbs-down-duotone",
+		"class": "ph-duotone ph-thumbs-down"
+	},
+	{
+		"name": "ph-thumbs-up-duotone",
+		"class": "ph-duotone ph-thumbs-up"
+	},
+	{
+		"name": "ph-ticket-duotone",
+		"class": "ph-duotone ph-ticket"
+	},
+	{
+		"name": "ph-tidal-logo-duotone",
+		"class": "ph-duotone ph-tidal-logo"
+	},
+	{
+		"name": "ph-tiktok-logo-duotone",
+		"class": "ph-duotone ph-tiktok-logo"
+	},
+	{
+		"name": "ph-tilde-duotone",
+		"class": "ph-duotone ph-tilde"
+	},
+	{
+		"name": "ph-timer-duotone",
+		"class": "ph-duotone ph-timer"
+	},
+	{
+		"name": "ph-tip-jar-duotone",
+		"class": "ph-duotone ph-tip-jar"
+	},
+	{
+		"name": "ph-tipi-duotone",
+		"class": "ph-duotone ph-tipi"
+	},
+	{
+		"name": "ph-tire-duotone",
+		"class": "ph-duotone ph-tire"
+	},
+	{
+		"name": "ph-toggle-left-duotone",
+		"class": "ph-duotone ph-toggle-left"
+	},
+	{
+		"name": "ph-toggle-right-duotone",
+		"class": "ph-duotone ph-toggle-right"
+	},
+	{
+		"name": "ph-toilet-duotone",
+		"class": "ph-duotone ph-toilet"
+	},
+	{
+		"name": "ph-toilet-paper-duotone",
+		"class": "ph-duotone ph-toilet-paper"
+	},
+	{
+		"name": "ph-toolbox-duotone",
+		"class": "ph-duotone ph-toolbox"
+	},
+	{
+		"name": "ph-tooth-duotone",
+		"class": "ph-duotone ph-tooth"
+	},
+	{
+		"name": "ph-tornado-duotone",
+		"class": "ph-duotone ph-tornado"
+	},
+	{
+		"name": "ph-tote-duotone",
+		"class": "ph-duotone ph-tote"
+	},
+	{
+		"name": "ph-tote-simple-duotone",
+		"class": "ph-duotone ph-tote-simple"
+	},
+	{
+		"name": "ph-towel-duotone",
+		"class": "ph-duotone ph-towel"
+	},
+	{
+		"name": "ph-tractor-duotone",
+		"class": "ph-duotone ph-tractor"
+	},
+	{
+		"name": "ph-trademark-duotone",
+		"class": "ph-duotone ph-trademark"
+	},
+	{
+		"name": "ph-trademark-registered-duotone",
+		"class": "ph-duotone ph-trademark-registered"
+	},
+	{
+		"name": "ph-traffic-cone-duotone",
+		"class": "ph-duotone ph-traffic-cone"
+	},
+	{
+		"name": "ph-traffic-sign-duotone",
+		"class": "ph-duotone ph-traffic-sign"
+	},
+	{
+		"name": "ph-traffic-signal-duotone",
+		"class": "ph-duotone ph-traffic-signal"
+	},
+	{
+		"name": "ph-train-duotone",
+		"class": "ph-duotone ph-train"
+	},
+	{
+		"name": "ph-train-regional-duotone",
+		"class": "ph-duotone ph-train-regional"
+	},
+	{
+		"name": "ph-train-simple-duotone",
+		"class": "ph-duotone ph-train-simple"
+	},
+	{
+		"name": "ph-tram-duotone",
+		"class": "ph-duotone ph-tram"
+	},
+	{
+		"name": "ph-translate-duotone",
+		"class": "ph-duotone ph-translate"
+	},
+	{
+		"name": "ph-trash-duotone",
+		"class": "ph-duotone ph-trash"
+	},
+	{
+		"name": "ph-trash-simple-duotone",
+		"class": "ph-duotone ph-trash-simple"
+	},
+	{
+		"name": "ph-tray-arrow-down-duotone",
+		"class": "ph-duotone ph-tray-arrow-down"
+	},
+	{
+		"name": "ph-tray-arrow-up-duotone",
+		"class": "ph-duotone ph-tray-arrow-up"
+	},
+	{
+		"name": "ph-tray-duotone",
+		"class": "ph-duotone ph-tray"
+	},
+	{
+		"name": "ph-treasure-chest-duotone",
+		"class": "ph-duotone ph-treasure-chest"
+	},
+	{
+		"name": "ph-tree-duotone",
+		"class": "ph-duotone ph-tree"
+	},
+	{
+		"name": "ph-tree-evergreen-duotone",
+		"class": "ph-duotone ph-tree-evergreen"
+	},
+	{
+		"name": "ph-tree-palm-duotone",
+		"class": "ph-duotone ph-tree-palm"
+	},
+	{
+		"name": "ph-tree-structure-duotone",
+		"class": "ph-duotone ph-tree-structure"
+	},
+	{
+		"name": "ph-tree-view-duotone",
+		"class": "ph-duotone ph-tree-view"
+	},
+	{
+		"name": "ph-trend-down-duotone",
+		"class": "ph-duotone ph-trend-down"
+	},
+	{
+		"name": "ph-trend-up-duotone",
+		"class": "ph-duotone ph-trend-up"
+	},
+	{
+		"name": "ph-triangle-dashed-duotone",
+		"class": "ph-duotone ph-triangle-dashed"
+	},
+	{
+		"name": "ph-triangle-duotone",
+		"class": "ph-duotone ph-triangle"
+	},
+	{
+		"name": "ph-trolley-duotone",
+		"class": "ph-duotone ph-trolley"
+	},
+	{
+		"name": "ph-trolley-suitcase-duotone",
+		"class": "ph-duotone ph-trolley-suitcase"
+	},
+	{
+		"name": "ph-trophy-duotone",
+		"class": "ph-duotone ph-trophy"
+	},
+	{
+		"name": "ph-truck-duotone",
+		"class": "ph-duotone ph-truck"
+	},
+	{
+		"name": "ph-truck-trailer-duotone",
+		"class": "ph-duotone ph-truck-trailer"
+	},
+	{
+		"name": "ph-tumblr-logo-duotone",
+		"class": "ph-duotone ph-tumblr-logo"
+	},
+	{
+		"name": "ph-twitch-logo-duotone",
+		"class": "ph-duotone ph-twitch-logo"
+	},
+	{
+		"name": "ph-twitter-logo-duotone",
+		"class": "ph-duotone ph-twitter-logo"
+	},
+	{
+		"name": "ph-umbrella-duotone",
+		"class": "ph-duotone ph-umbrella"
+	},
+	{
+		"name": "ph-umbrella-simple-duotone",
+		"class": "ph-duotone ph-umbrella-simple"
+	},
+	{
+		"name": "ph-union-duotone",
+		"class": "ph-duotone ph-union"
+	},
+	{
+		"name": "ph-unite-duotone",
+		"class": "ph-duotone ph-unite"
+	},
+	{
+		"name": "ph-unite-square-duotone",
+		"class": "ph-duotone ph-unite-square"
+	},
+	{
+		"name": "ph-upload-duotone",
+		"class": "ph-duotone ph-upload"
+	},
+	{
+		"name": "ph-upload-simple-duotone",
+		"class": "ph-duotone ph-upload-simple"
+	},
+	{
+		"name": "ph-usb-duotone",
+		"class": "ph-duotone ph-usb"
+	},
+	{
+		"name": "ph-user-check-duotone",
+		"class": "ph-duotone ph-user-check"
+	},
+	{
+		"name": "ph-user-circle-check-duotone",
+		"class": "ph-duotone ph-user-circle-check"
+	},
+	{
+		"name": "ph-user-circle-dashed-duotone",
+		"class": "ph-duotone ph-user-circle-dashed"
+	},
+	{
+		"name": "ph-user-circle-duotone",
+		"class": "ph-duotone ph-user-circle"
+	},
+	{
+		"name": "ph-user-circle-gear-duotone",
+		"class": "ph-duotone ph-user-circle-gear"
+	},
+	{
+		"name": "ph-user-circle-minus-duotone",
+		"class": "ph-duotone ph-user-circle-minus"
+	},
+	{
+		"name": "ph-user-circle-plus-duotone",
+		"class": "ph-duotone ph-user-circle-plus"
+	},
+	{
+		"name": "ph-user-duotone",
+		"class": "ph-duotone ph-user"
+	},
+	{
+		"name": "ph-user-focus-duotone",
+		"class": "ph-duotone ph-user-focus"
+	},
+	{
+		"name": "ph-user-gear-duotone",
+		"class": "ph-duotone ph-user-gear"
+	},
+	{
+		"name": "ph-user-list-duotone",
+		"class": "ph-duotone ph-user-list"
+	},
+	{
+		"name": "ph-user-minus-duotone",
+		"class": "ph-duotone ph-user-minus"
+	},
+	{
+		"name": "ph-user-plus-duotone",
+		"class": "ph-duotone ph-user-plus"
+	},
+	{
+		"name": "ph-user-rectangle-duotone",
+		"class": "ph-duotone ph-user-rectangle"
+	},
+	{
+		"name": "ph-user-sound-duotone",
+		"class": "ph-duotone ph-user-sound"
+	},
+	{
+		"name": "ph-user-square-duotone",
+		"class": "ph-duotone ph-user-square"
+	},
+	{
+		"name": "ph-user-switch-duotone",
+		"class": "ph-duotone ph-user-switch"
+	},
+	{
+		"name": "ph-users-duotone",
+		"class": "ph-duotone ph-users"
+	},
+	{
+		"name": "ph-users-four-duotone",
+		"class": "ph-duotone ph-users-four"
+	},
+	{
+		"name": "ph-users-three-duotone",
+		"class": "ph-duotone ph-users-three"
+	},
+	{
+		"name": "ph-van-duotone",
+		"class": "ph-duotone ph-van"
+	},
+	{
+		"name": "ph-vault-duotone",
+		"class": "ph-duotone ph-vault"
+	},
+	{
+		"name": "ph-vector-three-duotone",
+		"class": "ph-duotone ph-vector-three"
+	},
+	{
+		"name": "ph-vector-two-duotone",
+		"class": "ph-duotone ph-vector-two"
+	},
+	{
+		"name": "ph-vibrate-duotone",
+		"class": "ph-duotone ph-vibrate"
+	},
+	{
+		"name": "ph-video-camera-duotone",
+		"class": "ph-duotone ph-video-camera"
+	},
+	{
+		"name": "ph-video-camera-slash-duotone",
+		"class": "ph-duotone ph-video-camera-slash"
+	},
+	{
+		"name": "ph-video-conference-duotone",
+		"class": "ph-duotone ph-video-conference"
+	},
+	{
+		"name": "ph-video-duotone",
+		"class": "ph-duotone ph-video"
+	},
+	{
+		"name": "ph-vignette-duotone",
+		"class": "ph-duotone ph-vignette"
+	},
+	{
+		"name": "ph-vinyl-record-duotone",
+		"class": "ph-duotone ph-vinyl-record"
+	},
+	{
+		"name": "ph-virtual-reality-duotone",
+		"class": "ph-duotone ph-virtual-reality"
+	},
+	{
+		"name": "ph-virus-duotone",
+		"class": "ph-duotone ph-virus"
+	},
+	{
+		"name": "ph-visor-duotone",
+		"class": "ph-duotone ph-visor"
+	},
+	{
+		"name": "ph-voicemail-duotone",
+		"class": "ph-duotone ph-voicemail"
+	},
+	{
+		"name": "ph-volleyball-duotone",
+		"class": "ph-duotone ph-volleyball"
+	},
+	{
+		"name": "ph-wall-duotone",
+		"class": "ph-duotone ph-wall"
+	},
+	{
+		"name": "ph-wallet-duotone",
+		"class": "ph-duotone ph-wallet"
+	},
+	{
+		"name": "ph-warehouse-duotone",
+		"class": "ph-duotone ph-warehouse"
+	},
+	{
+		"name": "ph-warning-circle-duotone",
+		"class": "ph-duotone ph-warning-circle"
+	},
+	{
+		"name": "ph-warning-diamond-duotone",
+		"class": "ph-duotone ph-warning-diamond"
+	},
+	{
+		"name": "ph-warning-duotone",
+		"class": "ph-duotone ph-warning"
+	},
+	{
+		"name": "ph-warning-octagon-duotone",
+		"class": "ph-duotone ph-warning-octagon"
+	},
+	{
+		"name": "ph-washing-machine-duotone",
+		"class": "ph-duotone ph-washing-machine"
+	},
+	{
+		"name": "ph-watch-duotone",
+		"class": "ph-duotone ph-watch"
+	},
+	{
+		"name": "ph-wave-sawtooth-duotone",
+		"class": "ph-duotone ph-wave-sawtooth"
+	},
+	{
+		"name": "ph-wave-sine-duotone",
+		"class": "ph-duotone ph-wave-sine"
+	},
+	{
+		"name": "ph-wave-square-duotone",
+		"class": "ph-duotone ph-wave-square"
+	},
+	{
+		"name": "ph-wave-triangle-duotone",
+		"class": "ph-duotone ph-wave-triangle"
+	},
+	{
+		"name": "ph-waveform-duotone",
+		"class": "ph-duotone ph-waveform"
+	},
+	{
+		"name": "ph-waveform-slash-duotone",
+		"class": "ph-duotone ph-waveform-slash"
+	},
+	{
+		"name": "ph-waves-duotone",
+		"class": "ph-duotone ph-waves"
+	},
+	{
+		"name": "ph-webcam-duotone",
+		"class": "ph-duotone ph-webcam"
+	},
+	{
+		"name": "ph-webcam-slash-duotone",
+		"class": "ph-duotone ph-webcam-slash"
+	},
+	{
+		"name": "ph-webhooks-logo-duotone",
+		"class": "ph-duotone ph-webhooks-logo"
+	},
+	{
+		"name": "ph-wechat-logo-duotone",
+		"class": "ph-duotone ph-wechat-logo"
+	},
+	{
+		"name": "ph-whatsapp-logo-duotone",
+		"class": "ph-duotone ph-whatsapp-logo"
+	},
+	{
+		"name": "ph-wheelchair-duotone",
+		"class": "ph-duotone ph-wheelchair"
+	},
+	{
+		"name": "ph-wheelchair-motion-duotone",
+		"class": "ph-duotone ph-wheelchair-motion"
+	},
+	{
+		"name": "ph-wifi-high-duotone",
+		"class": "ph-duotone ph-wifi-high"
+	},
+	{
+		"name": "ph-wifi-low-duotone",
+		"class": "ph-duotone ph-wifi-low"
+	},
+	{
+		"name": "ph-wifi-medium-duotone",
+		"class": "ph-duotone ph-wifi-medium"
+	},
+	{
+		"name": "ph-wifi-none-duotone",
+		"class": "ph-duotone ph-wifi-none"
+	},
+	{
+		"name": "ph-wifi-slash-duotone",
+		"class": "ph-duotone ph-wifi-slash"
+	},
+	{
+		"name": "ph-wifi-x-duotone",
+		"class": "ph-duotone ph-wifi-x"
+	},
+	{
+		"name": "ph-wind-duotone",
+		"class": "ph-duotone ph-wind"
+	},
+	{
+		"name": "ph-windmill-duotone",
+		"class": "ph-duotone ph-windmill"
+	},
+	{
+		"name": "ph-windows-logo-duotone",
+		"class": "ph-duotone ph-windows-logo"
+	},
+	{
+		"name": "ph-wine-duotone",
+		"class": "ph-duotone ph-wine"
+	},
+	{
+		"name": "ph-wrench-duotone",
+		"class": "ph-duotone ph-wrench"
+	},
+	{
+		"name": "ph-x-circle-duotone",
+		"class": "ph-duotone ph-x-circle"
+	},
+	{
+		"name": "ph-x-duotone",
+		"class": "ph-duotone ph-x"
+	},
+	{
+		"name": "ph-x-logo-duotone",
+		"class": "ph-duotone ph-x-logo"
+	},
+	{
+		"name": "ph-x-square-duotone",
+		"class": "ph-duotone ph-x-square"
+	},
+	{
+		"name": "ph-yarn-duotone",
+		"class": "ph-duotone ph-yarn"
+	},
+	{
+		"name": "ph-yin-yang-duotone",
+		"class": "ph-duotone ph-yin-yang"
+	},
+	{
+		"name": "ph-youtube-logo-duotone",
+		"class": "ph-duotone ph-youtube-logo"
+	}
+]

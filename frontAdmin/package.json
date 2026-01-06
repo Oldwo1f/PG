@@ -1,0 +1,41 @@
+{
+	"name": "frontadmin",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev --port 3002",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare",
+		"test": "vitest",
+		"test:coverage": "vitest run --coverage",
+		"test:ui": "vitest --ui",
+		"test:watch": "vitest watch"
+	},
+	"dependencies": {
+		"@nuxt/eslint": "^1.4.1",
+		"@nuxt/icon": "^1.13.0",
+		"@nuxt/image": "^1.10.0",
+		"@nuxt/test-utils": "^3.19.1",
+		"@pinia/nuxt": "^0.11.1",
+		"@testing-library/vue": "^8.1.0",
+		"@types/perfect-scrollbar": "^1.3.0",
+		"@vue/test-utils": "^2.4.6",
+		"dayjs": "^1.11.13",
+		"eslint": "^9.28.0",
+		"nuxt": "^3.10.3",
+		"perfect-scrollbar": "^1.5.6",
+		"pinia": "^3.0.3",
+		"vitest": "^3.2.3",
+		"vue3-perfect-scrollbar": "^2.0.0"
+	},
+	"devDependencies": {
+		"@nuxtjs/tailwindcss": "^6.10.4",
+		"@vitejs/plugin-vue": "^5.2.4",
+		"autoprefixer": "^10.4.21",
+		"jsdom": "^26.1.0",
+		"postcss": "^8.5.4",
+		"tailwindcss": "^3.4.17"
+	}
+}
