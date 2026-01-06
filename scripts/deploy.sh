@@ -13,7 +13,12 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-if ! command -v docker-compose &> /dev/null && ! docker compose version &> /dev/null; then
+# Détecter la commande Docker Compose disponible
+if command -v docker-compose &> /dev/null; then
+    DOCKER_COMPOSE="docker-compose"
+elif docker compose version &> /dev/null; then
+    DOCKER_COMPOSE="docker compose"
+else
     echo "❌ Docker Compose n'est pas installé"
     exit 1
 fi
@@ -47,21 +52,21 @@ fi
 
 # Build des images Docker
 echo "🔨 Construction des images Docker..."
-docker compose build --no-cache
+$DOCKER_COMPOSE build --no-cache
 
 # Arrêter les conteneurs existants
 echo "🛑 Arrêt des conteneurs existants..."
-docker compose down
+$DOCKER_COMPOSE down
 
 # Démarrer les services
 echo "🚀 Démarrage des services..."
-docker compose up -d
+$DOCKER_COMPOSE up -d
 
 # Attendre que PostgreSQL soit prêt
 echo "⏳ Attente de la disponibilité de PostgreSQL..."
 timeout=60
 counter=0
-until docker compose exec -T postgres pg_isready -U postgres > /dev/null 2>&1; do
+until $DOCKER_COMPOSE exec -T postgres pg_isready -U postgres > /dev/null 2>&1; do
     sleep 2
     counter=$((counter + 2))
     if [ $counter -ge $timeout ]; then
@@ -71,6 +76,21 @@ until docker compose exec -T postgres pg_isready -U postgres > /dev/null 2>&1; d
 done
 echo "✅ PostgreSQL est prêt"
 
+# Attendre que le backend soit prêt
+echo "⏳ Attente du démarrage du backend..."
+timeout=60
+counter=0
+until $DOCKER_COMPOSE ps | grep -q "backend.*Up"; do
+    sleep 2
+    counter=$((counter + 2))
+    if [ $counter -ge $timeout ]; then
+        echo "⚠️  Timeout: Le backend n'est pas prêt après ${timeout}s"
+        echo "📋 Logs du backend:"
+        $DOCKER_COMPOSE logs backend | tail -20
+        break
+    fi
+done
+
 # Exécuter les migrations
 echo "📦 Exécution des migrations..."
 ./scripts/migrate.sh
@@ -79,11 +99,11 @@ echo "📦 Exécution des migrations..."
 echo "🏥 Vérification de la santé des services..."
 sleep 5
 
-if docker compose ps | grep -q "Up"; then
+if $DOCKER_COMPOSE ps | grep -q "Up"; then
     echo "✅ Tous les services sont démarrés"
 else
     echo "⚠️  Certains services ne sont pas démarrés"
-    docker compose ps
+    $DOCKER_COMPOSE ps
 fi
 
 echo ""
@@ -95,6 +115,6 @@ echo "   - Admin: https://adminperfectgeneration.aito-flow.com"
 echo "   - Backend API: https://backendperfectgeneration.aito-flow.com/api"
 echo "   - Health Check: https://backendperfectgeneration.aito-flow.com/api/health"
 echo ""
-echo "📝 Pour voir les logs: docker compose logs -f"
-echo "🛑 Pour arrêter: docker compose down"
+echo "📝 Pour voir les logs: $DOCKER_COMPOSE logs -f"
+echo "🛑 Pour arrêter: $DOCKER_COMPOSE down"
 

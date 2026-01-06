@@ -15,7 +15,8 @@ coverage
 test
 *.test.ts
 *.spec.ts
-tsconfig.json
+# tsconfig.json est nécessaire pour le build, ne pas l'exclure
+# tsconfig.json
 tsconfig.*.json
 .eslintrc*
 .prettierrc*
