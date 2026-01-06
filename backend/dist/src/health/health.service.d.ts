@@ -8,6 +8,7 @@ export declare class HealthService {
         uptime: number;
         database: {
             status: string;
+            error?: string;
         };
     }>;
 }

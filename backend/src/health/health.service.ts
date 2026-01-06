@@ -7,7 +7,15 @@ export class HealthService {
   constructor(@InjectConnection() private readonly connection: Connection) {}
 
   async check() {
-    const health = {
+    const health: {
+      status: string;
+      timestamp: string;
+      uptime: number;
+      database: {
+        status: string;
+        error?: string;
+      };
+    } = {
       status: 'ok',
       timestamp: new Date().toISOString(),
       uptime: process.uptime(),

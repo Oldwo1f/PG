@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { ThrottlerModule, ThrottlerGuard, ThrottlerModuleOptions } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { BrandModule } from './brand/brand.module';
 import { TemplateModule } from './template/template.module';
@@ -30,10 +30,14 @@ import { UsageStorage } from './billing/entities/usage-storage.entity';
     LoggerModule,
     ThrottlerModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => {
+      useFactory: (configService: ConfigService): ThrottlerModuleOptions => {
         return {
-          ttl: 60, // 60 secondes
-          limit: 100, // 100 requêtes par minute
+          throttlers: [
+            {
+              ttl: 60000, // 60 secondes en millisecondes
+              limit: 100, // 100 requêtes par minute
+            },
+          ],
           // Utilise le storage mémoire par défaut
           // Note: Pour utiliser Redis, il faudrait créer un storage personnalisé
           // Le storage mémoire fonctionne très bien pour la plupart des cas

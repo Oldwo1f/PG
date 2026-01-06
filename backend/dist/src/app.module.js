@@ -11,7 +11,6 @@ const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
 const throttler_1 = require("@nestjs/throttler");
-const throttler_storage_redis_1 = require("@nestjs/throttler-storage-redis");
 const core_1 = require("@nestjs/core");
 const brand_module_1 = require("./brand/brand.module");
 const template_module_1 = require("./template/template.module");
@@ -44,22 +43,14 @@ exports.AppModule = AppModule = __decorate([
             throttler_1.ThrottlerModule.forRootAsync({
                 imports: [config_1.ConfigModule],
                 useFactory: (configService) => {
-                    const redisHost = configService.get('REDIS_HOST', 'localhost');
-                    const redisPort = configService.get('REDIS_PORT', 6379);
-                    const redisPassword = configService.get('REDIS_PASSWORD');
-                    const useRedis = redisHost && redisHost !== 'localhost';
-                    const config = {
-                        ttl: 60,
-                        limit: 100,
+                    return {
+                        throttlers: [
+                            {
+                                ttl: 60000,
+                                limit: 100,
+                            },
+                        ],
                     };
-                    if (useRedis) {
-                        config.storage = new throttler_storage_redis_1.ThrottlerStorageRedisService({
-                            host: redisHost,
-                            port: redisPort,
-                            password: redisPassword || undefined,
-                        });
-                    }
-                    return config;
                 },
                 inject: [config_1.ConfigService],
             }),

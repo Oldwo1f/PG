@@ -8,6 +8,7 @@ export declare class HealthController {
         uptime: number;
         database: {
             status: string;
+            error?: string;
         };
     }>;
 }
