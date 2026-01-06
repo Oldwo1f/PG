@@ -67,13 +67,14 @@ services:
                 condition: service_healthy
         networks:
             - perfectgenerations-network
+            - traefik-network
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.backend.rule=Host(`backendperfectgeneration.aito-flow.com`)"
             - "traefik.http.routers.backend.entrypoints=websecure"
-            - "traefik.http.routers.backend.tls.certresolver=letsencrypt"
+            - "traefik.http.routers.backend.tls.certresolver=mytlschallenge"
             - "traefik.http.services.backend.loadbalancer.server.port=3001"
-            - "traefik.docker.network=perfectgenerations-network"
+            - "traefik.docker.network=n8n_default"
 
     # Frontend
     frontend:
@@ -89,13 +90,14 @@ services:
             - backend
         networks:
             - perfectgenerations-network
+            - traefik-network
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.frontend.rule=Host(`perfectgeneration.aito-flow.com`)"
             - "traefik.http.routers.frontend.entrypoints=websecure"
-            - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
+            - "traefik.http.routers.frontend.tls.certresolver=mytlschallenge"
             - "traefik.http.services.frontend.loadbalancer.server.port=3000"
-            - "traefik.docker.network=perfectgenerations-network"
+            - "traefik.docker.network=n8n_default"
 
     # Frontend Admin
     frontadmin:
@@ -111,13 +113,14 @@ services:
             - backend
         networks:
             - perfectgenerations-network
+            - traefik-network
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.frontadmin.rule=Host(`adminperfectgeneration.aito-flow.com`)"
             - "traefik.http.routers.frontadmin.entrypoints=websecure"
-            - "traefik.http.routers.frontadmin.tls.certresolver=letsencrypt"
+            - "traefik.http.routers.frontadmin.tls.certresolver=mytlschallenge"
             - "traefik.http.services.frontadmin.loadbalancer.server.port=3002"
-            - "traefik.docker.network=perfectgenerations-network"
+            - "traefik.docker.network=n8n_default"
 
 volumes:
     postgres_data:
@@ -132,3 +135,6 @@ volumes:
 networks:
     perfectgenerations-network:
         external: false
+    traefik-network:
+        external: true
+        name: n8n_default
