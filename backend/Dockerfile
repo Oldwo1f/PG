@@ -14,10 +14,12 @@ RUN npm ci
 COPY . .
 
 # Build the application
-RUN npm run build || (echo "Build failed!" && exit 1)
-
-# Vérifier que le build a créé le fichier main.js
-RUN ls -la dist/ && test -f dist/main.js || (echo "ERROR: dist/main.js not found after build" && ls -la dist/ && exit 1)
+RUN echo "Building NestJS application..." && \
+    npm run build && \
+    echo "Build completed. Checking output..." && \
+    ls -la dist/ && \
+    test -f dist/main.js || (echo "ERROR: dist/main.js not found after build" && ls -la dist/ && find dist -name "*.js" | head -10 && exit 1) && \
+    echo "✅ Build successful: dist/main.js found"
 
 # Production stage
 FROM node:20-alpine AS production
