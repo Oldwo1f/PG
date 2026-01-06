@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Script d'exécution des migrations
-# Usage: ./scripts/migrate.sh
+# Script pour exécuter uniquement les migrations
+# Usage: ./scripts/run-migration-only.sh
 
 set -e
 
@@ -15,25 +15,31 @@ else
     exit 1
 fi
 
-echo "📦 Exécution des migrations de base de données..."
+echo "📦 Exécution des migrations uniquement..."
 
 # Vérifier que le conteneur backend est en cours d'exécution
 if ! $DOCKER_COMPOSE ps | grep -q "backend.*Up"; then
     echo "❌ Le conteneur backend n'est pas en cours d'exécution"
     echo "📋 État des conteneurs:"
     $DOCKER_COMPOSE ps
-    echo "📋 Logs du backend:"
-    $DOCKER_COMPOSE logs backend | tail -30
+    echo ""
+    echo "💡 Astuce: Démarrez d'abord les conteneurs avec: $DOCKER_COMPOSE up -d"
     exit 1
 fi
 
+# Vérifier que PostgreSQL est prêt
+echo "⏳ Vérification de PostgreSQL..."
+if ! $DOCKER_COMPOSE exec -T postgres pg_isready -U postgres > /dev/null 2>&1; then
+    echo "❌ PostgreSQL n'est pas prêt"
+    exit 1
+fi
+echo "✅ PostgreSQL est prêt"
+
 # Exécuter les migrations
 echo "🔄 Exécution des migrations..."
-echo "📋 Vérification du script de migration dans le conteneur..."
-$DOCKER_COMPOSE exec -T backend ls -la scripts/run-migration.sh 2>&1 || echo "⚠️  Script non trouvé"
+$DOCKER_COMPOSE exec -T backend npm run migration:run
 
-echo "📋 Exécution de la migration..."
-if $DOCKER_COMPOSE exec -T backend npm run migration:run; then
+if [ $? -eq 0 ]; then
     echo "✅ Migrations exécutées avec succès"
 else
     echo "❌ Erreur lors de l'exécution des migrations"
