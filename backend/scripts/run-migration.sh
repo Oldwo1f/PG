@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Script pour exécuter les migrations TypeORM
 # Détecte automatiquement si on est en production ou en développement

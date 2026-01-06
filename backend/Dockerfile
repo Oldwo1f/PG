@@ -26,8 +26,8 @@ FROM node:20-alpine AS production
 
 WORKDIR /app
 
-# Install dumb-init for proper signal handling
-RUN apk add --no-cache dumb-init
+# Install dumb-init and bash for proper signal handling and scripts
+RUN apk add --no-cache dumb-init bash
 
 # Copy package files
 COPY package*.json ./
