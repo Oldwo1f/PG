@@ -5,8 +5,8 @@
   "main": "dist/main.js",
   "type": "commonjs",
   "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "nest build && cp -r src/template/templates dist/template/",
+    "prebuild": "rimraf dist tsconfig.tsbuildinfo",
+    "build": "npx tsc --build --force && mkdir -p dist/template && cp -r src/template/templates dist/template/",
     "format": "prettier --write \"src/**/*.ts\"",
     "start": "nest start",
     "dev": "nest start --watch",
