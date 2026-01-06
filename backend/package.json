@@ -27,8 +27,8 @@
     "add-testimonial": "ts-node -r tsconfig-paths/register tools/add-testimonial-template.ts",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "migration:generate": "npm run typeorm -- migration:generate -d src/config/typeorm.config.ts",
-    "migration:run": "npm run typeorm migration:run -- -d src/config/typeorm.config.ts",
-    "migration:revert": "npm run typeorm migration:revert -- -d src/config/typeorm.config.ts"
+    "migration:run": "bash scripts/run-migration.sh run",
+    "migration:revert": "bash scripts/run-migration.sh revert"
   },
   "keywords": [],
   "author": "",

@@ -39,6 +39,10 @@ RUN npm ci --only=production && npm cache clean --force
 # Copy built application from builder
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/src/template/templates ./dist/template/templates
+COPY --from=builder /app/scripts ./scripts
+
+# Make scripts executable
+RUN chmod +x scripts/*.sh 2>/dev/null || true
 
 # Create directories for uploads and assets
 RUN mkdir -p uploads/images assets/icons
