@@ -7,14 +7,17 @@ WORKDIR /app
 COPY package*.json ./
 COPY yarn.lock* ./
 
-# Install dependencies
-RUN npm ci --only=production=false
+# Install all dependencies (including dev dependencies for build)
+RUN npm ci
 
 # Copy source code
 COPY . .
 
 # Build the application
-RUN npm run build
+RUN npm run build || (echo "Build failed!" && exit 1)
+
+# Vérifier que le build a créé le fichier main.js
+RUN ls -la dist/ && test -f dist/main.js || (echo "ERROR: dist/main.js not found after build" && ls -la dist/ && exit 1)
 
 # Production stage
 FROM node:20-alpine AS production
@@ -54,5 +57,5 @@ EXPOSE 3001
 # Use dumb-init to handle signals properly
 ENTRYPOINT ["dumb-init", "--"]
 
-CMD ["node", "dist/main"]
+CMD ["node", "dist/main.js"]
 
