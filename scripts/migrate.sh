@@ -29,12 +29,16 @@ fi
 
 # Exécuter les migrations
 echo "🔄 Exécution des migrations..."
-$DOCKER_COMPOSE exec -T backend npm run migration:run
+echo "📋 Vérification du script de migration dans le conteneur..."
+$DOCKER_COMPOSE exec -T backend ls -la scripts/run-migration.sh 2>&1 || echo "⚠️  Script non trouvé"
 
-if [ $? -eq 0 ]; then
+echo "📋 Exécution de la migration..."
+if $DOCKER_COMPOSE exec -T backend npm run migration:run; then
     echo "✅ Migrations exécutées avec succès"
 else
     echo "❌ Erreur lors de l'exécution des migrations"
+    echo "📋 Logs détaillés:"
+    $DOCKER_COMPOSE exec -T backend bash -x scripts/run-migration.sh run 2>&1 || true
     exit 1
 fi
 

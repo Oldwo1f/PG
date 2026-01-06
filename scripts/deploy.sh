@@ -50,9 +50,16 @@ if ! grep -q "JWT_SECRET=" .env || grep -q "JWT_SECRET=your_very_secure" .env; t
     echo "✅ JWT_SECRET généré et ajouté au fichier .env"
 fi
 
-# Build des images Docker
+# Build des images Docker (avec cache pour accélérer)
 echo "🔨 Construction des images Docker..."
-$DOCKER_COMPOSE build --no-cache
+echo "💡 Astuce: Utilisez './scripts/deploy.sh --no-cache' pour forcer une reconstruction complète"
+if [ "$1" = "--no-cache" ]; then
+    echo "🔄 Reconstruction complète (sans cache)..."
+    $DOCKER_COMPOSE build --no-cache
+else
+    echo "⚡ Construction avec cache (plus rapide)..."
+    $DOCKER_COMPOSE build
+fi
 
 # Arrêter les conteneurs existants
 echo "🛑 Arrêt des conteneurs existants..."
