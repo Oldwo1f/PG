@@ -30,10 +30,20 @@ if ! command -v ts-node >/dev/null 2>&1 && [ ! -f "node_modules/.bin/ts-node" ];
   npm install --save-dev ts-node tsconfig-paths typescript
 fi
 
-# Utiliser le ts-node local ou global
+# Vérifier que tsconfig.json existe
+if [ ! -f "tsconfig.json" ]; then
+  echo "❌ Erreur: tsconfig.json n'existe pas"
+  echo "📋 Contenu du répertoire:"
+  ls -la | head -20
+  exit 1
+fi
+
+echo "✅ tsconfig.json trouvé"
+
+# Utiliser le ts-node local ou global avec le tsconfig.json explicite
 if [ -f "node_modules/.bin/ts-node" ]; then
-  npx ts-node -r tsconfig-paths/register tools/seed-all.ts
+  npx ts-node -P tsconfig.json -r tsconfig-paths/register tools/seed-all.ts
 else
-  ts-node -r tsconfig-paths/register tools/seed-all.ts
+  ts-node -P tsconfig.json -r tsconfig-paths/register tools/seed-all.ts
 fi
 

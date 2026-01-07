@@ -44,6 +44,10 @@ COPY --from=builder /app/src/template/templates ./dist/template/templates
 COPY --from=builder /app/scripts ./scripts
 # Copy tools directory for seed scripts (will use ts-node if needed)
 COPY --from=builder /app/tools ./tools
+# Copy tsconfig.json for ts-node to compile tools scripts
+COPY --from=builder /app/tsconfig.json ./tsconfig.json
+# Copy src directory for tools scripts to import entities
+COPY --from=builder /app/src ./src
 
 # Make scripts executable
 RUN chmod +x scripts/*.sh 2>/dev/null || true
