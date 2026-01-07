@@ -4,6 +4,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { join } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
 import { LoggerService } from './common/logger/logger.service';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
@@ -50,7 +51,7 @@ async function bootstrap(): Promise<void> {
   });
 
   // Middleware pour ajouter les headers CORS aux fichiers statiques
-  app.use('/uploads', (req, res, next) => {
+  app.use('/uploads', (req: Request, res: Response, next: NextFunction) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
