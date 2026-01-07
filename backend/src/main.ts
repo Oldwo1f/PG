@@ -17,6 +17,30 @@ async function bootstrap(): Promise<void> {
   const logger = app.get(LoggerService);
   app.useLogger(logger);
 
+  // Obtenir l'instance Express native AVANT toute configuration
+  const expressApp = app.getHttpAdapter().getInstance();
+
+  // Servir les fichiers statiques EN PREMIER, avant tout autre middleware
+  const uploadsPath = join(__dirname, '..', '..', 'uploads');
+  logger.log(`Static uploads path: ${uploadsPath}`, 'Bootstrap');
+
+  // Middleware CORS pour les fichiers statiques
+  expressApp.use('/uploads', (req: Request, res: Response, next: NextFunction) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Cache-Control', 'public, max-age=31536000');
+
+    if (req.method === 'OPTIONS') {
+      return res.sendStatus(200);
+    }
+
+    next();
+  });
+
+  // Servir les fichiers statiques
+  expressApp.use('/uploads', express.static(uploadsPath));
+
   // Headers de sécurité
   app.use(
     helmet({
@@ -48,38 +72,8 @@ async function bootstrap(): Promise<void> {
     credentials: true,
   });
 
-  // Servir les fichiers statiques (images uploadées) AVANT le prefix global
-  // Utilisation d'Express natif pour servir en dehors du système de routing NestJS
-  const uploadsPath = join(__dirname, '..', '..', 'uploads');
-  logger.log(`Static uploads path: ${uploadsPath}`, 'Bootstrap');
-
-  // Obtenir l'instance Express native pour servir les fichiers statiques
-  const expressApp = app.getHttpAdapter().getInstance();
-
-  // Middleware Express natif pour servir les fichiers statiques avec CORS
-  expressApp.use('/uploads', (req: Request, res: Response, next: NextFunction) => {
-    // Ajouter les headers CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.setHeader('Cache-Control', 'public, max-age=31536000');
-
-    if (req.method === 'OPTIONS') {
-      res.sendStatus(200);
-      return;
-    }
-
-    next();
-  });
-
-  // Servir les fichiers statiques avec Express natif
-  expressApp.use('/uploads', express.static(uploadsPath));
-
-  // Set global prefix for all routes (après la configuration des fichiers statiques)
-  // Exclure /uploads du prefix global pour permettre l'accès direct aux fichiers statiques
-  app.setGlobalPrefix('api', {
-    exclude: ['/uploads/*', '/assets/*'],
-  });
+  // Set global prefix for all routes
+  app.setGlobalPrefix('api');
 
   // Servir les assets d'icônes (CSS, polices, etc.)
   const assetsPath = join(__dirname, '..', '..', 'assets');
