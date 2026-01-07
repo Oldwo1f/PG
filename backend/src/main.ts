@@ -16,7 +16,18 @@ async function bootstrap(): Promise<void> {
   app.useLogger(logger);
 
   // Headers de sécurité
-  app.use(helmet());
+  app.use(
+    helmet({
+      crossOriginResourcePolicy: { policy: 'cross-origin' },
+      crossOriginEmbedderPolicy: false,
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          imgSrc: ["'self'", 'data:', 'https:', 'http:'],
+        },
+      },
+    }),
+  );
 
   // Exception filter global
   app.useGlobalFilters(new HttpExceptionFilter(logger));
@@ -38,7 +49,21 @@ async function bootstrap(): Promise<void> {
     credentials: true,
   });
 
+  // Middleware pour ajouter les headers CORS aux fichiers statiques
+  app.use('/uploads', (req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Cache-Control', 'public, max-age=31536000');
+    if (req.method === 'OPTIONS') {
+      res.sendStatus(200);
+    } else {
+      next();
+    }
+  });
+
   // Servir les fichiers statiques (images uploadées)
+  // Note: Les fichiers statiques sont servis AVANT le prefix 'api' pour permettre l'accès direct
   const uploadsPath = join(__dirname, '..', '..', 'uploads');
   logger.log(`Static uploads path: ${uploadsPath}`, 'Bootstrap');
   app.useStaticAssets(uploadsPath, {
