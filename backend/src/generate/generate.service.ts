@@ -48,13 +48,23 @@ export class GenerateService {
     const template = Handlebars.compile(html);
     const content = template(data);
 
+    // Determine Chrome/Chromium executable path
+    // In production (Docker/Alpine), use system Chromium
+    // In development, let Puppeteer use its bundled Chrome
+    const executablePath = process.env.CHROME_BIN || 
+      (process.env.NODE_ENV === 'production' ? '/usr/bin/chromium-browser' : undefined);
+
     const browser = await puppeteer.launch({
       headless: 'new',
+      executablePath,
       args: [
         `--window-size=${width},${height}`,
         '--no-sandbox',
         '--disable-setuid-sandbox',
         '--disable-web-security',
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--disable-software-rasterizer',
       ],
     });
 

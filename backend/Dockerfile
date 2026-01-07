@@ -26,8 +26,17 @@ FROM node:20-alpine AS production
 
 WORKDIR /app
 
-# Install dumb-init and bash for proper signal handling and scripts
-RUN apk add --no-cache dumb-init bash
+# Install dumb-init, bash, and Chromium for Puppeteer
+RUN apk add --no-cache \
+    dumb-init \
+    bash \
+    chromium \
+    nss \
+    freetype \
+    freetype-dev \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont
 
 # Copy package files
 COPY package*.json ./
