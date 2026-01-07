@@ -4,24 +4,25 @@ export default defineNuxtPlugin(() => {
 		// @ts-ignore
 		window.MonacoEnvironment = {
 			getWorkerUrl: function (moduleId: string, label: string) {
-				// Use data URL approach that works in both dev and production
-				const getWorker = (workerId: string, label: string) => {
-					const paths: Record<string, string> = {
-						editor: "vs/editor/editor.worker",
-						json: "vs/language/json/json.worker",
-						css: "vs/language/css/css.worker",
-						html: "vs/language/html/html.worker",
-						typescript: "vs/language/typescript/ts.worker",
-					};
-
-					const path = paths[label] || paths.editor;
-					return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
-						self.MonacoEnvironment = { baseUrl: '${window.location.origin}/node_modules/monaco-editor/min/' };
-						importScripts('${window.location.origin}/node_modules/monaco-editor/min/${path}.js');
-					`)}`;
+				// Use CDN for Monaco workers - works in both dev and production
+				const monacoVersion = "0.52.2"; // Match package.json version
+				const cdnBase = `https://cdn.jsdelivr.net/npm/monaco-editor@${monacoVersion}/min`;
+				
+				const paths: Record<string, string> = {
+					editor: "vs/editor/editor.worker",
+					json: "vs/language/json/json.worker",
+					css: "vs/language/css/css.worker",
+					html: "vs/language/html/html.worker",
+					typescript: "vs/language/typescript/ts.worker",
 				};
 
-				return getWorker(moduleId, label);
+				const path = paths[label] || paths.editor;
+				
+				// Always use CDN for reliability
+				return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
+					self.MonacoEnvironment = { baseUrl: '${cdnBase}/' };
+					importScripts('${cdnBase}/${path}.js');
+				`)}`;
 			},
 		};
 	}
