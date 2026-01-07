@@ -76,7 +76,10 @@ async function bootstrap(): Promise<void> {
   expressApp.use('/uploads', express.static(uploadsPath));
 
   // Set global prefix for all routes (après la configuration des fichiers statiques)
-  app.setGlobalPrefix('api');
+  // Exclure /uploads du prefix global pour permettre l'accès direct aux fichiers statiques
+  app.setGlobalPrefix('api', {
+    exclude: ['/uploads/*', '/assets/*'],
+  });
 
   // Servir les assets d'icônes (CSS, polices, etc.)
   const assetsPath = join(__dirname, '..', '..', 'assets');
