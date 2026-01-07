@@ -5,9 +5,11 @@ import { AppModule } from './app.module';
 import { join } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Request, Response, NextFunction } from 'express';
+import { existsSync } from 'fs';
 import helmet from 'helmet';
 import { LoggerService } from './common/logger/logger.service';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import * as express from 'express';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -50,25 +52,27 @@ async function bootstrap(): Promise<void> {
     credentials: true,
   });
 
-  // Middleware pour ajouter les headers CORS aux fichiers statiques
+  // Servir les fichiers statiques (images uploadées) AVANT le prefix global
+  // Utilisation d'Express natif pour servir en dehors du système de routing NestJS
+  const uploadsPath = join(__dirname, '..', '..', 'uploads');
+  logger.log(`Static uploads path: ${uploadsPath}`, 'Bootstrap');
+
+  // Middleware Express natif pour servir les fichiers statiques avec CORS
+  const staticMiddleware = express.static(uploadsPath);
   app.use('/uploads', (req: Request, res: Response, next: NextFunction) => {
+    // Ajouter les headers CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('Cache-Control', 'public, max-age=31536000');
+
     if (req.method === 'OPTIONS') {
       res.sendStatus(200);
-    } else {
-      next();
+      return;
     }
-  });
 
-  // Servir les fichiers statiques (images uploadées)
-  // Note: Les fichiers statiques sont servis AVANT le prefix 'api' pour permettre l'accès direct
-  const uploadsPath = join(__dirname, '..', '..', 'uploads');
-  logger.log(`Static uploads path: ${uploadsPath}`, 'Bootstrap');
-  app.useStaticAssets(uploadsPath, {
-    prefix: '/uploads/',
+    // Servir le fichier statique via Express natif
+    staticMiddleware(req, res, next);
   });
 
   // Servir les assets d'icônes (CSS, polices, etc.)
