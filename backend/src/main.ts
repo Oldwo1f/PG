@@ -5,7 +5,6 @@ import { AppModule } from './app.module';
 import { join } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Request, Response, NextFunction } from 'express';
-import { existsSync } from 'fs';
 import helmet from 'helmet';
 import { LoggerService } from './common/logger/logger.service';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
@@ -35,9 +34,6 @@ async function bootstrap(): Promise<void> {
   // Exception filter global
   app.useGlobalFilters(new HttpExceptionFilter(logger));
 
-  // Set global prefix for all routes
-  app.setGlobalPrefix('api');
-
   // Configuration CORS
   const corsOrigins = process.env.CORS_ORIGINS
     ? process.env.CORS_ORIGINS.split(',').map((origin) => origin.trim())
@@ -57,9 +53,11 @@ async function bootstrap(): Promise<void> {
   const uploadsPath = join(__dirname, '..', '..', 'uploads');
   logger.log(`Static uploads path: ${uploadsPath}`, 'Bootstrap');
 
+  // Obtenir l'instance Express native pour servir les fichiers statiques
+  const expressApp = app.getHttpAdapter().getInstance();
+
   // Middleware Express natif pour servir les fichiers statiques avec CORS
-  const staticMiddleware = express.static(uploadsPath);
-  app.use('/uploads', (req: Request, res: Response, next: NextFunction) => {
+  expressApp.use('/uploads', (req: Request, res: Response, next: NextFunction) => {
     // Ajouter les headers CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
@@ -71,9 +69,14 @@ async function bootstrap(): Promise<void> {
       return;
     }
 
-    // Servir le fichier statique via Express natif
-    staticMiddleware(req, res, next);
+    next();
   });
+
+  // Servir les fichiers statiques avec Express natif
+  expressApp.use('/uploads', express.static(uploadsPath));
+
+  // Set global prefix for all routes (après la configuration des fichiers statiques)
+  app.setGlobalPrefix('api');
 
   // Servir les assets d'icônes (CSS, polices, etc.)
   const assetsPath = join(__dirname, '..', '..', 'assets');
