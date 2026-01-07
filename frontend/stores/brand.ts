@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
 import type { Brand } from "~/types/brand";
 import { useAuthStore } from "~/composables/useAuth";
-
-const API_URL = "http://localhost:3001/api";
+import { getApiUrl } from "~/utils/api";
 
 interface BrandState {
 	brands: Brand[];
@@ -52,7 +51,7 @@ export const useBrandStore = defineStore("brand", {
 
 				const headers = authStore.getAuthHeaders;
 
-				const response = await fetch(`${API_URL}/brands`, {
+				const response = await fetch(getApiUrl("/brands"), {
 					headers: {
 						...headers,
 						"Content-Type": "application/json",
@@ -89,7 +88,7 @@ export const useBrandStore = defineStore("brand", {
 
 				const headers = authStore.getAuthHeaders;
 
-				const response = await fetch(`${API_URL}/brands`, {
+				const response = await fetch(getApiUrl("/brands"), {
 					method: "POST",
 					headers: {
 						...headers,
@@ -143,7 +142,7 @@ export const useBrandStore = defineStore("brand", {
 
 				const headers = authStore.getAuthHeaders;
 
-				const response = await fetch(`${API_URL}/brands/${id}`, {
+				const response = await fetch(getApiUrl(`/brands/${id}`), {
 					method: "PATCH",
 					headers: {
 						...headers,
@@ -187,7 +186,7 @@ export const useBrandStore = defineStore("brand", {
 
 				const headers = authStore.getAuthHeaders;
 
-				const response = await fetch(`${API_URL}/brands/${id}`, {
+				const response = await fetch(getApiUrl(`/brands/${id}`), {
 					method: "DELETE",
 					headers,
 				});

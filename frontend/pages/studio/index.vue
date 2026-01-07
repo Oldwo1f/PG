@@ -1362,6 +1362,7 @@ import { useBrandStore } from "~/stores/brand";
 import { useStudioStore } from "~/stores/studio";
 import { useAuthStore } from "~/composables/useAuth";
 import { TEMPLATE_CATEGORIES } from "~/constants/categories";
+import { getApiUrl } from "~/utils/api";
 
 // Import MonacoEditor only on client side
 let MonacoEditor: any = null;
@@ -2081,10 +2082,9 @@ const downloadImage = async () => {
 
 		console.log("Sending data to backend:", requestData);
 
-		const API_URL = "http://localhost:3001/api";
 		const headers = authStore.getAuthHeaders;
 
-		const response = await fetch(`${API_URL}/generate`, {
+		const response = await fetch(getApiUrl("/generate"), {
 			method: "POST",
 			headers: {
 				...headers,
@@ -2665,7 +2665,7 @@ const createExampleTemplate = async () => {
 		};
 
 		const response = await fetch(
-			"http://localhost:3001/api/templates/example",
+			getApiUrl("/templates/example"),
 			{
 				method: "POST",
 				headers: { "Content-Type": "application/json" },

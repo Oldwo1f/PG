@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
 import type { User } from "~/types/user";
 import type { LoginCredentials } from "~/types/auth";
-
-const API_URL = "http://localhost:3001/api";
+import { getApiUrl } from "~/utils/api";
 
 interface AuthState {
 	user: User | null;
@@ -43,7 +42,7 @@ export const useAuthStore = defineStore("auth", {
 			this.loading = true;
 			this.error = null;
 			try {
-				const response = await fetch(`${API_URL}/auth/login`, {
+				const response = await fetch(getApiUrl("/auth/login"), {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(credentials),
@@ -74,7 +73,7 @@ export const useAuthStore = defineStore("auth", {
 			this.loading = true;
 			this.error = null;
 			try {
-				const response = await fetch(`${API_URL}/auth/register`, {
+				const response = await fetch(getApiUrl("/auth/register"), {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(payload),

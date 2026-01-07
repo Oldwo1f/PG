@@ -37,10 +37,7 @@ export default defineNuxtConfig({
 	},
 	runtimeConfig: {
 		public: {
-			apiBase:
-				process.env.NODE_ENV === "production"
-					? "https://api.perfectgenerations.com/api"
-					: "http://localhost:3001/api",
+			apiBase: process.env.NUXT_PUBLIC_API_BASE || "http://localhost:3001/api",
 		},
 	},
 	devServer: {

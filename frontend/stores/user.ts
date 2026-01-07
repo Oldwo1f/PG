@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
 import type { User } from "~/types/user"; // Assuming you have a user type
 import { useAuthStore } from "~/composables/useAuth";
-
-const API_URL = "http://localhost:3001/api";
+import { getApiUrl } from "~/utils/api";
 
 interface ProfileState {
 	loading: boolean;
@@ -30,7 +29,7 @@ export const useUserStore = defineStore("profile", {
 				const authStore = useAuthStore();
 				const headers = authStore.getAuthHeaders;
 
-				const response = await fetch(`${API_URL}/users/me`, {
+				const response = await fetch(getApiUrl("/users/me"), {
 					method: "PATCH",
 					headers: {
 						...headers,
@@ -65,7 +64,7 @@ export const useUserStore = defineStore("profile", {
 				const authStore = useAuthStore();
 				const headers = authStore.getAuthHeaders;
 
-				const response = await fetch(`${API_URL}/users/me/password`, {
+				const response = await fetch(getApiUrl("/users/me/password"), {
 					method: "POST",
 					headers: {
 						...headers,
@@ -105,7 +104,7 @@ export const useUserStore = defineStore("profile", {
 				const authStore = useAuthStore();
 				const headers = authStore.getAuthHeaders;
 
-				const response = await fetch(`${API_URL}/users/me`, {
+				const response = await fetch(getApiUrl("/users/me"), {
 					method: "DELETE",
 					headers: {
 						...headers,

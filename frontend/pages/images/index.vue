@@ -188,9 +188,10 @@ const loading = ref(true);
 const error = ref<string | null>(null);
 const isDragging = ref(false);
 
+import { getApiBaseUrl } from "~/utils/api";
 const authStore = useAuthStore();
 const { apiFetch } = useApi();
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = getApiBaseUrl().replace("/api", "");
 
 const fetchImages = async () => {
 	try {

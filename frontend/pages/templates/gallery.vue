@@ -106,7 +106,7 @@
 					<div class="relative aspect-video bg-gray-100">
 						<img
 							v-if="template.previewImage"
-							:src="`http://localhost:3001/api/templates/preview/${template.previewImage}`"
+							:src="getApiUrl(`/templates/preview/${template.previewImage}`)"
 							:alt="template.name"
 							class="w-full h-full object-cover"
 							@error="handleImageError"
@@ -232,7 +232,7 @@
 						<div class="text-center">
 							<img
 								v-if="selectedTemplate.previewImage"
-								:src="`http://localhost:3001/api/templates/preview/${selectedTemplate.previewImage}`"
+								:src="getApiUrl(`/templates/preview/${selectedTemplate.previewImage}`)"
 								:alt="selectedTemplate.name"
 								class="max-w-full h-auto rounded-lg shadow-lg"
 								@error="handleImageError"
@@ -502,6 +502,7 @@ import { ref, onMounted, computed } from "vue";
 import type { Template } from "~/types/template";
 import { TEMPLATE_CATEGORIES } from "~/constants/categories";
 import { useTemplateStore } from "~/stores/template";
+import { getApiUrl } from "~/utils/api";
 
 // État
 const templates = ref<Template[]>([]);
@@ -548,13 +549,10 @@ const availableCategories = computed(() => {
 const fetchTemplates = async () => {
 	loading.value = true;
 	try {
-		const response = await fetch(
-			`http://localhost:3001/api/templates/examples${
-				selectedCategory.value
-					? `?category=${selectedCategory.value}`
-					: ""
-			}`
-		);
+		const url = selectedCategory.value
+			? `${getApiUrl("/templates/examples")}?category=${selectedCategory.value}`
+			: getApiUrl("/templates/examples");
+		const response = await fetch(url);
 		if (!response.ok) {
 			throw new Error("Erreur lors du chargement des templates");
 		}

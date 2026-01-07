@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
 import type { Template } from "~/types/template";
 import { useAuthStore } from "~/composables/useAuth";
-
-const API_URL = "http://localhost:3001/api";
+import { getApiUrl } from "~/utils/api";
 
 interface TemplateState {
 	templates: Template[];
@@ -46,8 +45,8 @@ export const useTemplateStore = defineStore("template", {
 				const headers = authStore.getAuthHeaders;
 
 				const url = category
-					? `${API_URL}/templates?category=${category}`
-					: `${API_URL}/templates`;
+					? `${getApiUrl("/templates")}?category=${category}`
+					: getApiUrl("/templates");
 				const response = await fetch(url, {
 					headers: {
 						...headers,
@@ -84,7 +83,7 @@ export const useTemplateStore = defineStore("template", {
 				const headers = authStore.getAuthHeaders;
 
 				const response = await fetch(
-					`${API_URL}/templates/${id}/content`,
+					getApiUrl(`/templates/${id}/content`),
 					{
 						headers: {
 							...headers,
@@ -124,7 +123,7 @@ export const useTemplateStore = defineStore("template", {
 					);
 				}
 				const headers = authStore.getAuthHeaders;
-				const response = await fetch(`${API_URL}/templates`, {
+				const response = await fetch(getApiUrl("/templates"), {
 					method: "POST",
 					headers: {
 						...headers,
@@ -178,7 +177,7 @@ export const useTemplateStore = defineStore("template", {
 					);
 				}
 				const headers = authStore.getAuthHeaders;
-				const response = await fetch(`${API_URL}/templates/${id}`, {
+				const response = await fetch(getApiUrl(`/templates/${id}`), {
 					method: "PATCH",
 					headers: {
 						...headers,
@@ -218,7 +217,7 @@ export const useTemplateStore = defineStore("template", {
 					);
 				}
 				const headers = authStore.getAuthHeaders;
-				const response = await fetch(`${API_URL}/templates/${id}`, {
+				const response = await fetch(getApiUrl(`/templates/${id}`), {
 					method: "DELETE",
 					headers,
 				});
@@ -253,7 +252,7 @@ export const useTemplateStore = defineStore("template", {
 				}
 				const headers = authStore.getAuthHeaders;
 				const response = await fetch(
-					`${API_URL}/templates/${id}/duplicate`,
+					getApiUrl(`/templates/${id}/duplicate`),
 					{
 						method: "POST",
 						headers: {

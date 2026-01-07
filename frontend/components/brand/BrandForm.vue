@@ -367,6 +367,7 @@ import type { Brand, Background, Icon } from "~/types/brand";
 import FontSelector from "./FontSelector.vue";
 import { useApi } from "~/composables/useApi";
 import { useAuthStore } from "~/composables/useAuth";
+import { getApiBaseUrl } from "~/utils/api";
 
 const props = defineProps<{
 	brand?: Brand;
@@ -496,7 +497,7 @@ function removeImageFromGroup(groupIdx: number, imgIdx: number) {
 
 const { apiFetch } = useApi();
 const authStore = useAuthStore();
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = getApiBaseUrl().replace("/api", "");
 
 interface ImageResponse {
 	id: number;
