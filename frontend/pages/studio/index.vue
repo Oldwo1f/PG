@@ -1362,7 +1362,7 @@ import { useBrandStore } from "~/stores/brand";
 import { useStudioStore } from "~/stores/studio";
 import { useAuthStore } from "~/composables/useAuth";
 import { TEMPLATE_CATEGORIES } from "~/constants/categories";
-import { getApiUrl } from "~/utils/api";
+import { getApiUrl, resolveBackendImageUrl } from "~/utils/api";
 
 // Import MonacoEditor only on client side
 let MonacoEditor: any = null;
@@ -1429,27 +1429,27 @@ Handlebars.registerHelper("firstBackgroundImage", function (imageGroups) {
 		backgroundGroup.images_url.length === 0
 	)
 		return "";
-	return backgroundGroup.images_url[0].url || "";
+	return resolveBackendImageUrl(backgroundGroup.images_url[0].url || "");
 });
 
 // Helper pour obtenir la première image d'un tableau d'images (ex: brand.imageGroups.background)
 Handlebars.registerHelper("firstImage", function (images) {
 	if (!Array.isArray(images) || images.length === 0) return "";
-	return images[0].url || "";
+	return resolveBackendImageUrl(images[0].url || "");
 });
 
 // Helper pour obtenir une image aléatoire d'un tableau d'images (ex: brand.imageGroups.background)
 Handlebars.registerHelper("randomImage", function (images) {
 	if (!Array.isArray(images) || images.length === 0) return "";
 	const idx = Math.floor(Math.random() * images.length);
-	return images[idx].url || "";
+	return resolveBackendImageUrl(images[idx].url || "");
 });
 
 // Helper pour obtenir l'URL d'une image par son nom dans un tableau d'images
 Handlebars.registerHelper("namedImage", function (images, name) {
 	if (!Array.isArray(images) || !name) return "";
 	const found = images.find((img) => img.name === name);
-	return found && found.url ? found.url : "";
+	return found && found.url ? resolveBackendImageUrl(found.url) : "";
 });
 
 // Helper pour formater les polices (ajoute des guillemets si nécessaire)

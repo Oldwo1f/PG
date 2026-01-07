@@ -108,7 +108,7 @@
 					</svg>
 				</button>
 				<img
-					:src="API_BASE_URL + img.url"
+					:src="getImageUrl(img)"
 					:alt="img.originalName"
 					class="w-full h-40 object-cover"
 				/>
@@ -188,10 +188,9 @@ const loading = ref(true);
 const error = ref<string | null>(null);
 const isDragging = ref(false);
 
-import { getApiBaseUrl } from "~/utils/api";
+import { resolveBackendImageUrl } from "~/utils/api";
 const authStore = useAuthStore();
 const { apiFetch } = useApi();
-const API_BASE_URL = getApiBaseUrl().replace("/api", "");
 
 const fetchImages = async () => {
 	try {
@@ -300,7 +299,7 @@ async function deleteImage(id: number) {
 onMounted(fetchImages);
 
 function getImageUrl(img: Image): string {
-	return `${API_BASE_URL}${img.url}`;
+	return resolveBackendImageUrl(img.url);
 }
 
 const copied = ref<number | null>(null);

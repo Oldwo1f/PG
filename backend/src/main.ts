@@ -5,6 +5,7 @@ import { AppModule } from './app.module';
 import { join } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Request, Response, NextFunction } from 'express';
+import { existsSync } from 'fs';
 import helmet from 'helmet';
 import { LoggerService } from './common/logger/logger.service';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
@@ -16,30 +17,6 @@ async function bootstrap(): Promise<void> {
   });
   const logger = app.get(LoggerService);
   app.useLogger(logger);
-
-  // Obtenir l'instance Express native AVANT toute configuration
-  const expressApp = app.getHttpAdapter().getInstance();
-
-  // Servir les fichiers statiques EN PREMIER, avant tout autre middleware
-  const uploadsPath = join(__dirname, '..', '..', 'uploads');
-  logger.log(`Static uploads path: ${uploadsPath}`, 'Bootstrap');
-
-  // Middleware CORS pour les fichiers statiques
-  expressApp.use('/uploads', (req: Request, res: Response, next: NextFunction) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.setHeader('Cache-Control', 'public, max-age=31536000');
-
-    if (req.method === 'OPTIONS') {
-      return res.sendStatus(200);
-    }
-
-    next();
-  });
-
-  // Servir les fichiers statiques
-  expressApp.use('/uploads', express.static(uploadsPath));
 
   // Headers de sécurité
   app.use(
@@ -58,6 +35,9 @@ async function bootstrap(): Promise<void> {
   // Exception filter global
   app.useGlobalFilters(new HttpExceptionFilter(logger));
 
+  // Set global prefix for all routes
+  app.setGlobalPrefix('api');
+
   // Configuration CORS
   const corsOrigins = process.env.CORS_ORIGINS
     ? process.env.CORS_ORIGINS.split(',').map((origin) => origin.trim())
@@ -72,8 +52,28 @@ async function bootstrap(): Promise<void> {
     credentials: true,
   });
 
-  // Set global prefix for all routes
-  app.setGlobalPrefix('api');
+  // Servir les fichiers statiques (images uploadées) AVANT le prefix global
+  // Utilisation d'Express natif pour servir en dehors du système de routing NestJS
+  const uploadsPath = join(__dirname, '..', '..', 'uploads');
+  logger.log(`Static uploads path: ${uploadsPath}`, 'Bootstrap');
+
+  // Middleware Express natif pour servir les fichiers statiques avec CORS
+  const staticMiddleware = express.static(uploadsPath);
+  app.use('/uploads', (req: Request, res: Response, next: NextFunction) => {
+    // Ajouter les headers CORS
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Cache-Control', 'public, max-age=31536000');
+
+    if (req.method === 'OPTIONS') {
+      res.sendStatus(200);
+      return;
+    }
+
+    // Servir le fichier statique via Express natif
+    staticMiddleware(req, res, next);
+  });
 
   // Servir les assets d'icônes (CSS, polices, etc.)
   const assetsPath = join(__dirname, '..', '..', 'assets');

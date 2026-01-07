@@ -121,7 +121,7 @@
 						class="relative group"
 					>
 						<img
-							:src="image.url"
+							:src="resolveBackendImageUrl(image.url)"
 							:alt="image.name"
 							class="h-20 w-20 rounded-lg object-cover"
 						/>
@@ -190,6 +190,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import type { Brand, Background, Icon } from "~/types/brand";
+import { resolveBackendImageUrl } from "~/utils/api";
 
 const props = defineProps<{
 	modelValue: Brand;

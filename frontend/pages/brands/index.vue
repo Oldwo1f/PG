@@ -169,7 +169,7 @@
 						>Logo</label
 					>
 					<img
-						:src="brand.logoUrl"
+						:src="resolveBackendImageUrl(brand.logoUrl)"
 						:alt="brand.name"
 						class="h-12 object-contain"
 					/>
@@ -251,6 +251,7 @@ import { ref, onMounted } from "vue";
 import type { Brand } from "~/types/brand";
 import BrandForm from "~/components/brand/BrandForm.vue";
 import { useBrandStore } from "~/stores/brand";
+import { resolveBackendImageUrl } from "~/utils/api";
 
 const brandStore = useBrandStore();
 const showCreateForm = ref(false);

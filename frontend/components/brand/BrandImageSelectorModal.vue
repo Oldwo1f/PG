@@ -33,7 +33,7 @@
 					@click="toggleSelect(image)"
 				>
 					<img
-						:src="image.url"
+						:src="resolveBackendImageUrl(image.url)"
 						:alt="image.name"
 						class="h-32 w-32 object-cover"
 					/>
@@ -55,6 +55,7 @@
 <script setup lang="ts">
 import { ref, computed, watch } from "vue";
 import type { Background } from "~/types/brand";
+import { resolveBackendImageUrl } from "~/utils/api";
 
 const props = defineProps<{
 	modelValue: boolean;

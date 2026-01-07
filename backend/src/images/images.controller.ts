@@ -82,8 +82,6 @@ export class ImagesController {
       res.status(HttpStatus.NOT_FOUND).json({
         statusCode: HttpStatus.NOT_FOUND,
         message: 'Image not found',
-        path: imagePath,
-        cwd: process.cwd(),
       });
       return;
     }
@@ -96,28 +94,6 @@ export class ImagesController {
 
     // Servir le fichier
     res.sendFile(imagePath);
-  }
-
-  @Get('debug/list')
-  async listImages(@Res() res: Response): Promise<void> {
-    const fs = require('fs');
-    const uploadsDir = join(process.cwd(), 'uploads', 'images');
-    
-    try {
-      const files = fs.readdirSync(uploadsDir);
-      res.json({
-        uploadsDir,
-        cwd: process.cwd(),
-        filesCount: files.length,
-        files: files.slice(0, 10), // Premiers 10 fichiers
-      });
-    } catch (error) {
-      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-        error: error.message,
-        uploadsDir,
-        cwd: process.cwd(),
-      });
-    }
   }
 
   @Delete(':id')

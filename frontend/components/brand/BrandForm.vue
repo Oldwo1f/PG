@@ -367,7 +367,7 @@ import type { Brand, Background, Icon } from "~/types/brand";
 import FontSelector from "./FontSelector.vue";
 import { useApi } from "~/composables/useApi";
 import { useAuthStore } from "~/composables/useAuth";
-import { getApiBaseUrl } from "~/utils/api";
+import { resolveBackendImageUrl } from "~/utils/api";
 
 const props = defineProps<{
 	brand?: Brand;
@@ -497,7 +497,6 @@ function removeImageFromGroup(groupIdx: number, imgIdx: number) {
 
 const { apiFetch } = useApi();
 const authStore = useAuthStore();
-const API_BASE_URL = getApiBaseUrl().replace("/api", "");
 
 interface ImageResponse {
 	id: number;
@@ -513,7 +512,7 @@ async function fetchLibraryImages() {
 	const res = await apiFetch<ImageResponse[]>("/images", { headers });
 	groupImageSelectorImages.value = res.map((img: ImageResponse) => ({
 		name: img.originalName,
-		url: API_BASE_URL + img.url,
+		url: resolveBackendImageUrl(img.url),
 	}));
 }
 
@@ -542,7 +541,7 @@ async function openLogoLibrarySelector() {
 	const res = await apiFetch<ImageResponse[]>("/images", { headers });
 	logoLibraryImages.value = res.map((img: ImageResponse) => ({
 		name: img.originalName,
-		url: API_BASE_URL + img.url,
+		url: resolveBackendImageUrl(img.url),
 	}));
 }
 
