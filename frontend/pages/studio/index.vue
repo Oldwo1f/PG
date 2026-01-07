@@ -1507,6 +1507,12 @@ Handlebars.registerHelper("json", function (context) {
 	return JSON.stringify(context);
 });
 
+// Helper resolveImage - résout les URLs d'images backend
+Handlebars.registerHelper("resolveImage", function (imageUrl) {
+	if (!imageUrl) return "";
+	return resolveBackendImageUrl(imageUrl);
+});
+
 // Fonction pour extraire la valeur d'une variable (gère les deux formats)
 const extractVariableValue = (variable: any): string => {
 	if (typeof variable === "object" && variable !== null) {
@@ -2664,14 +2670,11 @@ const createExampleTemplate = async () => {
 			isActive: true,
 		};
 
-		const response = await fetch(
-			getApiUrl("/templates/example"),
-			{
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(payload),
-			}
-		);
+		const response = await fetch(getApiUrl("/templates/example"), {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(payload),
+		});
 
 		if (!response.ok) {
 			const errorText = await response.text();

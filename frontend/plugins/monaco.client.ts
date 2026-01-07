@@ -3,26 +3,15 @@ export default defineNuxtPlugin(() => {
 	if (typeof window !== "undefined") {
 		// @ts-ignore
 		window.MonacoEnvironment = {
+			getWorker: function (moduleId: string, label: string) {
+				// Disable workers and run in main thread to avoid CORS/CDN issues
+				// This is acceptable for most use cases and avoids network errors
+				return undefined;
+			},
 			getWorkerUrl: function (moduleId: string, label: string) {
-				// Use CDN for Monaco workers - works in both dev and production
-				const monacoVersion = "0.52.2"; // Match package.json version
-				const cdnBase = `https://cdn.jsdelivr.net/npm/monaco-editor@${monacoVersion}/min`;
-				
-				const paths: Record<string, string> = {
-					editor: "vs/editor/editor.worker",
-					json: "vs/language/json/json.worker",
-					css: "vs/language/css/css.worker",
-					html: "vs/language/html/html.worker",
-					typescript: "vs/language/typescript/ts.worker",
-				};
-
-				const path = paths[label] || paths.editor;
-				
-				// Always use CDN for reliability
-				return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
-					self.MonacoEnvironment = { baseUrl: '${cdnBase}/' };
-					importScripts('${cdnBase}/${path}.js');
-				`)}`;
+				// Return undefined to disable workers (fallback to main thread)
+				// This avoids CORS issues with CDN workers
+				return undefined;
 			},
 		};
 	}
