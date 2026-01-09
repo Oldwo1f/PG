@@ -1,7 +1,7 @@
-export async function addGoogleFontsAndStyles(
+export function addGoogleFontsAndStyles(
 	html: string,
 	googleFontsLinks: string
-): Promise<string> {
+): string {
 	const showIconRandomlyScript =
 		"function showIconRandomly(icons, containerSelector, numberToShow) {" +
 		"    const container = document.querySelector(containerSelector);" +
@@ -39,32 +39,13 @@ export async function addGoogleFontsAndStyles(
 		"    }" +
 		"}";
 
-	// Fetch Google Fonts CSS and inject it inline to ensure it loads in iframe
-	let googleFontsCss = "";
-	if (googleFontsLinks) {
-		try {
-			const response = await fetch(googleFontsLinks);
-			if (response.ok) {
-				googleFontsCss = await response.text();
-				// Ensure font-display: swap is set for better loading
-				googleFontsCss = googleFontsCss.replace(
-					/@font-face\s*\{/g,
-					"@font-face { font-display: swap; "
-				);
-			}
-		} catch (error) {
-			console.warn(
-				"Failed to fetch Google Fonts CSS, using link tag:",
-				error
-			);
-			// Fallback to link tag if fetch fails
-		}
-	}
-
-	const googleFontsStyle = googleFontsCss
-		? `<style>${googleFontsCss}</style>`
-		: googleFontsLinks
-		? `<link rel="stylesheet" href="${googleFontsLinks}">`
+	// Use @import in a style tag - this works better in srcdoc iframes than fetch or link tags
+	// @import allows fonts to load properly in iframe contexts
+	const googleFontsStyle = googleFontsLinks
+		? `<style>@import url("${googleFontsLinks.replace(
+				/"/g,
+				"&quot;"
+		  )}");</style>`
 		: "";
 
 	return (
@@ -72,9 +53,10 @@ export async function addGoogleFontsAndStyles(
 		"<html>" +
 		"<head>" +
 		'<meta charset="UTF-8">' +
+		'<meta http-equiv="Content-Security-Policy" content="font-src * data: https:;">' +
+		googleFontsStyle +
 		'<link rel="stylesheet" href="/assets/icons/phosphor-duotone.css">' +
 		'<link rel="stylesheet" href="/assets/icons/fontawesome.css">' +
-		googleFontsStyle +
 		"<style>.icon{display:inline-block;color:rgba(255,255,255,0.1);}</style>" +
 		"<script>" +
 		showIconRandomlyScript +
