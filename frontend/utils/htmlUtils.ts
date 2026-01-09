@@ -39,13 +39,61 @@ export function addGoogleFontsAndStyles(
 		"    }" +
 		"}";
 
-	// Use @import in a style tag - this works better in srcdoc iframes than fetch or link tags
-	// @import allows fonts to load properly in iframe contexts
-	const googleFontsStyle = googleFontsLinks
-		? `<style>@import url("${googleFontsLinks.replace(
+	// Use link tag for Google Fonts - place it early in head for proper loading
+	const googleFontsLink = googleFontsLinks
+		? `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="${googleFontsLinks.replace(
 				/"/g,
 				"&quot;"
-		  )}");</style>`
+		  )}">`
+		: "";
+
+	// Script to wait for fonts to load before showing content
+	const fontLoadScript = googleFontsLinks
+		? `<script>
+		(function() {
+			// Hide body initially
+			document.body.style.visibility = 'hidden';
+			// Wait for fonts to load
+			if (document.fonts && document.fonts.ready) {
+				document.fonts.ready.then(function() {
+					// Additional check: verify specific fonts are loaded
+					var fontsToCheck = [];
+					var fontFamilyMatch = /family=([^:&]+)/g;
+					var match;
+					while ((match = fontFamilyMatch.exec('${googleFontsLinks}')) !== null) {
+						var fontName = decodeURIComponent(match[1]).replace(/\\+/g, ' ');
+						fontsToCheck.push('"' + fontName + '"');
+					}
+					// Check if fonts are available
+					var allLoaded = true;
+					if (fontsToCheck.length > 0) {
+						for (var i = 0; i < fontsToCheck.length; i++) {
+							if (!document.fonts.check('12px ' + fontsToCheck[i])) {
+								allLoaded = false;
+								break;
+							}
+						}
+					}
+					// Show body after fonts are ready
+					setTimeout(function() {
+						document.body.style.visibility = 'visible';
+					}, allLoaded ? 0 : 200);
+				}).catch(function() {
+					// Fallback: show after timeout
+					setTimeout(function() {
+						document.body.style.visibility = 'visible';
+					}, 800);
+				});
+			} else {
+				// Fallback for browsers without Font Loading API
+				window.addEventListener('load', function() {
+					setTimeout(function() {
+						document.body.style.visibility = 'visible';
+					}, 800);
+				});
+			}
+		})();
+		</script>`
 		: "";
 
 	return (
@@ -54,10 +102,12 @@ export function addGoogleFontsAndStyles(
 		"<head>" +
 		'<meta charset="UTF-8">' +
 		'<meta http-equiv="Content-Security-Policy" content="font-src * data: https:;">' +
-		googleFontsStyle +
+		googleFontsLink +
 		'<link rel="stylesheet" href="/assets/icons/phosphor-duotone.css">' +
 		'<link rel="stylesheet" href="/assets/icons/fontawesome.css">' +
 		"<style>.icon{display:inline-block;color:rgba(255,255,255,0.1);}</style>" +
+		"<style>body { visibility: hidden; }</style>" +
+		fontLoadScript +
 		"<script>" +
 		showIconRandomlyScript +
 		"</script>" +
