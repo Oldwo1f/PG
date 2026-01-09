@@ -47,54 +47,48 @@ export function addGoogleFontsAndStyles(
 		  )}">`
 		: "";
 
-	// Script to wait for fonts to load before showing content
-	const fontLoadScript = googleFontsLinks
-		? `<script>
-		(function() {
-			// Hide body initially
-			document.body.style.visibility = 'hidden';
-			// Wait for fonts to load
-			if (document.fonts && document.fonts.ready) {
-				document.fonts.ready.then(function() {
-					// Additional check: verify specific fonts are loaded
-					var fontsToCheck = [];
-					var fontFamilyMatch = /family=([^:&]+)/g;
-					var match;
-					while ((match = fontFamilyMatch.exec('${googleFontsLinks}')) !== null) {
-						var fontName = decodeURIComponent(match[1]).replace(/\\+/g, ' ');
-						fontsToCheck.push('"' + fontName + '"');
-					}
-					// Check if fonts are available
-					var allLoaded = true;
-					if (fontsToCheck.length > 0) {
-						for (var i = 0; i < fontsToCheck.length; i++) {
-							if (!document.fonts.check('12px ' + fontsToCheck[i])) {
-								allLoaded = false;
-								break;
-							}
-						}
-					}
-					// Show body after fonts are ready
-					setTimeout(function() {
-						document.body.style.visibility = 'visible';
-					}, allLoaded ? 0 : 200);
-				}).catch(function() {
-					// Fallback: show after timeout
-					setTimeout(function() {
-						document.body.style.visibility = 'visible';
-					}, 800);
-				});
-			} else {
-				// Fallback for browsers without Font Loading API
-				window.addEventListener('load', function() {
-					setTimeout(function() {
-						document.body.style.visibility = 'visible';
-					}, 800);
-				});
-			}
-		})();
-		</script>`
-		: "";
+	// Fix font-family declarations: add quotes around font names with spaces
+	// This handles cases where templates use {{titleFont}} directly instead of {{fontFamily titleFont}}
+	// Example: font-family: Playfair Display, sans-serif; -> font-family: "Playfair Display", sans-serif;
+	let processedHtml = html.replace(
+		/font-family:\s*([^;{}]+)/g,
+		(match, fontList) => {
+			// Split by comma to handle font stacks (e.g., "Playfair Display, serif, sans-serif")
+			const fonts = fontList.split(",").map((f: string) => f.trim());
+			const fixedFonts = fonts.map((font: string) => {
+				// Skip if already quoted, is a CSS variable, or contains Handlebars syntax
+				if (
+					font.startsWith('"') ||
+					font.startsWith("'") ||
+					font.startsWith("var(") ||
+					font.includes("{{")
+				) {
+					return font;
+				}
+				// Common fallback fonts that shouldn't be quoted
+				const commonFallbacks = [
+					"sans-serif",
+					"serif",
+					"monospace",
+					"cursive",
+					"fantasy",
+				];
+				const isFallback = commonFallbacks.includes(font.toLowerCase());
+
+				// Add quotes if font name contains spaces and is not a fallback
+				if (!isFallback && font.includes(" ")) {
+					return `"${font}"`;
+				}
+				return font;
+			});
+			return `font-family: ${fixedFonts.join(", ")}`;
+		}
+	);
+
+	// Script to wait for fonts to load - simplified approach
+	// Don't hide content initially, fonts will load with font-display: swap
+	// This prevents blocking and allows graceful fallback
+	const fontLoadScript = "";
 
 	return (
 		"<!DOCTYPE html>" +
@@ -106,14 +100,13 @@ export function addGoogleFontsAndStyles(
 		'<link rel="stylesheet" href="/assets/icons/phosphor-duotone.css">' +
 		'<link rel="stylesheet" href="/assets/icons/fontawesome.css">' +
 		"<style>.icon{display:inline-block;color:rgba(255,255,255,0.1);}</style>" +
-		"<style>body { visibility: hidden; }</style>" +
 		fontLoadScript +
 		"<script>" +
 		showIconRandomlyScript +
 		"</script>" +
 		"</head>" +
 		"<body>" +
-		html +
+		processedHtml +
 		"</body>" +
 		"</html>"
 	);
