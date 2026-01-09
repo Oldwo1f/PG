@@ -39,12 +39,17 @@ export function addGoogleFontsAndStyles(
 		"    }" +
 		"}";
 
-	// Use link tag for Google Fonts - place it early in head for proper loading
+	// Use multiple methods to ensure Google Fonts load in srcdoc iframe:
+	// 1. Link tag in head (primary method)
+	// 2. @import in style tag (fallback that sometimes works better in iframes)
 	const googleFontsLink = googleFontsLinks
 		? `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="${googleFontsLinks.replace(
 				/"/g,
 				"&quot;"
-		  )}">`
+		  )}"><style>@import url("${googleFontsLinks.replace(
+				/"/g,
+				"&quot;"
+		  )}");</style>`
 		: "";
 
 	// Fix font-family declarations: add quotes around font names with spaces
@@ -85,9 +90,8 @@ export function addGoogleFontsAndStyles(
 		}
 	);
 
-	// Script to wait for fonts to load - simplified approach
-	// Don't hide content initially, fonts will load with font-display: swap
-	// This prevents blocking and allows graceful fallback
+	// No additional font loading script needed - the link tag should work
+	// Fonts will load with font-display: swap from Google Fonts API
 	const fontLoadScript = "";
 
 	return (

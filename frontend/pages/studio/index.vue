@@ -1906,7 +1906,7 @@ const handleTemplateChange = async () => {
 		// Synchroniser le nom local
 		templateName.value = selectedTemplate.value.name || "";
 
-		updatePreview();
+		await updatePreview();
 	} catch (error) {
 		console.error("Erreur lors du chargement du template:", error);
 		alert("Erreur lors du chargement du template");
@@ -2001,7 +2001,7 @@ const updateDimensions = () => {
 	updatePreview();
 };
 
-const updatePreview = () => {
+const updatePreview = async () => {
 	if (!isMounted.value || !previewFrame.value) return;
 
 	// Vérifier que nous avons un template et une marque
@@ -2046,11 +2046,145 @@ const updatePreview = () => {
 	const template = Handlebars.compile(htmlContent.value);
 	const compiledHtml = template(data);
 
+	// Preload Google Fonts in the parent page to ensure they're cached
+	// This helps fonts load faster in the iframe
+	if (googleFontsLinks) {
+		const existingLink = document.head.querySelector(
+			`link[href="${googleFontsLinks}"]`
+		);
+		if (!existingLink) {
+			const link = document.createElement("link");
+			link.rel = "preconnect";
+			link.href = "https://fonts.googleapis.com";
+			document.head.appendChild(link);
+
+			const link2 = document.createElement("link");
+			link2.rel = "preconnect";
+			link2.href = "https://fonts.gstatic.com";
+			link2.crossOrigin = "anonymous";
+			document.head.appendChild(link2);
+
+			const fontLink = document.createElement("link");
+			fontLink.rel = "stylesheet";
+			fontLink.href = googleFontsLinks;
+			document.head.appendChild(fontLink);
+
+			// Wait a bit for fonts to start loading in parent
+			await new Promise((resolve) => setTimeout(resolve, 100));
+		}
+	}
+
 	// Ajouter les polices Google Fonts et les styles CSS
 	const finalHtml = addGoogleFontsAndStyles(compiledHtml, googleFontsLinks);
 
 	// Mettre à jour l'iframe
 	previewFrame.value.srcdoc = finalHtml;
+
+	// Wait for fonts to load in the iframe after srcdoc is set
+	// Use onload event to ensure iframe is fully loaded before checking fonts
+	if (googleFontsLinks && previewFrame.value) {
+		const handleIframeLoad = async () => {
+			try {
+				const iframeDoc = previewFrame.value?.contentWindow?.document;
+				if (!iframeDoc) return;
+
+				// Wait for DOM to be ready in iframe
+				const checkFonts = async () => {
+					// Extract font names for explicit loading
+					const fontNamesToLoad = fonts.map((font) => {
+						// Format font name for Font Loading API
+						return font.includes(" ") ? `"${font}"` : font;
+					});
+
+					// Verify fonts link is present, add if missing
+					let hasFontLink = iframeDoc.querySelector(
+						'link[href*="fonts.googleapis.com"]'
+					);
+
+					if (!hasFontLink) {
+						// Add preconnect links first
+						const preconnect1 = iframeDoc.createElement("link");
+						preconnect1.rel = "preconnect";
+						preconnect1.href = "https://fonts.googleapis.com";
+						iframeDoc.head.appendChild(preconnect1);
+
+						const preconnect2 = iframeDoc.createElement("link");
+						preconnect2.rel = "preconnect";
+						preconnect2.href = "https://fonts.gstatic.com";
+						preconnect2.crossOrigin = "anonymous";
+						iframeDoc.head.appendChild(preconnect2);
+
+						// Add font stylesheet
+						const fontLink = iframeDoc.createElement("link");
+						fontLink.rel = "stylesheet";
+						fontLink.href = googleFontsLinks;
+						iframeDoc.head.appendChild(fontLink);
+
+						// Wait for the link to load
+						await new Promise((resolve) => {
+							fontLink.onload = resolve;
+							fontLink.onerror = resolve; // Continue even if it fails
+							setTimeout(resolve, 1500); // Timeout after 1.5s
+						});
+					}
+
+					// Wait for fonts to be ready using Font Loading API
+					if (iframeDoc.fonts) {
+						// Try to explicitly load fonts if Font Loading API supports it
+						if (iframeDoc.fonts.load) {
+							try {
+								// Load fonts explicitly with common weights
+								const fontPromises = fontNamesToLoad.map((fontName) => {
+									try {
+										return iframeDoc.fonts.load(`400 12px ${fontName}`);
+									} catch {
+										return Promise.resolve();
+									}
+								});
+								await Promise.all(fontPromises);
+							} catch (error) {
+								console.warn("Error explicitly loading fonts:", error);
+							}
+						}
+
+						// Wait for fonts.ready
+						if (iframeDoc.fonts.ready) {
+							await iframeDoc.fonts.ready;
+							// Additional wait to ensure fonts are rendered
+							await new Promise((resolve) => setTimeout(resolve, 500));
+						}
+					} else {
+						// Fallback: wait longer for fonts to load
+						await new Promise((resolve) => setTimeout(resolve, 1500));
+					}
+
+					// Force a reflow to ensure fonts are applied
+					if (iframeDoc.body) {
+						const display = iframeDoc.body.style.display;
+						iframeDoc.body.style.display = "none";
+						iframeDoc.body.offsetHeight; // Trigger reflow
+						iframeDoc.body.style.display = display || "";
+					}
+				};
+
+				// Check if document is already loaded
+				if (iframeDoc.readyState === "complete") {
+					await checkFonts();
+				} else {
+					iframeDoc.addEventListener("DOMContentLoaded", checkFonts);
+					// Also set a timeout in case DOMContentLoaded already fired
+					setTimeout(checkFonts, 100);
+				}
+			} catch (error) {
+				console.warn("Error loading fonts in iframe:", error);
+			}
+		};
+
+		// Use onload event handler
+		previewFrame.value.onload = handleIframeLoad;
+		// Also try immediately in case iframe is already loaded
+		setTimeout(handleIframeLoad, 200);
+	}
 };
 
 const downloadImage = async () => {
@@ -2508,7 +2642,7 @@ onMounted(async () => {
 	// S'assurer que le preview est mis à jour après tout
 	await nextTick();
 	if (isMounted.value && selectedTemplate.value && selectedBrand.value) {
-		updatePreview();
+		await updatePreview();
 	}
 
 	window.addEventListener("keydown", handleSaveShortcut);
