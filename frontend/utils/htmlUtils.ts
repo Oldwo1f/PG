@@ -52,44 +52,6 @@ export function addGoogleFontsAndStyles(
 		  )}");</style>`
 		: "";
 
-	// Fix font-family declarations: add quotes around font names with spaces
-	// This handles cases where templates use {{titleFont}} directly instead of {{fontFamily titleFont}}
-	// Example: font-family: Playfair Display, sans-serif; -> font-family: "Playfair Display", sans-serif;
-	let processedHtml = html.replace(
-		/font-family:\s*([^;{}]+)/g,
-		(match, fontList) => {
-			// Split by comma to handle font stacks (e.g., "Playfair Display, serif, sans-serif")
-			const fonts = fontList.split(",").map((f: string) => f.trim());
-			const fixedFonts = fonts.map((font: string) => {
-				// Skip if already quoted, is a CSS variable, or contains Handlebars syntax
-				if (
-					font.startsWith('"') ||
-					font.startsWith("'") ||
-					font.startsWith("var(") ||
-					font.includes("{{")
-				) {
-					return font;
-				}
-				// Common fallback fonts that shouldn't be quoted
-				const commonFallbacks = [
-					"sans-serif",
-					"serif",
-					"monospace",
-					"cursive",
-					"fantasy",
-				];
-				const isFallback = commonFallbacks.includes(font.toLowerCase());
-
-				// Add quotes if font name contains spaces and is not a fallback
-				if (!isFallback && font.includes(" ")) {
-					return `"${font}"`;
-				}
-				return font;
-			});
-			return `font-family: ${fixedFonts.join(", ")}`;
-		}
-	);
-
 	// No additional font loading script needed - the link tag should work
 	// Fonts will load with font-display: swap from Google Fonts API
 	const fontLoadScript = "";
@@ -110,7 +72,7 @@ export function addGoogleFontsAndStyles(
 		"</script>" +
 		"</head>" +
 		"<body>" +
-		processedHtml +
+		html +
 		"</body>" +
 		"</html>"
 	);
