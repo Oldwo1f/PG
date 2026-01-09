@@ -1,7 +1,7 @@
-export function addGoogleFontsAndStyles(
+export async function addGoogleFontsAndStyles(
 	html: string,
 	googleFontsLinks: string
-): string {
+): Promise<string> {
 	const showIconRandomlyScript =
 		"function showIconRandomly(icons, containerSelector, numberToShow) {" +
 		"    const container = document.querySelector(containerSelector);" +
@@ -39,15 +39,42 @@ export function addGoogleFontsAndStyles(
 		"    }" +
 		"}";
 
+	// Fetch Google Fonts CSS and inject it inline to ensure it loads in iframe
+	let googleFontsCss = "";
+	if (googleFontsLinks) {
+		try {
+			const response = await fetch(googleFontsLinks);
+			if (response.ok) {
+				googleFontsCss = await response.text();
+				// Ensure font-display: swap is set for better loading
+				googleFontsCss = googleFontsCss.replace(
+					/@font-face\s*\{/g,
+					"@font-face { font-display: swap; "
+				);
+			}
+		} catch (error) {
+			console.warn(
+				"Failed to fetch Google Fonts CSS, using link tag:",
+				error
+			);
+			// Fallback to link tag if fetch fails
+		}
+	}
+
+	const googleFontsStyle = googleFontsCss
+		? `<style>${googleFontsCss}</style>`
+		: googleFontsLinks
+		? `<link rel="stylesheet" href="${googleFontsLinks}">`
+		: "";
+
 	return (
 		"<!DOCTYPE html>" +
 		"<html>" +
 		"<head>" +
+		'<meta charset="UTF-8">' +
 		'<link rel="stylesheet" href="/assets/icons/phosphor-duotone.css">' +
 		'<link rel="stylesheet" href="/assets/icons/fontawesome.css">' +
-		(googleFontsLinks
-			? '<link rel="stylesheet" href="' + googleFontsLinks + '">'
-			: "") +
+		googleFontsStyle +
 		"<style>.icon{display:inline-block;color:rgba(255,255,255,0.1);}</style>" +
 		"<script>" +
 		showIconRandomlyScript +

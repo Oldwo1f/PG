@@ -1906,7 +1906,7 @@ const handleTemplateChange = async () => {
 		// Synchroniser le nom local
 		templateName.value = selectedTemplate.value.name || "";
 
-		updatePreview();
+		await updatePreview();
 	} catch (error) {
 		console.error("Erreur lors du chargement du template:", error);
 		alert("Erreur lors du chargement du template");
@@ -2001,7 +2001,7 @@ const updateDimensions = () => {
 	updatePreview();
 };
 
-const updatePreview = () => {
+const updatePreview = async () => {
 	if (!isMounted.value || !previewFrame.value) return;
 
 	// Vérifier que nous avons un template et une marque
@@ -2046,8 +2046,11 @@ const updatePreview = () => {
 	const template = Handlebars.compile(htmlContent.value);
 	const compiledHtml = template(data);
 
-	// Ajouter les polices Google Fonts et les styles CSS
-	const finalHtml = addGoogleFontsAndStyles(compiledHtml, googleFontsLinks);
+	// Ajouter les polices Google Fonts et les styles CSS (async)
+	const finalHtml = await addGoogleFontsAndStyles(
+		compiledHtml,
+		googleFontsLinks
+	);
 
 	// Mettre à jour l'iframe
 	previewFrame.value.srcdoc = finalHtml;
@@ -2508,7 +2511,7 @@ onMounted(async () => {
 	// S'assurer que le preview est mis à jour après tout
 	await nextTick();
 	if (isMounted.value && selectedTemplate.value && selectedBrand.value) {
-		updatePreview();
+		await updatePreview();
 	}
 
 	window.addEventListener("keydown", handleSaveShortcut);
