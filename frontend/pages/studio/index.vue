@@ -846,7 +846,7 @@
 									<!-- Section Groupes d'images -->
 									<div
 										v-if="
-											selectedBrand?.imageGroups?.length
+											normalizedSelectedBrandImageGroups?.length
 										"
 									>
 										<label
@@ -855,7 +855,7 @@
 										>
 										<div class="space-y-3">
 											<div
-												v-for="group in selectedBrand.imageGroups"
+											v-for="group in normalizedSelectedBrandImageGroups"
 												:key="group.groupName"
 												class="p-3 bg-gray-50 rounded-lg border border-gray-200"
 											>
@@ -1353,7 +1353,7 @@ import {
 } from "vue";
 import type { Template, TemplateVariable } from "~/types/template";
 import type { Brand } from "~/types/brand";
-import * as Handlebars from "handlebars";
+import Handlebars from "handlebars";
 import { useRoute, useRouter, onBeforeRouteLeave } from "vue-router";
 import { googleFontsService } from "~/services/googleFonts";
 import { addGoogleFontsAndStyles } from "~/utils/htmlUtils";
@@ -1370,24 +1370,31 @@ if (process.client) {
 	MonacoEditor = (await import("monaco-editor-vue3")).default;
 }
 
+/**
+ * IMPORTANT:
+ * Utiliser UNE instance dédiée Handlebars pour éviter les cas où les helpers
+ * sont enregistrés sur une autre instance (symptôme: aucun helper ne marche).
+ */
+const hb = Handlebars.create();
+
 // Enregistrer le helper 'first'
-Handlebars.registerHelper("first", function (array) {
+hb.registerHelper("first", function (array) {
 	return array && array.length ? array[0] : "";
 });
 
 // Enregistrer le helper 'random'
-Handlebars.registerHelper("random", function (array) {
+hb.registerHelper("random", function (array) {
 	if (!array || !array.length) return "";
 	const randomIndex = Math.floor(Math.random() * array.length);
 	return array[randomIndex];
 });
 // Helper d'égalité simple
-Handlebars.registerHelper("eq", function (a, b) {
+hb.registerHelper("eq", function (a, b) {
 	return a === b;
 });
 
 // Helper de condition générique
-Handlebars.registerHelper(
+hb.registerHelper(
 	"ifCond",
 	function (this: any, v1, operator, v2, options) {
 		switch (operator) {
@@ -1418,7 +1425,7 @@ Handlebars.registerHelper(
 );
 
 // Helper pour obtenir la première image du groupe 'background'
-Handlebars.registerHelper("firstBackgroundImage", function (imageGroups) {
+hb.registerHelper("firstBackgroundImage", function (imageGroups) {
 	if (!Array.isArray(imageGroups)) return "";
 	const backgroundGroup = imageGroups.find(
 		(g) => g.groupName === "background"
@@ -1429,31 +1436,43 @@ Handlebars.registerHelper("firstBackgroundImage", function (imageGroups) {
 		backgroundGroup.images_url.length === 0
 	)
 		return "";
-	return resolveBackendImageUrl(backgroundGroup.images_url[0].url || "");
+	const first = backgroundGroup.images_url[0];
+	if (typeof first === "string") return resolveBackendImageUrl(first);
+	return resolveBackendImageUrl(first?.url || "");
 });
 
 // Helper pour obtenir la première image d'un tableau d'images (ex: brand.imageGroups.background)
-Handlebars.registerHelper("firstImage", function (images) {
+hb.registerHelper("firstImage", function (images) {
 	if (!Array.isArray(images) || images.length === 0) return "";
-	return resolveBackendImageUrl(images[0].url || "");
+	const first = images[0];
+	if (typeof first === "string") return resolveBackendImageUrl(first);
+	return resolveBackendImageUrl(first?.url || "");
 });
 
 // Helper pour obtenir une image aléatoire d'un tableau d'images (ex: brand.imageGroups.background)
-Handlebars.registerHelper("randomImage", function (images) {
+hb.registerHelper("randomImage", function (images) {
 	if (!Array.isArray(images) || images.length === 0) return "";
 	const idx = Math.floor(Math.random() * images.length);
-	return resolveBackendImageUrl(images[idx].url || "");
+	const item = images[idx];
+	if (typeof item === "string") return resolveBackendImageUrl(item);
+	return resolveBackendImageUrl(item?.url || "");
 });
 
 // Helper pour obtenir l'URL d'une image par son nom dans un tableau d'images
-Handlebars.registerHelper("namedImage", function (images, name) {
+hb.registerHelper("namedImage", function (images, name) {
 	if (!Array.isArray(images) || !name) return "";
-	const found = images.find((img) => img.name === name);
-	return found && found.url ? resolveBackendImageUrl(found.url) : "";
+	const found = images.find((img) => {
+		if (!img) return false;
+		if (typeof img === "string") return false;
+		return img.name === name;
+	});
+	return found && typeof found !== "string" && found.url
+		? resolveBackendImageUrl(found.url)
+		: "";
 });
 
 // Helper pour formater les polices (ajoute des guillemets si nécessaire)
-Handlebars.registerHelper("fontFamily", function (fontName) {
+hb.registerHelper("fontFamily", function (fontName) {
 	if (!fontName) return "";
 	// Si la police contient des espaces, l'entourer de guillemets
 	if (fontName.includes(" ")) {
@@ -1463,7 +1482,7 @@ Handlebars.registerHelper("fontFamily", function (fontName) {
 });
 
 // Helper pour rendre une icône (existant mais amélioré)
-Handlebars.registerHelper("renderIcon", function (icon) {
+hb.registerHelper("renderIcon", function (icon) {
 	let html = "";
 	if (typeof icon === "string") {
 		if (icon.startsWith("ph-")) {
@@ -1475,40 +1494,40 @@ Handlebars.registerHelper("renderIcon", function (icon) {
 	} else if (icon && icon.class) {
 		html = `<div class="icon"><i class="${icon.class}" style="font-size: 3em; color: var(--secondaryColor);"></i></div>`;
 	}
-	return new Handlebars.SafeString(html);
+	return new hb.SafeString(html);
 });
 
 // Helper pour multiplier
-Handlebars.registerHelper("multiply", function (a, b) {
+hb.registerHelper("multiply", function (a, b) {
 	return a * b;
 });
 
 // Helper pour modulo
-Handlebars.registerHelper("modulo", function (a, b) {
+hb.registerHelper("modulo", function (a, b) {
 	return a % b;
 });
 
 // Helper pour comparer si a > bw
-Handlebars.registerHelper("gt", function (a, b) {
+hb.registerHelper("gt", function (a, b) {
 	return a > b;
 });
 
 // Helper pour obtenir la longueur d'un tableau
-Handlebars.registerHelper("length", function (array) {
+hb.registerHelper("length", function (array) {
 	return Array.isArray(array) ? array.length : 0;
 });
 
 // Helper pour accéder à une propriété d'un objet par index
-Handlebars.registerHelper("lookup", function (array, index, property) {
+hb.registerHelper("lookup", function (array, index, property) {
 	if (!Array.isArray(array) || !array[index]) return "";
 	return array[index][property] || "";
 });
-Handlebars.registerHelper("json", function (context) {
+hb.registerHelper("json", function (context) {
 	return JSON.stringify(context);
 });
 
 // Helper resolveImage - résout les URLs d'images backend
-Handlebars.registerHelper("resolveImage", function (imageUrl) {
+hb.registerHelper("resolveImage", function (imageUrl) {
 	if (!imageUrl) return "";
 	return resolveBackendImageUrl(imageUrl);
 });
@@ -1722,12 +1741,41 @@ const brands = computed(() => brandStore.brands);
 const brandIconGroups = computed(() =>
 	Array.isArray(selectedBrand.value?.icons) ? selectedBrand.value.icons : []
 );
-const brandImageGroupsByName = computed(() => {
+
+const normalizedSelectedBrandImageGroups = computed(() => {
 	const groups = Array.isArray(selectedBrand.value?.imageGroups)
 		? selectedBrand.value.imageGroups
 		: [];
+
+	return groups.map((group) => {
+		const images = Array.isArray((group as any)?.images_url)
+			? (group as any).images_url
+			: [];
+
+		return {
+			...group,
+			images_url: images.map((img: any, idx: number) => {
+				if (typeof img === "string") {
+					return {
+						name: `image_${idx + 1}`,
+						url: resolveBackendImageUrl(img),
+					};
+				}
+				return {
+					name: img?.name || `image_${idx + 1}`,
+					url: resolveBackendImageUrl(img?.url || ""),
+				};
+			}),
+		};
+	});
+});
+
+const brandImageGroupsByName = computed(() => {
+	const groups = normalizedSelectedBrandImageGroups.value;
 	return groups.reduce((acc, group) => {
-		if (group.groupName) acc[group.groupName] = group.images_url || [];
+		if (group.groupName) {
+			acc[group.groupName] = group.images_url || [];
+		}
 		return acc;
 	}, {} as Record<string, { name: string; url: string }[]>);
 });
@@ -1990,7 +2038,7 @@ const handleBrandChange = () => {
 		titleFont: selectedBrand.value.titleFont,
 		textFont: selectedBrand.value.textFont,
 		tertiaryFont: selectedBrand.value.tertiaryFont,
-		logoUrl: selectedBrand.value.logoUrl,
+		logoUrl: resolveBackendImageUrl(selectedBrand.value.logoUrl),
 		imageGroups: selectedBrand.value.imageGroups || [],
 	};
 	console.log("Nouvelles variables de marque:", brandVariables.value);
@@ -2034,7 +2082,9 @@ const updatePreview = async () => {
 			titleFont: brandVariables.value.titleFont,
 			textFont: brandVariables.value.textFont,
 			tertiaryFont: brandVariables.value.tertiaryFont,
-			logoUrl: brandVariables.value.logoUrl,
+			// Toujours injecter une URL exploitable directement dans les templates
+			// (évite d'obliger l'utilisateur à utiliser un helper dans le HTML)
+			logoUrl: resolveBackendImageUrl(brandVariables.value.logoUrl),
 			icons: selectedBrand.value?.icons || [],
 			imageGroups: brandImageGroupsByName.value,
 		},
@@ -2043,7 +2093,7 @@ const updatePreview = async () => {
 	};
 
 	// Compiler le template avec Handlebars
-	const template = Handlebars.compile(htmlContent.value);
+	const template = hb.compile(htmlContent.value);
 	const compiledHtml = template(data);
 
 	// Preload Google Fonts in the parent page to ensure they're cached
@@ -2458,15 +2508,15 @@ const handleDrop = (event: DragEvent) => {
 				contentToInsert = `{{randomImage brand.imageGroups.${groupName}}}`;
 			} else {
 				// Pour les autres groupes, utiliser namedImage avec le premier nom d'image
-				const imageGroup = selectedBrand.value?.imageGroups?.find(
+				const imageGroup = normalizedSelectedBrandImageGroups.value?.find(
 					(g) => g.groupName === groupName
 				);
 				const firstImageName = imageGroup?.images_url?.[0]?.name;
 
 				if (firstImageName) {
-					contentToInsert = `{{namedImage brand.imageGroups.${groupName}} "${firstImageName}"}}`;
+					contentToInsert = `{{namedImage brand.imageGroups.${groupName} "${firstImageName}"}}`;
 				} else {
-					contentToInsert = `{{namedImage brand.imageGroups.${groupName}} "nom_image"}}`;
+					contentToInsert = `{{namedImage brand.imageGroups.${groupName} "nom_image"}}`;
 				}
 			}
 		}
@@ -2526,15 +2576,15 @@ const insertVariableAtCursor = (variableName: string) => {
 				contentToInsert = `{{randomImage brand.imageGroups.${groupName}}}`;
 			} else {
 				// Pour les autres groupes, utiliser namedImage avec le premier nom d'image
-				const imageGroup = selectedBrand.value?.imageGroups?.find(
+				const imageGroup = normalizedSelectedBrandImageGroups.value?.find(
 					(g) => g.groupName === groupName
 				);
 				const firstImageName = imageGroup?.images_url?.[0]?.name;
 
 				if (firstImageName) {
-					contentToInsert = `{{namedImage brand.imageGroups.${groupName}} "${firstImageName}"}}`;
+					contentToInsert = `{{namedImage brand.imageGroups.${groupName} "${firstImageName}"}}`;
 				} else {
-					contentToInsert = `{{namedImage brand.imageGroups.${groupName}} "nom_image"}}`;
+					contentToInsert = `{{namedImage brand.imageGroups.${groupName} "nom_image"}}`;
 				}
 			}
 		}

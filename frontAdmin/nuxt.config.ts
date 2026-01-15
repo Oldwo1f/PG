@@ -1,4 +1,22 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const apiBaseEnv = process.env.NUXT_PUBLIC_API_BASE || "";
+const proxyTargetEnv = process.env.NUXT_API_PROXY_TARGET || "";
+/**
+ * If a proxy target is provided, default to /api automatically to avoid CORS
+ * and reduce local dev misconfiguration (you can still override via NUXT_PUBLIC_API_BASE).
+ */
+const effectiveApiBase =
+	apiBaseEnv || (proxyTargetEnv ? "/api" : "http://localhost:3001/api");
+const shouldProxyApi =
+	!!proxyTargetEnv &&
+	(effectiveApiBase === "/api" ||
+		effectiveApiBase === "/api/" ||
+		effectiveApiBase.startsWith("/api"));
+
+function normalizeNoTrailingSlash(url: string): string {
+	return url.endsWith("/") ? url.slice(0, -1) : url;
+}
+
 export default defineNuxtConfig({
 	devtools: { enabled: true },
 	compatibilityDate: "2025-07-01",
@@ -38,9 +56,24 @@ export default defineNuxtConfig({
 	},
 	runtimeConfig: {
 		public: {
-			apiBase: process.env.NUXT_PUBLIC_API_BASE || "http://localhost:3001/api",
+			apiBase: effectiveApiBase,
 		},
 	},
+	/**
+	 * Dev proxy (avoid CORS when developing locally against a remote backend):
+	 *
+	 *   export NUXT_PUBLIC_API_BASE="/api"
+	 *   export NUXT_API_PROXY_TARGET="https://backendperfectgeneration.aito-flow.com"
+	 *
+	 * The browser calls /api/** on localhost, Nuxt proxies to {target}/api/**.
+	 */
+	routeRules: shouldProxyApi
+		? {
+				"/api/**": {
+					proxy: `${normalizeNoTrailingSlash(proxyTargetEnv)}/api/**`,
+				},
+			}
+		: {},
 	devServer: {
 		port: 3002,
 		host: "localhost",

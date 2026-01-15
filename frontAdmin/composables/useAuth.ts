@@ -2,8 +2,6 @@ import { defineStore } from "pinia";
 import type { AdminUser } from "~/types/auth";
 import type { LoginCredentials } from "~/types/auth";
 
-const API_URL = "http://localhost:3001/api";
-
 interface AuthState {
 	user: AdminUser | null;
 	token: string | null;
@@ -40,7 +38,7 @@ export const useAuthStore = defineStore("auth", {
 		setUser(newUser: AdminUser | null) {
 			this.user = newUser;
 			this.isAuthenticated = !!newUser;
-			if (process.client && newUser) {
+			if (import.meta.client && newUser) {
 				localStorage.setItem("adminUser", JSON.stringify(newUser));
 			}
 		},
@@ -49,7 +47,10 @@ export const useAuthStore = defineStore("auth", {
 			this.loading = true;
 			this.error = null;
 			try {
-				const response = await fetch(`${API_URL}/auth/admin/login`, {
+				const config = useRuntimeConfig();
+				const apiBase = (config.public.apiBase || "").replace(/\/$/, "");
+
+				const response = await fetch(`${apiBase}/auth/admin/login`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(credentials),
@@ -75,7 +76,7 @@ export const useAuthStore = defineStore("auth", {
 				this.user = data.user;
 				this.isAuthenticated = true;
 
-				if (process.client) {
+				if (import.meta.client) {
 					localStorage.setItem("adminToken", data.access_token);
 					localStorage.setItem(
 						"adminUser",
@@ -95,7 +96,7 @@ export const useAuthStore = defineStore("auth", {
 			this.user = null;
 			this.token = null;
 			this.isAuthenticated = false;
-			if (process.client) {
+			if (import.meta.client) {
 				localStorage.removeItem("adminToken");
 				localStorage.removeItem("adminUser");
 			}
@@ -103,7 +104,7 @@ export const useAuthStore = defineStore("auth", {
 		},
 
 		initializeAuth() {
-			if (process.client) {
+			if (import.meta.client) {
 				const token = localStorage.getItem("adminToken");
 				const user = localStorage.getItem("adminUser");
 				if (token && user) {
