@@ -13,19 +13,27 @@ import {
 import { Response } from 'express';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { TemplateService } from './template.service';
+import { TemplatePreviewService } from './template-preview.service';
 import { Template } from './entities/template.entity';
 import { CreateTemplateDto } from './dto/create-template.dto';
 import { UpdateTemplateDto } from './dto/update-template.dto';
+import { GenerateTemplatePreviewDto } from './dto/generate-template-preview.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { User } from '../user/entities/user.entity';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { RolesGuard } from '../auth/guards/roles.guard';
+import { UserRole } from '../user/entities/user.entity';
 import * as fs from 'fs';
 import * as path from 'path';
 
 @ApiTags('templates')
 @Controller('templates')
 export class TemplateController {
-  constructor(private readonly templateService: TemplateService) {}
+  constructor(
+    private readonly templateService: TemplateService,
+    private readonly templatePreviewService: TemplatePreviewService,
+  ) {}
 
   @Post()
   @UseGuards(JwtAuthGuard)
@@ -52,8 +60,22 @@ export class TemplateController {
     description: 'Example template created successfully',
     type: Template,
   })
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
   async createExample(@Body() createTemplateDto: CreateTemplateDto): Promise<Template> {
     return this.templateService.createExample(createTemplateDto);
+  }
+
+  @Post('preview/generate')
+  @ApiOperation({ summary: 'Generate and save a template preview image (admin-only)' })
+  @ApiResponse({ status: 201, description: 'Preview generated successfully' })
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN)
+  async generatePreview(
+    @Body() dto: GenerateTemplatePreviewDto,
+    @CurrentUser() user: User,
+  ): Promise<{ filename: string }> {
+    return this.templatePreviewService.generateAndSavePreview(dto, user);
   }
 
   @Get()
@@ -83,6 +105,22 @@ export class TemplateController {
     @Query('category') category?: string,
   ): Promise<Template[]> {
     return this.templateService.findAllWithExamples(user.id, category);
+  }
+
+  @Get('preview/:filename')
+  @ApiOperation({ summary: 'Get template preview image' })
+  @ApiResponse({ status: 200, description: 'Return the preview image' })
+  async getPreviewImage(@Param('filename') filename: string, @Res() res: Response): Promise<void> {
+    const previewPath = path.join(__dirname, '../assets/templatePreviews', filename);
+
+    // Vérifier si le fichier existe
+    if (!fs.existsSync(previewPath)) {
+      res.status(404).json({ message: 'Preview image not found' });
+      return;
+    }
+
+    // Servir le fichier
+    res.sendFile(previewPath);
   }
 
   @Get(':id')
@@ -118,21 +156,5 @@ export class TemplateController {
   @ApiResponse({ status: 200, description: 'Template deleted successfully' })
   async remove(@Param('id') id: string): Promise<void> {
     return this.templateService.remove(id);
-  }
-
-  @Get('preview/:filename')
-  @ApiOperation({ summary: 'Get template preview image' })
-  @ApiResponse({ status: 200, description: 'Return the preview image' })
-  async getPreviewImage(@Param('filename') filename: string, @Res() res: Response): Promise<void> {
-    const previewPath = path.join(__dirname, '../assets/templatePreviews', filename);
-
-    // Vérifier si le fichier existe
-    if (!fs.existsSync(previewPath)) {
-      res.status(404).json({ message: 'Preview image not found' });
-      return;
-    }
-
-    // Servir le fichier
-    res.sendFile(previewPath);
   }
 }

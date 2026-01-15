@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { resolve } from "pathe";
 const apiBaseEnv = process.env.NUXT_PUBLIC_API_BASE || "";
 const proxyTargetEnv = process.env.NUXT_API_PROXY_TARGET || "";
 const shouldProxyApi =
@@ -67,5 +68,20 @@ export default defineNuxtConfig({
 	devServer: {
 		port: 3000,
 		host: "localhost",
+	},
+	/**
+	 * Expose local template assets (fonts) under a stable URL.
+	 *
+	 * This is critical for the Studio iframe `srcdoc` preview:
+	 * - templates often reference fonts with relative paths like `../assets/fonts/...`
+	 * - in Docker production, only `.output` is shipped, so we must copy/serve these files via Nitro
+	 */
+	nitro: {
+		publicAssets: [
+			{
+				dir: resolve("./assets/fonts"),
+				baseURL: "/assets/fonts",
+			},
+		],
 	},
 });

@@ -1110,16 +1110,47 @@
 									>
 										URL de l'image de preview
 									</label>
-									<input
-										v-model="exampleTemplate.previewImage"
-										type="url"
-										class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-										placeholder="https://example.com/preview.jpg"
-									/>
+									<div class="flex items-center gap-2">
+										<input
+											v-model="exampleTemplate.previewImage"
+											type="text"
+											class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+											placeholder="ex: my-template-123.png"
+										/>
+										<button
+											@click="generateExamplePreview"
+											:disabled="generatingExamplePreview"
+											class="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-md font-medium flex items-center whitespace-nowrap"
+											title="Générer une image preview et renseigner le filename"
+										>
+											<i
+												v-if="generatingExamplePreview"
+												class="ph-duotone ph-circle-notch animate-spin mr-2"
+											></i>
+											<i v-else class="ph-duotone ph-image mr-2"></i>
+											{{
+												generatingExamplePreview
+													? "Génération..."
+													: "Générer"
+											}}
+										</button>
+									</div>
 									<p class="text-xs text-gray-500 mt-1">
-										L'image sera téléchargée et stockée dans
-										le dossier des previews
+										Le backend stocke l’image dans le dossier des previews et ce
+										champ contient uniquement le <strong>filename</strong> servi
+										par <code>/templates/preview/:filename</code>.
 									</p>
+									<div v-if="examplePreviewUrl" class="mt-2">
+										<img
+											:src="examplePreviewUrl"
+											alt="Preview"
+											class="w-full max-h-48 object-contain rounded border border-gray-200 bg-gray-50"
+											loading="lazy"
+										/>
+										<p class="text-xs text-gray-500 mt-1 break-all">
+											{{ examplePreviewUrl }}
+										</p>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -1676,6 +1707,9 @@ const monacoRef = ref();
 const isMounted = ref(false);
 const isDataLoaded = ref(false);
 
+// Cache CSS Google Fonts (évite refetch à chaque frappe)
+const googleFontsCssCache = new Map<string, string>();
+
 // État pour le redimensionnement
 const isResizing = ref(false);
 const startX = ref(0);
@@ -2116,6 +2150,7 @@ const updatePreview = async () => {
 
 			const fontLink = document.createElement("link");
 			fontLink.rel = "stylesheet";
+			fontLink.crossOrigin = "anonymous";
 			fontLink.href = googleFontsLinks;
 			document.head.appendChild(fontLink);
 
@@ -2124,8 +2159,35 @@ const updatePreview = async () => {
 		}
 	}
 
-	// Ajouter les polices Google Fonts et les styles CSS
-	const finalHtml = addGoogleFontsAndStyles(compiledHtml, googleFontsLinks);
+	// Inline Google Fonts CSS into srcdoc for maximum reliability.
+	// This avoids edge-cases where the iframe doesn't apply the external stylesheet in time.
+	let googleFontsCssText = "";
+	if (googleFontsLinks) {
+		const cached = googleFontsCssCache.get(googleFontsLinks);
+		if (cached !== undefined) {
+			googleFontsCssText = cached;
+		} else {
+			try {
+				const res = await fetch(googleFontsLinks);
+				googleFontsCssText = res.ok ? await res.text() : "";
+			} catch {
+				googleFontsCssText = "";
+			} finally {
+				googleFontsCssCache.set(googleFontsLinks, googleFontsCssText);
+			}
+		}
+	}
+
+	// Ajouter les polices Google Fonts et les styles CSS.
+	// Important: srcdoc a pour URL "about:srcdoc" -> les URLs relatives dans les templates cassent
+	// sans <base>. On force un base href sur l'origine du site.
+	const baseHref = `${window.location.origin}/`;
+	const finalHtml = addGoogleFontsAndStyles(
+		compiledHtml,
+		googleFontsLinks,
+		baseHref,
+		googleFontsCssText
+	);
 
 	// Mettre à jour l'iframe
 	previewFrame.value.srcdoc = finalHtml;
@@ -2803,6 +2865,12 @@ const exampleTemplate = ref({
 });
 
 const creatingExample = ref(false);
+const generatingExamplePreview = ref(false);
+
+const examplePreviewUrl = computed(() => {
+	const filename = exampleTemplate.value.previewImage?.trim();
+	return filename ? getApiUrl(`/templates/preview/${filename}`) : "";
+});
 
 const templateJson = computed(() => {
 	const tags = exampleTemplate.value.tagsInput
@@ -2854,9 +2922,13 @@ const createExampleTemplate = async () => {
 			isActive: true,
 		};
 
+		const headers = authStore.getAuthHeaders;
 		const response = await fetch(getApiUrl("/templates/example"), {
 			method: "POST",
-			headers: { "Content-Type": "application/json" },
+			headers: {
+				...headers,
+				"Content-Type": "application/json",
+			},
 			body: JSON.stringify(payload),
 		});
 
@@ -2901,6 +2973,65 @@ const createExampleTemplate = async () => {
 		showToast(`Erreur: ${errorMessage}`, "error");
 	} finally {
 		creatingExample.value = false;
+	}
+};
+
+const generateExamplePreview = async () => {
+	if (!exampleTemplate.value.name?.trim()) {
+		showToast("Le nom du template est requis pour générer une preview", "error");
+		return;
+	}
+	if (!selectedBrand.value?.name) {
+		showToast("Veuillez sélectionner une marque", "error");
+		return;
+	}
+
+	generatingExamplePreview.value = true;
+	try {
+		// Préparer les variables de template (valeurs simples)
+		const templateVars: Record<string, unknown> = {};
+		for (const [key, variable] of Object.entries(templateVariables.value)) {
+			templateVars[key] = extractVariableValue(variable);
+		}
+
+		const payload = {
+			templateName: exampleTemplate.value.name,
+			brandName: selectedBrand.value.name,
+			html: htmlContent.value,
+			width: Number(exampleTemplate.value.layout.width),
+			height: Number(exampleTemplate.value.layout.height),
+			templateVariables: templateVars,
+		};
+
+		const headers = authStore.getAuthHeaders;
+		const response = await fetch(getApiUrl("/templates/preview/generate"), {
+			method: "POST",
+			headers: {
+				...headers,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(payload),
+		});
+
+		if (!response.ok) {
+			const errorText = await response.text();
+			throw new Error(`Erreur ${response.status}: ${errorText}`);
+		}
+
+		const result = (await response.json()) as { filename?: string };
+		if (!result?.filename) {
+			throw new Error("Réponse invalide: filename manquant");
+		}
+
+		exampleTemplate.value.previewImage = result.filename;
+		showToast("Preview générée et enregistrée avec succès", "success");
+	} catch (error) {
+		console.error("Erreur lors de la génération de la preview:", error);
+		const errorMessage =
+			error instanceof Error ? error.message : "Erreur inconnue lors de la génération";
+		showToast(`Erreur: ${errorMessage}`, "error");
+	} finally {
+		generatingExamplePreview.value = false;
 	}
 };
 

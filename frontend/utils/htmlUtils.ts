@@ -1,6 +1,17 @@
+function escapeHtmlAttribute(value: string): string {
+	return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+}
+
+function escapeInlineStyleTagContent(css: string): string {
+	// Prevent closing the <style> tag early if something unexpected slips in.
+	return css.replace(/<\/style/gi, "<\\/style");
+}
+
 export function addGoogleFontsAndStyles(
 	html: string,
-	googleFontsLinks: string
+	googleFontsLinks: string,
+	baseHref?: string,
+	googleFontsCssText?: string
 ): string {
 	const showIconRandomlyScript =
 		"function showIconRandomly(icons, containerSelector, numberToShow) {" +
@@ -43,7 +54,7 @@ export function addGoogleFontsAndStyles(
 	// 1. Link tag in head (primary method)
 	// 2. @import in style tag (fallback that sometimes works better in iframes)
 	const googleFontsLink = googleFontsLinks
-		? `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="${googleFontsLinks.replace(
+		? `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" crossorigin="anonymous" href="${googleFontsLinks.replace(
 				/"/g,
 				"&quot;"
 		  )}"><style>@import url("${googleFontsLinks.replace(
@@ -51,6 +62,14 @@ export function addGoogleFontsAndStyles(
 				"&quot;"
 		  )}");</style>`
 		: "";
+
+	const googleFontsInlineStyle = googleFontsCssText
+		? `<style data-google-fonts="inline">${escapeInlineStyleTagContent(googleFontsCssText)}</style>`
+		: "";
+
+	// Allow templates to use relative URLs (ex: ../assets/fonts/..., images, css)
+	// With srcdoc, the default base URL is "about:srcdoc", so relative paths break without a <base>.
+	const baseTag = baseHref ? `<base href="${escapeHtmlAttribute(baseHref)}">` : "";
 
 	// No additional font loading script needed - the link tag should work
 	// Fonts will load with font-display: swap from Google Fonts API
@@ -61,8 +80,10 @@ export function addGoogleFontsAndStyles(
 		"<html>" +
 		"<head>" +
 		'<meta charset="UTF-8">' +
+		baseTag +
 		'<meta http-equiv="Content-Security-Policy" content="font-src * data: https:;">' +
 		googleFontsLink +
+		googleFontsInlineStyle +
 		'<link rel="stylesheet" href="/assets/icons/phosphor-duotone.css">' +
 		'<link rel="stylesheet" href="/assets/icons/fontawesome.css">' +
 		"<style>.icon{display:inline-block;color:rgba(255,255,255,0.1);}</style>" +

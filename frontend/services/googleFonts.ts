@@ -50,11 +50,12 @@ class GoogleFontsService {
 		if (!fonts.length) return "";
 
 		const uniqueFonts = [...new Set(fonts.filter(Boolean))];
+		// Important:
+		// - Google Fonts API accepts spaces (encoded as %20) in family names.
+		// - Using "+" can break if it's encoded as "%2B" (server sees a literal "+").
+		// So we keep standard URL encoding for the family name.
 		const families = uniqueFonts.map(
-			(font) =>
-				`family=${encodeURIComponent(
-					font.replace(/ /g, "+")
-				)}:wght@400;700`
+			(font) => `family=${encodeURIComponent(font)}:wght@400;700`
 		);
 		return `https://fonts.googleapis.com/css2?${families.join(
 			"&"
