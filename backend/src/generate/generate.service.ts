@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException, ForbiddenException } from '@nestjs/common';
 import * as puppeteer from 'puppeteer';
 import * as Handlebars from 'handlebars';
-import { registerHandlebarsHelpers } from '../utils/handlebarsHelpers';
+import { registerHandlebarsHelpers, resolveAssetUrl } from '../utils/handlebarsHelpers';
 import { addGoogleFontsAndStyles } from '../utils/htmlUtils';
 import { TemplateService } from '../template/template.service';
 import { BrandService } from '../brand/brand.service';
@@ -85,7 +85,24 @@ export class GenerateService {
       await page.setViewport({ width, height });
       const fullHtml = addGoogleFontsAndStyles(content, googleFontsLinks);
       await page.setContent(fullHtml, { waitUntil: 'networkidle0' });
-      const screenshot = await page.screenshot({ type: 'png', fullPage: true });
+      // Studio preview clips overflow to the template "frame". Do the same in exports:
+      // - avoid fullPage=true (it expands capture to include overflow content)
+      // - force overflow hidden and clip exactly to width/height
+      await page.addStyleTag({
+        content: `
+          html, body {
+            overflow: hidden !important;
+          }
+        `,
+      });
+
+      const clipWidth = Math.max(1, Math.round(width));
+      const clipHeight = Math.max(1, Math.round(height));
+      const screenshot = await page.screenshot({
+        type: 'png',
+        fullPage: false,
+        clip: { x: 0, y: 0, width: clipWidth, height: clipHeight },
+      });
       return Buffer.from(screenshot);
     } finally {
       await browser.close();
@@ -142,9 +159,13 @@ export class GenerateService {
 
       // Transformer l'array imageGroups en objet, comme le faisait le frontend
       const imageGroupsByName = (dbBrand.imageGroups || []).reduce(
-        (acc: Record<string, string[]>, group) => {
+        (acc: Record<string, { name: string; url: string }[]>, group) => {
           if (group.groupName) {
-            acc[group.groupName] = group.images_url || [];
+            const raw = Array.isArray(group.images_url) ? group.images_url : [];
+            acc[group.groupName] = raw.map((u: string, idx: number) => ({
+              name: `image_${idx + 1}`,
+              url: resolveAssetUrl(u),
+            }));
           }
           return acc;
         },
@@ -155,6 +176,10 @@ export class GenerateService {
       // pour garantir la bonne structure des données
       const templateBrand = {
         ...dbBrand,
+        // Normaliser les URLs d'images courantes en absolu (évite les URLs relatives dans Puppeteer)
+        logoUrl: resolveAssetUrl((dbBrand as any).logoUrl),
+        logoIconUrl: resolveAssetUrl((dbBrand as any).logoIconUrl),
+        logoLineUrl: resolveAssetUrl((dbBrand as any).logoLineUrl),
         imageGroups: imageGroupsByName,
       };
 

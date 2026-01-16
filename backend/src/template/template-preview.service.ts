@@ -7,7 +7,7 @@ import * as Handlebars from 'handlebars';
 import { BrandService } from '../brand/brand.service';
 import { Brand } from '../brand/entities/brand.entity';
 import { User } from '../user/entities/user.entity';
-import { registerHandlebarsHelpers } from '../utils/handlebarsHelpers';
+import { registerHandlebarsHelpers, resolveAssetUrl } from '../utils/handlebarsHelpers';
 import { addGoogleFontsAndStyles } from '../utils/htmlUtils';
 import { GenerateTemplatePreviewDto } from './dto/generate-template-preview.dto';
 
@@ -76,15 +76,22 @@ export class TemplatePreviewService {
     const template = Handlebars.compile(html);
 
     // Same normalization as GenerateService (frontend expects brand.imageGroups as object keyed by groupName)
-    const imageGroupsByName = (brand.imageGroups || []).reduce((acc: Record<string, string[]>, group) => {
+    const imageGroupsByName = (brand.imageGroups || []).reduce((acc: Record<string, { name: string; url: string }[]>, group) => {
       if (group.groupName) {
-        acc[group.groupName] = group.images_url || [];
+        const raw = Array.isArray(group.images_url) ? group.images_url : [];
+        acc[group.groupName] = raw.map((u: string, idx: number) => ({
+          name: `image_${idx + 1}`,
+          url: resolveAssetUrl(u),
+        }));
       }
       return acc;
     }, {});
 
     const templateBrand = {
       ...brand,
+      logoUrl: resolveAssetUrl((brand as any).logoUrl),
+      logoIconUrl: resolveAssetUrl((brand as any).logoIconUrl),
+      logoLineUrl: resolveAssetUrl((brand as any).logoLineUrl),
       imageGroups: imageGroupsByName,
     };
 
@@ -123,7 +130,22 @@ export class TemplatePreviewService {
 
       const fullHtml = addGoogleFontsAndStyles(content, googleFontsLinks);
       await page.setContent(fullHtml, { waitUntil: 'networkidle0' });
-      const screenshot = await page.screenshot({ type: 'png', fullPage: true });
+      // Match studio iframe preview behavior: clip overflow to template dimensions.
+      await page.addStyleTag({
+        content: `
+          html, body {
+            overflow: hidden !important;
+          }
+        `,
+      });
+
+      const clipWidth = Math.max(1, Math.round(width));
+      const clipHeight = Math.max(1, Math.round(height));
+      const screenshot = await page.screenshot({
+        type: 'png',
+        fullPage: false,
+        clip: { x: 0, y: 0, width: clipWidth, height: clipHeight },
+      });
       return Buffer.from(screenshot);
     } catch (e) {
       throw new InternalServerErrorException(`Failed to render preview: ${e instanceof Error ? e.message : String(e)}`);

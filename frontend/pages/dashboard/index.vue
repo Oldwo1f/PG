@@ -1,64 +1,5 @@
 <template>
 	<div class="min-h-screen bg-gray-50">
-		<!-- Header -->
-		<header class="bg-white shadow">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="flex justify-between items-center py-6">
-					<div class="flex items-center">
-						<h1 class="text-2xl font-bold text-gray-900">
-							Tableau de bord
-						</h1>
-					</div>
-					<div class="flex items-center space-x-4">
-						<div class="relative">
-							<button
-								@click="showUserMenu = !showUserMenu"
-								class="flex items-center space-x-2 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-							>
-								<div
-									class="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center"
-								>
-									<span class="text-white font-medium">
-										{{ userInitials }}
-									</span>
-								</div>
-								<span class="text-gray-700">{{
-									userName
-								}}</span>
-								<i class="ph-duotone ph-caret-down h-4 w-4"></i>
-							</button>
-
-							<!-- User dropdown menu -->
-							<div
-								v-if="showUserMenu"
-								class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50"
-							>
-								<NuxtLink
-									to="/dashboard/profile"
-									class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-								>
-									Mon profil
-								</NuxtLink>
-								<NuxtLink
-									to="/dashboard/settings"
-									class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-								>
-									Paramètres
-								</NuxtLink>
-								<div class="border-t border-gray-100"></div>
-								<button
-									@click="handleLogout"
-									class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-								>
-									Déconnexion
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
-
 		<!-- Main content -->
 		<main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
 			<!-- Welcome section -->
@@ -616,7 +557,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useAuthStore } from "~/composables/useAuth";
 import { useApi } from "~/composables/useApi";
@@ -627,7 +568,7 @@ definePageMeta({
 });
 
 const authStore = useAuthStore();
-const { user, isAuthenticated } = storeToRefs(authStore);
+const { user } = storeToRefs(authStore);
 const { apiFetch } = useApi();
 const { formatStorageInfo } = useStorage();
 
@@ -674,7 +615,6 @@ interface Stats {
 }
 
 // UI state
-const showUserMenu = ref(false);
 const isPlanModalOpen = ref(false);
 const changingPlan = ref(false);
 const plans = ref<any[]>([]);
@@ -710,13 +650,6 @@ const storageInfo = ref<FormattedStorageInfo>({
 });
 
 // Computed properties
-const userInitials = computed(() => {
-	if (!user.value) return "";
-	const firstName = user.value.firstName || "";
-	const lastName = user.value.lastName || "";
-	return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
-});
-
 const userName = computed(() => {
 	if (!user.value) return "";
 	const firstName = user.value.firstName || "";
@@ -737,10 +670,6 @@ const memberSince = computed(() => {
 });
 
 // Methods
-const handleLogout = () => {
-	authStore.logout();
-};
-
 const formatDate = (dateString: string) => {
 	const date = new Date(dateString);
 	return date.toLocaleDateString("fr-FR", {
@@ -817,21 +746,9 @@ const handleChangeMyPlan = async () => {
 };
 
 onMounted(() => {
-	const handleClickOutside = (event: Event) => {
-		const target = event.target as Element;
-		if (!target.closest(".user-menu")) {
-			showUserMenu.value = false;
-		}
-	};
-	document.addEventListener("click", handleClickOutside);
-
 	if (authStore.isAuthenticated) {
 		fetchStats();
 		fetchPlans();
 	}
-
-	onUnmounted(() => {
-		document.removeEventListener("click", handleClickOutside);
-	});
 });
 </script>

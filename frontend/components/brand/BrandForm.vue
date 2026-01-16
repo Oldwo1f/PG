@@ -245,7 +245,6 @@
 								id="logoUrl"
 								v-model="formData.logoUrl"
 								class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-								required
 							/>
 						</div>
 					</div>
@@ -269,7 +268,6 @@
 								id="logoIconUrl"
 								v-model="formData.logoIconUrl"
 								class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-								required
 							/>
 						</div>
 					</div>
@@ -293,7 +291,6 @@
 								id="logoLineUrl"
 								v-model="formData.logoLineUrl"
 								class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-								required
 							/>
 						</div>
 					</div>

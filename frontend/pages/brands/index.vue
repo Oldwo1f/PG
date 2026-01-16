@@ -140,6 +140,21 @@
 							brand.tertiaryColor
 						}}</span>
 					</div>
+					<div class="flex items-center space-x-2">
+						<div
+							class="w-6 h-6 rounded-full"
+							:style="{
+								backgroundColor:
+									(brand as any).accentColor || '#000000',
+							}"
+						></div>
+						<span class="text-sm text-gray-600">
+							Accent:
+							{{
+								(brand as any).accentColor || brand.primaryColor
+							}}
+						</span>
+					</div>
 					<label
 						class="text-sm font-medium text-gray-700 font-bold mb-2.5 block"
 						>Couleur de texte</label
@@ -162,17 +177,106 @@
 							brand.textColor2
 						}}</span>
 					</div>
+					<div class="flex items-center space-x-2">
+						<div
+							class="w-6 h-6 rounded-full"
+							:style="{
+								backgroundColor:
+									(brand as any).textColorDark ||
+									brand.textColor,
+							}"
+						></div>
+						<span class="text-sm text-gray-600">
+							Text (dark):
+							{{
+								(brand as any).textColorDark || brand.textColor
+							}}
+						</span>
+					</div>
+					<div class="flex items-center space-x-2">
+						<div
+							class="w-6 h-6 rounded-full"
+							:style="{
+								backgroundColor:
+									(brand as any).textColor2Dark ||
+									brand.textColor2,
+							}"
+						></div>
+						<span class="text-sm text-gray-600">
+							Text2 (dark):
+							{{
+								(brand as any).textColor2Dark ||
+								brand.textColor2
+							}}
+						</span>
+					</div>
 				</div>
 				<div class="mt-4">
 					<label
 						class="text-sm font-medium text-gray-700 font-bold mb-2.5 block"
 						>Logo</label
 					>
-					<img
-						:src="resolveBackendImageUrl(brand.logoUrl)"
-						:alt="brand.name"
-						class="h-12 object-contain"
-					/>
+					<div class="grid grid-cols-3 gap-3">
+						<div class="rounded border bg-gray-50 p-2">
+							<div class="text-[11px] text-gray-500 mb-1">
+								Logo
+							</div>
+							<img
+								v-if="brand.logoUrl"
+								:src="resolveBackendImageUrl(brand.logoUrl)"
+								:alt="`${brand.name} logo`"
+								class="h-10 w-full object-contain"
+							/>
+							<div
+								v-else
+								class="h-10 w-full flex items-center justify-center text-xs text-gray-400"
+							>
+								—
+							</div>
+						</div>
+						<div class="rounded border bg-gray-50 p-2">
+							<div class="text-[11px] text-gray-500 mb-1">
+								Icon
+							</div>
+							<img
+								v-if="(brand as any).logoIconUrl"
+								:src="
+									resolveBackendImageUrl(
+										(brand as any).logoIconUrl
+									)
+								"
+								:alt="`${brand.name} logo icon`"
+								class="h-10 w-full object-contain"
+							/>
+							<div
+								v-else
+								class="h-10 w-full flex items-center justify-center text-xs text-gray-400"
+							>
+								—
+							</div>
+						</div>
+						<div class="rounded border bg-gray-50 p-2">
+							<div class="text-[11px] text-gray-500 mb-1">
+								Line
+							</div>
+							<img
+								v-if="(brand as any).logoLineUrl"
+								:src="
+									resolveBackendImageUrl(
+										(brand as any).logoLineUrl
+									)
+								"
+								:alt="`${brand.name} logo line`"
+								class="h-10 w-full object-contain"
+							/>
+							<div
+								v-else
+								class="h-10 w-full flex items-center justify-center text-xs text-gray-400"
+							>
+								—
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="mt-4 space-y-2">
 					<div>

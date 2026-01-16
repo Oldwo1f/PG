@@ -147,16 +147,22 @@
 												class="block text-m font-bold text-gray-900"
 												>Variables du Template</label
 											>
-											<button
-												@click="
-													showAddVariableModal = true
-												"
-												class="text-blue-500 hover:text-blue-600"
-											>
-												<i
-													class="ph-duotone ph-plus-circle"
-												></i>
-											</button>
+											<div class="flex items-center gap-2">
+												<button
+													@click="showAddVariableModal = true"
+													class="text-blue-500 hover:text-blue-600"
+													title="Ajouter une variable"
+												>
+													<i class="ph-duotone ph-plus-circle"></i>
+												</button>
+												<button
+													@click="openAddVariablesBatchModal"
+													class="text-blue-500 hover:text-blue-600"
+													title="Ajouter des variables (batch)"
+												>
+													<i class="ph-duotone ph-stack-plus"></i>
+												</button>
+											</div>
 										</div>
 										<div class="space-y-4">
 											<div
@@ -288,6 +294,70 @@
 									</button>
 									<button
 										@click="confirmAddVariable"
+										class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+									>
+										Ajouter
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- Modal d'ajout batch de variables -->
+						<div
+							v-if="showAddVariablesBatchModal"
+							class="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+							@click="closeAddVariablesBatchModal"
+						>
+							<div
+								class="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl"
+								@click.stop
+							>
+								<div class="flex justify-between items-center mb-4">
+									<h3 class="text-lg font-semibold">
+										Ajouter des variables (batch)
+									</h3>
+									<button
+										@click="closeAddVariablesBatchModal"
+										class="text-gray-500 hover:text-gray-700"
+										title="Fermer"
+									>
+										<i class="ph-duotone ph-x text-xl"></i>
+									</button>
+								</div>
+
+								<p class="text-sm text-gray-600 mb-3">
+									Collez un JSON au format
+									<code>{"nomVariable":"valeurParDefaut"}</code>
+									(ou
+									<code>{"nomVariable":{"value":"...","type":"text|textarea"}}</code
+									>).
+									Les variables déjà existantes ne seront pas écrasées.
+								</p>
+
+								<div class="mb-4">
+									<textarea
+										v-model="addVariablesBatchJson"
+										rows="10"
+										class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 font-mono text-sm"
+										placeholder='Ex: {"title":"Hello","subtitle":"World","description":{"value":"Ligne 1\nLigne 2","type":"textarea"}}'
+									></textarea>
+									<p
+										v-if="addVariablesBatchError"
+										class="mt-2 text-sm text-red-600"
+									>
+										{{ addVariablesBatchError }}
+									</p>
+								</div>
+
+								<div class="flex justify-end gap-2">
+									<button
+										@click="closeAddVariablesBatchModal"
+										class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
+									>
+										Annuler
+									</button>
+									<button
+										@click="confirmAddVariablesBatch"
 										class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
 									>
 										Ajouter
@@ -606,6 +676,53 @@
 												<button
 													@click="
 														insertVariableAtCursor(
+															'brand.accentColor'
+														)
+													"
+													class="text-blue-500 hover:text-blue-600 text-xs cursor-pointer"
+													title="Insérer la variable"
+												>
+													<i
+														class="ph-duotone ph-plus"
+													></i>
+												</button>
+												<label
+													class="block text-xs font-medium text-blue-600 cursor-move hover:text-blue-500 flex-1"
+													draggable="true"
+													@dragstart="
+														handleDragStart(
+															$event,
+															'brand.accentColor'
+														)
+													"
+													@dragend="handleDragEnd"
+												>
+													AccentColor
+												</label>
+											</div>
+											<div
+												class="flex items-center gap-2"
+											>
+												<div
+													class="w-6 h-6 rounded-full border"
+													:style="{
+														backgroundColor:
+															brandVariables.accentColor,
+													}"
+												></div>
+												<span
+													class="text-sm text-gray-600"
+													>{{
+														brandVariables.accentColor
+													}}</span
+												>
+											</div>
+											<div
+												class="flex items-center gap-2"
+											>
+												<button
+													@click="
+														insertVariableAtCursor(
 															'brand.textColor'
 														)
 													"
@@ -694,6 +811,100 @@
 													}}</span
 												>
 											</div>
+											<div
+												class="flex items-center gap-2"
+											>
+												<button
+													@click="
+														insertVariableAtCursor(
+															'brand.textColorDark'
+														)
+													"
+													class="text-blue-500 hover:text-blue-600 text-xs cursor-pointer"
+													title="Insérer la variable"
+												>
+													<i
+														class="ph-duotone ph-plus"
+													></i>
+												</button>
+												<label
+													class="block text-xs font-medium text-blue-600 cursor-move hover:text-blue-500 flex-1"
+													draggable="true"
+													@dragstart="
+														handleDragStart(
+															$event,
+															'brand.textColorDark'
+														)
+													"
+													@dragend="handleDragEnd"
+												>
+													TextColorDark
+												</label>
+											</div>
+											<div
+												class="flex items-center gap-2"
+											>
+												<div
+													class="w-6 h-6 rounded-full border"
+													:style="{
+														backgroundColor:
+															brandVariables.textColorDark,
+													}"
+												></div>
+												<span
+													class="text-sm text-gray-600"
+													>{{
+														brandVariables.textColorDark
+													}}</span
+												>
+											</div>
+											<div
+												class="flex items-center gap-2"
+											>
+												<button
+													@click="
+														insertVariableAtCursor(
+															'brand.textColor2Dark'
+														)
+													"
+													class="text-blue-500 hover:text-blue-600 text-xs cursor-pointer"
+													title="Insérer la variable"
+												>
+													<i
+														class="ph-duotone ph-plus"
+													></i>
+												</button>
+												<label
+													class="block text-xs font-medium text-blue-600 cursor-move hover:text-blue-500 flex-1"
+													draggable="true"
+													@dragstart="
+														handleDragStart(
+															$event,
+															'brand.textColor2Dark'
+														)
+													"
+													@dragend="handleDragEnd"
+												>
+													TextColor2Dark
+												</label>
+											</div>
+											<div
+												class="flex items-center gap-2"
+											>
+												<div
+													class="w-6 h-6 rounded-full border"
+													:style="{
+														backgroundColor:
+															brandVariables.textColor2Dark,
+													}"
+												></div>
+												<span
+													class="text-sm text-gray-600"
+													>{{
+														brandVariables.textColor2Dark
+													}}</span
+												>
+											</div>
 											<!-- Variables dynamiques -->
 											<template
 												v-for="(
@@ -708,8 +919,11 @@
 															'primaryColor',
 															'secondaryColor',
 															'tertiaryColor',
+															'accentColor',
 															'textColor',
 															'textColor2',
+															'textColorDark',
+															'textColor2Dark',
 														].includes(key)
 													"
 													class="space-y-1"
@@ -753,8 +967,13 @@
 															<!-- Affichage spécial pour le logo -->
 															<div
 																v-if="
-																	key ===
-																	'logoUrl'
+																	[
+																		'logoUrl',
+																		'logoIconUrl',
+																		'logoLineUrl',
+																	].includes(
+																		key as string
+																	)
 																"
 																class="flex items-center gap-2"
 															>
@@ -1720,6 +1939,11 @@ const showAddVariableModal = ref(false);
 const addVariableName = ref("");
 const addVariableTypeString = ref("text");
 
+// État pour la modal d'ajout batch de variables
+const showAddVariablesBatchModal = ref(false);
+const addVariablesBatchJson = ref("");
+const addVariablesBatchError = ref("");
+
 const addVariableType = computed({
 	get: () => addVariableTypeString.value as "text" | "textarea",
 	set: (value: "text" | "textarea") => {
@@ -2067,12 +2291,21 @@ const handleBrandChange = () => {
 		primaryColor: selectedBrand.value.primaryColor,
 		secondaryColor: selectedBrand.value.secondaryColor,
 		tertiaryColor: selectedBrand.value.tertiaryColor,
+		accentColor: (selectedBrand.value as any).accentColor,
 		textColor: selectedBrand.value.textColor,
 		textColor2: selectedBrand.value.textColor2,
+		textColorDark: (selectedBrand.value as any).textColorDark,
+		textColor2Dark: (selectedBrand.value as any).textColor2Dark,
 		titleFont: selectedBrand.value.titleFont,
 		textFont: selectedBrand.value.textFont,
 		tertiaryFont: selectedBrand.value.tertiaryFont,
 		logoUrl: resolveBackendImageUrl(selectedBrand.value.logoUrl),
+		logoIconUrl: resolveBackendImageUrl(
+			(selectedBrand.value as any).logoIconUrl
+		),
+		logoLineUrl: resolveBackendImageUrl(
+			(selectedBrand.value as any).logoLineUrl
+		),
 		imageGroups: selectedBrand.value.imageGroups || [],
 	};
 	console.log("Nouvelles variables de marque:", brandVariables.value);
@@ -2111,14 +2344,19 @@ const updatePreview = async () => {
 			primaryColor: brandVariables.value.primaryColor,
 			secondaryColor: brandVariables.value.secondaryColor,
 			tertiaryColor: brandVariables.value.tertiaryColor,
+			accentColor: brandVariables.value.accentColor,
 			textColor: brandVariables.value.textColor,
 			textColor2: brandVariables.value.textColor2,
+			textColorDark: brandVariables.value.textColorDark,
+			textColor2Dark: brandVariables.value.textColor2Dark,
 			titleFont: brandVariables.value.titleFont,
 			textFont: brandVariables.value.textFont,
 			tertiaryFont: brandVariables.value.tertiaryFont,
 			// Toujours injecter une URL exploitable directement dans les templates
 			// (évite d'obliger l'utilisateur à utiliser un helper dans le HTML)
 			logoUrl: resolveBackendImageUrl(brandVariables.value.logoUrl),
+			logoIconUrl: resolveBackendImageUrl(brandVariables.value.logoIconUrl),
+			logoLineUrl: resolveBackendImageUrl(brandVariables.value.logoLineUrl),
 			icons: selectedBrand.value?.icons || [],
 			imageGroups: brandImageGroupsByName.value,
 		},
@@ -2451,6 +2689,28 @@ const addTemplateVariable = () => {
 	showAddVariableModal.value = true;
 };
 
+const openAddVariablesBatchModal = () => {
+	addVariablesBatchError.value = "";
+	// Préremplir un exemple léger si vide (utile pour guider l'utilisateur)
+	if (!addVariablesBatchJson.value.trim()) {
+		addVariablesBatchJson.value = JSON.stringify(
+			{
+				title: "Titre",
+				subtitle: "Sous-titre",
+				description: { value: "Ligne 1\nLigne 2", type: "textarea" },
+			},
+			null,
+			2
+		);
+	}
+	showAddVariablesBatchModal.value = true;
+};
+
+const closeAddVariablesBatchModal = () => {
+	showAddVariablesBatchModal.value = false;
+	addVariablesBatchError.value = "";
+};
+
 const removeTemplateVariable = (key: string) => {
 	variableToDelete.value = key;
 	showDeleteConfirmModal.value = true;
@@ -2698,6 +2958,88 @@ const confirmAddVariable = () => {
 	showAddVariableModal.value = false;
 	addVariableName.value = "";
 	addVariableTypeString.value = "text";
+};
+
+const confirmAddVariablesBatch = () => {
+	addVariablesBatchError.value = "";
+
+	let parsed: unknown;
+	try {
+		parsed = JSON.parse(addVariablesBatchJson.value);
+	} catch (e) {
+		addVariablesBatchError.value = "JSON invalide: vérifiez la syntaxe.";
+		return;
+	}
+
+	if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+		addVariablesBatchError.value =
+			"Le JSON doit être un objet (ex: {\"title\":\"Hello\"}).";
+		return;
+	}
+
+	const entries = Object.entries(parsed as Record<string, unknown>);
+	if (entries.length === 0) {
+		addVariablesBatchError.value = "Aucune variable trouvée dans ce JSON.";
+		return;
+	}
+
+	let created = 0;
+	let skippedExisting = 0;
+	let skippedInvalid = 0;
+
+	for (const [rawKey, rawValue] of entries) {
+		const key = String(rawKey).trim();
+		if (!key) {
+			skippedInvalid++;
+			continue;
+		}
+		if (templateVariables.value[key]) {
+			skippedExisting++;
+			continue;
+		}
+
+		// Formats acceptés:
+		// - "name": "default"
+		// - "name": 123 / true / null (stringifié)
+		// - "name": { value: "...", type: "text"|"textarea" }
+		let value = "";
+		let type: "text" | "textarea" = "text";
+
+		if (
+			rawValue &&
+			typeof rawValue === "object" &&
+			!Array.isArray(rawValue) &&
+			"value" in (rawValue as any)
+		) {
+			const v = (rawValue as any).value;
+			value = v === null || v === undefined ? "" : String(v);
+			const t = (rawValue as any).type;
+			if (t === "textarea" || t === "text") type = t;
+		} else {
+			value = rawValue === null || rawValue === undefined ? "" : String(rawValue);
+			// Heuristique simple: newline => textarea
+			if (value.includes("\n")) type = "textarea";
+		}
+
+		templateVariables.value[key] = { value, type };
+		created++;
+	}
+
+	showAddVariablesBatchModal.value = false;
+
+	if (created === 0 && (skippedExisting > 0 || skippedInvalid > 0)) {
+		showToast(
+			`Aucune variable créée. ${skippedExisting} déjà existante(s), ${skippedInvalid} invalide(s).`,
+			"error"
+		);
+		return;
+	}
+
+	const parts: string[] = [];
+	parts.push(`${created} variable(s) ajoutée(s).`);
+	if (skippedExisting) parts.push(`${skippedExisting} déjà existante(s).`);
+	if (skippedInvalid) parts.push(`${skippedInvalid} invalide(s).`);
+	showToast(parts.join(" "), "success");
 };
 
 // Initialisation

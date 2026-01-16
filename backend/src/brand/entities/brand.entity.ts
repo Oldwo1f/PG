@@ -55,7 +55,7 @@ export class Brand {
   @ApiProperty()
   tertiaryFont: string;
 
-  @Column()
+  @Column({ default: '' })
   @ApiProperty()
   logoUrl: string;
 

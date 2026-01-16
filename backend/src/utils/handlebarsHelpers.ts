@@ -1,5 +1,80 @@
 import * as Handlebars from 'handlebars';
 
+type ImageLike = string | { url?: string; name?: string } | null | undefined;
+type ImageArray = ImageLike[] | null | undefined;
+type ImageGroupsLike =
+  | Record<string, ImageArray>
+  | { groupName?: string; images_url?: ImageArray }[]
+  | null
+  | undefined;
+
+function isAbsoluteUrl(url: string): boolean {
+  return /^https?:\/\//i.test(url);
+}
+
+function getBackendBaseUrl(): string {
+  // NOTE: Keep a safe default aligned with other backend rendering paths.
+  const port = process.env.PORT || '3001';
+  return (
+    process.env.PUBLIC_BACKEND_URL ||
+    process.env.BACKEND_PUBLIC_URL ||
+    process.env.BACKEND_URL ||
+    process.env.APP_URL ||
+    `http://localhost:${port}`
+  );
+}
+
+export function resolveAssetUrl(input: unknown): string {
+  const url = typeof input === 'string' ? input.trim() : '';
+  if (!url) return '';
+  if (isAbsoluteUrl(url)) return url;
+  const base = getBackendBaseUrl().replace(/\/+$/, '');
+  const path = url.startsWith('/') ? url : `/${url}`;
+  return `${base}${path}`;
+}
+
+function imageToUrl(img: ImageLike): string {
+  if (!img) return '';
+  if (typeof img === 'string') return resolveAssetUrl(img);
+  if (typeof img === 'object') return resolveAssetUrl(img.url || '');
+  return '';
+}
+
+function getFirstImageUrl(images: ImageArray): string {
+  if (!Array.isArray(images) || images.length === 0) return '';
+  return imageToUrl(images[0]);
+}
+
+function getRandomImageUrl(images: ImageArray): string {
+  if (!Array.isArray(images) || images.length === 0) return '';
+  const idx = Math.floor(Math.random() * images.length);
+  return imageToUrl(images[idx]);
+}
+
+function getNamedImageUrl(images: ImageArray, name: string): string {
+  if (!Array.isArray(images) || images.length === 0) return '';
+  const wanted = String(name || '').trim();
+  if (!wanted) return '';
+
+  // If images are objects with "name", match by name.
+  for (const img of images) {
+    if (img && typeof img === 'object' && (img as any).name === wanted) {
+      return imageToUrl(img);
+    }
+  }
+
+  // If images are strings, support "image_1" convention -> index 0.
+  const m = wanted.match(/^image_(\d+)$/i);
+  if (m) {
+    const n = parseInt(m[1], 10);
+    if (Number.isFinite(n) && n >= 1 && n <= images.length) {
+      return imageToUrl(images[n - 1]);
+    }
+  }
+
+  return '';
+}
+
 export function registerHandlebarsHelpers(): void {
   // Enregistrer le helper 'first'
   Handlebars.registerHelper('first', function (array) {
@@ -48,35 +123,32 @@ export function registerHandlebarsHelpers(): void {
 
   // Helper pour obtenir la première image du groupe 'background'
   Handlebars.registerHelper('firstBackgroundImage', function (imageGroups) {
-    if (!Array.isArray(imageGroups)) return '';
-    const backgroundGroup = imageGroups.find((g) => g.groupName === 'background');
-    if (
-      !backgroundGroup ||
-      !Array.isArray(backgroundGroup.images_url) ||
-      backgroundGroup.images_url.length === 0
-    )
-      return '';
-    return backgroundGroup.images_url[0].url || '';
+    const groups = imageGroups as ImageGroupsLike;
+    // Format A: { background: [...] }
+    if (groups && !Array.isArray(groups) && typeof groups === 'object') {
+      return getFirstImageUrl((groups as Record<string, ImageArray>).background);
+    }
+    // Format B: [{ groupName, images_url }]
+    if (Array.isArray(groups)) {
+      const backgroundGroup = groups.find((g) => g?.groupName === 'background');
+      return getFirstImageUrl(backgroundGroup?.images_url);
+    }
+    return '';
   });
 
   // Helper pour obtenir la première image d'un tableau d'images
   Handlebars.registerHelper('firstImage', function (images) {
-    if (!Array.isArray(images) || images.length === 0) return '';
-    return images[0].url || '';
+    return getFirstImageUrl(images as ImageArray);
   });
 
   // Helper pour obtenir une image aléatoire d'un tableau d'images
   Handlebars.registerHelper('randomImage', function (images) {
-    if (!Array.isArray(images) || images.length === 0) return '';
-    const idx = Math.floor(Math.random() * images.length);
-    return images[idx].url || '';
+    return getRandomImageUrl(images as ImageArray);
   });
 
   // Helper pour obtenir l'URL d'une image par son nom dans un tableau d'images
   Handlebars.registerHelper('namedImage', function (images, name) {
-    if (!Array.isArray(images) || !name) return '';
-    const found = images.find((img) => img.name === name);
-    return found && found.url ? found.url : '';
+    return getNamedImageUrl(images as ImageArray, String(name || ''));
   });
 
   // Helper pour formater les polices (ajoute des guillemets si nécessaire)
@@ -138,7 +210,7 @@ export function registerHandlebarsHelpers(): void {
 
   // Helper resolveImage (existant)
   Handlebars.registerHelper('resolveImage', function (imageUrl) {
-    return imageUrl;
+    return resolveAssetUrl(imageUrl);
   });
 
   // Helper phosphor (existant)

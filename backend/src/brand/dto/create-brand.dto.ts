@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsArray, ValidateNested } from 'class-validator';
+import { IsString, IsArray, ValidateNested, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
 
 class Background {
@@ -77,14 +77,17 @@ export class CreateBrandDto {
   @ApiProperty()
   tertiaryFont: string;
 
+  @IsOptional()
   @IsString()
   @ApiProperty()
   logoUrl: string;
 
+  @IsOptional()
   @IsString()
   @ApiProperty()
   logoIconUrl: string;
 
+  @IsOptional()
   @IsString()
   @ApiProperty()
   logoLineUrl: string;
