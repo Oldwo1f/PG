@@ -19,12 +19,17 @@ export interface Brand {
 	primaryColor: string;
 	secondaryColor: string;
 	tertiaryColor: string;
+	accentColor: string;
 	textColor: string;
 	textColor2: string;
+	textColorDark: string;
+	textColor2Dark: string;
 	titleFont: string;
 	textFont: string;
 	tertiaryFont: string;
 	logoUrl: string;
+	logoIconUrl: string;
+	logoLineUrl: string;
 	backgrounds: Background[];
 	icons: Icon[];
 	imageGroups: ImageGroup[];

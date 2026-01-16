@@ -2,13 +2,22 @@
 	<div class="container mx-auto px-4 py-8">
 		<div class="flex justify-between items-center mb-6">
 			<h1 class="text-2xl font-bold">Gestion des Templates</h1>
-			<button
-				@click="openCreateModal"
-				class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center"
-			>
-				<span class="mr-2">+</span>
-				Nouveau Template
-			</button>
+			<div class="flex items-center gap-3">
+				<NuxtLink
+					to="/templates/gallery"
+					class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg flex items-center"
+				>
+					<i class="ph-duotone ph-images mr-2"></i>
+					Galerie
+				</NuxtLink>
+				<button
+					@click="openCreateModal"
+					class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center"
+				>
+					<span class="mr-2">+</span>
+					Nouveau Template
+				</button>
+			</div>
 		</div>
 
 		<!-- Message d'erreur -->

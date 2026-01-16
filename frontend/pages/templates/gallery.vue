@@ -2,7 +2,7 @@
 	<div class="min-h-screen bg-gray-50">
 		<!-- Header -->
 		<div class="bg-white shadow">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="w-full px-4 sm:px-6 lg:px-10">
 				<div class="flex justify-between items-center py-6">
 					<div>
 						<h1 class="text-3xl font-bold text-gray-900">
@@ -35,7 +35,7 @@
 		</div>
 
 		<!-- Filtres -->
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+		<div class="w-full px-4 sm:px-6 lg:px-10 py-6">
 			<div class="flex flex-wrap gap-4 items-center">
 				<div class="flex-1 min-w-64">
 					<label class="block text-sm font-medium text-gray-700 mb-1">
@@ -71,7 +71,7 @@
 		<!-- Loading state -->
 		<div
 			v-if="loading"
-			class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
+			class="w-full px-4 sm:px-6 lg:px-10 py-12"
 		>
 			<div class="text-center">
 				<div
@@ -82,7 +82,7 @@
 		</div>
 
 		<!-- Grille des templates -->
-		<div v-else class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+		<div v-else class="w-full px-4 sm:px-6 lg:px-10 pb-12">
 			<div v-if="templates.length === 0" class="text-center py-12">
 				<i class="ph-duotone ph-image text-6xl text-gray-300 mb-4"></i>
 				<h3 class="text-lg font-medium text-gray-900 mb-2">
@@ -95,15 +95,15 @@
 
 			<div
 				v-else
-				class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+				class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
 			>
 				<div
 					v-for="template in templates"
 					:key="template.id"
-					class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200"
+					class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200 h-full flex flex-col"
 				>
 					<!-- Image de preview -->
-					<div class="relative aspect-video bg-gray-100">
+					<div class="relative aspect-square bg-gray-100">
 						<img
 							v-if="template.previewImage"
 							:src="getApiUrl(`/templates/preview/${template.previewImage}`)"
@@ -119,43 +119,28 @@
 								class="ph-duotone ph-image text-4xl text-gray-400"
 							></i>
 						</div>
+					</div>
 
-						<!-- Badge catégorie -->
-						<div class="absolute top-2 left-2">
+					<!-- Informations du template -->
+					<div class="p-5 flex flex-col flex-1">
+						<div class="flex items-start justify-between gap-3 mb-2">
+							<h3
+								class="text-lg font-semibold text-gray-900 line-clamp-2 flex-1"
+							>
+								{{ template.name }}
+							</h3>
 							<span
-								class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium"
-								:class="
-									getCategoryBadgeClass(template.category)
-								"
+								class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap"
+								:class="getCategoryBadgeClass(template.category)"
 							>
 								{{ template.category || "Sans catégorie" }}
 							</span>
 						</div>
 
-						<!-- Badge exemple -->
-						<div
-							v-if="!template.userId"
-							class="absolute top-2 right-2"
+						<p
+							class="text-sm text-gray-600 mb-3 line-clamp-3 leading-5 min-h-[3.75rem]"
 						>
-							<span
-								class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800"
-							>
-								<i class="ph-duotone ph-star mr-1"></i>
-								Exemple
-							</span>
-						</div>
-					</div>
-
-					<!-- Informations du template -->
-					<div class="p-4">
-						<h3
-							class="text-lg font-semibold text-gray-900 mb-2 line-clamp-2"
-						>
-							{{ template.name }}
-						</h3>
-
-						<p class="text-sm text-gray-600 mb-3 line-clamp-2">
-							{{ template.description }}
+							{{ template.description || "" }}
 						</p>
 
 						<!-- Métadonnées -->
@@ -182,7 +167,7 @@
 						</div>
 
 						<!-- Actions -->
-						<div class="flex space-x-2">
+						<div class="flex space-x-2 mt-auto">
 							<button
 								@click="previewTemplate(template)"
 								class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
@@ -731,6 +716,13 @@ onMounted(() => {
 .line-clamp-2 {
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.line-clamp-3 {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }

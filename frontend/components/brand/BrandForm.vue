@@ -81,6 +81,27 @@
 						</div>
 					</div>
 
+					<div>
+						<label
+							for="accentColor"
+							class="block text-sm font-medium text-gray-700"
+							>Couleur d'accent</label
+						>
+						<div class="mt-1 flex items-center space-x-2">
+							<input
+								type="color"
+								id="accentColor"
+								v-model="formData.accentColor"
+								class="h-8 w-8 rounded-md border border-gray-300"
+							/>
+							<input
+								type="text"
+								v-model="formData.accentColor"
+								class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+							/>
+						</div>
+					</div>
+
 					<!-- TextColor -->
 					<div>
 						<label
@@ -120,6 +141,50 @@
 							<input
 								type="text"
 								v-model="formData.textColor2"
+								class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+							/>
+						</div>
+					</div>
+
+					<!-- TextColorDark -->
+					<div>
+						<label
+							for="textColorDark"
+							class="block text-sm font-medium text-gray-700"
+							>Couleur du texte (sombre)</label
+						>
+						<div class="mt-1 flex items-center space-x-2">
+							<input
+								type="color"
+								id="textColorDark"
+								v-model="formData.textColorDark"
+								class="h-8 w-8 rounded-md border border-gray-300"
+							/>
+							<input
+								type="text"
+								v-model="formData.textColorDark"
+								class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+							/>
+						</div>
+					</div>
+
+					<!-- TextColor2Dark -->
+					<div>
+						<label
+							for="textColor2Dark"
+							class="block text-sm font-medium text-gray-700"
+							>Couleur du texte secondaire (sombre)</label
+						>
+						<div class="mt-1 flex items-center space-x-2">
+							<input
+								type="color"
+								id="textColor2Dark"
+								v-model="formData.textColor2Dark"
+								class="h-8 w-8 rounded-md border border-gray-300"
+							/>
+							<input
+								type="text"
+								v-model="formData.textColor2Dark"
 								class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
 							/>
 						</div>
@@ -171,7 +236,7 @@
 							<button
 								type="button"
 								class="flex items-center gap-1 bg-blue-100 text-blue-700 rounded px-2 py-1"
-								@click="openLogoLibrarySelector"
+								@click="openLogoLibrarySelector('logoUrl')"
 							>
 								<i class="ph-duotone ph-folder"></i>
 							</button>
@@ -179,6 +244,54 @@
 								type="url"
 								id="logoUrl"
 								v-model="formData.logoUrl"
+								class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+								required
+							/>
+						</div>
+					</div>
+
+					<div>
+						<label
+							for="logoIconUrl"
+							class="block text-sm font-medium text-gray-700"
+							>URL du logo (icon)</label
+						>
+						<div class="flex items-center gap-2 mt-1">
+							<button
+								type="button"
+								class="flex items-center gap-1 bg-blue-100 text-blue-700 rounded px-2 py-1"
+								@click="openLogoLibrarySelector('logoIconUrl')"
+							>
+								<i class="ph-duotone ph-folder"></i>
+							</button>
+							<input
+								type="url"
+								id="logoIconUrl"
+								v-model="formData.logoIconUrl"
+								class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+								required
+							/>
+						</div>
+					</div>
+
+					<div>
+						<label
+							for="logoLineUrl"
+							class="block text-sm font-medium text-gray-700"
+							>URL du logo (line)</label
+						>
+						<div class="flex items-center gap-2 mt-1">
+							<button
+								type="button"
+								class="flex items-center gap-1 bg-blue-100 text-blue-700 rounded px-2 py-1"
+								@click="openLogoLibrarySelector('logoLineUrl')"
+							>
+								<i class="ph-duotone ph-folder"></i>
+							</button>
+							<input
+								type="url"
+								id="logoLineUrl"
+								v-model="formData.logoLineUrl"
 								class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
 								required
 							/>
@@ -382,6 +495,9 @@ const emit = defineEmits<{
 const showIconSelector = ref(false);
 const showGroupImageSelector = ref(false);
 const showLogoLibrarySelector = ref(false);
+const logoLibraryTargetField = ref<
+	"logoUrl" | "logoIconUrl" | "logoLineUrl"
+>("logoUrl");
 const groupImageSelectorTarget = ref<{
 	groupIdx: number;
 	imgIdx: number;
@@ -451,12 +567,24 @@ const formData = ref<Brand>({
 	primaryColor: props.brand?.primaryColor || "#000000",
 	secondaryColor: props.brand?.secondaryColor || "#000000",
 	tertiaryColor: props.brand?.tertiaryColor || "#000000",
+	accentColor:
+		(props.brand as any)?.accentColor ||
+		props.brand?.primaryColor ||
+		"#000000",
 	textColor: props.brand?.textColor || "#000000",
 	textColor2: props.brand?.textColor2 || "#000000",
+	textColorDark:
+		(props.brand as any)?.textColorDark || props.brand?.textColor || "#000000",
+	textColor2Dark:
+		(props.brand as any)?.textColor2Dark ||
+		props.brand?.textColor2 ||
+		"#000000",
 	titleFont: props.brand?.titleFont || "Inter",
 	textFont: props.brand?.textFont || "Inter",
 	tertiaryFont: props.brand?.tertiaryFont || "Inter",
 	logoUrl: props.brand?.logoUrl || "",
+	logoIconUrl: (props.brand as any)?.logoIconUrl || "",
+	logoLineUrl: (props.brand as any)?.logoLineUrl || "",
 	backgrounds: props.brand?.backgrounds || [],
 	icons: props.brand?.icons || [],
 	imageGroups: ensureRequiredGroups(props.brand?.imageGroups || []),
@@ -535,7 +663,10 @@ function onGroupImageSelectorCancel() {
 	showGroupImageSelector.value = false;
 }
 
-async function openLogoLibrarySelector() {
+async function openLogoLibrarySelector(
+	target: "logoUrl" | "logoIconUrl" | "logoLineUrl"
+) {
+	logoLibraryTargetField.value = target;
 	showLogoLibrarySelector.value = true;
 	const headers = authStore.getAuthHeaders;
 	const res = await apiFetch<ImageResponse[]>("/images", { headers });
@@ -547,7 +678,7 @@ async function openLogoLibrarySelector() {
 
 function onLogoImageSelected(images: { name: string; url: string }[]) {
 	if (!images.length) return;
-	formData.value.logoUrl = images[0].url;
+	formData.value[logoLibraryTargetField.value] = images[0].url;
 	showLogoLibrarySelector.value = false;
 }
 

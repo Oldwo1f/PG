@@ -39,6 +39,10 @@ export class Brand {
   @ApiProperty()
   tertiaryColor: string;
 
+  @Column({ default: '#000000' })
+  @ApiProperty()
+  accentColor: string;
+
   @Column()
   @ApiProperty()
   titleFont: string;
@@ -54,6 +58,14 @@ export class Brand {
   @Column()
   @ApiProperty()
   logoUrl: string;
+
+  @Column({ default: '' })
+  @ApiProperty()
+  logoIconUrl: string;
+
+  @Column({ default: '' })
+  @ApiProperty()
+  logoLineUrl: string;
 
   @Column('jsonb', { default: [] })
   @ApiProperty({ type: [Object] })
@@ -74,6 +86,14 @@ export class Brand {
   @Column({ default: '#000000' })
   @ApiProperty()
   textColor2: string;
+
+  @Column({ default: '#000000' })
+  @ApiProperty()
+  textColorDark: string;
+
+  @Column({ default: '#000000' })
+  @ApiProperty()
+  textColor2Dark: string;
 
   @Column({ type: 'uuid', nullable: true })
   userId: string;

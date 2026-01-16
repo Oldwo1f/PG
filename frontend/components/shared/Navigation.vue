@@ -4,55 +4,69 @@
 			<div class="flex justify-between items-center h-16">
 				<!-- Logo -->
 				<div class="flex items-center">
-					<NuxtLink to="/" class="text-2xl font-bold text-blue-600">
+					<NuxtLink
+						:to="isAuthenticated ? '/dashboard' : '/'"
+						class="text-2xl font-bold text-blue-600"
+					>
 						Perfect Generations
 					</NuxtLink>
 				</div>
 
 				<!-- Navigation Links -->
 				<div class="hidden md:flex space-x-8">
-					<NuxtLink
-						to="/studio"
-						class="text-gray-600 hover:text-gray-900 flex items-center transition-colors"
-					>
-						<i class="ph-duotone ph-play mr-2"></i>
-						Studio
-					</NuxtLink>
-					<NuxtLink
-						to="/images"
-						class="text-gray-600 hover:text-gray-900 flex items-center transition-colors"
-					>
-						<i class="ph-duotone ph-image mr-2"></i>
-						Images
-					</NuxtLink>
-					<NuxtLink
-						to="/brands"
-						class="text-gray-600 hover:text-gray-900 flex items-center transition-colors"
-					>
-						<i class="ph-duotone ph-palette mr-2"></i>
-						Marques
-					</NuxtLink>
-					<NuxtLink
-						to="/templates"
-						class="text-gray-600 hover:text-gray-900 flex items-center transition-colors"
-					>
-						<i class="ph-duotone ph-file-text mr-2"></i>
-						Templates
-					</NuxtLink>
-					<NuxtLink
-						to="/templates/gallery"
-						class="text-gray-600 hover:text-gray-900 flex items-center transition-colors"
-					>
-						<i class="ph-duotone ph-images mr-2"></i>
-						Galerie
-					</NuxtLink>
-					<NuxtLink
-						to="/pricing"
-						class="text-gray-600 hover:text-gray-900 flex items-center transition-colors"
-					>
-						<i class="ph-duotone ph-currency-eur mr-2"></i>
-						Tarifs
-					</NuxtLink>
+					<template v-if="isAuthenticated">
+						<NuxtLink
+							to="/studio"
+							class="text-gray-600 hover:text-gray-900 flex items-center transition-colors"
+						>
+							<i class="ph-duotone ph-play mr-2"></i>
+							Studio
+						</NuxtLink>
+						<NuxtLink
+							to="/images"
+							class="text-gray-600 hover:text-gray-900 flex items-center transition-colors"
+						>
+							<i class="ph-duotone ph-image mr-2"></i>
+							Images
+						</NuxtLink>
+						<NuxtLink
+							to="/brands"
+							class="text-gray-600 hover:text-gray-900 flex items-center transition-colors"
+						>
+							<i class="ph-duotone ph-palette mr-2"></i>
+							Marques
+						</NuxtLink>
+						<NuxtLink
+							to="/templates"
+							class="text-gray-600 hover:text-gray-900 flex items-center transition-colors"
+						>
+							<i class="ph-duotone ph-file-text mr-2"></i>
+							Templates
+						</NuxtLink>
+					</template>
+					<template v-else>
+						<NuxtLink
+							to="/"
+							class="text-gray-600 hover:text-gray-900 flex items-center transition-colors"
+						>
+							<i class="ph-duotone ph-house mr-2"></i>
+							Accueil
+						</NuxtLink>
+						<NuxtLink
+							to="/templates/gallery"
+							class="text-gray-600 hover:text-gray-900 flex items-center transition-colors"
+						>
+							<i class="ph-duotone ph-images mr-2"></i>
+							Galerie
+						</NuxtLink>
+						<NuxtLink
+							to="/pricing"
+							class="text-gray-600 hover:text-gray-900 flex items-center transition-colors"
+						>
+							<i class="ph-duotone ph-currency-eur mr-2"></i>
+							Tarifs
+						</NuxtLink>
+					</template>
 				</div>
 
 				<!-- Auth Section -->
@@ -140,48 +154,59 @@
 				<div
 					class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200"
 				>
-					<NuxtLink
-						to="/studio"
-						class="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
-					>
-						<i class="ph-duotone ph-play mr-2"></i>
-						Studio
-					</NuxtLink>
-					<NuxtLink
-						to="/images"
-						class="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
-					>
-						<i class="ph-duotone ph-image mr-2"></i>
-						Images
-					</NuxtLink>
-					<NuxtLink
-						to="/brands"
-						class="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
-					>
-						<i class="ph-duotone ph-palette mr-2"></i>
-						Marques
-					</NuxtLink>
-					<NuxtLink
-						to="/templates"
-						class="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
-					>
-						<i class="ph-duotone ph-file-text mr-2"></i>
-						Templates
-					</NuxtLink>
-					<NuxtLink
-						to="/templates/gallery"
-						class="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
-					>
-						<i class="ph-duotone ph-images mr-2"></i>
-						Galerie
-					</NuxtLink>
-					<NuxtLink
-						to="/pricing"
-						class="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
-					>
-						<i class="ph-duotone ph-currency-eur mr-2"></i>
-						Tarifs
-					</NuxtLink>
+					<template v-if="isAuthenticated">
+						<NuxtLink
+							to="/studio"
+							class="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+						>
+							<i class="ph-duotone ph-play mr-2"></i>
+							Studio
+						</NuxtLink>
+						<NuxtLink
+							to="/images"
+							class="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+						>
+							<i class="ph-duotone ph-image mr-2"></i>
+							Images
+						</NuxtLink>
+						<NuxtLink
+							to="/brands"
+							class="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+						>
+							<i class="ph-duotone ph-palette mr-2"></i>
+							Marques
+						</NuxtLink>
+						<NuxtLink
+							to="/templates"
+							class="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+						>
+							<i class="ph-duotone ph-file-text mr-2"></i>
+							Templates
+						</NuxtLink>
+					</template>
+					<template v-else>
+						<NuxtLink
+							to="/"
+							class="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+						>
+							<i class="ph-duotone ph-house mr-2"></i>
+							Accueil
+						</NuxtLink>
+						<NuxtLink
+							to="/templates/gallery"
+							class="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+						>
+							<i class="ph-duotone ph-images mr-2"></i>
+							Galerie
+						</NuxtLink>
+						<NuxtLink
+							to="/pricing"
+							class="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+						>
+							<i class="ph-duotone ph-currency-eur mr-2"></i>
+							Tarifs
+						</NuxtLink>
+					</template>
 
 					<!-- Mobile auth links -->
 					<div

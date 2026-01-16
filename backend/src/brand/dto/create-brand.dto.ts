@@ -63,6 +63,10 @@ export class CreateBrandDto {
 
   @IsString()
   @ApiProperty()
+  accentColor: string;
+
+  @IsString()
+  @ApiProperty()
   titleFont: string;
 
   @IsString()
@@ -79,11 +83,27 @@ export class CreateBrandDto {
 
   @IsString()
   @ApiProperty()
+  logoIconUrl: string;
+
+  @IsString()
+  @ApiProperty()
+  logoLineUrl: string;
+
+  @IsString()
+  @ApiProperty()
   textColor: string;
 
   @IsString()
   @ApiProperty()
   textColor2: string;
+
+  @IsString()
+  @ApiProperty()
+  textColorDark: string;
+
+  @IsString()
+  @ApiProperty()
+  textColor2Dark: string;
 
   @IsArray()
   @ValidateNested({ each: true })
