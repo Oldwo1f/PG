@@ -152,10 +152,10 @@
 		<!-- Modal de création/édition -->
 		<div
 			v-if="showModal"
-			class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
+			class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50"
 		>
 			<div
-				class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white"
+				class="relative top-10 mx-auto p-5 border w-full max-w-4xl shadow-lg rounded-md bg-white mb-10"
 			>
 				<div class="mt-3">
 					<h3
@@ -168,20 +168,44 @@
 						}}
 					</h3>
 					<form @submit.prevent="handleSubmit">
-						<div class="mb-4">
-							<label
-								class="block text-gray-700 text-sm font-bold mb-2"
-								for="name"
-							>
-								Nom
-							</label>
-							<input
-								id="name"
-								v-model="form.name"
-								type="text"
-								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-								required
-							/>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+							<div>
+								<label
+									class="block text-gray-700 text-sm font-bold mb-2"
+									for="name"
+								>
+									Nom
+								</label>
+								<input
+									id="name"
+									v-model="form.name"
+									type="text"
+									class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+									required
+								/>
+							</div>
+							<div>
+								<label
+									class="block text-gray-700 text-sm font-bold mb-2"
+									for="category"
+								>
+									Catégorie
+								</label>
+								<select
+									id="category"
+									v-model="form.category"
+									class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								>
+									<option value="">Aucune catégorie</option>
+									<option
+										v-for="category in TEMPLATE_CATEGORIES"
+										:key="category"
+										:value="category"
+									>
+										{{ category }}
+									</option>
+								</select>
+							</div>
 						</div>
 						<div class="mb-4">
 							<label
@@ -194,30 +218,8 @@
 								id="description"
 								v-model="form.description"
 								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-								rows="3"
+								rows="2"
 							></textarea>
-						</div>
-						<div class="mb-4">
-							<label
-								class="block text-gray-700 text-sm font-bold mb-2"
-								for="category"
-							>
-								Catégorie
-							</label>
-							<select
-								id="category"
-								v-model="form.category"
-								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-							>
-								<option value="">Aucune catégorie</option>
-								<option
-									v-for="category in TEMPLATE_CATEGORIES"
-									:key="category"
-									:value="category"
-								>
-									{{ category }}
-								</option>
-							</select>
 						</div>
 						<div class="grid grid-cols-2 gap-4 mb-4">
 							<div>
@@ -251,6 +253,54 @@
 								/>
 							</div>
 						</div>
+						<div class="mb-4">
+							<label
+								class="block text-gray-700 text-sm font-bold mb-2"
+								for="html"
+							>
+								HTML du template
+							</label>
+							<textarea
+								id="html"
+								v-model="htmlInput"
+								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline font-mono text-sm"
+								rows="8"
+								placeholder="Collez ici le code HTML du template..."
+							></textarea>
+							<p class="text-xs text-gray-500 mt-1">
+								Collez le code HTML complet du template
+							</p>
+						</div>
+						<div class="mb-4">
+							<label
+								class="block text-gray-700 text-sm font-bold mb-2"
+								for="variables"
+							>
+								JSON des variables
+							</label>
+							<textarea
+								id="variables"
+								v-model="variablesJsonInput"
+								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline font-mono text-sm"
+								:class="{
+									'border-red-500': variablesJsonError,
+								}"
+								rows="6"
+								placeholder='{"title": {"value": "Titre par défaut", "type": "text"}, "description": {"value": "Description", "type": "textarea"}}'
+							></textarea>
+							<p
+								v-if="variablesJsonError"
+								class="text-xs text-red-500 mt-1"
+							>
+								{{ variablesJsonError }}
+							</p>
+							<p
+								v-else
+								class="text-xs text-gray-500 mt-1"
+							>
+								Collez le JSON des variables au format: {"key": {"value": "...", "type": "text|textarea"}}
+							</p>
+						</div>
 						<div class="flex justify-end">
 							<button
 								type="button"
@@ -261,7 +311,7 @@
 							</button>
 							<button
 								type="submit"
-								:disabled="templateStore.loading"
+								:disabled="templateStore.loading || !!variablesJsonError"
 								class="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white font-bold py-2 px-4 rounded"
 							>
 								{{
@@ -281,7 +331,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, watch } from "vue";
 import type { Template } from "~/types/template";
 import { TEMPLATE_CATEGORIES } from "~/constants/categories";
 
@@ -298,6 +348,10 @@ const categories = computed(() => {
 
 const showModal = ref(false);
 const isEditing = ref(false);
+const htmlInput = ref("");
+const variablesJsonInput = ref("");
+const variablesJsonError = ref<string | null>(null);
+
 const form = ref<Partial<Template>>({
 	name: "",
 	description: "",
@@ -320,10 +374,116 @@ const filterTemplates = async () => {
 	await templateStore.fetchTemplates(selectedCategory.value);
 };
 
+const parseVariablesJson = (jsonString: string): Record<string, any> | null => {
+	if (!jsonString.trim()) {
+		variablesJsonError.value = null;
+		return {};
+	}
+	try {
+		const parsed = JSON.parse(jsonString);
+		if (typeof parsed !== "object" || Array.isArray(parsed)) {
+			variablesJsonError.value =
+				"Le JSON doit être un objet (pas un tableau)";
+			return null;
+		}
+		variablesJsonError.value = null;
+		return parsed;
+	} catch (error) {
+		variablesJsonError.value =
+			"JSON invalide: " +
+			(error instanceof Error ? error.message : "Erreur inconnue");
+		return null;
+	}
+};
+
+// Extraire les dimensions depuis le HTML (essaye plusieurs sources)
+const extractDimensionsFromHtml = (html: string): { width?: number; height?: number } => {
+	if (!html || !html.trim()) {
+		return {};
+	}
+
+	const dimensions: { width?: number; height?: number } = {};
+
+	// Fonction helper pour extraire depuis un style CSS
+	const extractFromStyle = (styleContent: string): { width?: number; height?: number } => {
+		const result: { width?: number; height?: number } = {};
+		const widthMatch = styleContent.match(/width\s*:\s*(\d+)\s*px/i);
+		const heightMatch = styleContent.match(/height\s*:\s*(\d+)\s*px/i);
+		
+		if (widthMatch && widthMatch[1]) {
+			result.width = parseInt(widthMatch[1], 10);
+		}
+		if (heightMatch && heightMatch[1]) {
+			result.height = parseInt(heightMatch[1], 10);
+		}
+		return result;
+	};
+
+	// 1. Essayer d'abord la balise <html> avec son attribut style
+	const htmlTagMatch = html.match(/<html[^>]*style\s*=\s*["']([^"']+)["'][^>]*>/i);
+	if (htmlTagMatch && htmlTagMatch[1]) {
+		const htmlDimensions = extractFromStyle(htmlTagMatch[1]);
+		if (htmlDimensions.width) dimensions.width = htmlDimensions.width;
+		if (htmlDimensions.height) dimensions.height = htmlDimensions.height;
+	}
+
+	// 2. Si pas trouvé, essayer la balise <body> avec son attribut style
+	if (!dimensions.width || !dimensions.height) {
+		const bodyTagMatch = html.match(/<body[^>]*style\s*=\s*["']([^"']+)["'][^>]*>/i);
+		if (bodyTagMatch && bodyTagMatch[1]) {
+			const bodyDimensions = extractFromStyle(bodyTagMatch[1]);
+			if (!dimensions.width && bodyDimensions.width) {
+				dimensions.width = bodyDimensions.width;
+			}
+			if (!dimensions.height && bodyDimensions.height) {
+				dimensions.height = bodyDimensions.height;
+			}
+		}
+	}
+
+	// 3. Si toujours pas trouvé, essayer la balise <meta name="viewport">
+	if (!dimensions.width || !dimensions.height) {
+		const viewportMatch = html.match(/<meta[^>]*name\s*=\s*["']viewport["'][^>]*content\s*=\s*["']([^"']+)["'][^>]*>/i);
+		if (viewportMatch && viewportMatch[1]) {
+			const content = viewportMatch[1];
+			const widthMatch = content.match(/width\s*=\s*(\d+)/i);
+			const heightMatch = content.match(/height\s*=\s*(\d+)/i);
+			
+			if (!dimensions.width && widthMatch && widthMatch[1]) {
+				dimensions.width = parseInt(widthMatch[1], 10);
+			}
+			if (!dimensions.height && heightMatch && heightMatch[1]) {
+				dimensions.height = parseInt(heightMatch[1], 10);
+			}
+		}
+	}
+
+	return dimensions;
+};
+
+// Valider le JSON en temps réel
+watch(variablesJsonInput, () => {
+	parseVariablesJson(variablesJsonInput.value);
+});
+
+// Extraire automatiquement les dimensions depuis le HTML
+watch(htmlInput, (newHtml) => {
+	const dimensions = extractDimensionsFromHtml(newHtml);
+	if (dimensions.width && form.value.layout) {
+		form.value.layout.width = dimensions.width;
+	}
+	if (dimensions.height && form.value.layout) {
+		form.value.layout.height = dimensions.height;
+	}
+});
+
 const openCreateModal = () => {
 	// Reset error when opening modal
 	templateStore.error = null;
 	isEditing.value = false;
+	htmlInput.value = "";
+	variablesJsonInput.value = "";
+	variablesJsonError.value = null;
 	form.value = {
 		name: "",
 		description: "",
@@ -345,11 +505,19 @@ const editTemplate = (template: Template) => {
 	templateStore.error = null;
 	isEditing.value = true;
 	form.value = { ...template };
+	htmlInput.value = template.html || "";
+	variablesJsonInput.value = template.variables
+		? JSON.stringify(template.variables, null, 2)
+		: "";
+	variablesJsonError.value = null;
 	showModal.value = true;
 };
 
 const closeModal = () => {
 	showModal.value = false;
+	htmlInput.value = "";
+	variablesJsonInput.value = "";
+	variablesJsonError.value = null;
 	form.value = {
 		name: "",
 		description: "",
@@ -366,6 +534,12 @@ const closeModal = () => {
 };
 
 const handleSubmit = async () => {
+	// Valider et parser le JSON des variables
+	const parsedVariables = parseVariablesJson(variablesJsonInput.value);
+	if (variablesJsonError.value) {
+		return; // Ne pas soumettre si le JSON est invalide
+	}
+
 	try {
 		if (isEditing.value && form.value.id) {
 			// Exclure les propriétés qui ne devraient pas être modifiées
@@ -377,7 +551,11 @@ const handleSubmit = async () => {
 				brandVariables,
 				...updateData
 			} = form.value;
-			await templateStore.updateTemplate(id, updateData);
+			await templateStore.updateTemplate(id, {
+				...updateData,
+				html: htmlInput.value || undefined,
+				variables: parsedVariables || undefined,
+			});
 		} else {
 			// Type spécifique pour la création, excluant les propriétés non acceptées par le backend
 			const newTemplate = {
@@ -391,7 +569,8 @@ const handleSubmit = async () => {
 					elements: [],
 				},
 				tags: form.value.tags || [],
-				variables: form.value.variables || {},
+				variables: parsedVariables || {},
+				html: htmlInput.value || undefined,
 			};
 			await templateStore.createTemplate(newTemplate);
 		}
