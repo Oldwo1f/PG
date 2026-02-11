@@ -27,6 +27,7 @@
     "add-templates-json": "ts-node -r tsconfig-paths/register tools/add-templates-from-json.ts",
     "add-testimonial": "ts-node -r tsconfig-paths/register tools/add-testimonial-template.ts",
     "diagnose:preview": "ts-node -r tsconfig-paths/register tools/diagnose-preview-images.ts",
+    "check:preview-routes": "ts-node -r tsconfig-paths/register tools/check-preview-routes.ts",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "migration:generate": "npm run typeorm -- migration:generate -d src/config/typeorm.config.ts",
     "migration:run": "sh scripts/run-migration.sh run",

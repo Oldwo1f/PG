@@ -19,7 +19,11 @@ export class TemplatePreviewService {
     const brand = await this.brandService.findByNameForUser(dto.brandName, user.id);
     const buffer = await this.renderHtmlToPng(dto.html, brand, dto.templateVariables, dto.width, dto.height);
 
-    const previewsDir = path.join(__dirname, '../assets/templatePreviews');
+    // Utiliser process.cwd() pour pointer vers /app dans Docker, ou __dirname en dev
+    // Le volume Docker monte /app/assets, donc on doit utiliser ce chemin
+    const previewsDir = process.env.NODE_ENV === 'production'
+      ? path.join(process.cwd(), 'assets', 'templatePreviews')
+      : path.join(__dirname, '../assets/templatePreviews');
     fs.mkdirSync(previewsDir, { recursive: true });
 
     const filename = this.buildPreviewFilename(dto.templateName);
