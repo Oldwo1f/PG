@@ -62,7 +62,7 @@ COPY --from=builder /app/src ./src
 RUN chmod +x scripts/*.sh 2>/dev/null || true
 
 # Create directories for uploads and assets
-RUN mkdir -p uploads/images assets/icons
+RUN mkdir -p uploads/images uploads/preview assets/icons
 
 # Copy existing assets if they exist
 COPY --from=builder /app/assets ./assets

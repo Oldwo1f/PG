@@ -111,11 +111,9 @@ export class TemplateController {
   @ApiOperation({ summary: 'Get template preview image' })
   @ApiResponse({ status: 200, description: 'Return the preview image' })
   async getPreviewImage(@Param('filename') filename: string, @Res() res: Response): Promise<void> {
-    // Utiliser process.cwd() pour pointer vers /app dans Docker, ou __dirname en dev
-    // Le volume Docker monte /app/assets, donc on doit utiliser ce chemin
-    const previewPath = process.env.NODE_ENV === 'production'
-      ? path.join(process.cwd(), 'assets', 'templatePreviews', filename)
-      : path.join(__dirname, '../assets/templatePreviews', filename);
+    // Utiliser uploads/preview qui est monté dans le volume Docker
+    // Ce dossier persiste après rebuild contrairement à dist/assets
+    const previewPath = path.join(process.cwd(), 'uploads', 'preview', filename);
 
     // Vérifier si le fichier existe
     if (!fs.existsSync(previewPath)) {
