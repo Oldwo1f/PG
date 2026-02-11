@@ -1733,7 +1733,8 @@ hb.registerHelper("fontFamily", function (fontName) {
 });
 
 // Helper pour rendre une icône (existant mais amélioré)
-hb.registerHelper("renderIcon", function (icon, size) {
+// Usage: {{renderIcon icon}} ou {{renderIcon icon size}} ou {{renderIcon icon size color}}
+hb.registerHelper("renderIcon", function (icon, size, color) {
 	if (!icon) {
 		console.warn("[renderIcon] Icon is empty or null");
 		return new hb.SafeString("");
@@ -1753,13 +1754,35 @@ hb.registerHelper("renderIcon", function (icon, size) {
 		}
 	}
 
+	// Déterminer la couleur : si color est fourni, l'utiliser, sinon var(--secondaryColor) par défaut
+	let iconColor = "var(--secondaryColor)";
+	if (color !== undefined && color !== null && color !== "") {
+		const colorStr = String(color).trim();
+		if (colorStr) {
+			// Si la couleur commence par var(, #, rgb(, rgba(, ou hsl(, l'utiliser telle quelle
+			if (
+				colorStr.startsWith("var(") ||
+				colorStr.startsWith("#") ||
+				colorStr.startsWith("rgb(") ||
+				colorStr.startsWith("rgba(") ||
+				colorStr.startsWith("hsl(") ||
+				colorStr.startsWith("hsla(")
+			) {
+				iconColor = colorStr;
+			} else {
+				// Sinon, traiter comme un nom de couleur CSS ou une variable CSS
+				iconColor = colorStr;
+			}
+		}
+	}
+
 	if (typeof icon === "string") {
 		const iconStr = icon.trim();
 		if (iconStr.startsWith("ph-")) {
-			html = `<div class="icon"><i class="ph-duotone ${iconStr}" style="font-size: ${fontSize}; color: var(--secondaryColor);"></i></div>`;
+			html = `<div class="icon"><i class="ph-duotone ${iconStr}" style="font-size: ${fontSize}; color: ${iconColor};"></i></div>`;
 		} else if (iconStr.startsWith("fa-") || iconStr.startsWith("fa ")) {
 			const faClass = iconStr.startsWith("fa ") ? iconStr : "fa " + iconStr;
-			html = `<div class="icon"><i class="${faClass}" style="font-size: ${fontSize}; color: var(--secondaryColor);"></i></div>`;
+			html = `<div class="icon"><i class="${faClass}" style="font-size: ${fontSize}; color: ${iconColor};"></i></div>`;
 		} else {
 			console.warn("[renderIcon] Unknown icon string format:", iconStr);
 		}
@@ -1777,20 +1800,20 @@ hb.registerHelper("renderIcon", function (icon, size) {
 				iconClass = `ph-duotone ph-${iconName}`;
 			}
 		}
-		
+
 		if (iconClass) {
-			html = `<div class="icon"><i class="${iconClass}" style="font-size: ${fontSize}; color: var(--secondaryColor);"></i></div>`;
+			html = `<div class="icon"><i class="${iconClass}" style="font-size: ${fontSize}; color: ${iconColor};"></i></div>`;
 		} else {
 			console.warn("[renderIcon] Icon object has no class or name:", icon);
 		}
 	} else {
 		console.warn("[renderIcon] Icon has unknown type:", typeof icon, icon);
 	}
-	
+
 	if (!html) {
 		console.warn("[renderIcon] No HTML generated for icon:", icon);
 	}
-	
+
 	return new hb.SafeString(html);
 });
 
