@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { resolveAssetUrl } from './handlebarsHelpers';
 
 export function addGoogleFontsAndStyles(html: string, googleFontsLinks: string): string {
   const showIconRandomlyScript =
@@ -48,19 +49,34 @@ export function addGoogleFontsAndStyles(html: string, googleFontsLinks: string):
     // Lire le CSS Phosphor
     phosphorCss = fs.readFileSync(path.join(assetsPath, 'phosphor-duotone.css'), 'utf8');
 
-    // Corriger les URLs des polices pour pointer vers le backend
+    // Corriger les URLs des polices pour pointer vers le backend avec resolveAssetUrl
+    const phosphorFontUrl = resolveAssetUrl('/assets/icons/Phosphor-Duotone.woff2');
     phosphorCss = phosphorCss.replace(
       /url\((['"]?)\.\/Phosphor-Duotone\.woff2\1\)/g,
-      'url("http://localhost:3001/assets/icons/Phosphor-Duotone.woff2")',
+      `url("${phosphorFontUrl}")`,
+    );
+    // Corriger aussi les autres formats de police
+    phosphorCss = phosphorCss.replace(
+      /url\((['"]?)\.\/Phosphor-Duotone\.woff\1\)/g,
+      `url("${phosphorFontUrl.replace('.woff2', '.woff')}")`,
+    );
+    phosphorCss = phosphorCss.replace(
+      /url\((['"]?)\.\/Phosphor-Duotone\.ttf\1\)/g,
+      `url("${phosphorFontUrl.replace('.woff2', '.ttf')}")`,
+    );
+    phosphorCss = phosphorCss.replace(
+      /url\((['"]?)\.\/Phosphor-Duotone\.svg#Phosphor-Duotone\1\)/g,
+      `url("${phosphorFontUrl.replace('.woff2', '.svg#Phosphor-Duotone')}")`,
     );
 
     // Lire le CSS FontAwesome
     fontawesomeCss = fs.readFileSync(path.join(assetsPath, 'fontawesome.css'), 'utf8');
 
     // Corriger les URLs des polices FontAwesome
+    const fontawesomeBaseUrl = resolveAssetUrl('/assets/icons/webfonts/');
     fontawesomeCss = fontawesomeCss.replace(
       /url\((['"]?)\.\/webfonts\//g,
-      'url("http://localhost:3001/assets/icons/webfonts/',
+      `url("${fontawesomeBaseUrl}`,
     );
   } catch (error) {
     console.error('Error reading CSS files:', error);

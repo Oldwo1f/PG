@@ -93,6 +93,7 @@ export class TemplatePreviewService {
       logoIconUrl: resolveAssetUrl((brand as any).logoIconUrl),
       logoLineUrl: resolveAssetUrl((brand as any).logoLineUrl),
       imageGroups: imageGroupsByName,
+      icons: brand.icons || [],
     };
 
     const templateData = {

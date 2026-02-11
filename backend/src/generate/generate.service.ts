@@ -181,6 +181,7 @@ export class GenerateService {
         logoIconUrl: resolveAssetUrl((dbBrand as any).logoIconUrl),
         logoLineUrl: resolveAssetUrl((dbBrand as any).logoLineUrl),
         imageGroups: imageGroupsByName,
+        icons: dbBrand.icons || [],
       };
 
       const templateData = {

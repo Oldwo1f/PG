@@ -162,18 +162,64 @@ export function registerHandlebarsHelpers(): void {
   });
 
   // Helper pour rendre une icône
-  Handlebars.registerHelper('renderIcon', function (icon) {
-    let html = '';
-    if (typeof icon === 'string') {
-      if (icon.startsWith('ph-')) {
-        html = `<div class="icon"><i class="ph-duotone ${icon}" style="font-size: 3em; color: var(--secondaryColor);"></i></div>`;
-      } else if (icon.startsWith('fa-') || icon.startsWith('fa ')) {
-        const faClass = icon.startsWith('fa ') ? icon : 'fa ' + icon;
-        html = `<div class="icon"><i class="${faClass}" style="font-size: 3em; color: var(--secondaryColor);"></i></div>`;
-      }
-    } else if (icon && icon.class) {
-      html = `<div class="icon"><i class="${icon.class}" style="font-size: 3em; color: var(--secondaryColor);"></i></div>`;
+  Handlebars.registerHelper('renderIcon', function (icon, size) {
+    if (!icon) {
+      console.warn('[renderIcon] Icon is empty or null');
+      return new Handlebars.SafeString('');
     }
+
+    let html = '';
+    // Déterminer la taille : si size est fourni, l'utiliser, sinon 3em par défaut
+    let fontSize = '3em';
+    if (size !== undefined && size !== null) {
+      const sizeNum = typeof size === 'number' ? size : parseFloat(String(size));
+      if (!isNaN(sizeNum) && sizeNum > 0) {
+        // Si c'est un nombre, l'interpréter comme pixels
+        fontSize = `${sizeNum}px`;
+      } else if (typeof size === 'string' && size.trim()) {
+        // Sinon, utiliser la valeur telle quelle (ex: "2em", "24px", etc.)
+        fontSize = size.trim();
+      }
+    }
+
+    if (typeof icon === 'string') {
+      const iconStr = icon.trim();
+      if (iconStr.startsWith('ph-')) {
+        html = `<div class="icon"><i class="ph-duotone ${iconStr}" style="font-size: ${fontSize}; color: var(--secondaryColor);"></i></div>`;
+      } else if (iconStr.startsWith('fa-') || iconStr.startsWith('fa ')) {
+        const faClass = iconStr.startsWith('fa ') ? iconStr : 'fa ' + iconStr;
+        html = `<div class="icon"><i class="${faClass}" style="font-size: ${fontSize}; color: var(--secondaryColor);"></i></div>`;
+      } else {
+        console.warn('[renderIcon] Unknown icon string format:', iconStr);
+      }
+    } else if (icon && typeof icon === 'object') {
+      // Gérer les objets avec propriété 'class' ou 'name'
+      let iconClass = '';
+      if (icon.class) {
+        iconClass = icon.class;
+      } else if (icon.name) {
+        // Si name commence déjà par 'ph-', ne pas ajouter le préfixe
+        const iconName = String(icon.name).trim();
+        if (iconName.startsWith('ph-')) {
+          iconClass = `ph-duotone ${iconName}`;
+        } else {
+          iconClass = `ph-duotone ph-${iconName}`;
+        }
+      }
+      
+      if (iconClass) {
+        html = `<div class="icon"><i class="${iconClass}" style="font-size: ${fontSize}; color: var(--secondaryColor);"></i></div>`;
+      } else {
+        console.warn('[renderIcon] Icon object has no class or name:', icon);
+      }
+    } else {
+      console.warn('[renderIcon] Icon has unknown type:', typeof icon, icon);
+    }
+    
+    if (!html) {
+      console.warn('[renderIcon] No HTML generated for icon:', icon);
+    }
+    
     return new Handlebars.SafeString(html);
   });
 
