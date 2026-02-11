@@ -103,12 +103,12 @@
 					class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200 h-full flex flex-col"
 				>
 					<!-- Image de preview -->
-					<div class="relative aspect-square bg-gray-100">
+					<div class="relative aspect-square bg-gray-100 flex items-center justify-center">
 						<img
 							v-if="template.previewImage"
 							:src="getApiUrl(`/templates/preview/${template.previewImage}`)"
 							:alt="template.name"
-							class="w-full h-full object-cover"
+							class="w-full h-full object-contain"
 							@error="handleImageError"
 						/>
 						<div
@@ -214,12 +214,12 @@
 				<div class="p-4 overflow-y-auto max-h-[calc(90vh-120px)]">
 					<div v-if="selectedTemplate" class="space-y-4">
 						<!-- Image de preview -->
-						<div class="text-center">
+						<div class="text-center flex items-center justify-center bg-gray-100 rounded-lg p-4 min-h-[300px]">
 							<img
 								v-if="selectedTemplate.previewImage"
 								:src="getApiUrl(`/templates/preview/${selectedTemplate.previewImage}`)"
 								:alt="selectedTemplate.name"
-								class="max-w-full h-auto rounded-lg shadow-lg"
+								class="w-full h-auto max-h-[70vh] object-contain rounded-lg shadow-lg"
 								@error="handleImageError"
 							/>
 						</div>
