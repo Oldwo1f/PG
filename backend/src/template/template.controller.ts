@@ -18,6 +18,7 @@ import { Template } from './entities/template.entity';
 import { CreateTemplateDto } from './dto/create-template.dto';
 import { UpdateTemplateDto } from './dto/update-template.dto';
 import { GenerateTemplatePreviewDto } from './dto/generate-template-preview.dto';
+import { TemplatesExportResponseDto } from './dto/templates-export.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { User } from '../user/entities/user.entity';
@@ -105,6 +106,21 @@ export class TemplateController {
     @Query('category') category?: string,
   ): Promise<Template[]> {
     return this.templateService.findAllWithExamples(user.id, category);
+  }
+
+  @Get('export')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Export all accessible templates as JSON (user + examples)' })
+  @ApiResponse({
+    status: 200,
+    description: 'Return all templates in export JSON format',
+    type: TemplatesExportResponseDto,
+  })
+  async exportAll(
+    @CurrentUser() user: User,
+    @Query('category') category?: string,
+  ): Promise<TemplatesExportResponseDto> {
+    return this.templateService.findAllForExport(user.id, category);
   }
 
   @Get('preview/:filename')

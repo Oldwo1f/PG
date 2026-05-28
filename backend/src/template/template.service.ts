@@ -4,6 +4,10 @@ import { Repository, FindOptionsWhere, IsNull } from 'typeorm';
 import { Template } from './entities/template.entity';
 import { CreateTemplateDto } from './dto/create-template.dto';
 import { UpdateTemplateDto } from './dto/update-template.dto';
+import {
+  TemplateExportDto,
+  TemplatesExportResponseDto,
+} from './dto/templates-export.dto';
 import { Subscription, SubscriptionStatus } from '../billing/entities/subscription.entity';
 import { Plan } from '../billing/entities/plan.entity';
 
@@ -117,6 +121,30 @@ export class TemplateService {
 
     // Combiner et retourner
     return [...userTemplates, ...exampleTemplates];
+  }
+
+  private toExportDto(template: Template): TemplateExportDto {
+    return {
+      name: template.name,
+      description: template.description ?? '',
+      category: template.category ?? '',
+      previewImage: template.previewImage,
+      layout: template.layout,
+      tags: template.tags ?? [],
+      variables: template.variables ?? {},
+      html: template.html,
+      isActive: template.isActive,
+    };
+  }
+
+  async findAllForExport(
+    userId: string,
+    category?: string,
+  ): Promise<TemplatesExportResponseDto> {
+    const templates = await this.findAllWithExamples(userId, category);
+    return {
+      templates: templates.map((t) => this.toExportDto(t)),
+    };
   }
 
   async findExamples(category?: string): Promise<Template[]> {
