@@ -20,6 +20,7 @@ import { UpdateTemplateDto } from './dto/update-template.dto';
 import { GenerateTemplatePreviewDto } from './dto/generate-template-preview.dto';
 import { TemplatesExportResponseDto } from './dto/templates-export.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { JwtOrApiKeyGuard } from '../auth/guards/jwt-or-api.guard';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { User } from '../user/entities/user.entity';
 import { Roles } from '../auth/decorators/roles.decorator';
@@ -109,7 +110,7 @@ export class TemplateController {
   }
 
   @Get('export')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtOrApiKeyGuard)
   @ApiOperation({ summary: 'Export all accessible templates as JSON (user + examples)' })
   @ApiResponse({
     status: 200,

@@ -9,11 +9,7 @@ export class ApiKeyAuthGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest<Request>();
-    const apiKey =
-      (request.headers['x-api-key'] as string | undefined) ||
-      (request.headers['authorization']?.startsWith('ApiKey ')
-        ? request.headers['authorization'].slice('ApiKey '.length)
-        : undefined);
+    const apiKey = this.extractApiKey(request);
 
     if (!apiKey) {
       throw new UnauthorizedException('Missing API key');
@@ -27,5 +23,26 @@ export class ApiKeyAuthGuard implements CanActivate {
     // Attach user to request for downstream handlers
     (request as any).user = user;
     return true;
+  }
+
+  private extractApiKey(request: Request): string | undefined {
+    const headerKey = request.headers['x-api-key'] as string | undefined;
+    if (headerKey) return headerKey;
+
+    const auth = request.headers['authorization'];
+    if (!auth) return undefined;
+
+    if (auth.startsWith('ApiKey ')) {
+      return auth.slice('ApiKey '.length).trim();
+    }
+
+    if (auth.startsWith('Bearer ')) {
+      const token = auth.slice('Bearer '.length).trim();
+      if (token.startsWith('pk_')) {
+        return token;
+      }
+    }
+
+    return undefined;
   }
 }

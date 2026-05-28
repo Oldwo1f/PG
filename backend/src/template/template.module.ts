@@ -6,10 +6,11 @@ import { Template } from './entities/template.entity';
 import { Subscription } from '../billing/entities/subscription.entity';
 import { Plan } from '../billing/entities/plan.entity';
 import { BrandModule } from '../brand/brand.module';
+import { AuthModule } from '../auth/auth.module';
 import { TemplatePreviewService } from './template-preview.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Template, Subscription, Plan]), BrandModule],
+  imports: [TypeOrmModule.forFeature([Template, Subscription, Plan]), BrandModule, AuthModule],
   controllers: [TemplateController],
   providers: [TemplateService, TemplatePreviewService],
   exports: [TemplateService],
