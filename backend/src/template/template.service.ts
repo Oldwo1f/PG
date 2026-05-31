@@ -141,7 +141,7 @@ export class TemplateService {
     userId: string,
     category?: string,
   ): Promise<TemplatesExportResponseDto> {
-    const templates = await this.findAllWithExamples(userId, category);
+    const templates = await this.findAll(userId, category);
     return {
       templates: templates.map((t) => this.toExportDto(t)),
     };

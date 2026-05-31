@@ -111,7 +111,7 @@ export class TemplateController {
 
   @Get('export')
   @UseGuards(JwtOrApiKeyGuard)
-  @ApiOperation({ summary: 'Export all accessible templates as JSON (user + examples)' })
+  @ApiOperation({ summary: 'Export the current user templates as JSON' })
   @ApiResponse({
     status: 200,
     description: 'Return all templates in export JSON format',
