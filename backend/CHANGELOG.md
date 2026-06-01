@@ -94,3 +94,46 @@ Pour migrer vers la nouvelle API :
 
 - Voir `API_EXAMPLE.md` pour des exemples détaillés
 - Voir `test-new-api.ts` pour un script de test
+
+## Version 2.1.0 - Catalogue templates pour agents
+
+### Nouvel endpoint
+
+- `GET /templates/catalog` (JWT ou clé API) : liste les templates actifs (utilisateur + exemples) avec métadonnées pour agents, sans HTML.
+
+Exemple de réponse (extrait) :
+
+```json
+{
+  "templates": [
+    {
+      "templateName": "top5_article_card",
+      "description": "...",
+      "category": "...",
+      "layout": { "width": 1080, "height": 1080 },
+      "usage": {
+        "use_for": "illustrate top 5 article",
+        "dont_use_for": "news, citations, products",
+        "tag": "top-5, top-10",
+        "group": "group_top_5"
+      },
+      "templateVariables": {
+        "heroImage": {
+          "example_value": "https://...",
+          "usage": "URL absolue d'une image format 16/9"
+        }
+      }
+    }
+  ]
+}
+```
+
+### Stockage enrichi
+
+- Colonne `usage` (jsonb) sur `templates` pour les métadonnées racine.
+- Chaque variable peut inclure `usage` en plus de `value` et `type` (compatible Studio).
+
+### Génération inchangée
+
+- `POST /generate` attend toujours `templateVariables` avec des **valeurs plates**.
+- Garde-fou : si un objet `{ example_value }` ou `{ value }` est envoyé par erreur, la valeur string est extraite automatiquement.

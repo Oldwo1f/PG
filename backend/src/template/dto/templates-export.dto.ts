@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import type { TemplateLayout } from '../entities/template.entity';
+import type { TemplateLayout, TemplateVariableInput } from '../entities/template.entity';
 
 export class TemplateExportDto {
   @ApiProperty({ description: 'Template name' })
@@ -21,7 +21,7 @@ export class TemplateExportDto {
   tags: string[];
 
   @ApiProperty({ description: 'Template variables' })
-  variables: Record<string, string | { value: string; type: string }>;
+  variables: Record<string, TemplateVariableInput>;
 
   @ApiProperty({ description: 'Template HTML' })
   html: string;

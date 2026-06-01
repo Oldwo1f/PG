@@ -274,6 +274,36 @@
 						<div class="mb-4">
 							<label
 								class="block text-gray-700 text-sm font-bold mb-2"
+								for="usage"
+							>
+								Usage du template (JSON)
+							</label>
+							<textarea
+								id="usage"
+								v-model="usageJsonInput"
+								class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline font-mono text-sm"
+								:class="{
+									'border-red-500': usageJsonError,
+								}"
+								rows="4"
+								placeholder='{"use_for": "...", "dont_use_for": "...", "tag": "top-5", "group": "group_top_5"}'
+							></textarea>
+							<p
+								v-if="usageJsonError"
+								class="text-xs text-red-500 mt-1"
+							>
+								{{ usageJsonError }}
+							</p>
+							<p
+								v-else
+								class="text-xs text-gray-500 mt-1"
+							>
+								Métadonnées pour les agents : quand utiliser ce template.
+							</p>
+						</div>
+						<div class="mb-4">
+							<label
+								class="block text-gray-700 text-sm font-bold mb-2"
 								for="variables"
 							>
 								JSON des variables
@@ -285,8 +315,8 @@
 								:class="{
 									'border-red-500': variablesJsonError,
 								}"
-								rows="6"
-								placeholder='{"title": {"value": "Titre par défaut", "type": "text"}, "description": {"value": "Description", "type": "textarea"}}'
+								rows="8"
+								placeholder='{"heroImage": {"example_value": "https://...", "usage": "URL absolue 16/9", "type": "text"}}'
 							></textarea>
 							<p
 								v-if="variablesJsonError"
@@ -298,7 +328,7 @@
 								v-else
 								class="text-xs text-gray-500 mt-1"
 							>
-								Collez le JSON des variables au format: {"key": {"value": "...", "type": "text|textarea"}}
+								Formats acceptés : {"key": "valeur"}, {"key": {"value", "type"}}, ou {"key": {"example_value", "usage", "type?"}}
 							</p>
 						</div>
 						<div class="flex justify-end">
@@ -311,7 +341,11 @@
 							</button>
 							<button
 								type="submit"
-								:disabled="templateStore.loading || !!variablesJsonError"
+								:disabled="
+									templateStore.loading ||
+									!!variablesJsonError ||
+									!!usageJsonError
+								"
 								class="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white font-bold py-2 px-4 rounded"
 							>
 								{{
@@ -332,8 +366,13 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from "vue";
-import type { Template } from "~/types/template";
+import type { Template, TemplateUsage } from "~/types/template";
 import { TEMPLATE_CATEGORIES } from "~/constants/categories";
+import {
+	normalizeTemplateUsage,
+	normalizeVariablesForStorage,
+	variablesToCatalog,
+} from "~/utils/templateVariables";
 
 const templateStore = useTemplateStore();
 
@@ -351,6 +390,8 @@ const isEditing = ref(false);
 const htmlInput = ref("");
 const variablesJsonInput = ref("");
 const variablesJsonError = ref<string | null>(null);
+const usageJsonInput = ref("");
+const usageJsonError = ref<string | null>(null);
 
 const form = ref<Partial<Template>>({
 	name: "",
@@ -387,12 +428,34 @@ const parseVariablesJson = (jsonString: string): Record<string, any> | null => {
 			return null;
 		}
 		variablesJsonError.value = null;
-		return parsed;
+		return normalizeVariablesForStorage(parsed);
 	} catch (error) {
 		variablesJsonError.value =
 			"JSON invalide: " +
 			(error instanceof Error ? error.message : "Erreur inconnue");
 		return null;
+	}
+};
+
+const parseUsageJson = (jsonString: string): TemplateUsage | null | undefined => {
+	if (!jsonString.trim()) {
+		usageJsonError.value = null;
+		return null;
+	}
+	try {
+		const parsed = JSON.parse(jsonString);
+		if (typeof parsed !== "object" || Array.isArray(parsed)) {
+			usageJsonError.value =
+				"Le JSON doit être un objet (pas un tableau)";
+			return undefined;
+		}
+		usageJsonError.value = null;
+		return normalizeTemplateUsage(parsed as TemplateUsage);
+	} catch (error) {
+		usageJsonError.value =
+			"JSON invalide: " +
+			(error instanceof Error ? error.message : "Erreur inconnue");
+		return undefined;
 	}
 };
 
@@ -466,6 +529,10 @@ watch(variablesJsonInput, () => {
 	parseVariablesJson(variablesJsonInput.value);
 });
 
+watch(usageJsonInput, () => {
+	parseUsageJson(usageJsonInput.value);
+});
+
 // Extraire automatiquement les dimensions depuis le HTML
 watch(htmlInput, (newHtml) => {
 	const dimensions = extractDimensionsFromHtml(newHtml);
@@ -484,6 +551,8 @@ const openCreateModal = () => {
 	htmlInput.value = "";
 	variablesJsonInput.value = "";
 	variablesJsonError.value = null;
+	usageJsonInput.value = "";
+	usageJsonError.value = null;
 	form.value = {
 		name: "",
 		description: "",
@@ -507,9 +576,13 @@ const editTemplate = (template: Template) => {
 	form.value = { ...template };
 	htmlInput.value = template.html || "";
 	variablesJsonInput.value = template.variables
-		? JSON.stringify(template.variables, null, 2)
+		? JSON.stringify(variablesToCatalog(template.variables), null, 2)
+		: "";
+	usageJsonInput.value = template.usage
+		? JSON.stringify(template.usage, null, 2)
 		: "";
 	variablesJsonError.value = null;
+	usageJsonError.value = null;
 	showModal.value = true;
 };
 
@@ -518,6 +591,8 @@ const closeModal = () => {
 	htmlInput.value = "";
 	variablesJsonInput.value = "";
 	variablesJsonError.value = null;
+	usageJsonInput.value = "";
+	usageJsonError.value = null;
 	form.value = {
 		name: "",
 		description: "",
@@ -540,6 +615,11 @@ const handleSubmit = async () => {
 		return; // Ne pas soumettre si le JSON est invalide
 	}
 
+	const parsedUsage = parseUsageJson(usageJsonInput.value);
+	if (usageJsonError.value) {
+		return;
+	}
+
 	try {
 		if (isEditing.value && form.value.id) {
 			// Exclure les propriétés qui ne devraient pas être modifiées
@@ -554,7 +634,8 @@ const handleSubmit = async () => {
 			await templateStore.updateTemplate(id, {
 				...updateData,
 				html: htmlInput.value || undefined,
-				variables: parsedVariables || undefined,
+				variables: parsedVariables ?? undefined,
+				usage: parsedUsage,
 			});
 		} else {
 			// Type spécifique pour la création, excluant les propriétés non acceptées par le backend
@@ -570,6 +651,7 @@ const handleSubmit = async () => {
 				},
 				tags: form.value.tags || [],
 				variables: parsedVariables || {},
+				usage: parsedUsage,
 				html: htmlInput.value || undefined,
 			};
 			await templateStore.createTemplate(newTemplate);

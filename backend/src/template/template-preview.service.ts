@@ -8,6 +8,7 @@ import { BrandService } from '../brand/brand.service';
 import { Brand } from '../brand/entities/brand.entity';
 import { User } from '../user/entities/user.entity';
 import { registerHandlebarsHelpers, resolveAssetUrl } from '../utils/handlebarsHelpers';
+import { flattenTemplateVariablesForRender } from './template-variable.mapper';
 import { addGoogleFontsAndStyles } from '../utils/htmlUtils';
 import { GenerateTemplatePreviewDto } from './dto/generate-template-preview.dto';
 
@@ -99,7 +100,7 @@ export class TemplatePreviewService {
     };
 
     const templateData = {
-      ...(templateVariables || {}),
+      ...flattenTemplateVariablesForRender(templateVariables),
       brand: templateBrand,
     };
 

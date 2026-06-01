@@ -11,6 +11,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Subscription, SubscriptionStatus } from '../billing/entities/subscription.entity';
 import { Repository } from 'typeorm';
 import { UsageMonthly } from '../billing/entities/usage-monthly.entity';
+import { flattenTemplateVariablesForRender } from '../template/template-variable.mapper';
 
 interface GenerateImageData {
   [key: string]: unknown;
@@ -185,7 +186,7 @@ export class GenerateService {
       };
 
       const templateData = {
-        ...data.templateVariables,
+        ...flattenTemplateVariablesForRender(data.templateVariables),
         brand: templateBrand,
       };
 

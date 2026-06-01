@@ -19,6 +19,7 @@ import { CreateTemplateDto } from './dto/create-template.dto';
 import { UpdateTemplateDto } from './dto/update-template.dto';
 import { GenerateTemplatePreviewDto } from './dto/generate-template-preview.dto';
 import { TemplatesExportResponseDto } from './dto/templates-export.dto';
+import { TemplatesCatalogResponseDto } from './dto/template-catalog.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { JwtOrApiKeyGuard } from '../auth/guards/jwt-or-api.guard';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
@@ -122,6 +123,23 @@ export class TemplateController {
     @Query('category') category?: string,
   ): Promise<TemplatesExportResponseDto> {
     return this.templateService.findAllForExport(user.id, category);
+  }
+
+  @Get('catalog')
+  @UseGuards(JwtOrApiKeyGuard)
+  @ApiOperation({
+    summary: 'List templates for agents (example_value + usage, no HTML)',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Return catalog entries for user templates and examples',
+    type: TemplatesCatalogResponseDto,
+  })
+  async findCatalog(
+    @CurrentUser() user: User,
+    @Query('category') category?: string,
+  ): Promise<TemplatesCatalogResponseDto> {
+    return this.templateService.findCatalog(user.id, category);
   }
 
   @Get('preview/:filename')

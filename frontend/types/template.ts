@@ -20,6 +20,14 @@ export interface TemplateLayout {
 export interface TemplateVariable {
 	value: string;
 	type: "text" | "textarea";
+	usage?: string;
+}
+
+export interface TemplateUsage {
+	use_for?: string;
+	dont_use_for?: string;
+	tag?: string;
+	group?: string;
 }
 
 export interface Template {
@@ -31,7 +39,8 @@ export interface Template {
 	tags: string[];
 	isActive: boolean;
 	html?: string;
-	variables: Record<string, TemplateVariable>;
+	variables: Record<string, TemplateVariable | string>;
+	usage?: TemplateUsage | null;
 	brandVariables?: Record<string, string>;
 	previewImage?: string;
 	userId?: string;

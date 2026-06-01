@@ -1,6 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsOptional, IsObject, IsArray, IsBoolean } from 'class-validator';
-import type { TemplateLayout } from '../entities/template.entity';
+import type {
+  TemplateLayout,
+  TemplateUsage,
+  TemplateVariableInput,
+} from '../entities/template.entity';
 
 export class UpdateTemplateDto {
   @ApiProperty({ description: 'Template name' })
@@ -42,7 +46,15 @@ export class UpdateTemplateDto {
   @ApiProperty({ description: 'Template variables' })
   @IsObject()
   @IsOptional()
-  variables?: Record<string, string | { value: string; type: string }>;
+  variables?: Record<string, TemplateVariableInput>;
+
+  @ApiProperty({
+    description: 'Template usage metadata for agents (use_for, dont_use_for, tag, group)',
+    required: false,
+  })
+  @IsObject()
+  @IsOptional()
+  usage?: TemplateUsage | null;
 
   @ApiProperty({ description: 'Template preview image path' })
   @IsString()

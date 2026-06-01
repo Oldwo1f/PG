@@ -8,6 +8,12 @@ import {
   TemplateExportDto,
   TemplatesExportResponseDto,
 } from './dto/templates-export.dto';
+import { TemplatesCatalogResponseDto } from './dto/template-catalog.dto';
+import {
+  normalizeTemplateUsage,
+  normalizeVariablesForStorage,
+  toCatalogEntry,
+} from './template-variable.mapper';
 import { Subscription, SubscriptionStatus } from '../billing/entities/subscription.entity';
 import { Plan } from '../billing/entities/plan.entity';
 
@@ -73,12 +79,26 @@ export class TemplateService {
     }
   }
 
+  private prepareTemplatePayload<
+    T extends { variables?: CreateTemplateDto['variables']; usage?: CreateTemplateDto['usage'] },
+  >(dto: T): T {
+    const prepared = { ...dto };
+    if (dto.variables !== undefined) {
+      prepared.variables = normalizeVariablesForStorage(dto.variables);
+    }
+    if (dto.usage !== undefined) {
+      prepared.usage = normalizeTemplateUsage(dto.usage) ?? null;
+    }
+    return prepared;
+  }
+
   async create(createTemplateDto: CreateTemplateDto & { userId: string }): Promise<Template> {
     // Check template limits before creating
     await this.checkTemplateLimit(createTemplateDto.userId);
 
+    const prepared = this.prepareTemplatePayload(createTemplateDto);
     const template = this.templateRepository.create({
-      ...createTemplateDto,
+      ...prepared,
       html: createTemplateDto.html || defaultTemplateHtml,
     });
     return this.templateRepository.save(template);
@@ -86,8 +106,9 @@ export class TemplateService {
 
   async createExample(createTemplateDto: CreateTemplateDto): Promise<Template> {
     // Pour les templates d'exemple, pas de vérification de limite et pas de userId
+    const prepared = this.prepareTemplatePayload(createTemplateDto);
     const template = this.templateRepository.create({
-      ...createTemplateDto,
+      ...prepared,
       userId: undefined, // Template d'exemple sans utilisateur associé
       html: createTemplateDto.html || defaultTemplateHtml,
     });
@@ -147,6 +168,15 @@ export class TemplateService {
     };
   }
 
+  async findCatalog(userId: string, category?: string): Promise<TemplatesCatalogResponseDto> {
+    const templates = await this.findAllWithExamples(userId, category);
+    return {
+      templates: templates
+        .filter((t) => t.isActive !== false)
+        .map((t) => toCatalogEntry(t)),
+    };
+  }
+
   async findExamples(category?: string): Promise<Template[]> {
     const where: FindOptionsWhere<Template> = { userId: IsNull() };
     if (category) {
@@ -184,6 +214,13 @@ export class TemplateService {
     delete updateData.createdAt;
     delete updateData.updatedAt;
     delete updateData.brandVariables;
+
+    if (updateData.variables !== undefined) {
+      updateData.variables = normalizeVariablesForStorage(updateData.variables);
+    }
+    if (updateData.usage !== undefined) {
+      updateData.usage = normalizeTemplateUsage(updateData.usage) ?? null;
+    }
 
     Object.assign(template, updateData);
     return this.templateRepository.save(template);

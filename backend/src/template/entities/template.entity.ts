@@ -26,6 +26,24 @@ export interface TemplateLayout {
   elements: TemplateElement[];
 }
 
+export interface TemplateUsage {
+  use_for?: string;
+  dont_use_for?: string;
+  tag?: string;
+  group?: string;
+}
+
+export interface StoredTemplateVariable {
+  value: string;
+  type?: string;
+  usage?: string;
+}
+
+export type TemplateVariableInput =
+  | string
+  | StoredTemplateVariable
+  | { example_value: string; usage?: string; type?: string; value?: string };
+
 @Entity('templates')
 export class Template {
   @PrimaryGeneratedColumn('uuid')
@@ -62,7 +80,11 @@ export class Template {
 
   @Column({ type: 'json', nullable: true })
   @ApiProperty()
-  variables: Record<string, string | { value: string; type: string }>;
+  variables: Record<string, TemplateVariableInput>;
+
+  @Column({ type: 'jsonb', nullable: true })
+  @ApiProperty({ required: false })
+  usage: TemplateUsage | null;
 
   @Column({ type: 'json', nullable: true })
   @ApiProperty()

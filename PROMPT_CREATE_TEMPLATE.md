@@ -106,16 +106,53 @@ Important:
 ### Ce que tu dois livrer (obligatoire)
 
 1) **Le HTML du template** (un seul document HTML complet).
-2) **Le JSON des variables du template** que tu as créées, au format:
+2) **Le JSON `usage` du template** (racine) pour aider les agents à choisir le bon template:
 
 ```json
 {
-  "title": { "value": "Titre par défaut", "type": "text" },
-  "description": { "value": "Texte sur plusieurs lignes\nici", "type": "textarea" }
+  "use_for": "illustrer un top 5 article",
+  "dont_use_for": "news, citations, fiches produit",
+  "tag": "top-5, top-10",
+  "group": "group_top_5"
 }
 ```
 
-Ne fournis pas seulement `{"title":"..."}`: le format attendu doit inclure `{ value, type }`.
+3) **Le JSON des variables du template** avec exemple et consignes d'utilisation:
+
+```json
+{
+  "heroImage": {
+    "example_value": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1080&q=80",
+    "usage": "URL absolue d'une image format 16/9",
+    "type": "text"
+  },
+  "articleTitle": {
+    "example_value": "Les meilleures apps\npour booster ta productivité",
+    "usage": "titre de l'image, 50 caractères max",
+    "type": "textarea"
+  }
+}
+```
+
+Le champ `type` reste `text` ou `textarea` pour le Studio. Le stockage interne mappe `example_value` vers `value`.
+
+### API agents : catalogue vs génération
+
+- **Lister les templates** : `GET /templates/catalog` (JWT ou clé API). Réponse avec `usage` (racine) et `templateVariables` (`example_value` + `usage` par clé). Pas de HTML.
+- **Générer une image** : `POST /generate` avec des **valeurs plates** (inchangé):
+
+```json
+{
+  "templateName": "top5_article_card",
+  "brandName": "Ma Brand",
+  "templateVariables": {
+    "heroImage": "https://...",
+    "articleTitle": "Mon titre réel"
+  }
+}
+```
+
+Ne pas envoyer `{ example_value, usage }` à la génération : uniquement les vraies valeurs à rendre.
 
 ### Structure de base recommandée
 
