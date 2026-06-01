@@ -9,7 +9,7 @@ Ta mission est uniquement de :
 - concevoir la structure HTML
 - définir les variables (avec métadonnées catalogue)
 - produire le code
-- écrire la description structurée
+- écrire une description brève (affichage humain)
 
 **Ne jamais :**
 
@@ -37,43 +37,26 @@ Nom du template en **snake_case** (ex. `top5_article_card`, `compare_2_products`
 
 ### 2) `DESCRIPTION`
 
-Bloc texte structuré **obligatoire** pour que d’autres agents comprennent le template et les ratios d’images. Respecte **exactement** ce format :
+**1 à 2 phrases** en français pour l’affichage humain (admin, galerie).
 
-```
-USAGE: [1 phrase — quand utiliser ce template]
-GROUP: [identifiant de groupe, snake_case]
-IMAGES:
-- [pour chaque image de contenu : rôle + ratio autorisé + consigne]
-NOT_FOR: [cas d’usage à éviter, séparés par des virgules]
-TAGS: [mots-clés séparés par des virgules]
-STYLE: [1 phrase sur la mise en page / l’ambiance visuelle]
-```
+- Décris ce que montre le visuel (type de contenu, mise en page générale).
+- ❌ Pas de format structuré (`USAGE:`, `IMAGES:`, etc.).
+- ❌ Pas de ratios, consignes pour agents, tags ou cas à éviter — utilise `USAGE_JSON` et le champ `usage` de chaque variable.
 
-**Exemple :**
-
-```
-USAGE: Comparatif côte à côte de 2 produits (prix, avantages, différences).
-GROUP: compare-2-products
-IMAGES:
-- 1 photo produit concurrent ratio 1/1 (packshot, fond neutre ou transparent).
-- 1 photo de notre produit ratio 1/1 (packshot, fond neutre ou transparent).
-NOT_FOR: témoignage client, promo réduction, comparatif 3 ou 4 produits, hero blog.
-TAGS: comparaison, e-commerce, produits, versus
-STYLE: mise en page claire, 2 colonnes, produits face à face
-```
+**Exemple :** `Comparatif visuel de deux produits côte à côte, avec titres et points clés sous chaque photo.`
 
 ### 3) `USAGE_JSON`
 
-Objet JSON **racine** dérivé de la `DESCRIPTION` (pour le catalogue API et la sélection de template par d’autres agents). Champs :
+Objet JSON **racine** pour le catalogue API et la **sélection de template** par d’autres agents. Champs :
 
-| Champ JSON | Source dans DESCRIPTION |
-|------------|-------------------------|
-| `use_for` | ligne `USAGE:` |
-| `group` | ligne `GROUP:` |
-| `dont_use_for` | ligne `NOT_FOR:` |
-| `tag` | ligne `TAGS:` (chaîne, tags séparés par des virgules) |
+| Champ | Contenu |
+|-------|---------|
+| `use_for` | Quand choisir ce template (1 phrase) |
+| `group` | Identifiant de groupe (`snake_case` ou kebab-case) |
+| `dont_use_for` | Cas à éviter (virgules) |
+| `tag` | Mots-clés (virgules) |
 
-Le détail des images (`IMAGES:`) et le `STYLE:` restent dans `DESCRIPTION` ; ne les dupliques pas dans `USAGE_JSON`.
+Indépendant de `DESCRIPTION` — les ratios et consignes par image vont dans le `usage` de chaque clé de `VARIABLES_JSON`.
 
 ```json
 {
@@ -253,8 +236,8 @@ Avant de répondre, vérifie :
 
 - [ ] `<body style="width: 1080px; height: 1080px; margin: 0; overflow: hidden;">`
 - [ ] Toute image de contenu = variable de template avec ratio dans `usage`
-- [ ] `DESCRIPTION` au format USAGE / GROUP / IMAGES / NOT_FOR / TAGS / STYLE
-- [ ] `USAGE_JSON` cohérent avec `DESCRIPTION`
+- [ ] `DESCRIPTION` brève (1–2 phrases, sans métadonnées agent)
+- [ ] `USAGE_JSON` complet (`use_for`, `group`, `dont_use_for`, `tag`)
 - [ ] `VARIABLES_JSON` avec `example_value`, `usage`, `type` pour chaque clé
 - [ ] Aucune proposition de génération d’image
 
@@ -299,7 +282,7 @@ Si une case échoue, corrige avant d’envoyer la réponse.
 
 ## Rappel API (pour les agents en aval)
 
-- **Catalogue** : `GET /templates/catalog` expose `usage` + `templateVariables` (`example_value`, `usage`).
+- **Catalogue** : `GET /templates/catalog` expose les templates de l’utilisateur (`usage` + `templateVariables` avec `example_value`, `usage`). Pas les templates galerie/exemples.
 - **Génération d’image** : `POST /generate` attend des **valeurs plates** — pas d’objets `{ example_value, usage }` :
 
 ```json

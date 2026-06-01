@@ -99,7 +99,7 @@ Pour migrer vers la nouvelle API :
 
 ### Nouvel endpoint
 
-- `GET /templates/catalog` (JWT ou clé API) : liste les templates actifs (utilisateur + exemples) avec métadonnées pour agents, sans HTML.
+- `GET /templates/catalog` (JWT ou clé API) : liste les templates actifs de l’utilisateur avec métadonnées pour agents, sans HTML.
 
 Exemple de réponse (extrait) :
 

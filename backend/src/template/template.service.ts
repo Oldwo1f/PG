@@ -174,7 +174,7 @@ export class TemplateService {
   }
 
   async findCatalog(userId: string, category?: string): Promise<TemplatesCatalogResponseDto> {
-    const templates = await this.findAllWithExamples(userId, category);
+    const templates = await this.findAll(userId, category);
     return {
       templates: templates
         .filter((t) => t.isActive !== false)

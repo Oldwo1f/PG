@@ -132,7 +132,7 @@ export class TemplateController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Return catalog entries for user templates and examples',
+    description: 'Return catalog entries for the current user templates only',
     type: TemplatesCatalogResponseDto,
   })
   async findCatalog(
