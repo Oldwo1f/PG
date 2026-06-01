@@ -1611,6 +1611,7 @@ import { addGoogleFontsAndStyles } from "~/utils/htmlUtils";
 import { useTemplateStore } from "~/stores/template";
 import { useBrandStore } from "~/stores/brand";
 import { useStudioStore } from "~/stores/studio";
+import { studioVariablesFromApi } from "~/utils/templateVariables";
 import { useAuthStore } from "~/composables/useAuth";
 import { TEMPLATE_CATEGORIES } from "~/constants/categories";
 import { getApiUrl, resolveBackendImageUrl } from "~/utils/api";
@@ -2236,48 +2237,10 @@ const handleTemplateChange = async () => {
 			}
 		}
 
-		// Initialiser les variables du template (conversion)
-		const loadedVars = selectedTemplate.value.variables || {};
-		const newVars: Record<string, TemplateVariable> = {};
-		for (const key in loadedVars) {
-			const val = loadedVars[key];
-
-			// Gérer les différents formats de variables
-			if (
-				typeof val === "object" &&
-				val !== null &&
-				"value" in val &&
-				"type" in val
-			) {
-				// Format: { value: string, type: string }
-				newVars[key] = val as TemplateVariable;
-			} else if (typeof val === "string") {
-				// Format: string JSON stringifié ou string simple
-				try {
-					const parsed = JSON.parse(val);
-					if (
-						parsed &&
-						typeof parsed === "object" &&
-						"value" in parsed &&
-						"type" in parsed
-					) {
-						// Format JSON stringifié avec value et type
-						newVars[key] = parsed as TemplateVariable;
-					} else {
-						// String simple
-						newVars[key] = { value: val, type: "text" };
-					}
-				} catch (e) {
-					// String simple (pas du JSON valide)
-					newVars[key] = { value: val, type: "text" };
-				}
-			} else {
-				// Format simple: string ou autre
-				newVars[key] = { value: String(val), type: "text" };
-			}
-		}
-
-		templateVariables.value = newVars;
+		// Initialiser les variables (legacy, enrichi, ou bundle catalog collé par erreur)
+		templateVariables.value = studioVariablesFromApi(
+			selectedTemplate.value.variables
+		);
 
 		// Synchroniser le nom local
 		templateName.value = selectedTemplate.value.name || "";
@@ -3047,7 +3010,8 @@ const confirmAddVariablesBatch = () => {
 		return;
 	}
 
-	const entries = Object.entries(parsed as Record<string, unknown>);
+	const normalized = studioVariablesFromApi(parsed as Record<string, unknown>);
+	const entries = Object.entries(normalized);
 	if (entries.length === 0) {
 		addVariablesBatchError.value = "Aucune variable trouvée dans ce JSON.";
 		return;
@@ -3055,51 +3019,22 @@ const confirmAddVariablesBatch = () => {
 
 	let created = 0;
 	let skippedExisting = 0;
-	let skippedInvalid = 0;
 
-	for (const [rawKey, rawValue] of entries) {
-		const key = String(rawKey).trim();
-		if (!key) {
-			skippedInvalid++;
-			continue;
-		}
+	for (const [key, variable] of entries) {
 		if (templateVariables.value[key]) {
 			skippedExisting++;
 			continue;
 		}
 
-		// Formats acceptés:
-		// - "name": "default"
-		// - "name": 123 / true / null (stringifié)
-		// - "name": { value: "...", type: "text"|"textarea" }
-		let value = "";
-		let type: "text" | "textarea" = "text";
-
-		if (
-			rawValue &&
-			typeof rawValue === "object" &&
-			!Array.isArray(rawValue) &&
-			"value" in (rawValue as any)
-		) {
-			const v = (rawValue as any).value;
-			value = v === null || v === undefined ? "" : String(v);
-			const t = (rawValue as any).type;
-			if (t === "textarea" || t === "text") type = t;
-		} else {
-			value = rawValue === null || rawValue === undefined ? "" : String(rawValue);
-			// Heuristique simple: newline => textarea
-			if (value.includes("\n")) type = "textarea";
-		}
-
-		templateVariables.value[key] = { value, type };
+		templateVariables.value[key] = variable;
 		created++;
 	}
 
 	showAddVariablesBatchModal.value = false;
 
-	if (created === 0 && (skippedExisting > 0 || skippedInvalid > 0)) {
+	if (created === 0 && skippedExisting > 0) {
 		showToast(
-			`Aucune variable créée. ${skippedExisting} déjà existante(s), ${skippedInvalid} invalide(s).`,
+			`Aucune variable créée. ${skippedExisting} déjà existante(s).`,
 			"error"
 		);
 		return;
@@ -3108,7 +3043,6 @@ const confirmAddVariablesBatch = () => {
 	const parts: string[] = [];
 	parts.push(`${created} variable(s) ajoutée(s).`);
 	if (skippedExisting) parts.push(`${skippedExisting} déjà existante(s).`);
-	if (skippedInvalid) parts.push(`${skippedInvalid} invalide(s).`);
 	showToast(parts.join(" "), "success");
 };
 

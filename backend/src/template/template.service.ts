@@ -13,6 +13,7 @@ import {
   normalizeTemplateUsage,
   normalizeVariablesForStorage,
   toCatalogEntry,
+  unwrapTemplatePayload,
 } from './template-variable.mapper';
 import { Subscription, SubscriptionStatus } from '../billing/entities/subscription.entity';
 import { Plan } from '../billing/entities/plan.entity';
@@ -84,7 +85,11 @@ export class TemplateService {
   >(dto: T): T {
     const prepared = { ...dto };
     if (dto.variables !== undefined) {
-      prepared.variables = normalizeVariablesForStorage(dto.variables);
+      const unwrapped = unwrapTemplatePayload(dto.variables);
+      prepared.variables = normalizeVariablesForStorage(unwrapped.variables);
+      if (dto.usage === undefined && unwrapped.usage) {
+        prepared.usage = unwrapped.usage ?? null;
+      }
     }
     if (dto.usage !== undefined) {
       prepared.usage = normalizeTemplateUsage(dto.usage) ?? null;
@@ -216,7 +221,11 @@ export class TemplateService {
     delete updateData.brandVariables;
 
     if (updateData.variables !== undefined) {
-      updateData.variables = normalizeVariablesForStorage(updateData.variables);
+      const unwrapped = unwrapTemplatePayload(updateData.variables);
+      updateData.variables = normalizeVariablesForStorage(unwrapped.variables);
+      if (updateData.usage === undefined && unwrapped.usage) {
+        updateData.usage = unwrapped.usage ?? null;
+      }
     }
     if (updateData.usage !== undefined) {
       updateData.usage = normalizeTemplateUsage(updateData.usage) ?? null;

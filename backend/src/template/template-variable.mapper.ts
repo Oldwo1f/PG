@@ -56,15 +56,83 @@ function normalizeSingleVariable(raw: TemplateVariableInput): StoredTemplateVari
   return { value: exampleValue, type, ...(usage ? { usage } : {}) };
 }
 
-export function normalizeVariablesForStorage(
-  raw?: Record<string, TemplateVariableInput> | null,
-): Record<string, StoredTemplateVariable> {
-  if (!raw || typeof raw !== 'object') {
-    return {};
+const BUNDLE_META_KEYS = new Set(['templateName', 'brandName']);
+
+function isUsageMetadata(value: unknown): value is TemplateUsage {
+  if (!isRecord(value)) return false;
+  return (
+    typeof value.use_for === 'string' ||
+    typeof value.dont_use_for === 'string' ||
+    typeof value.group === 'string' ||
+    typeof value.tag === 'string'
+  );
+}
+
+export function isTemplateBundle(
+  raw: unknown,
+): raw is Record<string, unknown> & { templateVariables: Record<string, unknown> } {
+  return isRecord(raw) && isRecord(raw.templateVariables);
+}
+
+export function unwrapTemplatePayload(raw: unknown): {
+  usage?: TemplateUsage | undefined;
+  variables: Record<string, TemplateVariableInput>;
+} {
+  if (!isRecord(raw)) {
+    return { variables: {} };
   }
 
-  const result: Record<string, StoredTemplateVariable> = {};
+  if (isTemplateBundle(raw)) {
+    return {
+      usage: normalizeTemplateUsage(raw.usage as TemplateUsage),
+      variables: raw.templateVariables as Record<string, TemplateVariableInput>,
+    };
+  }
+
+  let usage: TemplateUsage | undefined;
+  const variables: Record<string, TemplateVariableInput> = {};
+
   for (const [key, value] of Object.entries(raw)) {
+    if (!key.trim() || BUNDLE_META_KEYS.has(key)) continue;
+
+    if (key === 'usage' && isUsageMetadata(value)) {
+      usage = normalizeTemplateUsage(value);
+      continue;
+    }
+
+    if (key === 'templateVariables' && isRecord(value)) {
+      const inner = value as Record<string, unknown>;
+      const isVariableMap = Object.values(inner).some(
+        (v) =>
+          typeof v === 'string' ||
+          (isRecord(v) &&
+            ('example_value' in v || 'value' in v || 'usage' in v || 'type' in v)),
+      );
+      if (isVariableMap) {
+        for (const [innerKey, innerVal] of Object.entries(inner)) {
+          if (innerKey.trim()) {
+            variables[innerKey] = innerVal as TemplateVariableInput;
+          }
+        }
+      } else {
+        variables[key] = value as TemplateVariableInput;
+      }
+      continue;
+    }
+
+    variables[key] = value as TemplateVariableInput;
+  }
+
+  return { usage, variables };
+}
+
+export function normalizeVariablesForStorage(
+  raw?: Record<string, TemplateVariableInput> | unknown | null,
+): Record<string, StoredTemplateVariable> {
+  const { variables } = unwrapTemplatePayload(raw ?? {});
+
+  const result: Record<string, StoredTemplateVariable> = {};
+  for (const [key, value] of Object.entries(variables)) {
     if (!key.trim()) continue;
     result[key] = normalizeSingleVariable(value);
   }

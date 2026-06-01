@@ -328,7 +328,7 @@
 								v-else
 								class="text-xs text-gray-500 mt-1"
 							>
-								Formats acceptés : {"key": "valeur"}, {"key": {"value", "type"}}, ou {"key": {"example_value", "usage", "type?"}}
+								Variables seules, ou bundle complet avec "templateVariables" (et "usage" rempli automatiquement dans le champ Usage ci-dessus).
 							</p>
 						</div>
 						<div class="flex justify-end">
@@ -369,8 +369,10 @@ import { ref, onMounted, computed, watch } from "vue";
 import type { Template, TemplateUsage } from "~/types/template";
 import { TEMPLATE_CATEGORIES } from "~/constants/categories";
 import {
+	isTemplateBundle,
 	normalizeTemplateUsage,
 	normalizeVariablesForStorage,
+	unwrapTemplatePayload,
 	variablesToCatalog,
 } from "~/utils/templateVariables";
 
@@ -427,6 +429,16 @@ const parseVariablesJson = (jsonString: string): Record<string, any> | null => {
 				"Le JSON doit être un objet (pas un tableau)";
 			return null;
 		}
+
+		if (isTemplateBundle(parsed) && !usageJsonInput.value.trim()) {
+			const usageFromBundle = normalizeTemplateUsage(
+				parsed.usage as TemplateUsage
+			);
+			if (usageFromBundle) {
+				usageJsonInput.value = JSON.stringify(usageFromBundle, null, 2);
+			}
+		}
+
 		variablesJsonError.value = null;
 		return normalizeVariablesForStorage(parsed);
 	} catch (error) {
@@ -575,12 +587,16 @@ const editTemplate = (template: Template) => {
 	isEditing.value = true;
 	form.value = { ...template };
 	htmlInput.value = template.html || "";
-	variablesJsonInput.value = template.variables
-		? JSON.stringify(variablesToCatalog(template.variables), null, 2)
-		: "";
+	const unwrapped = unwrapTemplatePayload(template.variables ?? {});
+	variablesJsonInput.value =
+		Object.keys(unwrapped.variables).length > 0
+			? JSON.stringify(variablesToCatalog(unwrapped.variables), null, 2)
+			: "";
 	usageJsonInput.value = template.usage
 		? JSON.stringify(template.usage, null, 2)
-		: "";
+		: unwrapped.usage
+			? JSON.stringify(unwrapped.usage, null, 2)
+			: "";
 	variablesJsonError.value = null;
 	usageJsonError.value = null;
 	showModal.value = true;

@@ -117,19 +117,24 @@ Objet JSON des **variables de template** que tu as créées. Format **obligatoir
 
 ---
 
-## Bundle JSON complet (optionnel mais recommandé)
+## Import dans l’admin PerfectGenerations
 
-En fin de réponse, tu peux regrouper les métadonnées pour import direct dans l’admin :
+Dans la modal **Gestion des templates** :
+
+1. Coller `USAGE_JSON` dans le champ **Usage du template (JSON)**.
+2. Coller **uniquement** le contenu de `VARIABLES_JSON` dans **JSON des variables** — pas le bundle racine.
+
+Tu peux aussi coller le **bundle complet** dans le champ variables ; l’application extraira `templateVariables` et `usage` automatiquement :
 
 ```json
 {
   "templateName": "compare_2_products",
-  "usage": { ... },
-  "templateVariables": { ... }
+  "usage": { "use_for": "...", "group": "...", "dont_use_for": "...", "tag": "..." },
+  "templateVariables": { "heroImage": { "example_value": "...", "usage": "...", "type": "text" } }
 }
 ```
 
-(`templateName` = même valeur que `TEMPLATE_NAME`.)
+(`templateName` = même valeur que `TEMPLATE_NAME` — le nom du template se saisit dans le champ Nom.)
 
 ---
 
