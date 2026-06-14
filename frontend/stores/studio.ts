@@ -1,16 +1,12 @@
 import { defineStore } from "pinia";
 import type { Template } from "~/types/template";
 import type { Brand } from "~/types/brand";
-
-interface TemplateVariable {
-	type: "text" | "textarea";
-	value: string;
-}
+import type { StudioTemplateVariable } from "~/utils/templateVariables";
 
 interface StudioState {
 	selectedTemplate: Template | null;
 	selectedBrand: Brand | null;
-	templateVariables: Record<string, TemplateVariable>;
+	templateVariables: Record<string, StudioTemplateVariable>;
 	htmlContent: string;
 	dimensions: { width: number; height: number };
 	editorWidth: number;
@@ -90,7 +86,7 @@ export const useStudioStore = defineStore("studio", {
 		},
 
 		// Mettre à jour les variables du template
-		updateTemplateVariables(variables: Record<string, TemplateVariable>) {
+		updateTemplateVariables(variables: Record<string, StudioTemplateVariable>) {
 			this.templateVariables = variables;
 			this.saveToLocalStorage();
 		},

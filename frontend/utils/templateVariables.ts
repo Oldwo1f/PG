@@ -188,17 +188,31 @@ export function normalizeTemplateUsage(
 	return Object.keys(usage).length > 0 ? usage : null;
 }
 
-/** Studio: API/DB variables → editable { value, type } map. */
+export interface StudioTemplateVariable {
+	value: string;
+	type: "text" | "textarea";
+	usage?: string;
+}
+
+/** Studio: API/DB variables → editable { value, type, usage? } map. */
 export function studioVariablesFromApi(
 	raw?: Record<string, TemplateVariableInput> | unknown | null
-): Record<string, { value: string; type: "text" | "textarea" }> {
+): Record<string, StudioTemplateVariable> {
 	const normalized = normalizeVariablesForStorage(raw);
-	const result: Record<string, { value: string; type: "text" | "textarea" }> = {};
+	const result: Record<string, StudioTemplateVariable> = {};
 	for (const [key, variable] of Object.entries(normalized)) {
 		result[key] = {
 			value: variable.value,
 			type: variable.type === "textarea" ? "textarea" : "text",
+			...(variable.usage ? { usage: variable.usage } : {}),
 		};
 	}
 	return result;
+}
+
+/** Studio: editable variables → storage format for API (preserves usage). */
+export function studioVariablesToStorage(
+	variables: Record<string, StudioTemplateVariable>
+): Record<string, StoredTemplateVariable> {
+	return normalizeVariablesForStorage(variables);
 }

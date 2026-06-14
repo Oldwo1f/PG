@@ -1611,7 +1611,10 @@ import { addGoogleFontsAndStyles } from "~/utils/htmlUtils";
 import { useTemplateStore } from "~/stores/template";
 import { useBrandStore } from "~/stores/brand";
 import { useStudioStore } from "~/stores/studio";
-import { studioVariablesFromApi } from "~/utils/templateVariables";
+import {
+	studioVariablesFromApi,
+	studioVariablesToStorage,
+} from "~/utils/templateVariables";
 import { useAuthStore } from "~/composables/useAuth";
 import { TEMPLATE_CATEGORIES } from "~/constants/categories";
 import { getApiUrl, resolveBackendImageUrl } from "~/utils/api";
@@ -2655,14 +2658,7 @@ const saveTemplate = async () => {
 	}
 
 	try {
-		// Sauvegarder { key: { value, type } } pour chaque variable
-		const variablesToSave: Record<string, TemplateVariable> = {};
-		for (const key in templateVariables.value) {
-			variablesToSave[key] = {
-				value: templateVariables.value[key].value,
-				type: templateVariables.value[key].type,
-			};
-		}
+		const variablesToSave = studioVariablesToStorage(templateVariables.value);
 
 		const updated = await templateStore.updateTemplate(
 			selectedTemplate.value.id,
