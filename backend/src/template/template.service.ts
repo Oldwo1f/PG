@@ -12,6 +12,7 @@ import { TemplatesCatalogResponseDto } from './dto/template-catalog.dto';
 import {
   normalizeTemplateUsage,
   normalizeVariablesForStorage,
+  mergeVariableMetadata,
   toCatalogEntry,
   unwrapTemplatePayload,
 } from './template-variable.mapper';
@@ -222,7 +223,9 @@ export class TemplateService {
 
     if (updateData.variables !== undefined) {
       const unwrapped = unwrapTemplatePayload(updateData.variables);
-      updateData.variables = normalizeVariablesForStorage(unwrapped.variables);
+      const incoming = normalizeVariablesForStorage(unwrapped.variables);
+      const existing = normalizeVariablesForStorage(template.variables);
+      updateData.variables = mergeVariableMetadata(incoming, existing);
       if (updateData.usage === undefined && unwrapped.usage) {
         updateData.usage = unwrapped.usage ?? null;
       }

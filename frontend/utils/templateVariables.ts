@@ -212,7 +212,25 @@ export function studioVariablesFromApi(
 
 /** Studio: editable variables → storage format for API (preserves usage). */
 export function studioVariablesToStorage(
-	variables: Record<string, StudioTemplateVariable>
+	variables: Record<string, StudioTemplateVariable>,
+	source?: Record<string, TemplateVariableInput> | unknown | null
 ): Record<string, StoredTemplateVariable> {
-	return normalizeVariablesForStorage(variables);
+	const incoming = normalizeVariablesForStorage(variables);
+	if (!source) return incoming;
+
+	const existing = normalizeVariablesForStorage(source);
+	const result: Record<string, StoredTemplateVariable> = { ...incoming };
+
+	for (const [key, variable] of Object.entries(result)) {
+		const previous = existing[key];
+		if (!previous) continue;
+
+		result[key] = {
+			...variable,
+			usage: variable.usage ?? previous.usage,
+			type: variable.type ?? previous.type,
+		};
+	}
+
+	return result;
 }

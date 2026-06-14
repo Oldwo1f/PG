@@ -56,6 +56,27 @@ function normalizeSingleVariable(raw: TemplateVariableInput): StoredTemplateVari
   return { value: exampleValue, type, ...(usage ? { usage } : {}) };
 }
 
+/** Preserve metadata from existing variables when the studio omits it on save. */
+export function mergeVariableMetadata(
+  incoming: Record<string, StoredTemplateVariable>,
+  existing: Record<string, StoredTemplateVariable>,
+): Record<string, StoredTemplateVariable> {
+  const result: Record<string, StoredTemplateVariable> = { ...incoming };
+
+  for (const [key, variable] of Object.entries(result)) {
+    const previous = existing[key];
+    if (!previous) continue;
+
+    result[key] = {
+      ...variable,
+      usage: variable.usage ?? previous.usage,
+      type: variable.type ?? previous.type,
+    };
+  }
+
+  return result;
+}
+
 const BUNDLE_META_KEYS = new Set(['templateName', 'brandName']);
 
 function isUsageMetadata(value: unknown): value is TemplateUsage {

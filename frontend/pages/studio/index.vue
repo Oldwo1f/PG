@@ -2658,7 +2658,10 @@ const saveTemplate = async () => {
 	}
 
 	try {
-		const variablesToSave = studioVariablesToStorage(templateVariables.value);
+		const variablesToSave = studioVariablesToStorage(
+			templateVariables.value,
+			selectedTemplate.value?.variables
+		);
 
 		const updated = await templateStore.updateTemplate(
 			selectedTemplate.value.id,
@@ -2671,6 +2674,7 @@ const saveTemplate = async () => {
 		// Réaffecter selectedTemplate à l'objet mis à jour du store (pour garder la référence du select)
 		const found = templateStore.templates.find((t) => t.id === updated.id);
 		if (found) selectedTemplate.value = found;
+		templateVariables.value = studioVariablesFromApi(updated.variables);
 		updatePreview();
 	} catch (error) {
 		console.error("Erreur lors de l'enregistrement du template:", error);
