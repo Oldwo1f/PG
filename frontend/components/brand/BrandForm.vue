@@ -346,22 +346,14 @@
 									v-model="
 										formData.imageGroups[groupIdx].groupName
 									"
-									:readonly="
-										group.groupName === 'background' ||
-										group.groupName === 'foreground'
-									"
-									:disabled="
-										group.groupName === 'background' ||
-										group.groupName === 'foreground'
-									"
+									:readonly="group.locked"
+									:disabled="group.locked"
 									placeholder="Nom du groupe (ex: backgrounds)"
 									class="border rounded px-2 py-1 flex-1"
+									@blur="onGroupNameBlur(groupIdx)"
 								/>
 								<button
-									v-if="
-										group.groupName !== 'background' &&
-										group.groupName !== 'foreground'
-									"
+									v-if="!group.locked"
 									type="button"
 									class="text-red-600 hover:underline"
 									@click="removeImageGroup(groupIdx)"
@@ -369,6 +361,13 @@
 									<i class="ph-duotone ph-trash text-lg"></i>
 								</button>
 							</div>
+							<p
+								v-if="groupNameErrorIdx === groupIdx"
+								class="text-sm text-red-600 mb-2"
+							>
+								Les noms « background » et « foreground » sont
+								réservés.
+							</p>
 							<div
 								v-for="(img, imgIdx) in group.images_url"
 								:key="imgIdx"
@@ -472,12 +471,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import type { Brand, Background, Icon } from "~/types/brand";
+import { ref } from "vue";
+import type { Brand, Icon, ImageGroup } from "~/types/brand";
 import FontSelector from "./FontSelector.vue";
 import { useApi } from "~/composables/useApi";
 import { useAuthStore } from "~/composables/useAuth";
 import { resolveBackendImageUrl } from "~/utils/api";
+
+type FormImageGroup = ImageGroup & { locked?: boolean };
 
 const props = defineProps<{
 	brand?: Brand;
@@ -501,20 +502,30 @@ const groupImageSelectorTarget = ref<{
 } | null>(null);
 const groupImageSelectorImages = ref<{ name: string; url: string }[]>([]);
 const logoLibraryImages = ref<{ name: string; url: string }[]>([]);
+const groupNameErrorIdx = ref<number | null>(null);
 
-const REQUIRED_GROUPS = [
-	{
-		groupName: "background",
-		images_url: [] as { name: string; url: string }[],
-	},
-	{
-		groupName: "foreground",
-		images_url: [] as { name: string; url: string }[],
-	},
-];
+const REQUIRED_GROUP_NAMES = ["background", "foreground"] as const;
 
-function normalizeImageGroups(groups: any[]) {
-	if (!Array.isArray(groups)) return REQUIRED_GROUPS.map((g) => ({ ...g }));
+const REQUIRED_GROUPS: FormImageGroup[] = REQUIRED_GROUP_NAMES.map(
+	(groupName) => ({
+		groupName,
+		images_url: [],
+		locked: true,
+	})
+);
+
+function isReservedGroupName(name: string) {
+	return (REQUIRED_GROUP_NAMES as readonly string[]).includes(name);
+}
+
+function normalizeImageGroups(groups: any[]): FormImageGroup[] {
+	if (!Array.isArray(groups)) {
+		return REQUIRED_GROUPS.map((g) => ({
+			...g,
+			images_url: [],
+			locked: true,
+		}));
+	}
 	return groups.map((g) => {
 		const images = Array.isArray(g.images_url) ? g.images_url : [];
 		const normalized = images.map((img: any) => {
@@ -522,7 +533,6 @@ function normalizeImageGroups(groups: any[]) {
 				return { name: "", url: img };
 			}
 			if (img && typeof img === "object") {
-				// Ensure both keys exist
 				return { name: img.name || "", url: img.url || "" };
 			}
 			return { name: "", url: "" };
@@ -530,35 +540,69 @@ function normalizeImageGroups(groups: any[]) {
 		return {
 			groupName: g.groupName || "",
 			images_url: normalized,
+			locked: false,
 		};
 	});
 }
 
-function ensureRequiredGroups(groups: any[]) {
+function ensureRequiredGroups(groups: any[]): FormImageGroup[] {
 	const normalized = normalizeImageGroups(groups);
-	const names = normalized.map((g) => g.groupName);
+
+	// Fusionne les doublons des noms réservés (évite d'écraser le vrai background)
+	const deduped: FormImageGroup[] = [];
+	const reservedFirstIndex = new Map<string, number>();
+	for (const group of normalized) {
+		if (isReservedGroupName(group.groupName)) {
+			const existingIdx = reservedFirstIndex.get(group.groupName);
+			if (existingIdx !== undefined) {
+				deduped[existingIdx].images_url.push(...group.images_url);
+				continue;
+			}
+			reservedFirstIndex.set(group.groupName, deduped.length);
+			deduped.push({ ...group, locked: true });
+			continue;
+		}
+		deduped.push({ ...group, locked: false });
+	}
+
 	REQUIRED_GROUPS.forEach((req) => {
-		if (!names.includes(req.groupName)) {
-			normalized.push({ groupName: req.groupName, images_url: [] });
+		if (!reservedFirstIndex.has(req.groupName)) {
+			deduped.push({
+				groupName: req.groupName,
+				images_url: [],
+				locked: true,
+			});
 		}
 	});
-	// Trie pour que les groupes obligatoires soient toujours en premier
-	normalized.sort((a, b) => {
-		const ia = REQUIRED_GROUPS.findIndex(
-			(g) => g.groupName === a.groupName
+
+	// Groupes obligatoires toujours en premier
+	deduped.sort((a, b) => {
+		const ia = REQUIRED_GROUP_NAMES.indexOf(
+			a.groupName as (typeof REQUIRED_GROUP_NAMES)[number]
 		);
-		const ib = REQUIRED_GROUPS.findIndex(
-			(g) => g.groupName === b.groupName
+		const ib = REQUIRED_GROUP_NAMES.indexOf(
+			b.groupName as (typeof REQUIRED_GROUP_NAMES)[number]
 		);
 		if (ia !== -1 && ib !== -1) return ia - ib;
 		if (ia !== -1) return -1;
 		if (ib !== -1) return 1;
 		return 0;
 	});
-	return normalized;
+
+	return deduped.map((g) => ({
+		...g,
+		locked: isReservedGroupName(g.groupName) ? true : false,
+	}));
 }
 
-const formData = ref<Brand>({
+function toPersistableImageGroups(groups: FormImageGroup[]): ImageGroup[] {
+	return groups.map(({ groupName, images_url }) => ({
+		groupName,
+		images_url,
+	}));
+}
+
+const formData = ref({
 	id: props.brand?.id || "",
 	name: props.brand?.name || "",
 	primaryColor: props.brand?.primaryColor || "#000000",
@@ -588,7 +632,18 @@ const formData = ref<Brand>({
 });
 
 const handleSubmit = () => {
-	emit("submit", formData.value);
+	const conflictIdx = formData.value.imageGroups.findIndex(
+		(g) => !g.locked && isReservedGroupName(g.groupName)
+	);
+	if (conflictIdx !== -1) {
+		groupNameErrorIdx.value = conflictIdx;
+		return;
+	}
+	groupNameErrorIdx.value = null;
+	emit("submit", {
+		...formData.value,
+		imageGroups: toPersistableImageGroups(formData.value.imageGroups),
+	} as Brand);
 };
 
 const updateIcons = (icons: Icon[]) => {
@@ -602,16 +657,28 @@ const removeIcon = (icon: Icon) => {
 };
 
 function addImageGroup() {
-	formData.value.imageGroups.push({ groupName: "", images_url: [] });
+	formData.value.imageGroups.push({
+		groupName: "",
+		images_url: [],
+		locked: false,
+	});
 }
+
 function removeImageGroup(idx: number) {
 	const group = formData.value.imageGroups[idx];
-	if (
-		group &&
-		(group.groupName === "background" || group.groupName === "foreground")
-	)
-		return;
+	if (group?.locked) return;
 	formData.value.imageGroups.splice(idx, 1);
+	if (groupNameErrorIdx.value === idx) groupNameErrorIdx.value = null;
+}
+
+function onGroupNameBlur(idx: number) {
+	const group = formData.value.imageGroups[idx];
+	if (!group || group.locked) return;
+	if (isReservedGroupName(group.groupName)) {
+		groupNameErrorIdx.value = idx;
+		return;
+	}
+	if (groupNameErrorIdx.value === idx) groupNameErrorIdx.value = null;
 }
 function addImageToGroup(groupIdx: number) {
 	formData.value.imageGroups[groupIdx].images_url.push({ name: "", url: "" });
