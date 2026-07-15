@@ -174,6 +174,21 @@ export class TemplateController {
     return this.templateService.getTemplateContent(id);
   }
 
+  @Post(':id/duplicate')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Duplicate a template for the current user' })
+  @ApiResponse({
+    status: 201,
+    description: 'Template duplicated successfully',
+    type: Template,
+  })
+  async duplicate(
+    @Param('id') id: string,
+    @CurrentUser() user: User,
+  ): Promise<Template> {
+    return this.templateService.duplicate(id, user.id);
+  }
+
   @Patch(':id')
   @ApiOperation({ summary: 'Update a template' })
   @ApiResponse({

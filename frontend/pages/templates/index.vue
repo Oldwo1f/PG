@@ -138,6 +138,12 @@
 								Modifier
 							</button>
 							<button
+								@click="duplicateTemplate(template.id)"
+								class="text-indigo-600 hover:text-indigo-900 mr-4"
+							>
+								Dupliquer
+							</button>
+							<button
 								@click="deleteTemplate(template.id)"
 								class="text-red-600 hover:text-red-900"
 							>
@@ -688,6 +694,15 @@ const deleteTemplate = async (id: string | undefined) => {
 		} catch (error) {
 			console.error("Erreur lors de la suppression:", error);
 		}
+	}
+};
+
+const duplicateTemplate = async (id: string | undefined) => {
+	if (!id) return;
+	try {
+		await templateStore.duplicateTemplate(id);
+	} catch (error) {
+		console.error("Erreur lors de la duplication:", error);
 	}
 };
 </script>

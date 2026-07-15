@@ -243,6 +243,29 @@ export class TemplateService {
     await this.templateRepository.remove(template);
   }
 
+  async duplicate(id: string, userId: string): Promise<Template> {
+    const source = await this.findOne(id);
+
+    // Own templates or public examples only
+    if (source.userId && source.userId !== userId) {
+      throw new ForbiddenException('Vous ne pouvez pas dupliquer ce template');
+    }
+
+    return this.create({
+      name: `${source.name} - Copie`,
+      description: source.description,
+      category: source.category,
+      layout: source.layout,
+      tags: source.tags ? [...source.tags] : [],
+      isActive: source.isActive,
+      html: source.html,
+      variables: source.variables,
+      usage: source.usage,
+      previewImage: source.previewImage,
+      userId,
+    });
+  }
+
   async findByCategory(category: string): Promise<Template[]> {
     return this.templateRepository.find({
       where: { category },

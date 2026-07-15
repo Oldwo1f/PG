@@ -262,10 +262,17 @@ export const useTemplateStore = defineStore("template", {
 					}
 				);
 				if (!response.ok) {
+					if (response.status === 403) {
+						const data = await response.json();
+						this.error =
+							data.message ||
+							"Limite de templates atteinte pour votre plan. Passez à l'offre supérieure pour créer plus de templates.";
+						throw new Error(this.error!);
+					}
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 				const duplicatedTemplate = await response.json();
-				this.templates.push(duplicatedTemplate);
+				this.templates.unshift(duplicatedTemplate);
 				return duplicatedTemplate;
 			} catch (error) {
 				this.error =
