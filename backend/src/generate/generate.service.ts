@@ -1,7 +1,11 @@
 import { Injectable, InternalServerErrorException, ForbiddenException } from '@nestjs/common';
 import * as puppeteer from 'puppeteer';
 import * as Handlebars from 'handlebars';
-import { registerHandlebarsHelpers, resolveAssetUrl } from '../utils/handlebarsHelpers';
+import {
+  normalizeImageGroupsByName,
+  registerHandlebarsHelpers,
+  resolveAssetUrl,
+} from '../utils/handlebarsHelpers';
 import { addGoogleFontsAndStyles } from '../utils/htmlUtils';
 import { TemplateService } from '../template/template.service';
 import { BrandService } from '../brand/brand.service';
@@ -158,20 +162,8 @@ export class GenerateService {
       const height = template.layout?.height || 1024;
       const googleFontsLinks = this.generateGoogleFontsLinks(dbBrand);
 
-      // Transformer l'array imageGroups en objet, comme le faisait le frontend
-      const imageGroupsByName = (dbBrand.imageGroups || []).reduce(
-        (acc: Record<string, { name: string; url: string }[]>, group) => {
-          if (group.groupName) {
-            const raw = Array.isArray(group.images_url) ? group.images_url : [];
-            acc[group.groupName] = raw.map((u: string, idx: number) => ({
-              name: `image_${idx + 1}`,
-              url: resolveAssetUrl(u),
-            }));
-          }
-          return acc;
-        },
-        {},
-      );
+      // Transformer l'array imageGroups en objet (fusionne les doublons de groupName)
+      const imageGroupsByName = normalizeImageGroupsByName(dbBrand.imageGroups);
 
       // Construire manuellement un objet "brand" propre pour le template
       // pour garantir la bonne structure des données

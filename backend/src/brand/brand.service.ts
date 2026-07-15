@@ -49,7 +49,9 @@ export class BrandService {
       ...createBrandDto,
       imageGroups: createBrandDto.imageGroups.map((group) => ({
         groupName: group.groupName,
-        images_url: group.images_url.map((img) => img.url),
+        images_url: group.images_url
+          .map((img) => (typeof img === 'string' ? img : img?.url))
+          .filter((url): url is string => typeof url === 'string' && !!url.trim()),
       })),
     });
     return this.brandRepository.save(newBrand);
@@ -73,7 +75,9 @@ export class BrandService {
     if (updateBrandDto.imageGroups) {
       updateData.imageGroups = updateBrandDto.imageGroups.map((group) => ({
         groupName: group.groupName,
-        images_url: group.images_url.map((img) => img.url),
+        images_url: group.images_url
+          .map((img) => (typeof img === 'string' ? img : (img as { url?: string })?.url))
+          .filter((url): url is string => typeof url === 'string' && !!url.trim()),
       }));
     }
 

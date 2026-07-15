@@ -33,6 +33,48 @@ export function resolveAssetUrl(input: unknown): string {
   return `${base}${path}`;
 }
 
+/**
+ * Convertit imageGroups (array) en objet { [groupName]: { name, url }[] }.
+ * Fusionne les doublons de groupName au lieu de les écraser (évite un groupe vide
+ * qui masque le vrai background).
+ */
+export function normalizeImageGroupsByName(
+  groups: { groupName?: string; images_url?: ImageArray }[] | null | undefined,
+): Record<string, { name: string; url: string }[]> {
+  const result: Record<string, { name: string; url: string }[]> = {};
+  if (!Array.isArray(groups)) return result;
+
+  for (const group of groups) {
+    if (!group?.groupName) continue;
+    const raw = Array.isArray(group.images_url) ? group.images_url : [];
+    const images = raw
+      .map((img, idx) => {
+        if (typeof img === 'string') {
+          const url = resolveAssetUrl(img);
+          return url ? { name: `image_${idx + 1}`, url } : null;
+        }
+        if (img && typeof img === 'object') {
+          const url = resolveAssetUrl(img.url || '');
+          if (!url) return null;
+          return {
+            name: img.name || `image_${idx + 1}`,
+            url,
+          };
+        }
+        return null;
+      })
+      .filter((img): img is { name: string; url: string } => img !== null);
+
+    if (!result[group.groupName]) {
+      result[group.groupName] = images;
+    } else {
+      result[group.groupName].push(...images);
+    }
+  }
+
+  return result;
+}
+
 function imageToUrl(img: ImageLike): string {
   if (!img) return '';
   if (typeof img === 'string') return resolveAssetUrl(img);

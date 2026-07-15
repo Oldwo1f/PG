@@ -2105,8 +2105,13 @@ const normalizedSelectedBrandImageGroups = computed(() => {
 const brandImageGroupsByName = computed(() => {
 	const groups = normalizedSelectedBrandImageGroups.value;
 	return groups.reduce((acc, group) => {
-		if (group.groupName) {
-			acc[group.groupName] = group.images_url || [];
+		if (!group.groupName) return acc;
+		const images = (group.images_url || []).filter((img) => !!img?.url);
+		// Fusionner les doublons au lieu d'écraser (un groupe vide ne masque plus le vrai)
+		if (!acc[group.groupName]) {
+			acc[group.groupName] = images;
+		} else {
+			acc[group.groupName].push(...images);
 		}
 		return acc;
 	}, {} as Record<string, { name: string; url: string }[]>);

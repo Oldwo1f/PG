@@ -7,7 +7,11 @@ import * as Handlebars from 'handlebars';
 import { BrandService } from '../brand/brand.service';
 import { Brand } from '../brand/entities/brand.entity';
 import { User } from '../user/entities/user.entity';
-import { registerHandlebarsHelpers, resolveAssetUrl } from '../utils/handlebarsHelpers';
+import {
+  normalizeImageGroupsByName,
+  registerHandlebarsHelpers,
+  resolveAssetUrl,
+} from '../utils/handlebarsHelpers';
 import { flattenTemplateVariablesForRender } from './template-variable.mapper';
 import { addGoogleFontsAndStyles } from '../utils/htmlUtils';
 import { GenerateTemplatePreviewDto } from './dto/generate-template-preview.dto';
@@ -78,17 +82,8 @@ export class TemplatePreviewService {
     registerHandlebarsHelpers();
     const template = Handlebars.compile(html);
 
-    // Same normalization as GenerateService (frontend expects brand.imageGroups as object keyed by groupName)
-    const imageGroupsByName = (brand.imageGroups || []).reduce((acc: Record<string, { name: string; url: string }[]>, group) => {
-      if (group.groupName) {
-        const raw = Array.isArray(group.images_url) ? group.images_url : [];
-        acc[group.groupName] = raw.map((u: string, idx: number) => ({
-          name: `image_${idx + 1}`,
-          url: resolveAssetUrl(u),
-        }));
-      }
-      return acc;
-    }, {});
+    // Same normalization as GenerateService (fusionne les doublons de groupName)
+    const imageGroupsByName = normalizeImageGroupsByName(brand.imageGroups);
 
     const templateBrand = {
       ...brand,
